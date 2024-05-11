@@ -19,6 +19,9 @@ config/icon="res://icon.svg"
 
 Logger="*res://addons/gs_logger/logger.gd"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+Types="*res://src/common/types.gd"
+Events="*res://src/common/events.gd"
+Globals="*res://src/common/globals.gd"
 
 [editor_plugins]
 
