@@ -9,6 +9,7 @@ radius = 1.5
 height = 8.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_x8yfo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -20,4 +21,5 @@ position = Vector2(0, -4)
 texture = ExtResource("2_umtm1")
 
 [node name="TerrainDetector" parent="." instance=ExtResource("3_p7gik")]
-position = Vector2(4, -8)
+unique_name_in_owner = true
+position = Vector2(0, -4)

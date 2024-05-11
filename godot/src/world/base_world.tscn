@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpqcxdph2b0v0"]
+[gd_scene load_steps=3 format=3 uid="uid://dpqcxdph2b0v0"]
 
 [ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="1_1oa7u"]
+[ext_resource type="Script" path="res://src/world/base_world.gd" id="1_21j6r"]
 
-[node name="BaseWorld" type="Node2D"]
+[node name="BaseWorld" type="Node"]
+script = ExtResource("1_21j6r")
 
 [node name="PlatformsLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("1_1oa7u")

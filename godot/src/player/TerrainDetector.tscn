@@ -1,14 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpffnhboaxsb3"]
+[gd_scene load_steps=2 format=3 uid="uid://cpffnhboaxsb3"]
 
 [ext_resource type="Script" path="res://src/player/terrain_detector.gd" id="1_65l6x"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5ldy"]
-size = Vector2(4, 4)
-
-[node name="TerrainDetector" type="Area2D"]
-collision_layer = 0
+[node name="TerrainDetector" type="Node2D"]
 script = ExtResource("1_65l6x")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_p5ldy")
-debug_color = Color(0.788235, 0.6, 0.701961, 0.419608)
+[node name="WallRayCast" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+target_position = Vector2(6, 0)
+
+[node name="JumpRayCast" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(6, -16)
+target_position = Vector2(0, 16)
+hit_from_inside = true
+
+[node name="FallRayCast" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(6, 0)
+target_position = Vector2(0, 100)
+hit_from_inside = true
