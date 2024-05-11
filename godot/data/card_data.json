@@ -1,0 +1,20 @@
+[
+  {
+	"nice_name": "card1",
+	"description": "test description",
+	"cost": 0,
+	"target_type":0,
+	"texture_path": "res://assets/gfx/ui/front.png",
+	"backface_texture_path": "res://assets/gfx/ui/back.png",
+	"resource_script_path": "res://src/cards/card_ui_data.gd"
+  },
+{
+	"nice_name": "card2",
+	"description": "test description",
+	"cost": 0,
+	"target_type":0,
+	"texture_path": "res://assets/gfx/ui/front.png",
+	"backface_texture_path": "res://assets/gfx/ui/back.png",
+	"resource_script_path": "res://src/cards/card_ui_data.gd"
+  },
+]

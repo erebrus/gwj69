@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbbhfj0irlnxf"]
+[gd_scene load_steps=3 format=3 uid="uid://cbbhfj0irlnxf"]
+
+[ext_resource type="PackedScene" uid="uid://cl2x45a8d01v4" path="res://src/cards/card_engine.tscn" id="1_tvgx4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0t2k5"]
 font_size = 72
@@ -26,3 +28,5 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "HELLO WORLD"
 label_settings = SubResource("LabelSettings_0t2k5")
+
+[node name="CardEngine" parent="." instance=ExtResource("1_tvgx4")]
