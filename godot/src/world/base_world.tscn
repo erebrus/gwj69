@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpqcxdph2b0v0"]
+
+[ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="1_1oa7u"]
+
+[node name="BaseWorld" type="Node2D"]
+
+[node name="PlatformsLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_1oa7u")
+navigation_enabled = false
