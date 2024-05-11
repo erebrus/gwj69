@@ -10,10 +10,19 @@ config_version=5
 
 [application]
 
-config/name="MiniJam 154"
+config/name="GWJ69"
 run/main_scene="res://src/main.tscn"
-config/features=PackedStringArray("4.2", "GL Compatibility")
+config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Logger="*res://addons/gs_logger/logger.gd"
+SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Asset_Drawer/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/gs_logger/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/simple_card_pile_ui/plugin.cfg", "res://addons/xsm/plugin.cfg")
 
 [rendering]
 
