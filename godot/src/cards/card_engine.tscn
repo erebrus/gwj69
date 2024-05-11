@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl2x45a8d01v4"]
+
+[ext_resource type="Script" path="res://src/cards/card_engine.gd" id="1_mxp7p"]
+[ext_resource type="PackedScene" uid="uid://d01tdhr8nupat" path="res://src/cards/custom_card_ui.tscn" id="2_x34v8"]
+
+[node name="CardEngine" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mxp7p")
+json_card_database_path = "res://data/card_data.json"
+json_card_collection_path = "res://data/card_library.json"
+extended_card_ui = ExtResource("2_x34v8")
+hand_pile_position = Vector2(550, 460)
+discard_pile_position = Vector2(1034, 460)
+max_stack_display = 1
+max_hand_size = 6

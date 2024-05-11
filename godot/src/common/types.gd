@@ -1,8 +1,7 @@
 extends Node
 
-
-enum Terrain {
-	Wall,
-	Floor,
-	Ceiling
+enum TargetType {
+	GLOBAL,
+	POSITION
+	
 }
