@@ -1,11 +1,10 @@
 extends Node
 
+signal request_position()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+signal request_jump()
+signal request_long_jump()
 
+signal request_block_at(block, position:Vector2i)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+signal tick()
