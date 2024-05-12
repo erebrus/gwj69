@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://dqp2d35d4ec11"]
+[gd_scene load_steps=5 format=4 uid="uid://dqp2d35d4ec11"]
 
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="1_44a1e"]
 [ext_resource type="PackedScene" uid="uid://b2q3ypwb3s64x" path="res://src/player/player.tscn" id="3_vr7fo"]
 [ext_resource type="PackedScene" uid="uid://cl2x45a8d01v4" path="res://src/cards/card_engine.tscn" id="4_0ml2i"]
-[ext_resource type="Script" path="res://src/cards/world_drop_zone.gd" id="4_hwrdi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ac5ny"]
 font_size = 8
@@ -33,23 +32,5 @@ label_settings = SubResource("LabelSettings_ac5ny")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="DropZone" type="Control" parent="." index="3" node_paths=PackedStringArray("card_pile_ui")]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1274.0
-offset_bottom = 491.0
-script = ExtResource("4_hwrdi")
-card_pile_ui = NodePath("../CardEngine")
-stack_display_gap = 0
-max_stack_display = 0
-
-[node name="ColorRect" type="ColorRect" parent="DropZone" index="0"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CardEngine" parent="." index="4" instance=ExtResource("4_0ml2i")]
+[node name="CardEngine" parent="." index="3" instance=ExtResource("4_0ml2i")]
+drag_when_clicked = false

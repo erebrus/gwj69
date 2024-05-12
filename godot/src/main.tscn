@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbbhfj0irlnxf"]
+[gd_scene load_steps=3 format=3 uid="uid://cbbhfj0irlnxf"]
 
 [ext_resource type="PackedScene" uid="uid://cl2x45a8d01v4" path="res://src/cards/card_engine.tscn" id="1_tvgx4"]
-[ext_resource type="Script" path="res://src/cards/world_drop_zone.gd" id="2_wg5xa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0t2k5"]
 font_size = 72
@@ -33,21 +32,3 @@ label_settings = SubResource("LabelSettings_0t2k5")
 [node name="CardEngine" parent="." instance=ExtResource("1_tvgx4")]
 discard_pile_position = Vector2(1090, 460)
 discard_face_up = false
-
-[node name="DropZone" type="Control" parent="." node_paths=PackedStringArray("card_pile_ui")]
-anchors_preset = 0
-offset_right = 1274.0
-offset_bottom = 491.0
-script = ExtResource("2_wg5xa")
-card_pile_ui = NodePath("../CardEngine")
-stack_display_gap = 0
-max_stack_display = 0
-
-[node name="ColorRect" type="ColorRect" parent="DropZone"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
