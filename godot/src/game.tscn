@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://duka5rbd4bxdc"]
+
+[ext_resource type="Script" path="res://src/game.gd" id="1_k8n5x"]
+[ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="2_euer7"]
+[ext_resource type="PackedScene" uid="uid://b55be43ctmn7a" path="res://src/world/levels/test_angela_world.tscn" id="2_o2rij"]
+[ext_resource type="PackedScene" uid="uid://cl2x45a8d01v4" path="res://src/cards/card_engine.tscn" id="3_bitsc"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_k8n5x")
+world_scene = ExtResource("2_o2rij")
+
+[node name="BaseWorld" parent="." instance=ExtResource("2_euer7")]
+
+[node name="CardEngine" parent="." instance=ExtResource("3_bitsc")]
