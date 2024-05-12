@@ -11,9 +11,13 @@ extends CharacterBody2D
 	
 
 @onready var terrain_detector = %TerrainDetector
+@onready var sprite: Sprite2D = $Sprite2D
 
 
 func _ready():
+	
+	Events.turn_around_requested.connect(_on_turn_around_requested)
+	
 	terrain_detector.max_jump_distance = jump_height
 	
 	terrain_detector.jump_detected.connect(_on_jump_detected)
@@ -25,12 +29,12 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	
+	velocity.x = base_speed * get_facing_direction()
 	if is_on_floor():
 		if _should_jump():
 			velocity.y = jump_velocity
 		elif terrain_detector.wall_ahead:
-			_turn_arround()
+			velocity.x=0 
 			
 	move_and_slide()
 	
@@ -38,11 +42,13 @@ func _physics_process(delta):
 func _should_jump() -> bool:
 	return terrain_detector.jump_height > 0 and terrain_detector.jump_height <= jump_height
 	
-
-func _turn_arround() -> void:
+func get_facing_direction()->int:
+	return -1 if sprite.flip_h else 1
+	
+func _turn_around() -> void:
 	Logger.debug("turning")
-	velocity.x = -velocity.x
-	terrain_detector.flip = velocity.x < 0
+	sprite.flip_h = !sprite.flip_h
+	terrain_detector.flip = sprite.flip_h
 	
 
 func _on_jump_detected(height: float) -> void:
@@ -51,3 +57,6 @@ func _on_jump_detected(height: float) -> void:
 
 func _on_fall_detected(height: float) -> void:
 	Logger.debug("Fall of %s detected!" % height)
+
+func _on_turn_around_requested():
+	_turn_around()
