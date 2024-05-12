@@ -1,25 +1,26 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2q3ypwb3s64x"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_x8yfo"]
-[ext_resource type="Texture2D" uid="uid://h4y3ctcukbst" path="res://assets/gfx/player/player.png" id="2_umtm1"]
+[ext_resource type="Texture2D" uid="uid://42wccejd5kvf" path="res://assets/gfx/character/mc-tall2.png" id="2_joaqe"]
 [ext_resource type="PackedScene" uid="uid://cpffnhboaxsb3" path="res://src/player/TerrainDetector.tscn" id="3_p7gik"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lc3vg"]
-radius = 1.5
-height = 8.0
+radius = 2.5
+height = 10.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_x8yfo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -4)
-shape = SubResource("CapsuleShape2D_lc3vg")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -4)
-texture = ExtResource("2_umtm1")
+texture = ExtResource("2_joaqe")
+offset = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_lc3vg")
 
 [node name="TerrainDetector" parent="." instance=ExtResource("3_p7gik")]
 unique_name_in_owner = true

@@ -18,6 +18,15 @@
 	"resource_script_path": "res://src/cards/logic/card_jump.gd"
   },
 {
+	"nice_name": "Turn around",
+	"description": "Player changes direction.",
+	"cost": 0,
+	"target_type":0,
+	"texture_path": "res://assets/gfx/ui/front.png",
+	"backface_texture_path": "res://assets/gfx/ui/back.png",
+	"resource_script_path": "res://src/cards/logic/card_turn_around.gd"
+  },
+{
 	"nice_name": "Block",
 	"description": "Adds a block in the world.",
 	"cost": 0,
