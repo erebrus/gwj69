@@ -1,10 +1,38 @@
 extends CustomCardUIData
 class_name CardBlock
-const Block:PackedScene = preload("res://src/world/blocks/block.tscn")
- 
-func _get_block():
-	return Block.instantiate()
 
-func _do_play(target = null):
-	Logger.info(" Played %s" % nice_name)
-	Events.request_block_at.emit(_get_block(), target)
+const Placeholder = preload("res://src/world/blocks/placeholder/placeholder.tscn")
+
+
+@export var block_scene_path: String:
+	set(value):
+		if value != block_scene_path:
+			block_scene_path = value
+			block_scene = load(block_scene_path)
+
+var block_scene: PackedScene
+
+
+func _get_block():
+	return block_scene.instantiate()
+
+func play():
+	Globals.game_mode = Types.GameMode.PlacingBlock
+	
+	var placeholder = Placeholder.instantiate()
+	placeholder.block = _get_block()
+	placeholder.placed.connect(_on_block_placed)
+	placeholder.dismissed.connect(_on_card_dismissed)
+	
+	# TODO: should add to world instead of tilemap?
+	Globals.tilemap.add_child(placeholder)
+	
+
+func _on_block_placed() -> void:
+	Logger.info("Played %s card" % nice_name)
+	_do_play()
+	played.emit()
+	
+
+func _on_card_dismissed() -> void:
+	Globals.game_mode = Types.GameMode.ChoosingCard

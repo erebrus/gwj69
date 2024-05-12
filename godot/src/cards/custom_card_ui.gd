@@ -5,24 +5,29 @@ class_name CustomCardUI
 @onready var image: TextureRect = %Image
 @onready var description_label: Label = %Description
 
+@onready var custom_data: CustomCardUIData = card_data as CustomCardUIData
+
 func _ready():
 	super()
 	card_data.connect("card_data_updated", _update_display)
 	card_clicked.connect(_on_card_clicked)
+	custom_data.played.connect(_on_card_played)
+	
 	_update_display()
 	
 func _update_display():
 	card_name.text = card_data.nice_name
+	description_label.text = "%s" % card_data.description
+	
 	if (not card_data.image_path.is_empty()):
 		image.texture = load(card_data.image_path)
-	description_label.text = "%s" % card_data.description
-	#cost_label.text = "%d" % card_data.cost
-	#name_label.text = "%s" % card_data.nice_name			
-	#type_label.text = "%s" % card_data.type
+		
 
 func _on_card_clicked(card):
 	if card == self:
 		Logger.info("Clicked %s" % card_data.nice_name)
-		card_data.play() 
-		#TODO wait for card to be played before discarding
-		Events.discard_requested.emit(self)
+		custom_data.play()
+		
+
+func _on_card_played():
+	Events.discard_requested.emit(self)

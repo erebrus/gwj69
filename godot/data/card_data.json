@@ -3,7 +3,6 @@
 	"nice_name": "Jump",
 	"description": "Player jumps up 2 tiles.",
 	"cost": 0,
-	"target_type":0,
 	"resource_script_path": "res://src/cards/logic/card_jump.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/jump-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
@@ -13,7 +12,6 @@
 	"nice_name": "Long Jump",
 	"description": "Player jumps across 3 tiles.",
 	"cost": 0,
-	"target_type":0,
 	"resource_script_path": "res://src/cards/logic/card_jump.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/jump-long-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
@@ -23,7 +21,6 @@
 	"nice_name": "Turn around",
 	"description": "Player changes direction.",
 	"cost": 0,
-	"target_type":0,
 	"resource_script_path": "res://src/cards/logic/card_turn_around.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/turn-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
@@ -33,30 +30,30 @@
 	"nice_name": "Block",
 	"description": "Adds a block in the world.",
 	"cost": 0,
-	"target_type":1,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/block-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
-	"backface_texture_path": "res://assets/gfx/ui/card-back.png"
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"block_scene_path": "res://src/world/blocks/tilemap_block.tscn"
   },
 {
 	"nice_name": "Horizontal Block",
 	"description": "Adds a block that carries the player horizontally.",
 	"cost": 0,
-	"target_type":1,
-	"resource_script_path": "res://src/cards/logic/card_horizontal_block.gd",
+	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/block-h-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
-	"backface_texture_path": "res://assets/gfx/ui/card-back.png"
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"block_scene_path": "res://src/world/blocks/horizontal_block.tscn"
   },
 {
 	"nice_name": "Vertical Block",
 	"description": "Adds a block that carries the player vertically.",
 	"cost": 0,
-	"target_type":1,
-	"resource_script_path": "res://src/cards/logic/card_vertical_block.gd",
+	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/block-v-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
-	"backface_texture_path": "res://assets/gfx/ui/card-back.png"
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"block_scene_path": "res://src/world/blocks/vertical_block.tscn"
   },
 ]

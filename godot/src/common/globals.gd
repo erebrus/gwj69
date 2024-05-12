@@ -11,6 +11,13 @@ var config:ConfigFile
 var debug_build := false
 
 
+var game_mode: Types.GameMode:
+	set(value):
+		if value != game_mode:
+			game_mode = value
+			Events.game_mode_changed.emit(game_mode)
+	
+
 var tilemap: TileMapLayer
 
 

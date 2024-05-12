@@ -1,7 +1,7 @@
 extends Node
 
-enum TargetType {
-	GLOBAL,
-	POSITION
-	
+
+enum GameMode {
+	ChoosingCard,
+	PlacingBlock,
 }

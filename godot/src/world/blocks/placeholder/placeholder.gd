@@ -2,12 +2,12 @@ extends Node2D
 
 
 signal valid_changed(valid:bool)
+signal placed
+signal dismissed
 
 
-@export var block_scene: PackedScene
 var block: BaseBlock
 
-var collision_shape_transform = Transform2D(0, Vector2(0.9,0.9), 0, Vector2.ZERO)
 
 var is_valid:=true:
 	set(value):
@@ -25,11 +25,11 @@ var is_valid:=true:
 func _ready() -> void:
 	_center_on_cell(global_position)
 	
-	block = block_scene.instantiate()
-	block.collision_enabled = false
 	add_child(block)
+	block.disable()
 	
-	_calculate_collision_shape()
+	for shape in block.get_collision_shapes():
+		area.add_child(shape)
 	
 
 func _input(event: InputEvent) -> void:
@@ -54,17 +54,19 @@ func _place() -> void:
 	
 	Logger.info("block placed")
 	var block_position = block.global_position
-	block.collision_enabled = true
+	block.enable()
 	remove_child(block)
 	
 	block.global_position = block_position
 	get_parent().add_child(block)
+	placed.emit()
 	
 	queue_free()
 	
 
 func _destroy() -> void:
 	Logger.info("cancel placing block")	
+	dismissed.emit()
 	queue_free()
 	
 
@@ -73,13 +75,3 @@ func _center_on_cell(point: Vector2) -> void:
 	global_position = tilemap.to_global(tilemap.map_to_local(tile)) - half_size
 	
 
-func _calculate_collision_shape() -> void:
-	for cell in block.get_used_cells():
-		var cell_data = block.get_cell_tile_data(cell)
-		for layer in 2: # number of layers in tileset (only layer 1 is used for blocks so far)
-			for i in cell_data.get_collision_polygons_count(layer):
-				var collision_polygon = cell_data.get_collision_polygon_points(layer, i) * collision_shape_transform
-				var collision_shape = CollisionPolygon2D.new()
-				collision_shape.polygon = collision_polygon
-				collision_shape.position = Vector2i((2 * cell.x + 1) * half_size.x, (2 * cell.y + 1) * half_size.y)
-				area.add_child(collision_shape)

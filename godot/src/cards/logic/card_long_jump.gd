@@ -1,5 +1,4 @@
 extends CustomCardUIData
 
-func _do_play(target = null):
-	Logger.info(" Played Long Jump card")
+func _do_play():
 	Events.long_jump_requested.emit()

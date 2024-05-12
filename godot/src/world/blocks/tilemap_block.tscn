@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://dplodxgtbever"]
+
+[ext_resource type="PackedScene" uid="uid://k1ey4vvnmd50" path="res://src/world/blocks/base_block.tscn" id="1_m6ekt"]
+[ext_resource type="Script" path="res://src/world/blocks/tilemap_block.gd" id="2_mj4o5"]
+[ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="3_v2anq"]
+
+[node name="TilemapBlock" instance=ExtResource("1_m6ekt")]
+script = ExtResource("2_mj4o5")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="0"]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 2, 0, 1, 0, 1, 0, 0, 0)
+tile_set = ExtResource("3_v2anq")
