@@ -2,6 +2,8 @@ class_name BaseBlock extends Node2D
 
 
 var collision_shape_transform =  Transform2D(0, Vector2(0.9,0.9), 0, Vector2.ZERO)
+var enabled = true
+
 
 @export var timed = true
 @export var ttl = 3
@@ -13,11 +15,13 @@ func _ready() -> void:
 	
 
 func disable() -> void:
+	enabled = false
 	if Events.tick.is_connected(_on_tick):
 		Events.tick.disconnect(_on_tick)
 	
 
 func enable() -> void:
+	enabled = true
 	if timed:
 		Events.tick.connect(_on_tick)
 	
