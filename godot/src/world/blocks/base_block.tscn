@@ -3,9 +3,8 @@
 [ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="1_p5igv"]
 [ext_resource type="Script" path="res://src/world/blocks/base_block.gd" id="1_v57t3"]
 
-[node name="BaseBlock" type="Node2D"]
-script = ExtResource("1_v57t3")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="BaseBlock" type="TileMapLayer"]
 tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0)
 tile_set = ExtResource("1_p5igv")
+use_kinematic_bodies = true
+script = ExtResource("1_v57t3")

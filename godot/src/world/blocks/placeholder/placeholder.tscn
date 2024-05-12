@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn01q40wbxihj"]
+
+[ext_resource type="Script" path="res://src/world/blocks/placeholder/placeholder.gd" id="1_uflqj"]
+
+[node name="Placeholder" type="Node2D"]
+script = ExtResource("1_uflqj")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
