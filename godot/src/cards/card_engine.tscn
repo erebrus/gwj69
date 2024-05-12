@@ -16,3 +16,4 @@ hand_pile_position = Vector2(550, 460)
 discard_pile_position = Vector2(1034, 460)
 max_stack_display = 1
 max_hand_size = 6
+drag_when_clicked = false
