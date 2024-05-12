@@ -10,5 +10,5 @@ func _ready() -> void:
 func _on_discard_requested(card_ui:CardUI):
 	set_card_pile(card_ui, CardPileUI.Piles.discard_pile)
 	
-
+	
 
