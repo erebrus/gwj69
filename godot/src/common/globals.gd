@@ -11,6 +11,9 @@ var config:ConfigFile
 var debug_build := false
 
 
+var tilemap: TileMapLayer
+
+
 func _ready():
 	_init_logger()
 
