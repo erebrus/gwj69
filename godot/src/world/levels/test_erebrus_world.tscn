@@ -33,12 +33,13 @@ label_settings = SubResource("LabelSettings_ac5ny")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="DropZone" type="Control" parent="." index="3"]
+[node name="DropZone" type="Control" parent="." index="3" node_paths=PackedStringArray("card_pile_ui")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1274.0
 offset_bottom = 491.0
 script = ExtResource("4_hwrdi")
+card_pile_ui = NodePath("../CardEngine")
 stack_display_gap = 0
 max_stack_display = 0
 
