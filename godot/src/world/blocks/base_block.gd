@@ -3,15 +3,36 @@ class_name BaseBlock extends Node2D
 
 var collision_shape_transform =  Transform2D(0, Vector2(0.9,0.9), 0, Vector2.ZERO)
 
+@export var timed = true
+@export var ttl = 3
+
+
+func _ready() -> void:
+	if timed:
+		Events.tick.connect(_on_tick)
+	
 
 func disable() -> void:
-	pass
+	if Events.tick.is_connected(_on_tick):
+		Events.tick.disconnect(_on_tick)
 	
 
 func enable() -> void:
-	pass
+	if timed:
+		Events.tick.connect(_on_tick)
 	
 
 func get_collision_shapes() -> Array[CollisionPolygon2D]:
 	return []
+	
+
+func _destroy_tile():
+	queue_free()
+	
+
+func _on_tick():
+	ttl -= 1
+	if ttl == 0:
+		_destroy_tile()
+	
 

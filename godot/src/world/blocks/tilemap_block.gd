@@ -5,10 +5,12 @@ class_name TilemapBlock extends BaseBlock
 
 
 func disable() -> void:
+	super.disable()
 	tilemap.collision_enabled = false
 	
 
 func enable() -> void:
+	super.enable()
 	tilemap.collision_enabled = true
 	
 
