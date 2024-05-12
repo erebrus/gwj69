@@ -7,6 +7,9 @@ var description:String = ""
 var cost:int = 0
 @export
 var target_type:=Types.TargetType.GLOBAL
+@export
+var image_path:String = ""
+
 
 func play():
 	match target_type:

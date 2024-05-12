@@ -382,8 +382,10 @@ func sort_hand(sort_func):
 
 func _create_card_ui(json_data : Dictionary):
 	var card_ui = extended_card_ui.instantiate()
-	card_ui.frontface_texture = json_data.texture_path
-	card_ui.backface_texture = json_data.backface_texture_path
+	if ("texture_path" in json_data):
+		card_ui.frontface_texture = json_data.texture_path
+	if ("backface_texture_path" in json_data):
+		card_ui.backface_texture = json_data.backface_texture_path
 	card_ui.return_speed = card_return_speed
 	card_ui.hover_distance = card_ui_hover_distance
 	card_ui.drag_when_clicked = drag_when_clicked

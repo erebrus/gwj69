@@ -1,6 +1,9 @@
 extends CardUI
 class_name CustomCardUI
-@onready var card_name: Label = $Frontface/Name
+
+@onready var card_name: Label = %Name
+@onready var image: TextureRect = %Image
+@onready var description_label: Label = %Description
 
 func _ready():
 	super()
@@ -10,10 +13,12 @@ func _ready():
 	
 func _update_display():
 	card_name.text = card_data.nice_name
+	if (not card_data.image_path.is_empty()):
+		image.texture = load(card_data.image_path)
+	description_label.text = "%s" % card_data.description
 	#cost_label.text = "%d" % card_data.cost
 	#name_label.text = "%s" % card_data.nice_name			
 	#type_label.text = "%s" % card_data.type
-	#description_label.text = "%s" % card_data.description
 
 func _on_card_clicked(card):
 	if card == self:

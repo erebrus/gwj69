@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cr6hvivwpbv0r"]
+
+[ext_resource type="FontFile" uid="uid://dq6ireqn37l7t" path="res://assets/fonts/font-Card-title-16px-pixelplay/pixelplay.ttf" id="1_kgh5m"]
+[ext_resource type="FontFile" uid="uid://d1ixrcmjrcwhn" path="res://assets/fonts/font-card-paragraph- 11px-hiairport/HI-AIC__.TTF" id="2_ftifk"]
+
+[resource]
+HeaderSmall/font_sizes/font_size = 16
+HeaderSmall/fonts/font = ExtResource("1_kgh5m")
+Label/font_sizes/font_size = 11
+Label/fonts/font = ExtResource("2_ftifk")
