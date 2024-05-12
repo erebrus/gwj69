@@ -53,11 +53,11 @@ func _place() -> void:
 		return
 	
 	Logger.info("block placed")
-	var block_position = block.global_position
+	var block_position = tilemap.to_local(block.global_position)
 	block.enable()
 	remove_child(block)
 	
-	block.global_position = block_position
+	block.position = block_position
 	get_parent().add_child(block)
 	placed.emit()
 	
@@ -72,6 +72,6 @@ func _destroy() -> void:
 
 func _center_on_cell(point: Vector2) -> void:
 	var tile = tilemap.local_to_map(tilemap.to_local(point))
-	global_position = tilemap.to_global(tilemap.map_to_local(tile)) - half_size
+	global_position = tilemap.to_global(tilemap.map_to_local(tile) - half_size)
 	
 
