@@ -22,10 +22,13 @@ var high_jumps := 0:
 		jump_height = JUMP_HEIGHT* (1 if hj == 0 else 3)#HACK magic value
 		jump_velocity = JUMP_VELOCITY* (1 if hj == 0 else 1.5)#HACK magic value
 
+var boost_duration := 0.0
+
 func _ready():
 	
 	Events.turn_around_requested.connect(_on_turn_around_requested)
 	Events.jump_requested.connect(_on_jump_requested)
+	Events.speed_requested.connect(_on_speed_requested)
 	terrain_detector.max_jump_distance = jump_height
 	
 	terrain_detector.jump_detected.connect(_on_jump_detected)
@@ -34,9 +37,12 @@ func _ready():
 	velocity.x = base_speed
 
 func _physics_process(delta):
+	boost_duration = clamp(boost_duration-delta, 0, 100) 
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	if boost_duration == 0:
+		base_speed = BASE_SPEED
 	velocity.x = base_speed * get_facing_direction()
 	if is_on_floor():
 		if _should_jump():
@@ -76,3 +82,6 @@ func _on_turn_around_requested():
 func _on_jump_requested():
 	high_jumps += 1
 	
+func _on_speed_requested(factor:float, duration:float):
+	base_speed = BASE_SPEED * factor
+	boost_duration += duration 
