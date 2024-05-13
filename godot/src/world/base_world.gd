@@ -12,4 +12,4 @@ func _on_spawn_requested():
 		var player = PLAYER_SCENE.instantiate()
 		player.position = Globals.last_checkpoint
 		add_child(player)
-		
+	#TODO what to do if player is still alive when this happens
