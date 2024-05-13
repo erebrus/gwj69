@@ -10,6 +10,7 @@ var config:ConfigFile
 
 var debug_build := false
 
+var last_checkpoint:Vector2 
 
 var game_mode: Types.GameMode:
 	set(value):

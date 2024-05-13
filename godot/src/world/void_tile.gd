@@ -13,4 +13,10 @@ func _ready() -> void:
 	sprite.speed_scale += speed_delta
 	sprite.frame = randi() % frame_count
 	sprite.play("default")
+	$CollisionShape2D.position=sprite.offset
 
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.has_method("consume"):
+		body.consume()

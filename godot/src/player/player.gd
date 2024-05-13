@@ -22,9 +22,13 @@ var high_jumps := 0:
 		jump_height = JUMP_HEIGHT* (1 if hj == 0 else 3)#HACK magic value
 		jump_velocity = JUMP_VELOCITY* (1 if hj == 0 else 1.5)#HACK magic value
 
+
 var boost_duration := 0.0
+var in_animation:bool = true
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready():
+	
 	
 	Events.turn_around_requested.connect(_on_turn_around_requested)
 	Events.jump_requested.connect(_on_jump_requested)
@@ -34,28 +38,53 @@ func _ready():
 	terrain_detector.jump_detected.connect(_on_jump_detected)
 	terrain_detector.fall_detected.connect(_on_fall_detected)
 	
-	velocity.x = base_speed
+
+	in_animation = true
+	animation_player.play("spawn")
+	await animation_player.animation_finished
+	in_animation = false
+	Globals.last_checkpoint = position
+
 
 func _physics_process(delta):
+
 	boost_duration = clamp(boost_duration-delta, 0, 100) 
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	if boost_duration == 0:
-		base_speed = BASE_SPEED
-	velocity.x = base_speed * get_facing_direction()
-	if is_on_floor():
-		if _should_jump():
-			velocity.y = jump_velocity
-			if high_jumps>0:
-				high_jumps -= 1
-				
-		elif terrain_detector.wall_ahead:
-			velocity.x=0 
-			
+	
+	if not in_animation:
+		if boost_duration == 0:
+			base_speed = BASE_SPEED
+		velocity.x = base_speed * get_facing_direction()
+		if is_on_floor():
+			if _should_jump():
+				velocity.y = jump_velocity
+				if high_jumps>0:
+					high_jumps -= 1
+					
+			elif terrain_detector.wall_ahead:
+				velocity.x=0 
+		_update_animation()		
+	
 	move_and_slide()
 	
 
+func _update_animation():
+	var new_anim=""
+	if is_on_floor():
+		if velocity.x != 0:
+			new_anim = "move"
+		else:
+			new_anim = "idle"
+	else:
+		if velocity.y > 0:
+			new_anim = "jump"
+		else:
+			new_anim = "fall"
+	if animation_player.current_animation != new_anim:
+		animation_player.play(new_anim)
+		
 func _should_jump() -> bool:
 	return terrain_detector.jump_height > 0 and terrain_detector.jump_height <= jump_height
 	
@@ -85,3 +114,11 @@ func _on_jump_requested():
 func _on_speed_requested(factor:float, duration:float):
 	base_speed = BASE_SPEED * factor
 	boost_duration += duration 
+	
+func consume():
+	in_animation = true
+	animation_player.play("void_death")
+	#TODO we should prevent the player from playing cards until animation is over
+	await animation_player.animation_finished
+	get_parent().remove_child(self)
+	queue_free()
