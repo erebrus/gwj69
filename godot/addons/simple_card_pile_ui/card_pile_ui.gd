@@ -366,13 +366,16 @@ func draw(num_cards := 1):
 		if _draw_pile.size():
 			set_card_pile(_draw_pile[_draw_pile.size() - 1], Piles.hand_pile)
 		elif shuffle_discard_on_empty_draw and _discard_pile.size():
-			var dupe_discard = _discard_pile.duplicate()
-			for c in dupe_discard: # you can't remove things from the thing you loop!!
-				set_card_pile(c, Piles.draw_pile)
-			_draw_pile.shuffle()
+			_shuffle_discard_on_draw()
 			set_card_pile(_draw_pile[_draw_pile.size() - 1], Piles.hand_pile)
 	reset_target_positions()
 
+func _shuffle_discard_on_draw():
+	var dupe_discard = _discard_pile.duplicate()
+	for c in dupe_discard: # you can't remove things from the thing you loop!!
+		set_card_pile(c, Piles.draw_pile)
+	_draw_pile.shuffle()
+	
 func hand_is_at_max_capacity():
 	return _hand_pile.size() >= max_hand_size
 
