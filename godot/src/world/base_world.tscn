@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpqcxdph2b0v0"]
+[gd_scene load_steps=5 format=3 uid="uid://dpqcxdph2b0v0"]
 
 [ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="1_1oa7u"]
 [ext_resource type="Script" path="res://src/world/base_world.gd" id="1_21j6r"]
 [ext_resource type="PackedScene" uid="uid://b2q3ypwb3s64x" path="res://src/player/player.tscn" id="3_yxkp1"]
+
+[sub_resource type="Environment" id="Environment_ogdge"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 1.0
+glow_blend_mode = 1
 
 [node name="BaseWorld" type="Node2D"]
 script = ExtResource("1_21j6r")
@@ -13,3 +19,6 @@ navigation_enabled = false
 
 [node name="Player" parent="." instance=ExtResource("3_yxkp1")]
 position = Vector2(86, 145)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ogdge")

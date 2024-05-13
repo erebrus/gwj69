@@ -1,16 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://d01tdhr8nupat"]
+[gd_scene load_steps=9 format=3 uid="uid://d01tdhr8nupat"]
 
 [ext_resource type="Script" path="res://src/cards/custom_card_ui.gd" id="1_b2mpq"]
-[ext_resource type="Theme" uid="uid://cr6hvivwpbv0r" path="res://src/cards/card_theme.tres" id="1_p8h4s"]
+[ext_resource type="Theme" path="res://src/cards/card_theme.tres" id="1_p8h4s"]
+[ext_resource type="PackedScene" uid="uid://crhnx3pau8rue" path="res://src/cards/card_glow.tscn" id="3_dgtta"]
 [ext_resource type="Texture2D" uid="uid://cepvm4s2rykou" path="res://assets/gfx/ui/card-border.png" id="3_vps5k"]
 [ext_resource type="Texture2D" uid="uid://njkyw8722nij" path="res://assets/gfx/ui/card-back.png" id="4_f0x2i"]
 [ext_resource type="Texture2D" uid="uid://pw5xld6o01r1" path="res://assets/gfx/ui/illustrations/mc-card.png" id="4_h3n6s"]
+[ext_resource type="Shader" uid="uid://dmmobr85dhggi" path="res://src/cards/card_glow.tres" id="4_vsawv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dh7lq"]
+resource_local_to_scene = true
+shader = ExtResource("4_vsawv")
+shader_parameter/glow_color = Color(0.321816, 0.974601, 1, 1)
+shader_parameter/emission_f = 76.842
+shader_parameter/position_delta = Vector2(0, 0)
+shader_parameter/alpha_f = 1.0
 
 [node name="CustomCardUi" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 theme = ExtResource("1_p8h4s")
 script = ExtResource("1_b2mpq")
+
+[node name="Glow" parent="." instance=ExtResource("3_dgtta")]
+material = SubResource("ShaderMaterial_dh7lq")
+layout_mode = 0
+offset_left = -30.0
+offset_top = -31.0
+offset_right = 198.0
+offset_bottom = 253.0
 
 [node name="Frontface" type="TextureRect" parent="."]
 layout_mode = 1
@@ -80,3 +98,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("4_f0x2i")
+
+[connection signal="card_hovered" from="." to="Glow" method="_on_custom_card_ui_card_hovered"]
+[connection signal="card_unhovered" from="." to="Glow" method="_on_custom_card_ui_card_unhovered"]

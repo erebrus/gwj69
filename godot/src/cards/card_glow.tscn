@@ -1,0 +1,62 @@
+[gd_scene load_steps=12 format=3 uid="uid://crhnx3pau8rue"]
+
+[ext_resource type="Shader" uid="uid://dmmobr85dhggi" path="res://src/cards/card_glow.tres" id="1_eycqe"]
+[ext_resource type="Texture2D" uid="uid://3cd5kxapg3es" path="res://assets/gfx/ui/card-back-glow.png" id="2_mfiwb"]
+[ext_resource type="Script" path="res://src/cards/card_glow.gd" id="3_0qyvx"]
+[ext_resource type="Shader" uid="uid://b4cyjulq2e7f6" path="res://src/cards/card_glow_particle.tres" id="4_jt1ap"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l4cdd"]
+resource_local_to_scene = true
+shader = ExtResource("1_eycqe")
+shader_parameter/glow_color = Color(0.321816, 0.974601, 1, 1)
+shader_parameter/emission_f = 76.842
+shader_parameter/position_delta = Vector2(0, 0)
+shader_parameter/alpha_f = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2xtv4"]
+shader = ExtResource("4_jt1ap")
+shader_parameter/glow_color = Color(0.200709, 1, 0.779443, 1)
+shader_parameter/emission_f = 100.0
+shader_parameter/alpha_f = 1.0
+
+[sub_resource type="Curve" id="Curve_cpjg7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_suxib"]
+curve = SubResource("Curve_cpjg7")
+
+[sub_resource type="Curve" id="Curve_7633u"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.494505), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i4ytu"]
+curve = SubResource("Curve_7633u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tt731"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 60, 5)
+gravity = Vector3(0, 40, 0)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_i4ytu")
+alpha_curve = SubResource("CurveTexture_suxib")
+
+[node name="Glow" type="TextureRect"]
+process_priority = 1
+material = SubResource("ShaderMaterial_l4cdd")
+offset_left = -34.0
+offset_top = -38.0
+offset_right = 194.0
+offset_bottom = 246.0
+texture = ExtResource("2_mfiwb")
+script = ExtResource("3_0qyvx")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_2xtv4")
+position = Vector2(115, 136)
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_tt731")
+texture = ExtResource("2_mfiwb")
+speed_scale = 2.0
