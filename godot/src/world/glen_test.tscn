@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://t3mwrh13y5bh"]
+
+[ext_resource type="PackedScene" uid="uid://cpxge5d3cimos" path="res://src/world/grid.tscn" id="1_amycr"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BlockGrid" parent="." instance=ExtResource("1_amycr")]

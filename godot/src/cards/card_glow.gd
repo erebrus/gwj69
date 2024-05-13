@@ -18,11 +18,17 @@ func _process(delta: float) -> void:
 
 
 func _on_custom_card_ui_card_hovered(card: CardUI) -> void:
-	create_tween().tween_method(set_emission, material.get_shader_parameter("emission_f"), 76.0, .25)
+	create_tween().tween_method(set_emission, material.get_shader_parameter("emission_f"), 100.0, .25)
 
 
 func _on_custom_card_ui_card_unhovered(card: CardUI) -> void:
-	create_tween().tween_method(set_emission, material.get_shader_parameter("emission_f"), 10.0, .25).set_ease(Tween.EASE_IN_OUT)
+	create_tween().tween_method(set_emission, material.get_shader_parameter("emission_f"), 50.0, .25).set_ease(Tween.EASE_IN_OUT)
 
 func set_emission(value: float):
 	material.set_shader_parameter("emission_f", value)
+
+func set_alpha(value: float):
+	material.set_shader_parameter("alpha_f", value)
+
+func _on_custom_card_ui_card_played(card: CardUI) -> void:
+	create_tween().tween_method(set_alpha, 1.0, 0.0, .75).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)

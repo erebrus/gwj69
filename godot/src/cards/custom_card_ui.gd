@@ -7,12 +7,15 @@ class_name CustomCardUI
 
 @onready var custom_data: CustomCardUIData = card_data as CustomCardUIData
 
+signal card_drawn(card: CardUI)
+signal card_played(card: CardUI)
+signal card_discarded(card: CardUI)
+
 func _ready():
 	super()
 	card_data.connect("card_data_updated", _update_display)
 	card_clicked.connect(_on_card_clicked)
 	custom_data.played.connect(_on_card_played)
-	
 	_update_display()
 	
 func _update_display():
@@ -31,3 +34,7 @@ func _on_card_clicked(card):
 
 func _on_card_played():
 	Events.discard_requested.emit(self)
+	card_played.emit(self)
+
+func _on_card_drawn():
+	pass

@@ -11,7 +11,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dh7lq"]
 resource_local_to_scene = true
 shader = ExtResource("4_vsawv")
-shader_parameter/glow_color = Color(0.321816, 0.974601, 1, 1)
+shader_parameter/glow_color = Color(0.741549, 0.426297, 0.965097, 1)
 shader_parameter/emission_f = 76.842
 shader_parameter/position_delta = Vector2(0, 0)
 shader_parameter/alpha_f = 1.0
@@ -25,10 +25,10 @@ script = ExtResource("1_b2mpq")
 [node name="Glow" parent="." instance=ExtResource("3_dgtta")]
 material = SubResource("ShaderMaterial_dh7lq")
 layout_mode = 0
-offset_left = -30.0
-offset_top = -31.0
-offset_right = 198.0
-offset_bottom = 253.0
+offset_left = -25.0
+offset_top = -24.0
+offset_right = 203.0
+offset_bottom = 260.0
 
 [node name="Frontface" type="TextureRect" parent="."]
 layout_mode = 1
@@ -100,4 +100,5 @@ offset_bottom = 40.0
 texture = ExtResource("4_f0x2i")
 
 [connection signal="card_hovered" from="." to="Glow" method="_on_custom_card_ui_card_hovered"]
+[connection signal="card_played" from="." to="Glow" method="_on_custom_card_ui_card_played"]
 [connection signal="card_unhovered" from="." to="Glow" method="_on_custom_card_ui_card_unhovered"]
