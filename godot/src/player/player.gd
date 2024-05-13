@@ -1,9 +1,12 @@
 extends CharacterBody2D
 
+const JUMP_HEIGHT := 8
+const JUMP_VELOCITY := -200.0
+const BASE_SPEED :=50.0
 
-@export var base_speed :=50.0
-@export var jump_velocity := -200.0
-@export var jump_height := 8:
+@export var base_speed := BASE_SPEED 
+@export var jump_velocity := JUMP_VELOCITY
+@export var jump_height := JUMP_HEIGHT:
 	set(value):
 		if value != jump_height:
 			%TerrainDetector.max_jump_distance = value
@@ -13,11 +16,16 @@ extends CharacterBody2D
 @onready var terrain_detector = %TerrainDetector
 @onready var sprite: Sprite2D = $Sprite2D
 
+var high_jumps := 0:
+	set(hj):
+		high_jumps=hj
+		jump_height = JUMP_HEIGHT* (1 if hj == 0 else 3)#HACK magic value
+		jump_velocity = JUMP_VELOCITY* (1 if hj == 0 else 1.5)#HACK magic value
 
 func _ready():
 	
 	Events.turn_around_requested.connect(_on_turn_around_requested)
-	
+	Events.jump_requested.connect(_on_jump_requested)
 	terrain_detector.max_jump_distance = jump_height
 	
 	terrain_detector.jump_detected.connect(_on_jump_detected)
@@ -33,6 +41,9 @@ func _physics_process(delta):
 	if is_on_floor():
 		if _should_jump():
 			velocity.y = jump_velocity
+			if high_jumps>0:
+				high_jumps -= 1
+				
 		elif terrain_detector.wall_ahead:
 			velocity.x=0 
 			
@@ -53,6 +64,7 @@ func _turn_around() -> void:
 
 func _on_jump_detected(height: float) -> void:
 	Logger.debug("Jump of %s detected!" % height)
+
 	
 
 func _on_fall_detected(height: float) -> void:
@@ -60,3 +72,7 @@ func _on_fall_detected(height: float) -> void:
 
 func _on_turn_around_requested():
 	_turn_around()
+
+func _on_jump_requested():
+	high_jumps += 1
+	
