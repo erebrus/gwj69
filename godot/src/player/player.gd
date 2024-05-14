@@ -28,7 +28,7 @@ var in_animation:bool = true
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready():
-	
+	Globals.player_alive = true
 	
 	Events.turn_around_requested.connect(_on_turn_around_requested)
 	Events.jump_requested.connect(_on_jump_requested)
@@ -119,6 +119,7 @@ func consume():
 	in_animation = true
 	animation_player.play("void_death")
 	#TODO we should prevent the player from playing cards until animation is over
-	await animation_player.animation_finished
+	await animation_player.animation_finished	
 	get_parent().remove_child(self)
+	Globals.player_alive = false
 	queue_free()

@@ -11,6 +11,7 @@ var config:ConfigFile
 var debug_build := false
 
 var last_checkpoint:Vector2 
+var player_alive:bool = false
 
 var game_mode: Types.GameMode:
 	set(value):

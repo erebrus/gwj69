@@ -1,7 +1,7 @@
 extends Node
 
 signal game_mode_changed(mode: Types.GameMode)
-
+signal card_error()
 
 signal discard_requested()
 signal spawn_requested()

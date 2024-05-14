@@ -2,6 +2,7 @@ extends Node
 
 @export var world_scene:PackedScene
 @export var scale_factor:int = 2
+@onready var sfx_err: AudioStreamPlayer = $sfx_err
 
 var world:World:
 	set(w):
@@ -16,5 +17,9 @@ func _ready():
 		add_child(new_world)
 		move_child(new_world, 0)
 	world = $BaseWorld
+	
+	Events.card_error.connect(_on_card_error)
 
 	
+func _on_card_error():
+	sfx_err.play()	#TODO need to set sfx
