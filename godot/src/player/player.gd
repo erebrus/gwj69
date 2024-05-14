@@ -1,7 +1,6 @@
 extends CharacterBody2D
 class_name Player
 
-const CAMERA_SCENE=preload("res://src/player/player_camera.tscn")
 const JUMP_HEIGHT := 8
 const JUMP_VELOCITY := -200.0
 const BASE_SPEED :=50.0
