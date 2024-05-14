@@ -12,4 +12,7 @@ signal speed_requested(factor:float, duration:float)
 signal block_requested(placeholder: Placeholder)
 signal block_placed(block)
 
+signal player_died()
+signal player_respawned(player)
+
 signal tick()

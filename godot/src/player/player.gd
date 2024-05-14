@@ -1,5 +1,7 @@
 extends CharacterBody2D
+class_name Player
 
+const CAMERA_SCENE=preload("res://src/player/player_camera.tscn")
 const JUMP_HEIGHT := 8
 const JUMP_VELOCITY := -200.0
 const BASE_SPEED :=50.0
@@ -38,12 +40,17 @@ func _ready():
 	terrain_detector.jump_detected.connect(_on_jump_detected)
 	terrain_detector.fall_detected.connect(_on_fall_detected)
 	
-
+	Events.player_respawned.emit(self)
+	Logger.info("player_respawned")
+	
 	in_animation = true
 	animation_player.play("spawn")
 	await animation_player.animation_finished
+	
 	in_animation = false
 	Globals.last_checkpoint = position
+	
+	
 
 
 func _physics_process(delta):
@@ -117,9 +124,11 @@ func _on_speed_requested(factor:float, duration:float):
 	
 func consume():
 	in_animation = true
+	
 	animation_player.play("void_death")
 	#TODO we should prevent the player from playing cards until animation is over
 	await animation_player.animation_finished	
-	get_parent().remove_child(self)
-	Globals.player_alive = false
+	Events.player_died.emit()
+	get_parent().remove_child(self)	
+	Globals.player_alive = false	
 	queue_free()

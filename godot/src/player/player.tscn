@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://b2q3ypwb3s64x"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_x8yfo"]
-[ext_resource type="Texture2D" uid="uid://bi71ve7jmk36g" path="res://assets/gfx/character/mc-tall2-animations.png" id="2_faqy1"]
+[ext_resource type="Texture2D" uid="uid://km8dfgo6x6b3" path="res://assets/gfx/character/mc-tall2-animations.png" id="2_faqy1"]
 [ext_resource type="PackedScene" uid="uid://cpffnhboaxsb3" path="res://src/player/TerrainDetector.tscn" id="3_p7gik"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lc3vg"]

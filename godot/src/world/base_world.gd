@@ -6,10 +6,23 @@ const PLAYER_SCENE:PackedScene = preload("res://src/player/player.tscn")
 func _ready():
 	Globals.tilemap = $PlatformsLayer
 	Events.spawn_requested.connect(_on_spawn_requested)
+	Events.player_respawned.connect(_on_player_respawned)
+
+
+	await get_tree().process_frame
+	_on_player_respawned($Player)
+	
 
 func _on_spawn_requested():
 	if not $Player:
 		var player = PLAYER_SCENE.instantiate()
 		player.position = Globals.last_checkpoint
 		add_child(player)
-	#TODO what to do if player is still alive when this happens
+
+
+func _on_player_respawned(player):
+	var rt = RemoteTransform2D.new()
+	player.add_child(rt)
+	rt.remote_path="/root/Game/BaseWorld/Camera" #HACK unique name doesn't work
+	
+	
