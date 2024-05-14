@@ -8,14 +8,14 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l4cdd"]
 resource_local_to_scene = true
 shader = ExtResource("1_eycqe")
-shader_parameter/glow_color = Color(0.321816, 0.974601, 1, 1)
+shader_parameter/glow_color = Color(0.804778, 0.447677, 1, 1)
 shader_parameter/emission_f = 76.842
 shader_parameter/position_delta = Vector2(0, 0)
 shader_parameter/alpha_f = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2xtv4"]
 shader = ExtResource("4_jt1ap")
-shader_parameter/glow_color = Color(0.200709, 1, 0.779443, 1)
+shader_parameter/glow_color = Color(0.741176, 0.427451, 0.964706, 1)
 shader_parameter/emission_f = 100.0
 shader_parameter/alpha_f = 1.0
 
@@ -60,3 +60,4 @@ amount = 80
 process_material = SubResource("ParticleProcessMaterial_tt731")
 texture = ExtResource("2_mfiwb")
 speed_scale = 2.0
+fixed_fps = 60

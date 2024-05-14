@@ -26,13 +26,13 @@ func play():
 	
 	# TODO: should add to world instead of tilemap?
 	Globals.tilemap.add_child(placeholder)
+	Events.block_requested.emit(placeholder)
 	
 
 func _on_block_placed() -> void:
 	Logger.info("Played %s card" % nice_name)
 	_do_play()
 	played.emit()
-	
 
 func _on_card_dismissed() -> void:
 	Globals.game_mode = Types.GameMode.ChoosingCard

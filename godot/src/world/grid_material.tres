@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bi4qwnglvwx8d"]
+
+[ext_resource type="Shader" uid="uid://bb4x4cudbacjq" path="res://src/world/grid.tres" id="1_1elkw"]
+
+[resource]
+shader = ExtResource("1_1elkw")
+shader_parameter/pixel_width = 1280.0
+shader_parameter/pixel_height = 760.0
+shader_parameter/grid_color = Color(0.605811, 0.936745, 0.57747, 1)
+shader_parameter/block_size = Vector2(16, 16)
+shader_parameter/grid_outline_size = 0.0
+shader_parameter/circle_size = 0.0
+shader_parameter/circle_position = Vector2(0.5, 0.5)
+shader_parameter/valid_placement = true
+shader_parameter/invalid_color = Color(0.755909, 0, 0.140969, 1)
+shader_parameter/alpha_value = 0.0

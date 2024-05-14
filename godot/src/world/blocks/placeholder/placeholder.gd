@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name Placeholder
 
 signal valid_changed(valid:bool)
 signal placed
@@ -60,6 +60,7 @@ func _place() -> void:
 	block.position = block_position
 	get_parent().add_child(block)
 	placed.emit()
+	Events.block_placed.emit(block)
 	
 	queue_free()
 	
