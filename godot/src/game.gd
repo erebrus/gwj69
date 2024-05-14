@@ -2,7 +2,7 @@ extends Node
 
 @export var world_scene:PackedScene
 @export var scale_factor:int = 2
-@onready var sfx_err: AudioStreamPlayer = $sfx_err
+@onready var sfx_err: AudioStreamPlayer = $CanvasLayer/sfx_err
 
 var world:World:
 	set(w):
