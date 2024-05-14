@@ -34,7 +34,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		_center_on_cell(event.global_position)
+		_center_on_cell(get_global_mouse_position())
 	
 	if event.is_action_pressed("left_click"):
 		_place()

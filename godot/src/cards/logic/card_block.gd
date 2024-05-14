@@ -1,7 +1,7 @@
 extends CustomCardUIData
 class_name CardBlock
 
-const Placeholder = preload("res://src/world/blocks/placeholder/placeholder.tscn")
+const PlaceholderScene = preload("res://src/world/blocks/placeholder/placeholder.tscn")
 
 
 @export var block_scene_path: String:
@@ -19,7 +19,7 @@ func _get_block():
 func play():
 	Globals.game_mode = Types.GameMode.PlacingBlock
 	
-	var placeholder = Placeholder.instantiate()
+	var placeholder = PlaceholderScene.instantiate()
 	placeholder.block = _get_block()
 	placeholder.placed.connect(_on_block_placed)
 	placeholder.dismissed.connect(_on_card_dismissed)
