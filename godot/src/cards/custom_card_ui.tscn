@@ -14,7 +14,7 @@ shader = ExtResource("4_vsawv")
 shader_parameter/glow_color = Color(0.741549, 0.426297, 0.965097, 1)
 shader_parameter/emission_f = 76.842
 shader_parameter/position_delta = Vector2(0, 0)
-shader_parameter/alpha_f = 1.0
+shader_parameter/alpha_f = 0.31
 
 [node name="CustomCardUi" type="Control"]
 layout_mode = 3
