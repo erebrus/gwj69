@@ -17,6 +17,9 @@ const BASE_SPEED :=50.0
 
 @onready var terrain_detector = %TerrainDetector
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var sfx_walk: AudioStreamPlayer2D = $sfx/sfx_walk
+@onready var sfx_jump: AudioStreamPlayer2D = $sfx/sfx_jump
+@onready var sfx_jump_high: AudioStreamPlayer2D = $sfx/sfx_jump_high
 
 var high_jumps := 0:
 	set(hj):
@@ -63,13 +66,18 @@ func _physics_process(delta):
 	if not in_animation:
 		if boost_duration == 0:
 			base_speed = BASE_SPEED
+			$AnimationPlayer.speed_scale = 1
+		else:
+			$AnimationPlayer.speed_scale = base_speed/BASE_SPEED
 		velocity.x = base_speed * get_facing_direction()
 		if is_on_floor():
 			if _should_jump():
 				velocity.y = jump_velocity
 				if high_jumps>0:
 					high_jumps -= 1
-					
+					sfx_jump_high.play()
+				else:
+					sfx_jump.play()
 			elif terrain_detector.wall_ahead:
 				velocity.x=0 
 		_update_animation()		

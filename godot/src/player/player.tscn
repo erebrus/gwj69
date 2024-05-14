@@ -1,8 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2q3ypwb3s64x"]
+[gd_scene load_steps=26 format=3 uid="uid://b2q3ypwb3s64x"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_x8yfo"]
 [ext_resource type="Texture2D" uid="uid://km8dfgo6x6b3" path="res://assets/gfx/character/mc-tall2-animations.png" id="2_faqy1"]
 [ext_resource type="PackedScene" uid="uid://cpffnhboaxsb3" path="res://src/player/TerrainDetector.tscn" id="3_p7gik"]
+[ext_resource type="AudioStream" uid="uid://dmdyoke7mnsvn" path="res://assets/sfx/MC_Footstep_1.wav" id="4_6flkn"]
+[ext_resource type="AudioStream" uid="uid://dqv7w77xxcd1r" path="res://assets/sfx/MC_Footstep_2.wav" id="5_hsjxc"]
+[ext_resource type="AudioStream" uid="uid://dd7cyf5x0cgte" path="res://assets/sfx/MC_Footstep_3.wav" id="6_o2d62"]
+[ext_resource type="AudioStream" uid="uid://8j68mwhjwdav" path="res://assets/sfx/MC_Footstep_4.wav" id="7_2cxwf"]
+[ext_resource type="AudioStream" uid="uid://6k1csm0dkt78" path="res://assets/sfx/MC_Jump_1.wav" id="8_yo3od"]
+[ext_resource type="AudioStream" uid="uid://b8jcuekywla74" path="res://assets/sfx/MC_Jump_2.wav" id="9_um7bx"]
+[ext_resource type="AudioStream" uid="uid://b3qw35bfdgj80" path="res://assets/sfx/MC_BigJump_1.wav" id="10_3rsyp"]
+[ext_resource type="AudioStream" uid="uid://dy4t7x874kfjw" path="res://assets/sfx/MC_BigJump_2.wav" id="11_sns7m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lc3vg"]
 radius = 2.5
@@ -126,6 +134,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [10, 11, 12, 13, 14]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sfx/sfx_walk")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_fulwp"]
 resource_name = "spawn"
@@ -173,6 +198,23 @@ _data = {
 "void_death": SubResource("Animation_308mq")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y4knw"]
+streams_count = 4
+stream_0/stream = ExtResource("4_6flkn")
+stream_1/stream = ExtResource("5_hsjxc")
+stream_2/stream = ExtResource("6_o2d62")
+stream_3/stream = ExtResource("7_2cxwf")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_uk74h"]
+streams_count = 2
+stream_0/stream = ExtResource("8_yo3od")
+stream_1/stream = ExtResource("9_um7bx")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4tejj"]
+streams_count = 2
+stream_0/stream = ExtResource("10_3rsyp")
+stream_1/stream = ExtResource("11_sns7m")
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 3
@@ -197,3 +239,14 @@ position = Vector2(0, -4)
 libraries = {
 "": SubResource("AnimationLibrary_hukg5")
 }
+
+[node name="sfx" type="Node2D" parent="."]
+
+[node name="sfx_walk" type="AudioStreamPlayer2D" parent="sfx"]
+stream = SubResource("AudioStreamRandomizer_y4knw")
+
+[node name="sfx_jump" type="AudioStreamPlayer2D" parent="sfx"]
+stream = SubResource("AudioStreamRandomizer_uk74h")
+
+[node name="sfx_jump_high" type="AudioStreamPlayer2D" parent="sfx"]
+stream = SubResource("AudioStreamRandomizer_4tejj")
