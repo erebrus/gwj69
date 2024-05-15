@@ -41,6 +41,14 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("right_click"):
 		_destroy()
+		
+	if event.is_action_pressed("rotate_cw"):
+		rotation += PI/2
+		
+	if event.is_action_pressed("rotate_ccw"):
+		rotation -= PI/2
+		
+	
 	
 
 func _physics_process(_delta:float) -> void:
@@ -58,6 +66,7 @@ func _place() -> void:
 	remove_child(block)
 	
 	block.position = block_position
+	block.rotation = rotation
 	get_parent().add_child(block)
 	placed.emit()
 	Events.block_placed.emit(block)
