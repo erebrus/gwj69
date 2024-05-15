@@ -21,11 +21,15 @@ func _ready():
 	_update_display()
 	
 func _update_display():
-	card_name.text = card_data.nice_name
-	description_label.text = "%s" % card_data.description
-	one_use.visible = card_data.has_trait(CustomCardUIData.Traits.ONE_USE)
-	if (not card_data.image_path.is_empty()):
-		image.texture = load(card_data.image_path)
+	if (custom_data.display_name.is_empty()):
+		card_name.text = custom_data.nice_name
+	else:
+		card_name.text = custom_data.display_name
+		
+	description_label.text = "%s" % custom_data.description
+	one_use.visible = custom_data.has_trait(CustomCardUIData.Traits.ONE_USE)
+	if (not custom_data.image_path.is_empty()):
+		image.texture = load(custom_data.image_path)
 		
 
 func _on_card_clicked(card):

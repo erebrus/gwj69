@@ -39,15 +39,39 @@
 	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
 	"traits":{"ONE_USE":true}
   },
-{
-	"nice_name": "Block",
-	"description": "Adds a block in the world.",
+  {
+	"nice_name": "Miracle of creation",
+	"description": "Create one simple block",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/block-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
 	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
 	"block_scene_path": "res://src/world/blocks/tilemap_block.tscn",
+	"traits":{}
+  },
+  {
+	"nice_name": "Two is better than one (V)",
+	"display_name": "Two is better than one",
+	"description": "Create 2 simple blocks in the pictured pattern",
+	"cost": 0,
+	"resource_script_path": "res://src/cards/logic/card_block.gd",
+	"image_path": "res://assets/gfx/ui/illustrations/block-card.png",
+	"texture_path": "res://assets/gfx/ui/card-border.png",
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"block_scene_path": "res://src/world/blocks/2_vertical_blocks.tscn",
+	"traits":{}
+  },
+  {
+	"nice_name": "Two is better than one (H)",
+	"display_name": "Two is better than one",
+	"description": "Create 2 simple blocks in the pictured pattern",
+	"cost": 0,
+	"resource_script_path": "res://src/cards/logic/card_block.gd",
+	"image_path": "res://assets/gfx/ui/illustrations/block-card.png",
+	"texture_path": "res://assets/gfx/ui/card-border.png",
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"block_scene_path": "res://src/world/blocks/2_horizontal_blocks.tscn",
 	"traits":{}
   },
 {
