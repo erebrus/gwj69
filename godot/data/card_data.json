@@ -51,8 +51,7 @@
 	"traits":{}
   },
   {
-	"nice_name": "Two is better than one (V)",
-	"display_name": "Two is better than one",
+	"nice_name": "Two is better than one",
 	"description": "Create 2 simple blocks in the pictured pattern",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
@@ -63,15 +62,26 @@
 	"traits":{}
   },
   {
-	"nice_name": "Two is better than one (H)",
-	"display_name": "Two is better than one",
-	"description": "Create 2 simple blocks in the pictured pattern",
+	"nice_name": "Three is a lucky number",
+	"description": "Create 3 simple blocks in a pictured pattern",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/block-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
 	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
-	"block_scene_path": "res://src/world/blocks/2_horizontal_blocks.tscn",
+	"block_scene_path": "res://src/world/blocks/3_l_blocks.tscn",
+	"traits":{}
+  },
+  {
+	"nice_name": "4 blocks",
+	"display_name": "Four is...",
+	"description": "Create 4 simple blocks in the pictured pattern",
+	"cost": 0,
+	"resource_script_path": "res://src/cards/logic/card_block.gd",
+	"image_path": "res://assets/gfx/ui/illustrations/block-card.png",
+	"texture_path": "res://assets/gfx/ui/card-border.png",
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"block_scene_path": "res://src/world/blocks/4_t_blocks.tscn",
 	"traits":{}
   },
 {
