@@ -1,9 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://b2q3ypwb3s64x"]
+[gd_scene load_steps=34 format=3 uid="uid://b2q3ypwb3s64x"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_x8yfo"]
-[ext_resource type="Texture2D" uid="uid://km8dfgo6x6b3" path="res://assets/gfx/character/mc-tall2-animations.png" id="2_faqy1"]
+[ext_resource type="Texture2D" uid="uid://bi71ve7jmk36g" path="res://assets/gfx/character/mc-tall2-animations.png" id="2_faqy1"]
 [ext_resource type="PackedScene" uid="uid://cpffnhboaxsb3" path="res://src/player/TerrainDetector.tscn" id="3_p7gik"]
 [ext_resource type="AudioStream" uid="uid://dmdyoke7mnsvn" path="res://assets/sfx/MC_Footstep_1.wav" id="4_6flkn"]
+[ext_resource type="Texture2D" uid="uid://42wccejd5kvf" path="res://assets/gfx/character/mc-tall2.png" id="4_12tjh"]
+[ext_resource type="Script" path="res://src/player/run_fast.gd" id="5_43nh5"]
 [ext_resource type="AudioStream" uid="uid://dqv7w77xxcd1r" path="res://assets/sfx/MC_Footstep_2.wav" id="5_hsjxc"]
 [ext_resource type="AudioStream" uid="uid://dd7cyf5x0cgte" path="res://assets/sfx/MC_Footstep_3.wav" id="6_o2d62"]
 [ext_resource type="AudioStream" uid="uid://8j68mwhjwdav" path="res://assets/sfx/MC_Footstep_4.wav" id="7_2cxwf"]
@@ -11,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://b8jcuekywla74" path="res://assets/sfx/MC_Jump_2.wav" id="9_um7bx"]
 [ext_resource type="AudioStream" uid="uid://b3qw35bfdgj80" path="res://assets/sfx/MC_BigJump_1.wav" id="10_3rsyp"]
 [ext_resource type="AudioStream" uid="uid://dy4t7x874kfjw" path="res://assets/sfx/MC_BigJump_2.wav" id="11_sns7m"]
+[ext_resource type="PackedScene" uid="uid://c1akb2kfch56o" path="res://src/player/jump_vfx.tscn" id="13_qyi5a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lc3vg"]
 radius = 2.5
@@ -27,7 +30,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [0]
 }
 
@@ -198,6 +201,30 @@ _data = {
 "void_death": SubResource("Animation_308mq")
 }
 
+[sub_resource type="Curve" id="Curve_64uc3"]
+_data = [Vector2(0, 0.516607), 0.0, 0.0, 0, 0, Vector2(1e-05, 0.225632), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xn06s"]
+curve = SubResource("Curve_64uc3")
+
+[sub_resource type="Gradient" id="Gradient_b4wq3"]
+colors = PackedColorArray(0.886275, 0.643137, 0.901961, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p6jgw"]
+gradient = SubResource("Gradient_b4wq3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fj2u2"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+color = Color(0.885434, 0.643129, 0.90336, 1)
+color_ramp = SubResource("GradientTexture1D_p6jgw")
+alpha_curve = SubResource("CurveTexture_xn06s")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y4knw"]
 streams_count = 4
 stream_0/stream = ExtResource("4_6flkn")
@@ -219,6 +246,7 @@ stream_1/stream = ExtResource("11_sns7m")
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_x8yfo")
+vfx_jump_high = ExtResource("13_qyi5a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -4)
@@ -236,9 +264,20 @@ unique_name_in_owner = true
 position = Vector2(0, -4)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+deterministic = true
 libraries = {
 "": SubResource("AnimationLibrary_hukg5")
 }
+
+[node name="RunFast" type="GPUParticles2D" parent="."]
+position = Vector2(-1, -5)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_fj2u2")
+texture = ExtResource("4_12tjh")
+lifetime = 0.5
+fixed_fps = 60
+trail_lifetime = 0.5
+script = ExtResource("5_43nh5")
 
 [node name="sfx" type="Node2D" parent="."]
 

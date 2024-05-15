@@ -6,11 +6,13 @@ class_name TilemapBlock extends BaseBlock
 
 func disable() -> void:
 	super.disable()
+	$AnimationPlayer.play("Place")
 	tilemap.collision_enabled = false
 	
 
 func enable() -> void:
 	super.enable()
+	$AnimationPlayer.play("Create")
 	tilemap.collision_enabled = true
 	
 

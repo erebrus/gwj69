@@ -19,6 +19,7 @@ const BASE_SPEED :=50.0
 @onready var sfx_walk: AudioStreamPlayer2D = $sfx/sfx_walk
 @onready var sfx_jump: AudioStreamPlayer2D = $sfx/sfx_jump
 @onready var sfx_jump_high: AudioStreamPlayer2D = $sfx/sfx_jump_high
+@export var vfx_jump_high: PackedScene
 
 var high_jumps := 0:
 	set(hj):
@@ -66,8 +67,10 @@ func _physics_process(delta):
 		if boost_duration == 0:
 			base_speed = BASE_SPEED
 			$AnimationPlayer.speed_scale = 1
+			$RunFast.emitting = false
 		else:
 			$AnimationPlayer.speed_scale = base_speed/BASE_SPEED
+			$RunFast.emitting = true
 		velocity.x = base_speed * get_facing_direction()
 		if is_on_floor():
 			if _should_jump():
@@ -75,6 +78,9 @@ func _physics_process(delta):
 				if high_jumps>0:
 					high_jumps -= 1
 					sfx_jump_high.play()
+					var vfx = vfx_jump_high.instantiate()
+					vfx.global_position = global_position
+					get_tree().root.add_child(vfx)
 				else:
 					sfx_jump.play()
 			elif terrain_detector.wall_ahead:
