@@ -16,3 +16,4 @@ world_scene = ExtResource("2_4twgn")
 [node name="sfx_err" type="AudioStreamPlayer" parent="CanvasLayer"]
 
 [node name="CardEngine" parent="CanvasLayer" instance=ExtResource("3_bitsc")]
+metadata/_edit_use_anchors_ = true
