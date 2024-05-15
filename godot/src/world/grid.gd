@@ -9,8 +9,7 @@ var activated: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if !Engine.is_editor_hint():
-		Events.block_requested.connect(_on_block_requested)
-		Events.block_placed.connect(_on_block_played)
+		Events.game_mode_changed.connect(_on_game_mode_changed)
 
 func activate() -> void:
 	anim_player.play("Appear")
@@ -38,11 +37,18 @@ func _input(event):
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Appear":
 		anim_player.play("PlaceBlockLoop")
-
-func _on_block_requested(event_placeholder: Placeholder) -> void:
-	placeholder = event_placeholder
-	activate()
-
-func _on_block_played(block) -> void:
-	deactivate()
-	placeholder = null
+		
+		
+func _on_game_mode_changed(mode: Types.GameMode) -> void:
+	if mode == Types.GameMode.ChoosingCard:
+		deactivate()
+	elif mode == Types.GameMode.PlacingBlock:
+		activate()
+	
+#func _on_block_requested(event_placeholder: Placeholder) -> void:
+	#placeholder = event_placeholder
+	#activate()
+#
+#func _on_block_played(block) -> void:
+	#deactivate()
+	#placeholder = null
