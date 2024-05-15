@@ -10,6 +10,7 @@ signal card_unhovered(card: CardUI)
 signal card_clicked(card: CardUI)
 signal card_dropped(card: CardUI)
 signal card_removed_from_game(card: CardUI)
+signal card_drawn()
 
 enum Piles {
 	draw_pile,
@@ -360,7 +361,7 @@ func is_any_card_ui_clicked():
 	return false
 
 #public function to try and draw a card 
-func draw(num_cards := 1):
+func draw(num_cards := 1, manual:=true):
 	for i in num_cards:
 		if _hand_pile.size() >= max_hand_size and cant_draw_at_hand_limit:
 			continue
@@ -369,6 +370,8 @@ func draw(num_cards := 1):
 		elif shuffle_discard_on_empty_draw and _discard_pile.size():
 			_shuffle_discard_on_draw()
 			set_card_pile(_draw_pile[_draw_pile.size() - 1], Piles.hand_pile)
+		if manual:
+			card_drawn.emit()
 	reset_target_positions()
 
 func _shuffle_discard_on_draw():

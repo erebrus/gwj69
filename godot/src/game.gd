@@ -2,8 +2,10 @@ extends Node
 
 @export var world_scene:PackedScene
 @export var scale_factor:int = 2
+@export var draw_cooldown:float = 2
 @onready var sfx_err: AudioStreamPlayer = $CanvasLayer/sfx_err
 @onready var card_engine: Control = $CanvasLayer/CardEngine
+@onready var draw_timer: Timer = $DrawTimer
 
 var world:World:
 	set(w):
@@ -19,7 +21,9 @@ func _ready():
 	world = $BaseWorld
 	
 	Events.card_error.connect(_on_card_error)
-
+	card_engine.card_drawn.connect(_on_card_drawn)
+	draw_timer.wait_time = draw_cooldown
+	
 func load_world(scene:PackedScene):
 		var old_world = get_child(0)
 		remove_child(old_world)		
@@ -29,6 +33,7 @@ func load_world(scene:PackedScene):
 		add_child(new_world)
 		move_child(new_world, 0)
 		Globals.last_level = world_scene	
+
 func _on_card_error():
 	sfx_err.play()	#TODO need to set sfx
 
@@ -42,3 +47,15 @@ func _process(delta: float) -> void:
 		else:
 			Logger.warn("No level to load.")
 		
+
+
+func _on_draw_timer_timeout() -> void:
+	card_engine.click_draw_pile_to_draw = true
+	Logger.info("Draw allowed")
+
+func _on_card_drawn():
+	if draw_cooldown:
+		card_engine.click_draw_pile_to_draw = false
+		Logger.info("Draw in cooldown")
+		draw_timer.start()
+	

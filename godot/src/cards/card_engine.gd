@@ -6,7 +6,7 @@ func _ready() -> void:
 	super._ready()
 	Events.discard_requested.connect(_on_discard_requested)
 	hand_pile_updated.connect(_on_hand_pile_updated)
-	draw(3)
+	draw(3, false)
 	
 func _on_discard_requested(card_ui:CardUI):
 	set_card_pile(card_ui, CardPileUI.Piles.discard_pile)
