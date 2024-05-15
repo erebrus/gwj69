@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://pi37vy1cofi" path="res://assets/gfx/world/platforms_tileset.png" id="1_l1mdq"]
 [ext_resource type="Texture2D" uid="uid://snhp4yo81o54" path="res://assets/gfx/world/void_tileset.png" id="2_rf2q6"]
 [ext_resource type="Texture2D" uid="uid://c3e7o0g4fmr8i" path="res://assets/gfx/world/blocks.png" id="3_3ay0i"]
-[ext_resource type="PackedScene" path="res://src/world/VoidTile.tscn" id="4_naqer"]
+[ext_resource type="PackedScene" uid="uid://nt28hssoogf2" path="res://src/world/VoidTile.tscn" id="4_naqer"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0f25x"]
 texture = ExtResource("1_l1mdq")
