@@ -38,6 +38,7 @@ func _on_card_error():
 	sfx_err.play()	#TODO need to set sfx
 
 func _process(delta: float) -> void:
+	#TODO update draw cooldown label
 	if Input.is_action_just_pressed("restart_level"):
 		if Globals.last_level:
 			#var state = card_engine.get_state()
