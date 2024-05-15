@@ -33,6 +33,8 @@ func _on_block_placed() -> void:
 	Logger.info("Played %s card" % nice_name)
 	_do_play()
 	played.emit()
+	Globals.game_mode = Types.GameMode.ChoosingCard
+	
 
 func _on_card_dismissed() -> void:
 	Globals.game_mode = Types.GameMode.ChoosingCard
