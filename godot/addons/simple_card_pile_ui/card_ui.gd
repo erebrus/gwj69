@@ -23,7 +23,7 @@ var target_position := Vector2.ZERO
 var return_speed := 0.2
 var hover_distance := 10
 var drag_when_clicked := true
-
+var pile: CardPileUI.Piles
 var last_click=-1
 func get_class(): return "CardUI"
 func is_class(name): return name == "CardUI"
@@ -32,6 +32,18 @@ func is_class(name): return name == "CardUI"
 func set_direction(card_is_facing : Vector2):
 	backface.visible = card_is_facing == Vector2.DOWN
 	frontface.visible = card_is_facing == Vector2.UP
+
+func set_pile(value: CardPileUI.Piles) -> void:
+	pile = value
+
+func in_hand() -> bool:
+	return pile == CardPileUI.Piles.hand_pile
+
+func in_draw() -> bool:
+	return pile == CardPileUI.Piles.draw_pile
+
+func in_discard() -> bool:
+	return pile == CardPileUI.Piles.discard_pile
 
 func set_disabled(val : bool):
 	if val:
@@ -82,7 +94,6 @@ func _on_mouse_enter():
 		var parent = get_parent()
 		parent.reset_card_ui_z_index()
 		emit_signal("card_hovered", self)
-
 
 func _on_mouse_exited():
 	if is_clicked:

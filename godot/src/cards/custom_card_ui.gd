@@ -7,6 +7,7 @@ class_name CustomCardUI
 
 @onready var custom_data: CustomCardUIData = card_data as CustomCardUIData
 
+signal card_shuffled_to_draw(card: CardUI)
 signal card_drawn(card: CardUI)
 signal card_played(card: CardUI)
 signal card_discarded(card: CardUI)
@@ -31,6 +32,15 @@ func _on_card_clicked(card):
 		Logger.info("Clicked %s" % card_data.nice_name)
 		custom_data.play()
 		
+func set_pile(value: CardPileUI.Piles) -> void:
+	if value != pile:
+		super.set_pile(value)
+		if in_discard():
+			card_discarded.emit(self)
+		elif in_hand():
+			card_drawn.emit(self)
+		elif in_draw():
+			card_shuffled_to_draw.emit(self)
 
 func _on_card_played():
 	Events.discard_requested.emit(self)

@@ -81,6 +81,7 @@ var spread_curve := Curve.new()
 func set_card_pile(card : CardUI, pile : Piles):
 	_maybe_remove_card_from_any_piles(card)
 	_maybe_remove_card_from_any_dropzones(card)
+	card.set_pile(pile)
 	if pile == Piles.discard_pile:
 		_discard_pile.push_back(card)
 		emit_signal("discard_pile_updated")

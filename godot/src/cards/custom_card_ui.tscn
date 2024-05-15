@@ -14,7 +14,7 @@ shader = ExtResource("4_vsawv")
 shader_parameter/glow_color = Color(0.741549, 0.426297, 0.965097, 1)
 shader_parameter/emission_f = 76.842
 shader_parameter/position_delta = Vector2(0, 0)
-shader_parameter/alpha_f = 0.3
+shader_parameter/alpha_f = 0.0
 
 [node name="CustomCardUi" type="Control"]
 layout_mode = 3
@@ -99,6 +99,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("4_f0x2i")
 
+[connection signal="card_drawn" from="." to="Glow" method="_on_custom_card_ui_card_drawn"]
 [connection signal="card_hovered" from="." to="Glow" method="_on_custom_card_ui_card_hovered"]
 [connection signal="card_played" from="." to="Glow" method="_on_custom_card_ui_card_played"]
+[connection signal="card_shuffled_to_draw" from="." to="Glow" method="_on_custom_card_ui_card_shuffled_to_draw"]
 [connection signal="card_unhovered" from="." to="Glow" method="_on_custom_card_ui_card_unhovered"]
