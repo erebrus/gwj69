@@ -12,7 +12,7 @@ var debug_build := false
 
 var last_level:PackedScene
 var last_checkpoint:Vector2 
-var current_deck:Array = ["Space Jump", "Turn around", "Turn around", "Turn around","Space Jump", "Leave the void behind", "Block", "Block"]
+var current_deck:Array = ["Space Jump", "Turn around", "Turn around", "Turn around","Space Jump", "Leave the void behind", "Miracle of creation", "Miracle of creation", "Two is better than one (V)", "Two is better than one (V)","Two is better than one (H)", "Two is better than one (H)"]
 
 var player_alive:bool = false
 

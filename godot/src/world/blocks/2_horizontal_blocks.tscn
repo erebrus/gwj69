@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://uicf3xvxno6d"]
+
+[ext_resource type="PackedScene" uid="uid://dplodxgtbever" path="res://src/world/blocks/tilemap_block.tscn" id="1_bigpe"]
+[ext_resource type="Shader" uid="uid://dc002tl5nvki8" path="res://src/world/blocks/tile_shader.tres" id="2_aso1o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mnnjb"]
+resource_local_to_scene = true
+shader = ExtResource("2_aso1o")
+shader_parameter/ColorParameter = Color(0.741176, 0.427451, 0.964706, 1)
+shader_parameter/color_factor = 0.0
+shader_parameter/emission_f = 1.0
+shader_parameter/disintegration_factor = 1.0
+shader_parameter/alpha_f = 0.0
+
+[node name="TilemapBlock" instance=ExtResource("1_bigpe")]
+
+[node name="TileMapLayer" parent="." index="1"]
+material = SubResource("ShaderMaterial_mnnjb")
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 2, 0, 4, 0, 0, 0, 0, 0, 255, 255, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0)
