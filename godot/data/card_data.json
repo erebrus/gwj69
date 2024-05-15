@@ -6,7 +6,8 @@
 	"resource_script_path": "res://src/cards/logic/card_jump.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/jump-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
-	"backface_texture_path": "res://assets/gfx/ui/card-back.png"
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"traits":{}
   },
   {
 	"nice_name": "Leave the void behind",
@@ -15,7 +16,8 @@
 	"resource_script_path": "res://src/cards/logic/card_faster.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/jump-long-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
-	"backface_texture_path": "res://assets/gfx/ui/card-back.png"
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"traits":{}
   },
 {
 	"nice_name": "Turn around",
@@ -24,7 +26,8 @@
 	"resource_script_path": "res://src/cards/logic/card_turn_around.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/turn-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
-	"backface_texture_path": "res://assets/gfx/ui/card-back.png"
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"traits":{}
   },
 {
 	"nice_name": "The abyss will gaze back into you",
@@ -33,7 +36,8 @@
 	"resource_script_path": "res://src/cards/logic/card_spawn.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/mc-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
-	"backface_texture_path": "res://assets/gfx/ui/card-back.png"
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"traits":{"ONE_USE":true}
   },
 {
 	"nice_name": "Block",
@@ -43,7 +47,8 @@
 	"image_path": "res://assets/gfx/ui/illustrations/block-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
 	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
-	"block_scene_path": "res://src/world/blocks/tilemap_block.tscn"
+	"block_scene_path": "res://src/world/blocks/tilemap_block.tscn",
+	"traits":{}
   },
 {
 	"nice_name": "Horizontal Block",
@@ -53,7 +58,8 @@
 	"image_path": "res://assets/gfx/ui/illustrations/block-h-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
 	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
-	"block_scene_path": "res://src/world/blocks/horizontal_block.tscn"
+	"block_scene_path": "res://src/world/blocks/horizontal_block.tscn",
+	"traits":{}
   },
 {
 	"nice_name": "Vertical Block",

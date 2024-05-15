@@ -3,6 +3,7 @@ extends Node
 signal game_mode_changed(mode: Types.GameMode)
 signal card_error()
 
+signal card_destroy_requested(card:CardUI)
 signal discard_requested()
 signal spawn_requested()
 signal jump_requested()

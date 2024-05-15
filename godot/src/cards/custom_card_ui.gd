@@ -4,6 +4,7 @@ class_name CustomCardUI
 @onready var card_name: Label = %Name
 @onready var image: TextureRect = %Image
 @onready var description_label: Label = %Description
+@onready var one_use: TextureRect = $Frontface/MarginContainer4/VBoxContainer/OneUse
 
 @onready var custom_data: CustomCardUIData = card_data as CustomCardUIData
 
@@ -22,7 +23,7 @@ func _ready():
 func _update_display():
 	card_name.text = card_data.nice_name
 	description_label.text = "%s" % card_data.description
-	
+	one_use.visible = card_data.has_trait(CustomCardUIData.Traits.ONE_USE)
 	if (not card_data.image_path.is_empty()):
 		image.texture = load(card_data.image_path)
 		
@@ -45,6 +46,8 @@ func set_pile(value: CardPileUI.Piles) -> void:
 func _on_card_played():
 	Events.discard_requested.emit(self)
 	card_played.emit(self)
-
+	#HACK logic shouldn't be here...
+	if custom_data.has_trait(CustomCardUIData.Traits.ONE_USE):
+		Events.card_destroy_requested.emit(self)
 func _on_card_drawn():
 	pass

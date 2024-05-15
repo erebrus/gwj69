@@ -1,5 +1,6 @@
 extends Node
 
+
 @export var world_scene:PackedScene
 @export var scale_factor:int = 2
 @export var draw_cooldown:float = 2
@@ -21,6 +22,7 @@ func _ready():
 	world = $BaseWorld
 	
 	Events.card_error.connect(_on_card_error)
+	Events.player_died.connect(_on_player_died)
 	card_engine.card_drawn.connect(_on_card_drawn)
 	draw_timer.wait_time = draw_cooldown
 	
@@ -59,4 +61,7 @@ func _on_card_drawn():
 		card_engine.click_draw_pile_to_draw = false
 		Logger.info("Draw in cooldown")
 		draw_timer.start()
+	
+func _on_player_died():
+	card_engine.create_card_in_pile("The abyss will gaze back into you", CardPileUI.Piles.hand_pile)
 	
