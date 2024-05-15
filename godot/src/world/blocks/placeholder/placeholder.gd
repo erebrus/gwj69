@@ -53,7 +53,6 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(_delta:float) -> void:
 	is_valid = area.get_overlapping_bodies().is_empty() and area.get_overlapping_areas().is_empty()
-	
 
 func _place() -> void:
 	if not is_valid:

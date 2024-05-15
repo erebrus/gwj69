@@ -11,7 +11,7 @@ shader = ExtResource("1_eycqe")
 shader_parameter/glow_color = Color(0.804778, 0.447677, 1, 1)
 shader_parameter/emission_f = 86.101
 shader_parameter/position_delta = Vector2(0, 0)
-shader_parameter/alpha_f = 0.3
+shader_parameter/alpha_f = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2xtv4"]
 shader = ExtResource("4_jt1ap")

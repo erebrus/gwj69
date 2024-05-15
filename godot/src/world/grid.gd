@@ -10,6 +10,8 @@ var activated: bool = false
 func _ready() -> void:
 	if !Engine.is_editor_hint():
 		Events.game_mode_changed.connect(_on_game_mode_changed)
+		Events.block_requested.connect(_on_block_requested)
+		Events.block_placed.connect(_on_block_played)
 
 func activate() -> void:
 	anim_player.play("Appear")
@@ -45,10 +47,9 @@ func _on_game_mode_changed(mode: Types.GameMode) -> void:
 	elif mode == Types.GameMode.PlacingBlock:
 		activate()
 	
-#func _on_block_requested(event_placeholder: Placeholder) -> void:
-	#placeholder = event_placeholder
+func _on_block_requested(event_placeholder: Placeholder) -> void:
+	placeholder = event_placeholder
 	#activate()
-#
-#func _on_block_played(block) -> void:
-	#deactivate()
-	#placeholder = null
+
+func _on_block_played(block) -> void:
+	placeholder = null

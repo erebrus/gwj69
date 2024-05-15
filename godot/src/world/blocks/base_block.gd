@@ -7,7 +7,8 @@ var enabled = true
 
 @export var timed = true
 @export var ttl = 3
-
+@export var valid_placement_color: Color
+@export var invalid_placement_color: Color
 
 func _ready() -> void:
 	if timed:

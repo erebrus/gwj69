@@ -3,6 +3,11 @@ class_name TilemapBlock extends BaseBlock
 @onready var tilemap: TileMapLayer = $TileMapLayer
 @onready var half_size = tilemap.tile_set.tile_size / 2
 
+func _process(delta: float) -> void:
+	var parent = get_parent()
+	if parent is Placeholder:
+		print("DOIN IT")
+		tilemap.material.set_shader_parameter("ColorParameter", valid_placement_color if parent.is_valid else invalid_placement_color)
 
 func disable() -> void:
 	super.disable()
