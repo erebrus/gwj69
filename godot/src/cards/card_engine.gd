@@ -23,16 +23,24 @@ func load_json_path():
 
 func get_state():
 	return {
-		"draw_pile": _draw_pile,
-		"hand_pile": _hand_pile,
-		"discard_pile": _discard_pile
-	}	
+		CardPileUI.Piles.draw_pile: _draw_pile.map(_get_card_name),
+		CardPileUI.Piles.hand_pile: _hand_pile.map(_get_card_name),
+		CardPileUI.Piles.discard_pile: _discard_pile.map(_get_card_name)
+	}
+
 func set_state(state):
-	_draw_pile = state.draw_pile
-	_hand_pile = state.hand_pile
-	_discard_pile = state.discard_pile
-	reset_target_positions()
+	for pile in state:
+		for card in get_cards_in_pile(pile):
+			remove_card_from_game(card)
+		for card in state[pile]:
+			create_card_in_pile(card, pile)
+	
 
 func _on_card_destroy_requested(card:CardUI):
 	_maybe_remove_card_from_any_piles(card)
 	card.queue_free()
+
+func _get_card_name(card: CardUI) -> String:
+	return card.card_data.nice_name
+	
+

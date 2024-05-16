@@ -31,6 +31,7 @@ var in_animation:bool = true
 
 func _ready():
 	Globals.player_alive = true
+	Globals.player = self
 	
 	Events.turn_around_requested.connect(_on_turn_around_requested)
 	Events.jump_requested.connect(_on_jump_requested)
@@ -186,4 +187,14 @@ func _should_jump()->bool:
 			return true
 	
 	return false
+	
+
+func get_state() -> Dictionary:
+	return {
+		"position" = position 
+	}
+	
+
+func set_state(state: Dictionary) -> void:
+	position = state.position
 	

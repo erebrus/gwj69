@@ -23,7 +23,8 @@ var game_mode: Types.GameMode:
 			Events.game_mode_changed.emit(game_mode)
 	
 
-var tilemap: TileMapLayer
+var tilemap: PlatformsLayer
+var player: Player
 
 
 func _ready():

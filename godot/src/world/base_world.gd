@@ -23,7 +23,6 @@ func place_checkpoint(value: CheckPoint):
 	
 	checkpoint = value
 	
-	checkpoint.position = $PlatformsLayer.map_to_local($PlatformsLayer.local_to_map($Player.position)) - Vector2(4,4)
 	$PlatformsLayer.add_child(checkpoint)
 	
 
