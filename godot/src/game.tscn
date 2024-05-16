@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://duka5rbd4bxdc"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_k8n5x"]
-[ext_resource type="PackedScene" uid="uid://b55be43ctmn7a" path="res://src/world/levels/test_angela_world.tscn" id="2_4twgn"]
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="2_euer7"]
+[ext_resource type="PackedScene" uid="uid://dqp2d35d4ec11" path="res://src/world/levels/test_erebrus_world.tscn" id="2_wvevy"]
 [ext_resource type="PackedScene" uid="uid://cl2x45a8d01v4" path="res://src/cards/card_engine.tscn" id="3_bitsc"]
 [ext_resource type="AudioStream" uid="uid://cbjvypec266rn" path="res://assets/sfx/Card_Error_1.wav" id="4_wwjtp"]
 [ext_resource type="AudioStream" uid="uid://cdrvh6ccbcxb6" path="res://assets/sfx/Card_Error_2.wav" id="5_lyh6t"]
@@ -17,7 +17,7 @@ stream_2/stream = ExtResource("6_gx4rj")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_k8n5x")
-world_scene = ExtResource("2_4twgn")
+world_scene = ExtResource("2_wvevy")
 draw_cooldown = 0.0
 
 [node name="BaseWorld" parent="." instance=ExtResource("2_euer7")]
