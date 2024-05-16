@@ -1,6 +1,7 @@
 [
   {
 	"nice_name": "Space Jump",
+	"display_name": "Space Jump",
 	"description": "Give your prophet ability to get over twice as bigger obstacle next time.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_jump.gd",
@@ -11,6 +12,7 @@
   },
   {
 	"nice_name": "Leave the void behind",
+	"display_name": "Run beyond the Void",
 	"description": "Make your prophet run faster.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_faster.gd",
@@ -21,6 +23,7 @@
   },
 {
 	"nice_name": "Turn around",
+	"display_name": "Don't look back",
 	"description": "Turn your prophet around.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_turn_around.gd",
@@ -31,7 +34,8 @@
   },
 {
 	"nice_name": "The abyss will gaze back into you",
-	"description": "Give your prophet the second chance to fulfil its mission.",
+	"display_name": "The Abyss Look Back",
+	"description": "Give your prophet the second chance to fulfil their mission.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_spawn.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/mc-card.png",
@@ -41,6 +45,7 @@
   },
   {
 	"nice_name": "Miracle of creation",
+	"display_name": "One will stay",
 	"description": "Create one simple block",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
@@ -52,6 +57,7 @@
   },
   {
 	"nice_name": "Two is better than one",
+	"display_name": "The power of two",
 	"description": "Create 2 simple blocks in the pictured pattern",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
@@ -63,6 +69,7 @@
   },
   {
 	"nice_name": "Three is a lucky number",
+	"display_name": "Three for luck",
 	"description": "Create 3 simple blocks in a pictured pattern",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
@@ -74,7 +81,7 @@
   },
   {
 	"nice_name": "4 blocks",
-	"display_name": "Four is...",
+	"display_name": "On all four sides",
 	"description": "Create 4 simple blocks in the pictured pattern",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
@@ -86,8 +93,8 @@
   },
   {
 	"nice_name": "checkpoint",
-	"display_name": "Checkpoint",
-	"description": "Meditate, reflect on your surroundings. If your prohet dies, they can start again from here",
+	"display_name": "Save your soul",
+	"description": "Meditate, reflect on your surroundings. If your prophet dies, they can start again from here",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_checkpoint.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/checkpoint-card.png",
