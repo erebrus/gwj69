@@ -27,8 +27,6 @@ script = ExtResource("3_l4642")
 [node name="Player" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_yxkp1")]
 position = Vector2(86, 145)
 tilemap = NodePath("../PlatformsLayer")
-base_speed = 50.0
-jump_velocity = -200.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ogdge")

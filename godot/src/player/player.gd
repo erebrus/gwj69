@@ -139,27 +139,34 @@ func consume():
 
 func _can_walk()->bool:
 	
-	var current_cell:=tilemap.local_to_map(position)
-	var mid_cell_position = tilemap.map_to_local(current_cell)
+	
+	var mid_cell_position = tilemap.map_to_local(_get_current_cell())
 	#if we haven't reached the middle position of the cell, we can still walk
 	if get_facing_direction()>0 and position.x < mid_cell_position.x:
 		return true
 	if get_facing_direction()<0 and position.x > mid_cell_position.x:
 		return true
 		
-	var front_cell := current_cell+Vector2i.RIGHT*get_facing_direction()
+	var front_cell := _get_front_cell()
 
 	var front_empty:bool = tilemap.is_cell_empty(front_cell) and tilemap.is_cell_empty(front_cell+Vector2i.UP)
 
-	var on_deep_edge:bool = tilemap.is_cell_empty(front_cell+Vector2i.DOWN) and \
-		tilemap.is_cell_empty(front_cell + Vector2i.DOWN*2)
-	return front_empty and not on_deep_edge	
+	return front_empty and not _is_on_deep_edge()	
 
+func _is_on_deep_edge()->bool:
+	var front_cell := _get_front_cell()
+	return tilemap.is_cell_empty(front_cell+Vector2i.DOWN) and \
+		tilemap.is_cell_empty(front_cell + Vector2i.DOWN*2)
+
+func _get_current_cell()->Vector2i:
+	return tilemap.local_to_map(position)
+
+func _get_front_cell()->Vector2i:
+	return _get_current_cell() + Vector2i.RIGHT * get_facing_direction()
 
 func _should_jump()->bool:
-	var current_cell:=tilemap.local_to_map(position)
-	var mid_cell_position = tilemap.map_to_local(current_cell)
-	var front_cell := current_cell+Vector2i.RIGHT*get_facing_direction()
+
+	var front_cell := _get_front_cell()
 	# 1 block obstacle
 	if not tilemap.is_cell_empty(front_cell) and \
 		tilemap.is_cell_empty(front_cell+ Vector2i.UP) and \
@@ -175,9 +182,8 @@ func _should_jump()->bool:
 				
 			
 	# edge but with jump card
-		var on_deep_edge:bool = tilemap.is_cell_empty(front_cell+Vector2i.DOWN) and \
-			tilemap.is_cell_empty(front_cell + Vector2i.DOWN*2)
-		if on_deep_edge:
+		if _is_on_deep_edge():
 			return true
+	
 	return false
 	
