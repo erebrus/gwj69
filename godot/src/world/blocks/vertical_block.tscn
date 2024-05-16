@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnkmntl38a3eu"]
-
-[ext_resource type="PackedScene" uid="uid://bpbyjdbi2uhvo" path="res://src/world/blocks/block.tscn" id="1_oiou2"]
-
-[node name="VerticalBlock" instance=ExtResource("1_oiou2")]
-
-[node name="Sprite2D" parent="." index="0"]
-region_rect = Rect2(50, 18, 8, 8)
