@@ -41,5 +41,7 @@ func get_collision_shapes() -> Array[CollisionPolygon2D]:
 	
 
 func is_cell_empty(coords: Vector2i) -> bool:
-	var cell_id = tilemap.get_cell_source_id(coords)
+	var cell_position = tilemap.map_to_local(coords)
+	var rotated_coords = tilemap.local_to_map(cell_position.rotated(-rotation))
+	var cell_id = tilemap.get_cell_source_id(rotated_coords)
 	return cell_id == -1 or cell_id == VOID_ID

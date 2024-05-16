@@ -11,7 +11,11 @@ func is_cell_empty(coords:Vector2i) -> bool:
 	for child in get_children():
 		if (child.has_method("is_cell_empty")):
 			var child_cell_offset = local_to_map(child.position)
-			if !child.is_cell_empty(coords - child_cell_offset):
+			var child_coords = coords - child_cell_offset
+			if child_coords.x < -10 or child_coords.x > 10 or child_coords.y < -10 or child_coords.y > 10:
+				continue
+			
+			if !child.is_cell_empty(child_coords):
 				return false
 		
 	return true
