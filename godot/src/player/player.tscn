@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://b2q3ypwb3s64x"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_x8yfo"]
-[ext_resource type="Texture2D" uid="uid://bi71ve7jmk36g" path="res://assets/gfx/character/mc-tall2-animations.png" id="2_faqy1"]
+[ext_resource type="Texture2D" uid="uid://km8dfgo6x6b3" path="res://assets/gfx/character/mc-tall2-animations.png" id="2_faqy1"]
 [ext_resource type="PackedScene" uid="uid://cpffnhboaxsb3" path="res://src/player/TerrainDetector.tscn" id="3_p7gik"]
 [ext_resource type="AudioStream" uid="uid://dmdyoke7mnsvn" path="res://assets/sfx/MC_Footstep_1.wav" id="4_6flkn"]
 [ext_resource type="Texture2D" uid="uid://42wccejd5kvf" path="res://assets/gfx/character/mc-tall2.png" id="4_12tjh"]
@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://b8jcuekywla74" path="res://assets/sfx/MC_Jump_2.wav" id="9_um7bx"]
 [ext_resource type="AudioStream" uid="uid://b3qw35bfdgj80" path="res://assets/sfx/MC_BigJump_1.wav" id="10_3rsyp"]
 [ext_resource type="AudioStream" uid="uid://dy4t7x874kfjw" path="res://assets/sfx/MC_BigJump_2.wav" id="11_sns7m"]
-[ext_resource type="PackedScene" uid="uid://c1akb2kfch56o" path="res://src/player/jump_vfx.tscn" id="13_qyi5a"]
+[ext_resource type="PackedScene" path="res://src/player/jump_vfx.tscn" id="13_qyi5a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lc3vg"]
 radius = 2.5
@@ -283,9 +283,12 @@ script = ExtResource("5_43nh5")
 
 [node name="sfx_walk" type="AudioStreamPlayer2D" parent="sfx"]
 stream = SubResource("AudioStreamRandomizer_y4knw")
+bus = &"Sfx"
 
 [node name="sfx_jump" type="AudioStreamPlayer2D" parent="sfx"]
 stream = SubResource("AudioStreamRandomizer_uk74h")
+bus = &"Sfx"
 
 [node name="sfx_jump_high" type="AudioStreamPlayer2D" parent="sfx"]
 stream = SubResource("AudioStreamRandomizer_4tejj")
+bus = &"Sfx"

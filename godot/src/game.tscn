@@ -1,9 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://duka5rbd4bxdc"]
+[gd_scene load_steps=10 format=3 uid="uid://duka5rbd4bxdc"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_k8n5x"]
 [ext_resource type="PackedScene" uid="uid://b55be43ctmn7a" path="res://src/world/levels/test_angela_world.tscn" id="2_4twgn"]
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="2_euer7"]
 [ext_resource type="PackedScene" uid="uid://cl2x45a8d01v4" path="res://src/cards/card_engine.tscn" id="3_bitsc"]
+[ext_resource type="AudioStream" uid="uid://cbjvypec266rn" path="res://assets/sfx/Card_Error_1.wav" id="4_wwjtp"]
+[ext_resource type="AudioStream" uid="uid://cdrvh6ccbcxb6" path="res://assets/sfx/Card_Error_2.wav" id="5_lyh6t"]
+[ext_resource type="AudioStream" uid="uid://dre04a01cjhaa" path="res://assets/music/Main Background Music_1.mp3" id="5_xqxae"]
+[ext_resource type="AudioStream" uid="uid://cfufwtelrqb1g" path="res://assets/sfx/Card_Error_3.wav" id="6_gx4rj"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57o5p"]
+streams_count = 3
+stream_0/stream = ExtResource("4_wwjtp")
+stream_1/stream = ExtResource("5_lyh6t")
+stream_2/stream = ExtResource("6_gx4rj")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_k8n5x")
@@ -15,6 +25,8 @@ draw_cooldown = 0.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="sfx_err" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = SubResource("AudioStreamRandomizer_57o5p")
+bus = &"Sfx"
 
 [node name="CardEngine" parent="CanvasLayer" instance=ExtResource("3_bitsc")]
 metadata/_edit_use_anchors_ = true
@@ -22,4 +34,10 @@ metadata/_edit_use_anchors_ = true
 [node name="DrawTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_xqxae")
+autoplay = true
+bus = &"Music"
+
 [connection signal="timeout" from="DrawTimer" to="." method="_on_draw_timer_timeout"]
+[connection signal="finished" from="music" to="." method="_on_music_finished"]

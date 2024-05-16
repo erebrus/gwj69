@@ -7,6 +7,7 @@ extends Node
 @onready var sfx_err: AudioStreamPlayer = $CanvasLayer/sfx_err
 @onready var card_engine: Control = $CanvasLayer/CardEngine
 @onready var draw_timer: Timer = $DrawTimer
+@onready var music: AudioStreamPlayer = $music
 
 var world:World:
 	set(w):
@@ -37,7 +38,7 @@ func load_world(scene:PackedScene):
 		Globals.last_level = world_scene	
 
 func _on_card_error():
-	sfx_err.play()	#TODO need to set sfx
+	sfx_err.play()
 
 func _process(delta: float) -> void:
 	#TODO update draw cooldown label
@@ -65,3 +66,8 @@ func _on_card_drawn():
 func _on_player_died():
 	card_engine.create_card_in_pile("The abyss will gaze back into you", CardPileUI.Piles.hand_pile)
 	
+
+
+func _on_music_finished() -> void:
+	music.play() #not using loop, because we might want to change songs
+

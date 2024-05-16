@@ -24,6 +24,7 @@ func play():
 		
 	else:
 		Logger.info("Can't play %s card" % nice_name)
+		Events.card_error.emit()
 
 func can_play()->bool:
 	return true
