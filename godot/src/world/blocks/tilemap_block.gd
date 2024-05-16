@@ -1,5 +1,8 @@
 class_name TilemapBlock extends BaseBlock
 
+const VOID_ID := 3
+
+
 @onready var tilemap: TileMapLayer = $TileMapLayer
 @onready var half_size = tilemap.tile_set.tile_size / 2
 
@@ -35,3 +38,8 @@ func get_collision_shapes() -> Array[CollisionPolygon2D]:
 				shapes.append(collision_shape)
 	
 	return shapes
+	
+
+func is_cell_empty(coords: Vector2i) -> bool:
+	var cell_id = tilemap.get_cell_source_id(coords)
+	return cell_id == -1 or cell_id == VOID_ID

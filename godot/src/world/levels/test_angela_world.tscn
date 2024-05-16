@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=4 uid="uid://b55be43ctmn7a"]
+[gd_scene load_steps=5 format=4 uid="uid://b55be43ctmn7a"]
 
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="1_h8fil"]
 [ext_resource type="Script" path="res://src/world/levels/test_angela_world.gd" id="2_y73eh"]
+[ext_resource type="PackedScene" uid="uid://42qodo87uoyq" path="res://src/world/terrain_detection_debug.tscn" id="3_sf3kj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ac5ny"]
 font_size = 8
@@ -49,3 +50,8 @@ text = "(0,0)"
 label_settings = SubResource("LabelSettings_ac5ny")
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="Player" parent="." index="2" node_paths=PackedStringArray("tilemap")]
+tilemap = NodePath("../PlatformsLayer")
+
+[node name="TerrainDetectionDebug" parent="." index="6" instance=ExtResource("3_sf3kj")]
