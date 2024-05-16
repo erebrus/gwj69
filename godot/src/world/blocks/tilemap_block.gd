@@ -9,7 +9,6 @@ const VOID_ID := 3
 func _process(delta: float) -> void:
 	var parent = get_parent()
 	if parent is Placeholder:
-		print("DOIN IT")
 		tilemap.material.set_shader_parameter("ColorParameter", valid_placement_color if parent.is_valid else invalid_placement_color)
 
 func disable() -> void:

@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://bn01q40wbxihj"]
+[gd_scene load_steps=10 format=3 uid="uid://bn01q40wbxihj"]
 
 [ext_resource type="Script" path="res://src/world/blocks/placeholder/placeholder.gd" id="1_uflqj"]
+[ext_resource type="AudioStream" uid="uid://cmod4gmqqe0u8" path="res://assets/sfx/Build_Block_1.wav" id="2_le35q"]
+[ext_resource type="AudioStream" uid="uid://wg7nwc07ffs4" path="res://assets/sfx/Build_Block_2.wav" id="3_nvhhc"]
+[ext_resource type="AudioStream" uid="uid://dv5pyfj1idfxn" path="res://assets/sfx/Build_Block_3.wav" id="4_453yp"]
+[ext_resource type="AudioStream" uid="uid://cunjxbujlmad6" path="res://assets/sfx/Build_GroupBlocks_1.wav" id="5_tl6i3"]
+[ext_resource type="AudioStream" uid="uid://eemkwr1s5ddw" path="res://assets/sfx/Build_GroupBlocks_2.wav" id="6_ncslk"]
+[ext_resource type="AudioStream" uid="uid://cdwd2qe8q3ogj" path="res://assets/sfx/Build_GroupBlocks_3.wav" id="7_0gbg8"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vc5fi"]
+streams_count = 3
+stream_0/stream = ExtResource("2_le35q")
+stream_1/stream = ExtResource("3_nvhhc")
+stream_2/stream = ExtResource("4_453yp")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2snsp"]
+streams_count = 3
+stream_0/stream = ExtResource("5_tl6i3")
+stream_1/stream = ExtResource("6_ncslk")
+stream_2/stream = ExtResource("7_0gbg8")
 
 [node name="Placeholder" type="Node2D"]
 script = ExtResource("1_uflqj")
@@ -8,3 +26,14 @@ script = ExtResource("1_uflqj")
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 15
+
+[node name="sfx" type="Node2D" parent="."]
+
+[node name="build_block" type="AudioStreamPlayer2D" parent="sfx"]
+stream = SubResource("AudioStreamRandomizer_vc5fi")
+
+[node name="build_group_block" type="AudioStreamPlayer2D" parent="sfx"]
+stream = SubResource("AudioStreamRandomizer_2snsp")
+
+[connection signal="finished" from="sfx/build_block" to="." method="_on_build_block_finished"]
+[connection signal="finished" from="sfx/build_group_block" to="." method="_on_build_group_block_finished"]

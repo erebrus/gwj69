@@ -4,16 +4,16 @@
 [ext_resource type="Theme" path="res://src/cards/card_theme.tres" id="1_p8h4s"]
 [ext_resource type="PackedScene" uid="uid://crhnx3pau8rue" path="res://src/cards/card_glow.tscn" id="3_dgtta"]
 [ext_resource type="Texture2D" uid="uid://cepvm4s2rykou" path="res://assets/gfx/ui/card-border.png" id="3_vps5k"]
-[ext_resource type="Texture2D" uid="uid://blvh25scx01yc" path="res://assets/gfx/ui/card-back.png" id="4_f0x2i"]
+[ext_resource type="Texture2D" uid="uid://njkyw8722nij" path="res://assets/gfx/ui/card-back.png" id="4_f0x2i"]
 [ext_resource type="Texture2D" uid="uid://pw5xld6o01r1" path="res://assets/gfx/ui/illustrations/mc-card.png" id="4_h3n6s"]
 [ext_resource type="Shader" uid="uid://dmmobr85dhggi" path="res://src/cards/card_glow.tres" id="4_vsawv"]
-[ext_resource type="Texture2D" uid="uid://bjqye6hwbb40k" path="res://assets/gfx/ui/symbol-1x.png" id="7_ydy2e"]
+[ext_resource type="Texture2D" uid="uid://q37koj1ghcct" path="res://assets/gfx/ui/symbol-1x.png" id="7_ydy2e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dh7lq"]
 resource_local_to_scene = true
 shader = ExtResource("4_vsawv")
 shader_parameter/glow_color = Color(0.741549, 0.426297, 0.965097, 1)
-shader_parameter/emission_f = 76.842
+shader_parameter/emission_f = 20.0
 shader_parameter/position_delta = Vector2(0, 0)
 shader_parameter/alpha_f = 0.0
 
@@ -24,6 +24,7 @@ theme = ExtResource("1_p8h4s")
 script = ExtResource("1_b2mpq")
 
 [node name="Glow" parent="." instance=ExtResource("3_dgtta")]
+visible = false
 material = SubResource("ShaderMaterial_dh7lq")
 layout_mode = 0
 offset_left = -25.0

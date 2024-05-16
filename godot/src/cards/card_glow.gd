@@ -14,7 +14,6 @@ func _process(delta: float) -> void:
 	position_delta = global_position - previous_pos
 	previous_pos = global_position
 	material.set_shader_parameter("position_delta", position_delta)
-	#print(position_delta)
 
 
 func _on_custom_card_ui_card_hovered(card: CardUI) -> void:
