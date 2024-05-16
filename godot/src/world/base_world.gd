@@ -2,6 +2,7 @@ extends Node
 class_name World
 
 const PLAYER_SCENE:PackedScene = preload("res://src/player/player.tscn")
+@onready var platforms_layer: PlatformsLayer = $PlatformsLayer
 
 
 var checkpoint: CheckPoint
@@ -30,6 +31,7 @@ func _on_spawn_requested():
 	if not $Player:
 		var player = PLAYER_SCENE.instantiate()
 		player.position = Globals.last_checkpoint
+		player.tilemap = platforms_layer
 		add_child(player)
 
 

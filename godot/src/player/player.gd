@@ -1,36 +1,33 @@
 extends CharacterBody2D
 class_name Player
 
-const JUMP_HEIGHT := 8
 const JUMP_VELOCITY := -200.0
 const BASE_SPEED :=50.0
 
+
+@export var tilemap:PlatformsLayer
+
 @export var base_speed := BASE_SPEED 
 @export var jump_velocity := JUMP_VELOCITY
-@export var jump_height := JUMP_HEIGHT:
-	set(value):
-		if value != jump_height:
-			%TerrainDetector.max_jump_distance = value
-			jump_height = value
-	
 
-@onready var terrain_detector = %TerrainDetector
+	
+@export var vfx_jump_high: PackedScene
+
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var sfx_walk: AudioStreamPlayer2D = $sfx/sfx_walk
 @onready var sfx_jump: AudioStreamPlayer2D = $sfx/sfx_jump
 @onready var sfx_jump_high: AudioStreamPlayer2D = $sfx/sfx_jump_high
-@export var vfx_jump_high: PackedScene
 
 var high_jumps := 0:
 	set(hj):
 		high_jumps=hj
-		jump_height = JUMP_HEIGHT* (1 if hj == 0 else 3)#HACK magic value
 		jump_velocity = JUMP_VELOCITY* (1 if hj == 0 else 1.5)#HACK magic value
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 var boost_duration := 0.0
 var in_animation:bool = true
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready():
 	Globals.player_alive = true
@@ -38,10 +35,6 @@ func _ready():
 	Events.turn_around_requested.connect(_on_turn_around_requested)
 	Events.jump_requested.connect(_on_jump_requested)
 	Events.speed_requested.connect(_on_speed_requested)
-	terrain_detector.max_jump_distance = jump_height
-	
-	terrain_detector.jump_detected.connect(_on_jump_detected)
-	terrain_detector.fall_detected.connect(_on_fall_detected)
 	
 	Events.player_respawned.emit(self)
 	Logger.info("player_respawned")
@@ -83,7 +76,7 @@ func _physics_process(delta):
 					get_tree().root.add_child(vfx)
 				else:
 					sfx_jump.play()
-			elif terrain_detector.wall_ahead:
+			elif not _can_walk():#terrain_detector.wall_ahead:
 				velocity.x=0 
 		_update_animation()		
 	
@@ -105,8 +98,6 @@ func _update_animation():
 	if animation_player.current_animation != new_anim:
 		animation_player.play(new_anim)
 		
-func _should_jump() -> bool:
-	return terrain_detector.jump_height > 0 and terrain_detector.jump_height <= jump_height
 	
 func get_facing_direction()->int:
 	return -1 if sprite.flip_h else 1
@@ -114,7 +105,7 @@ func get_facing_direction()->int:
 func _turn_around() -> void:
 	Logger.debug("turning")
 	sprite.flip_h = !sprite.flip_h
-	terrain_detector.flip = sprite.flip_h
+	#terrain_detector.flip = sprite.flip_h
 	
 
 func _on_jump_detected(height: float) -> void:
@@ -145,3 +136,54 @@ func consume():
 	get_parent().remove_child(self)	
 	Globals.player_alive = false	
 	queue_free()
+
+func _can_walk()->bool:
+	
+	
+	var mid_cell_position = tilemap.map_to_local(_get_current_cell())
+	#if we haven't reached the middle position of the cell, we can still walk
+	if get_facing_direction()>0 and position.x < mid_cell_position.x:
+		return true
+	if get_facing_direction()<0 and position.x > mid_cell_position.x:
+		return true
+		
+	var front_cell := _get_front_cell()
+
+	var front_empty:bool = tilemap.is_cell_empty(front_cell) and tilemap.is_cell_empty(front_cell+Vector2i.UP)
+
+	return front_empty and not _is_on_deep_edge()	
+
+func _is_on_deep_edge()->bool:
+	var front_cell := _get_front_cell()
+	return tilemap.is_cell_empty(front_cell+Vector2i.DOWN) and \
+		tilemap.is_cell_empty(front_cell + Vector2i.DOWN*2)
+
+func _get_current_cell()->Vector2i:
+	return tilemap.local_to_map(position)
+
+func _get_front_cell()->Vector2i:
+	return _get_current_cell() + Vector2i.RIGHT * get_facing_direction()
+
+func _should_jump()->bool:
+
+	var front_cell := _get_front_cell()
+	# 1 block obstacle
+	if not tilemap.is_cell_empty(front_cell) and \
+		tilemap.is_cell_empty(front_cell+ Vector2i.UP) and \
+		tilemap.is_cell_empty(front_cell+ Vector2i.UP * 2):
+			return true
+	
+	# 2 block obstacle with jump card
+	if high_jumps:
+		if not tilemap.is_cell_empty(front_cell+ Vector2i.UP) and \
+			tilemap.is_cell_empty(front_cell+ Vector2i.UP * 2) and \
+			tilemap.is_cell_empty(front_cell+ Vector2i.UP * 3):
+				return true
+				
+			
+	# edge but with jump card
+		if _is_on_deep_edge():
+			return true
+	
+	return false
+	

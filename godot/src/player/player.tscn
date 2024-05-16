@@ -1,8 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://b2q3ypwb3s64x"]
+[gd_scene load_steps=33 format=3 uid="uid://b2q3ypwb3s64x"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_x8yfo"]
 [ext_resource type="Texture2D" uid="uid://km8dfgo6x6b3" path="res://assets/gfx/character/mc-tall2-animations.png" id="2_faqy1"]
-[ext_resource type="PackedScene" uid="uid://cpffnhboaxsb3" path="res://src/player/TerrainDetector.tscn" id="3_p7gik"]
 [ext_resource type="AudioStream" uid="uid://dmdyoke7mnsvn" path="res://assets/sfx/MC_Footstep_1.wav" id="4_6flkn"]
 [ext_resource type="Texture2D" uid="uid://42wccejd5kvf" path="res://assets/gfx/character/mc-tall2.png" id="4_12tjh"]
 [ext_resource type="Script" path="res://src/player/run_fast.gd" id="5_43nh5"]
@@ -258,10 +257,6 @@ vframes = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_lc3vg")
-
-[node name="TerrainDetector" parent="." instance=ExtResource("3_p7gik")]
-unique_name_in_owner = true
-position = Vector2(0, -4)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 deterministic = true
