@@ -12,7 +12,7 @@ var debug_build := false
 
 var last_level:PackedScene
 var last_checkpoint:Vector2 
-var current_deck:Array = ["Space Jump", "Turn around", "Turn around", "Turn around","Space Jump", "Leave the void behind", "Miracle of creation", "Miracle of creation", "Two is better than one", "Two is better than one", "Three is a lucky number", "4 blocks", "Three is a lucky number", "4 blocks", "The abyss will gaze back into you"]
+var current_deck:Array = ["Space Jump", "Turn around", "Turn around", "Turn around","Space Jump", "Leave the void behind", "Miracle of creation", "Miracle of creation", "Two is better than one", "Two is better than one", "Three is a lucky number", "4 blocks", "Three is a lucky number", "4 blocks", "The abyss will gaze back into you", "checkpoint"]
 
 var player_alive:bool = false
 
@@ -53,3 +53,5 @@ func init_music():
 func fade_music():
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(%Music,"volume_db",-60,1)
+	
+

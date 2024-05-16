@@ -1,9 +1,15 @@
 extends Node
 
 
+const CHECKPOINT_SCENE = preload("res://src/world/blocks/checkpoint_block.tscn")
+
+
 @export var world_scene:PackedScene
 @export var scale_factor:int = 2
 @export var draw_cooldown:float = 2
+
+var checkpoint: CheckPoint
+
 @onready var sfx_err: AudioStreamPlayer = $CanvasLayer/sfx_err
 @onready var card_engine: Control = $CanvasLayer/CardEngine
 @onready var draw_timer: Timer = $DrawTimer
@@ -24,6 +30,8 @@ func _ready():
 	
 	Events.card_error.connect(_on_card_error)
 	Events.player_died.connect(_on_player_died)
+	Events.checkpoint_requested.connect(_on_checkpoint_requested)
+	
 	card_engine.card_drawn.connect(_on_card_drawn)
 	draw_timer.wait_time = draw_cooldown
 	
@@ -35,7 +43,30 @@ func load_world(scene:PackedScene):
 		new_world.name = "BaseWorld"
 		add_child(new_world)
 		move_child(new_world, 0)
+		world = new_world
 		Globals.last_level = world_scene	
+	
+
+func create_checkpoint():
+	checkpoint = CHECKPOINT_SCENE.instantiate()
+	
+	# TODO: save player state
+	# TODO: save tilemap state
+	checkpoint.card_engine_state = card_engine.get_state()
+	
+	world.place_checkpoint(checkpoint)
+	
+
+func restore_checkpoint():
+	if checkpoint == null:
+		get_tree().reload_current_scene()
+	else:
+		load_world(Globals.last_level)
+		card_engine.set_state(checkpoint.card_engine_state)
+		# TODO: restore player state
+		# TODO: restore tilemap state
+	
+	
 
 func _on_card_error():
 	sfx_err.play()
@@ -44,10 +75,7 @@ func _process(delta: float) -> void:
 	#TODO update draw cooldown label
 	if Input.is_action_just_pressed("restart_level"):
 		if Globals.last_level:
-			#var state = card_engine.get_state()
-			#load_world(Globals.last_level)
-			#card_engine.set_state(state) #TODO use this logic to load checkpoint
-			get_tree().reload_current_scene()
+			restore_checkpoint()
 		else:
 			Logger.warn("No level to load.")
 		
@@ -67,7 +95,10 @@ func _on_player_died():
 	card_engine.create_card_in_pile("The abyss will gaze back into you", CardPileUI.Piles.hand_pile)
 	
 
-
 func _on_music_finished() -> void:
 	music.play() #not using loop, because we might want to change songs
+	
 
+func _on_checkpoint_requested() -> void:
+	create_checkpoint()
+	

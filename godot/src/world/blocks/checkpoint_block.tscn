@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt405k5ltcwc5"]
+
+[ext_resource type="PackedScene" uid="uid://k1ey4vvnmd50" path="res://src/world/blocks/base_block.tscn" id="1_lt8ne"]
+[ext_resource type="Script" path="res://src/world/blocks/checkpoint_block.gd" id="2_6b0kt"]
+[ext_resource type="Texture2D" uid="uid://d0op5bmpdk873" path="res://assets/gfx/world/block-checkpoint.png" id="2_dhj03"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3aq7j"]
+size = Vector2(16, 16)
+
+[node name="CheckpointBlock" instance=ExtResource("1_lt8ne")]
+script = ExtResource("2_6b0kt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+position = Vector2(4, 4)
+texture = ExtResource("2_dhj03")
+
+[node name="Area2D" type="Area2D" parent="." index="1"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_3aq7j")

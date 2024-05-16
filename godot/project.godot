@@ -69,6 +69,7 @@ rotate_ccw={
 2d_physics/layer_1="world"
 2d_physics/layer_2="void"
 2d_physics/layer_3="player"
+2d_physics/layer_4="unplaceable"
 
 [rendering]
 

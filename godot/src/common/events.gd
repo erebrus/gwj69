@@ -5,6 +5,7 @@ signal card_error()
 
 signal card_destroy_requested(card:CardUI)
 signal discard_requested()
+
 signal spawn_requested()
 signal jump_requested()
 #signal long_jump_requested() #TODO implement or remove
@@ -15,5 +16,7 @@ signal block_placed(block)
 
 signal player_died()
 signal player_respawned(player)
+
+signal checkpoint_requested()
 
 signal tick()

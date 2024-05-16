@@ -56,7 +56,7 @@ func _physics_process(_delta:float) -> void:
 
 func _place() -> void:
 	if not is_valid:
-		# todo: play invalid placement ui sound
+		# TODO: play invalid placement ui sound
 		return
 	
 	Logger.info("block placed")

@@ -84,25 +84,15 @@
 	"block_scene_path": "res://src/world/blocks/4_t_blocks.tscn",
 	"traits":{}
   },
-{
-	"nice_name": "Horizontal Block",
-	"description": "Adds a block that carries the player horizontally.",
+  {
+	"nice_name": "checkpoint",
+	"display_name": "Checkpoint",
+	"description": "Meditate, reflect on your surroundings. If your prohet dies, they can start again from here",
 	"cost": 0,
-	"resource_script_path": "res://src/cards/logic/card_block.gd",
-	"image_path": "res://assets/gfx/ui/illustrations/block-h-card.png",
+	"resource_script_path": "res://src/cards/logic/card_checkpoint.gd",
+	"image_path": "res://assets/gfx/ui/illustrations/checkpoint-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
 	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
-	"block_scene_path": "res://src/world/blocks/horizontal_block.tscn",
 	"traits":{}
-  },
-{
-	"nice_name": "Vertical Block",
-	"description": "Adds a block that carries the player vertically.",
-	"cost": 0,
-	"resource_script_path": "res://src/cards/logic/card_block.gd",
-	"image_path": "res://assets/gfx/ui/illustrations/block-v-card.png",
-	"texture_path": "res://assets/gfx/ui/card-border.png",
-	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
-	"block_scene_path": "res://src/world/blocks/vertical_block.tscn"
   },
 ]
