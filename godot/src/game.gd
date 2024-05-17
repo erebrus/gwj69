@@ -4,7 +4,6 @@ extends Node
 const CHECKPOINT_SCENE = preload("res://src/world/blocks/checkpoint_block.tscn")
 
 
-@export var world_scene:PackedScene
 @export var scale_factor:int = 2
 @export var draw_cooldown:float = 2
 
@@ -23,10 +22,8 @@ var world:World:
 var debug_mode:bool = false
 
 func _ready():
-	if Globals.last_level:
-		load_world(Globals.last_level)
-	elif world_scene != null:
-		load_world(world_scene)
+
+	load_world(Globals.get_current_world_scene())
 		
 	world = $BaseWorld
 	
@@ -48,7 +45,6 @@ func load_world(scene:PackedScene):
 		add_child(new_world)
 		move_child(new_world, 0)
 		world = new_world
-		Globals.last_level = world_scene	
 	
 
 func create_checkpoint():
@@ -69,7 +65,7 @@ func restore_checkpoint():
 		get_tree().reload_current_scene()
 	else:
 		checkpoint.get_parent().remove_child(checkpoint)
-		load_world(Globals.last_level)
+		load_world(Globals.get_current_world_scene())
 		card_engine.set_state(checkpoint.card_engine_state)
 		Globals.tilemap.set_state(checkpoint.tilemap_state)
 		# TODO: add respawn card instead
@@ -86,7 +82,7 @@ func _on_card_error():
 func _process(delta: float) -> void:
 	#TODO update draw cooldown label
 	if Input.is_action_just_pressed("restart_level"):
-		if Globals.last_level:
+		if Globals.get_current_world_scene():
 			get_tree().reload_current_scene()
 		else:
 			Logger.warn("No level to load.")
@@ -128,7 +124,7 @@ func _on_spawn_requested() -> void:
 		get_tree().reload_current_scene()
 	else:
 		checkpoint.get_parent().remove_child(checkpoint)
-		load_world(Globals.last_level)
+		load_world(Globals.get_current_world_scene())
 		card_engine.set_state(checkpoint.card_engine_state)
 		Globals.tilemap.set_state(checkpoint.tilemap_state)
 		# TODO: add respawn card instead
@@ -138,13 +134,14 @@ func _on_spawn_requested() -> void:
 
 
 func _on_level_ended():
-	if world.next_world:
-		#TODO make a nice transition? allow card choice?
-		load_world(world.next_world)	
+	Globals.current_level_idx += 1
+	var next_world := Globals.get_current_world_scene()
+	if next_world:
+		load_world(next_world)	
 	else:
 		do_game_win()
 		
 func do_game_win():
 	Logger.info("You won!")
-	get_tree().quit()
+	get_tree().quit() #TODO do ending
 	

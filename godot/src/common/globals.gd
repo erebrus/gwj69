@@ -10,7 +10,10 @@ var config:ConfigFile
 
 var debug_build := false
 
-var last_level:PackedScene
+var levels:Array[PackedScene] =[
+	preload("res://src/world/levels/level_01.tscn")]
+var current_level_idx=0
+
 var current_deck:Array = ["Space Jump","Space Jump", "Turn around", "Turn around", "Turn around","Space Jump", "Leave the void behind", "Miracle of creation", "Miracle of creation", "Two is better than one", "Two is better than one", "Three is a lucky number", "4 blocks", "Three is a lucky number", "4 blocks", "checkpoint"]
 #var current_deck:Array = ["Space Jump","Space Jump","Space Jump", "Turn around", "Turn around", "Turn around","Space Jump", "Leave the void behind", "Miracle of creation", "Miracle of creation", "checkpoint"]
 var player_alive:bool = false
@@ -21,6 +24,8 @@ var game_mode: Types.GameMode:
 			game_mode = value
 			Events.game_mode_changed.emit(game_mode)
 	
+
+
 
 var tilemap: PlatformsLayer
 var player: Player
@@ -53,5 +58,11 @@ func init_music():
 func fade_music():
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(%Music,"volume_db",-60,1)
+
+func get_current_world_scene()->PackedScene:	
+	if current_level_idx < levels.size():
+		return levels[current_level_idx]
+	else:
+		return null
 	
 

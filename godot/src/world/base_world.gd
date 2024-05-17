@@ -2,8 +2,6 @@ extends Node
 class_name World
 
 
-@export var next_world:PackedScene 
-
 @onready var platforms_layer: PlatformsLayer = $PlatformsLayer
 
 
