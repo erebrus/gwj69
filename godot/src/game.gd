@@ -19,7 +19,9 @@ var world:World:
 	set(w):
 		world = w
 		world.scale=Vector2.ONE*scale_factor
-		
+
+var debug_mode:bool = false
+
 func _ready():
 	if Globals.last_level:
 		load_world(Globals.last_level)
@@ -86,7 +88,14 @@ func _process(delta: float) -> void:
 			restore_checkpoint()
 		else:
 			Logger.warn("No level to load.")
-		
+	if Input.is_action_just_pressed("debug"):
+		debug_mode = not debug_mode
+		if Globals.player and Globals.player_alive:
+			if debug_mode:
+				Globals.player.init_log()
+			else:
+				Globals.player.remove_log()
+			
 
 
 func _on_draw_timer_timeout() -> void:

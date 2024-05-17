@@ -31,6 +31,8 @@ var high_jumps := 0:
 var last_y_on_floor:float = -999
 var boost_duration := 0.0
 var in_animation:bool = true
+var current_cell:Vector2i
+var cell_map_string:String =""
 
 func _ready():
 	Globals.player_alive = true
@@ -50,9 +52,17 @@ func _ready():
 	in_animation = false
 	Globals.last_checkpoint = position
 	last_y_on_floor=position.y
-	#HyperLog.log(self).text("position>round")
+	current_cell = tilemap.local_to_map(position)
 
 
+func init_log():
+	HyperLog.log(self).text("position>round")
+	HyperLog.log(self).text("current_cell")
+	HyperLog.log(self).text("cell_map_string")
+
+func remove_log():
+	HyperLog.remove_log(self)
+	
 func _physics_process(delta):
 
 	boost_duration = clamp(boost_duration-delta, 0, 100) 
@@ -89,6 +99,8 @@ func _physics_process(delta):
 		_update_animation()		
 	var was_on_floor:bool = is_on_floor()
 	move_and_slide()
+	current_cell = tilemap.local_to_map(position)
+	cell_map_string = get_cell_map_string()
 	#if landed
 	if not was_on_floor and is_on_floor():
 		if position.y-last_y_on_floor>DEATH_HEIGHT and last_y_on_floor!=-999:
@@ -158,12 +170,13 @@ func _do_death(animation):
 	if get_parent():
 		get_parent().remove_child(self)	
 	Globals.player_alive = false	
+	remove_log()
 	queue_free()
 
 func _can_walk()->bool:
 	
 	
-	var mid_cell_position = tilemap.map_to_local(_get_current_cell())
+	var mid_cell_position = tilemap.map_to_local(current_cell)
 	#if we haven't reached the middle position of the cell, we can still walk
 	if get_facing_direction()>0 and position.x < mid_cell_position.x:
 		return true
@@ -181,14 +194,12 @@ func _is_on_deep_edge()->bool:
 	return tilemap.is_cell_empty(front_cell+Vector2i.DOWN) and \
 		tilemap.is_cell_empty(front_cell + Vector2i.DOWN*2)
 
-func _get_current_cell()->Vector2i:
-	return tilemap.local_to_map(position)
 
 func _get_front_cell()->Vector2i:
-	return _get_current_cell() + Vector2i.RIGHT * get_facing_direction()
+	return current_cell + Vector2i.RIGHT * get_facing_direction()
 
 func _should_jump()->bool:
-	var mid_cell_position = tilemap.map_to_local(_get_current_cell())
+	var mid_cell_position = tilemap.map_to_local(current_cell)
 	var front_cell := _get_front_cell()
 	# 1 block obstacle
 	if not tilemap.is_cell_empty(front_cell) and \
@@ -230,7 +241,13 @@ func _should_jump()->bool:
 	
 	return false
 	
-
+func get_cell_map_string()->String:
+	var ret=""
+	for x in range(-3,4):
+		for y in range(-3,4):
+			ret += "0" if tilemap.is_cell_empty(current_cell + Vector2i(x,y)) else "1"
+		ret += " "
+	return ret
 func get_state() -> Dictionary:
 	return {
 		"position" = position 
