@@ -34,6 +34,8 @@ var in_animation:bool = true
 var current_cell:Vector2i
 var cell_map_string:String =""
 
+var paused:bool = false
+
 func _ready():
 	Globals.player_alive = true
 	Globals.player = self
@@ -41,7 +43,7 @@ func _ready():
 	Events.turn_around_requested.connect(_on_turn_around_requested)
 	Events.jump_requested.connect(_on_jump_requested)
 	Events.speed_requested.connect(_on_speed_requested)
-	
+	Events.game_mode_changed.connect(_on_game_mode_changed)
 	Events.player_respawned.emit(self)
 	Logger.info("player_respawned")
 	
@@ -63,7 +65,8 @@ func remove_log():
 	HyperLog.remove_log(self)
 	
 func _physics_process(delta):
-
+	if paused:
+		return
 	boost_duration = clamp(boost_duration-delta, 0, 100) 
 	# Add the gravity.
 	if not is_on_floor():
@@ -256,3 +259,11 @@ func get_state() -> Dictionary:
 func set_state(state: Dictionary) -> void:
 	position = state.position
 	
+func _on_game_mode_changed(mode: Types.GameMode):
+	paused = mode == Types.GameMode.PlacingBlock
+	if paused:
+		animation_player.pause()
+	else:
+		animation_player.play()
+	
+		
