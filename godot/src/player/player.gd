@@ -50,7 +50,7 @@ func _ready():
 	in_animation = false
 	Globals.last_checkpoint = position
 	last_y_on_floor=position.y
-	
+	HyperLog.log(self).text("position>round")
 
 
 func _physics_process(delta):
@@ -91,7 +91,6 @@ func _physics_process(delta):
 	move_and_slide()
 	#if landed
 	if not was_on_floor and is_on_floor():
-		var d=position.y-last_y_on_floor
 		if position.y-last_y_on_floor>DEATH_HEIGHT and last_y_on_floor!=-999:
 			_do_death("death")
 			return
@@ -222,6 +221,7 @@ func _should_jump()->bool:
 			
 	# edge but with jump card
 		if _is_on_deep_edge():
+			_on_speed_requested(2,.2)
 			return true
 	
 	return false
