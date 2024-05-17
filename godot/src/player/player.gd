@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+const DEATH_Y=500
+const DEATH_HEIGHT = 24.0
 const JUMP_VELOCITY := -200.0
 const BASE_SPEED :=50.0
 
@@ -26,6 +28,7 @@ var high_jumps := 0:
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
+var last_y_on_floor:float = -999
 var boost_duration := 0.0
 var in_animation:bool = true
 
@@ -45,7 +48,7 @@ func _ready():
 	
 	in_animation = false
 	Globals.last_checkpoint = position
-	
+	last_y_on_floor=position.y
 	
 
 
@@ -55,8 +58,12 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	
+	else:
+		last_y_on_floor=position.y
 	if not in_animation:
+		if position.y > DEATH_Y:
+			_do_death("death")
+			return
 		if boost_duration == 0:
 			base_speed = BASE_SPEED
 			$AnimationPlayer.speed_scale = 1
@@ -79,8 +86,15 @@ func _physics_process(delta):
 			elif not _can_walk():#terrain_detector.wall_ahead:
 				velocity.x=0 
 		_update_animation()		
-	
+	var was_on_floor:bool = is_on_floor()
 	move_and_slide()
+	#if landed
+	if not was_on_floor and is_on_floor():
+		var d=position.y-last_y_on_floor
+		if position.y-last_y_on_floor>DEATH_HEIGHT and last_y_on_floor!=-999:
+			_do_death("death")
+			return
+		
 	
 
 func _update_animation():
@@ -127,13 +141,18 @@ func _on_speed_requested(factor:float, duration:float):
 	boost_duration += duration 
 	
 func consume():
+	_do_death("void_death")
+
+func _do_death(animation):
 	in_animation = true
-	
-	animation_player.play("void_death")
+	if is_on_floor():
+		velocity.x=0
+	animation_player.play(animation)
 	#TODO we should prevent the player from playing cards until animation is over
 	await animation_player.animation_finished	
 	Events.player_died.emit()
-	get_parent().remove_child(self)	
+	if get_parent():
+		get_parent().remove_child(self)	
 	Globals.player_alive = false	
 	queue_free()
 
