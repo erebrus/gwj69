@@ -34,6 +34,7 @@ func _ready():
 	Events.player_died.connect(_on_player_died)
 	Events.checkpoint_requested.connect(_on_checkpoint_requested)
 	Events.spawn_requested.connect(_on_spawn_requested)
+	Events.level_ended.connect(_on_level_ended)
 	
 	card_engine.card_drawn.connect(_on_card_drawn)
 	draw_timer.wait_time = draw_cooldown
@@ -137,4 +138,14 @@ func _on_spawn_requested() -> void:
 		world.place_checkpoint(checkpoint)
 
 
+func _on_level_ended():
+	if world.next_world:
+		#TODO make a nice transition? allow card choice?
+		load_world(world.next_world)	
+	else:
+		do_game_win()
+		
+func do_game_win():
+	Logger.info("You won!")
+	get_tree().quit()
 	

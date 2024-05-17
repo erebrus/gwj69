@@ -44,7 +44,10 @@ func _ready():
 	Events.jump_requested.connect(_on_jump_requested)
 	Events.speed_requested.connect(_on_speed_requested)
 	Events.game_mode_changed.connect(_on_game_mode_changed)
+	Events.end_card_collected.connect(_on_end_card_collected)
+	
 	Events.player_respawned.emit(self)
+	
 	Logger.info("player_respawned")
 	
 	in_animation = true
@@ -219,17 +222,19 @@ func _should_jump()->bool:
 	var front_cell_below2_empty := tilemap.is_cell_empty(front_cell+ Vector2i.DOWN * 2)
 	
 	var front2_cell_empty := tilemap.is_cell_empty(front_cell+ Vector2i.RIGHT*get_facing_direction())
-	
+	var front2_below1_empty := tilemap.is_cell_empty(front_cell+ Vector2i.DOWN+Vector2i.RIGHT*get_facing_direction())
 	# 1 block gap
-	var past_mid_x:bool = position.x > mid_cell_position.x + 2
-	if  position.x > mid_cell_position.x+2 and \
+	
+	var past_mid_x:bool = position.x > mid_cell_position.x
+	if  past_mid_x and \
 		front_cell_empty and \
 		front_cell_above1_empty and \
 		front_cell_above2_empty and \
 		front_cell_above2_empty and \
 		front_cell_below1_empty and\
 		front_cell_below2_empty and\
-		not front2_cell_empty:
+		front2_cell_empty and\
+		not front2_below1_empty :
 			return true
 
 	# step down
@@ -238,7 +243,7 @@ func _should_jump()->bool:
 		front_cell_above2_empty and \
 		front_cell_above1_empty and \
 		not front_cell_below2_empty and\
-		tilemap.is_cell_empty(front_cell+ Vector2i.DOWN+Vector2i.RIGHT*get_facing_direction()):
+		front2_below1_empty:
 			return true
 
 	# 2 block obstacle with jump card
@@ -284,3 +289,10 @@ func _on_game_mode_changed(mode: Types.GameMode):
 
 func _on_void_detector_body_entered(body: Node2D) -> void:
 	consume()
+
+func _on_end_card_collected():
+	in_animation=true
+	collision_layer=0
+	velocity.x=0
+	velocity.y = jump_velocity
+	animation_player.play("level_end")
