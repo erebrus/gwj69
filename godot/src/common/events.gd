@@ -1,6 +1,7 @@
 extends Node
 
 signal game_mode_changed(mode: Types.GameMode)
+signal card_clicked()
 signal card_error()
 
 signal card_destroy_requested(card:CardUI)

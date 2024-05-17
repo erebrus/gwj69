@@ -5,6 +5,7 @@ extends CardPileUI
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
+	card_clicked.connect(func(x): Events.card_clicked.emit())
 	Events.discard_requested.connect(_on_discard_requested)
 	Events.card_destroy_requested.connect(_on_card_destroy_requested)
 	hand_pile_updated.connect(_on_hand_pile_updated)

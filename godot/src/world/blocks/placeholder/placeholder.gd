@@ -34,6 +34,8 @@ func _ready() -> void:
 	for shape in block.get_collision_shapes():
 		area.add_child(shape)
 	
+	Events.card_clicked.connect(_destroy)
+	
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
