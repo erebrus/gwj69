@@ -185,7 +185,7 @@ func _get_front_cell()->Vector2i:
 	return _get_current_cell() + Vector2i.RIGHT * get_facing_direction()
 
 func _should_jump()->bool:
-
+	var mid_cell_position = tilemap.map_to_local(_get_current_cell())
 	var front_cell := _get_front_cell()
 	# 1 block obstacle
 	if not tilemap.is_cell_empty(front_cell) and \
@@ -193,6 +193,25 @@ func _should_jump()->bool:
 		tilemap.is_cell_empty(front_cell+ Vector2i.UP * 2):
 			return true
 	
+	# 1 block gap
+	
+	if  position.x > mid_cell_position.x+2 and \
+		tilemap.is_cell_empty(front_cell) and \
+		tilemap.is_cell_empty(front_cell+ Vector2i.UP) and \
+		tilemap.is_cell_empty(front_cell+ Vector2i.UP * 2)and \
+		tilemap.is_cell_empty(front_cell+ Vector2i.UP * 3)and \
+		tilemap.is_cell_empty(front_cell+ Vector2i.DOWN)and\
+		not tilemap.is_cell_empty(front_cell+ Vector2i.DOWN*2)and\
+		not tilemap.is_cell_empty(front_cell+ Vector2i.RIGHT*get_facing_direction()):
+			return true
+	# step down
+	if  tilemap.is_cell_empty(front_cell) and \
+		tilemap.is_cell_empty(front_cell+ Vector2i.UP) and \
+		tilemap.is_cell_empty(front_cell+ Vector2i.UP * 2)and \
+		tilemap.is_cell_empty(front_cell+ Vector2i.DOWN)and \
+		not tilemap.is_cell_empty(front_cell+ Vector2i.DOWN*2)and\
+		tilemap.is_cell_empty(front_cell+ Vector2i.DOWN+Vector2i.RIGHT*get_facing_direction()):
+			return true
 	# 2 block obstacle with jump card
 	if high_jumps:
 		if not tilemap.is_cell_empty(front_cell+ Vector2i.UP) and \
