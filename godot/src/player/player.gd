@@ -219,17 +219,19 @@ func _should_jump()->bool:
 	var front_cell_below2_empty := tilemap.is_cell_empty(front_cell+ Vector2i.DOWN * 2)
 	
 	var front2_cell_empty := tilemap.is_cell_empty(front_cell+ Vector2i.RIGHT*get_facing_direction())
-	
+	var front2_below1_empty := tilemap.is_cell_empty(front_cell+ Vector2i.DOWN+Vector2i.RIGHT*get_facing_direction())
 	# 1 block gap
-	var past_mid_x:bool = position.x > mid_cell_position.x + 2
-	if  position.x > mid_cell_position.x+2 and \
+	
+	var past_mid_x:bool = position.x > mid_cell_position.x
+	if  past_mid_x and \
 		front_cell_empty and \
 		front_cell_above1_empty and \
 		front_cell_above2_empty and \
 		front_cell_above2_empty and \
 		front_cell_below1_empty and\
 		front_cell_below2_empty and\
-		not front2_cell_empty:
+		front2_cell_empty and\
+		not front2_below1_empty :
 			return true
 
 	# step down
@@ -238,7 +240,7 @@ func _should_jump()->bool:
 		front_cell_above2_empty and \
 		front_cell_above1_empty and \
 		not front_cell_below2_empty and\
-		tilemap.is_cell_empty(front_cell+ Vector2i.DOWN+Vector2i.RIGHT*get_facing_direction()):
+		front2_below1_empty:
 			return true
 
 	# 2 block obstacle with jump card
