@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b2q3ypwb3s64x"]
+[gd_scene load_steps=35 format=3 uid="uid://b2q3ypwb3s64x"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_x8yfo"]
 [ext_resource type="Texture2D" uid="uid://c5b2xq6jhm1ro" path="res://assets/gfx/character/mc-tall2-animations.png" id="2_faqy1"]
@@ -13,6 +13,10 @@
 [ext_resource type="AudioStream" uid="uid://b3qw35bfdgj80" path="res://assets/sfx/MC_BigJump_1.wav" id="10_3rsyp"]
 [ext_resource type="AudioStream" uid="uid://dy4t7x874kfjw" path="res://assets/sfx/MC_BigJump_2.wav" id="11_sns7m"]
 [ext_resource type="PackedScene" path="res://src/player/jump_vfx.tscn" id="13_qyi5a"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywd1q"]
+radius = 2.0
+height = 6.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lc3vg"]
 radius = 3.0
@@ -274,7 +278,6 @@ stream_1/stream = ExtResource("11_sns7m")
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 3
 script = ExtResource("1_x8yfo")
 vfx_jump_high = ExtResource("13_qyi5a")
 
@@ -284,6 +287,14 @@ texture = ExtResource("2_faqy1")
 offset = Vector2(0, -1)
 hframes = 14
 vframes = 7
+
+[node name="VoidDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VoidDetector"]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_ywd1q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
@@ -318,3 +329,5 @@ bus = &"Sfx"
 [node name="sfx_jump_high" type="AudioStreamPlayer2D" parent="sfx"]
 stream = SubResource("AudioStreamRandomizer_4tejj")
 bus = &"Sfx"
+
+[connection signal="body_entered" from="VoidDetector" to="." method="_on_void_detector_body_entered"]

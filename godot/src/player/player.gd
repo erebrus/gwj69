@@ -34,6 +34,8 @@ var in_animation:bool = true
 var current_cell:Vector2i
 var cell_map_string:String =""
 
+var paused:bool = false
+
 func _ready():
 	Globals.player_alive = true
 	Globals.player = self
@@ -41,7 +43,7 @@ func _ready():
 	Events.turn_around_requested.connect(_on_turn_around_requested)
 	Events.jump_requested.connect(_on_jump_requested)
 	Events.speed_requested.connect(_on_speed_requested)
-	
+	Events.game_mode_changed.connect(_on_game_mode_changed)
 	Events.player_respawned.emit(self)
 	Logger.info("player_respawned")
 	
@@ -51,7 +53,7 @@ func _ready():
 	
 	in_animation = false
 	last_y_on_floor=position.y
-	current_cell = tilemap.local_to_map(position)
+	current_cell = tilemap.local_to_map(position-Vector2(0,1))
 
 
 func init_log():
@@ -63,7 +65,8 @@ func remove_log():
 	HyperLog.remove_log(self)
 	
 func _physics_process(delta):
-
+	if paused:
+		return
 	boost_duration = clamp(boost_duration-delta, 0, 100) 
 	# Add the gravity.
 	if not is_on_floor():
@@ -82,7 +85,7 @@ func _physics_process(delta):
 			$AnimationPlayer.speed_scale = base_speed/BASE_SPEED
 			$RunFast.emitting = true
 		velocity.x = base_speed * get_facing_direction()
-		if is_on_floor():
+		if is_on_floor() and not _can_walk():
 			if _should_jump():
 				velocity.y = jump_velocity
 				if high_jumps>0:
@@ -93,12 +96,12 @@ func _physics_process(delta):
 					get_tree().root.add_child(vfx)
 				else:
 					sfx_jump.play()
-			elif not _can_walk():#terrain_detector.wall_ahead:
+			else :
 				velocity.x=0 
 		_update_animation()		
 	var was_on_floor:bool = is_on_floor()
 	move_and_slide()
-	current_cell = tilemap.local_to_map(position)
+	current_cell = tilemap.local_to_map(position-Vector2(0,1))
 	cell_map_string = get_cell_map_string()
 	#if landed
 	if not was_on_floor and is_on_floor():
@@ -124,7 +127,7 @@ func _update_animation():
 		else:
 			new_anim = "fall"
 	if animation_player.current_animation != new_anim:
-		Logger.info("change anim to %s" % new_anim)
+		Logger.trace("change anim to %s" % new_anim)
 		animation_player.play(new_anim)
 		
 	
@@ -200,36 +203,49 @@ func _get_front_cell()->Vector2i:
 func _should_jump()->bool:
 	var mid_cell_position = tilemap.map_to_local(current_cell)
 	var front_cell := _get_front_cell()
+	
+	var front_cell_empty := tilemap.is_cell_empty(front_cell)
+	var front_cell_above1_empty := tilemap.is_cell_empty(front_cell+ Vector2i.UP)
+	var front_cell_above2_empty := tilemap.is_cell_empty(front_cell+ Vector2i.UP * 2)
+	
 	# 1 block obstacle
-	if not tilemap.is_cell_empty(front_cell) and \
-		tilemap.is_cell_empty(front_cell+ Vector2i.UP) and \
-		tilemap.is_cell_empty(front_cell+ Vector2i.UP * 2):
+	if not front_cell_empty and \
+		front_cell_above1_empty and \
+		front_cell_above2_empty:
 			return true
+	
+	var front_cell_above3_empty := tilemap.is_cell_empty(front_cell+ Vector2i.UP * 3)
+	var front_cell_below1_empty := tilemap.is_cell_empty(front_cell+ Vector2i.DOWN)
+	var front_cell_below2_empty := tilemap.is_cell_empty(front_cell+ Vector2i.DOWN * 2)
+	
+	var front2_cell_empty := tilemap.is_cell_empty(front_cell+ Vector2i.RIGHT*get_facing_direction())
 	
 	# 1 block gap
-	
+	var past_mid_x:bool = position.x > mid_cell_position.x + 2
 	if  position.x > mid_cell_position.x+2 and \
-		tilemap.is_cell_empty(front_cell) and \
-		tilemap.is_cell_empty(front_cell+ Vector2i.UP) and \
-		tilemap.is_cell_empty(front_cell+ Vector2i.UP * 2)and \
-		tilemap.is_cell_empty(front_cell+ Vector2i.UP * 3)and \
-		tilemap.is_cell_empty(front_cell+ Vector2i.DOWN)and\
-		not tilemap.is_cell_empty(front_cell+ Vector2i.DOWN*2)and\
-		not tilemap.is_cell_empty(front_cell+ Vector2i.RIGHT*get_facing_direction()):
+		front_cell_empty and \
+		front_cell_above1_empty and \
+		front_cell_above2_empty and \
+		front_cell_above2_empty and \
+		front_cell_below1_empty and\
+		front_cell_below2_empty and\
+		not front2_cell_empty:
 			return true
+
 	# step down
-	if  tilemap.is_cell_empty(front_cell) and \
-		tilemap.is_cell_empty(front_cell+ Vector2i.UP) and \
-		tilemap.is_cell_empty(front_cell+ Vector2i.UP * 2)and \
-		tilemap.is_cell_empty(front_cell+ Vector2i.DOWN)and \
-		not tilemap.is_cell_empty(front_cell+ Vector2i.DOWN*2)and\
+	if  front_cell_empty and \
+		front_cell_above1_empty and \
+		front_cell_above2_empty and \
+		front_cell_above1_empty and \
+		not front_cell_below2_empty and\
 		tilemap.is_cell_empty(front_cell+ Vector2i.DOWN+Vector2i.RIGHT*get_facing_direction()):
 			return true
+
 	# 2 block obstacle with jump card
 	if high_jumps:
-		if not tilemap.is_cell_empty(front_cell+ Vector2i.UP) and \
-			tilemap.is_cell_empty(front_cell+ Vector2i.UP * 2) and \
-			tilemap.is_cell_empty(front_cell+ Vector2i.UP * 3):
+		if not front_cell_above1_empty and \
+			front_cell_above2_empty  and \
+			front_cell_above3_empty: #should we?
 				return true
 				
 			
@@ -256,3 +272,15 @@ func get_state() -> Dictionary:
 func set_state(state: Dictionary) -> void:
 	position = state.position
 	
+func _on_game_mode_changed(mode: Types.GameMode):
+	paused = mode == Types.GameMode.PlacingBlock
+	if paused:
+		animation_player.pause()
+	else:
+		animation_player.play()
+	
+		
+
+
+func _on_void_detector_body_entered(body: Node2D) -> void:
+	consume()

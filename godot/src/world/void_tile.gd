@@ -12,7 +12,7 @@ func _ready() -> void:
 	var speed_delta := randf_range(-SPEED_VARIABILITY, SPEED_VARIABILITY)
 	sprite.speed_scale += speed_delta
 	sprite.frame = randi() % frame_count
-	sprite.play("default")
+	#sprite.play("default")
 	$CollisionShape2D.position=sprite.offset
 
 
