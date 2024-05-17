@@ -280,3 +280,7 @@ func _on_game_mode_changed(mode: Types.GameMode):
 		animation_player.play()
 	
 		
+
+
+func _on_void_detector_body_entered(body: Node2D) -> void:
+	consume()
