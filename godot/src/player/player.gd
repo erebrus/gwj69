@@ -50,7 +50,7 @@ func _ready():
 	in_animation = false
 	Globals.last_checkpoint = position
 	last_y_on_floor=position.y
-	HyperLog.log(self).text("position>round")
+	#HyperLog.log(self).text("position>round")
 
 
 func _physics_process(delta):
