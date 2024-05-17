@@ -14,4 +14,4 @@ func _on_body_entered(body: Node2D) -> void:
 	$sfx_gather.play()
 	Events.end_card_collected.emit()
 	await get_tree().create_timer(1.4).timeout
-	Events.level_ended.emit()
+	

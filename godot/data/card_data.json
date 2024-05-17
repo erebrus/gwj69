@@ -102,4 +102,26 @@
 	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
 	"traits":{}
   },
+  {
+	"nice_name": "end_level",
+	"display_name": "One step closer",
+	"description": "Your prophet can feel that they are one step closer to their goal.",
+	"cost": 0,
+	"resource_script_path": "res://src/cards/logic/card_end_level.gd",
+	"image_path": "res://assets/gfx/ui/illustrations/checkpoint-card.png",
+	"texture_path": "res://assets/gfx/ui/card-border.png",
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"traits":{"ONE_USE":true}
+  },
+{
+	"nice_name": "end_game",
+	"display_name": "See your God",
+	"description": "Feel the emptiness of completing your mission.",
+	"cost": 0,
+	"resource_script_path": "res://src/cards/logic/card_end_game.gd",
+	"image_path": "res://assets/gfx/ui/illustrations/checkpoint-card.png",
+	"texture_path": "res://assets/gfx/ui/card-border.png",
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"traits":{"ONE_USE":true}
+  },
 ]

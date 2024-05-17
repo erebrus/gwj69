@@ -11,7 +11,9 @@ var config:ConfigFile
 var debug_build := false
 
 var levels:Array[PackedScene] =[
-	preload("res://src/world/levels/level_01.tscn")]
+	#preload("res://src/world/levels/test_erebrus_world.tscn"),
+	preload("res://src/world/levels/level_01.tscn")
+	]
 var current_level_idx=0
 
 var current_deck:Array = ["Space Jump","Space Jump", "Turn around", "Turn around", "Turn around","Space Jump", "Leave the void behind", "Miracle of creation", "Miracle of creation", "Two is better than one", "Two is better than one", "Three is a lucky number", "4 blocks", "Three is a lucky number", "4 blocks", "checkpoint"]
@@ -66,3 +68,5 @@ func get_current_world_scene()->PackedScene:
 		return null
 	
 
+func is_last_level()->bool:
+	return current_level_idx + 1 == levels.size()

@@ -32,6 +32,8 @@ func _ready():
 	Events.checkpoint_requested.connect(_on_checkpoint_requested)
 	Events.spawn_requested.connect(_on_spawn_requested)
 	Events.level_ended.connect(_on_level_ended)
+	Events.game_ended.connect(_on_game_ended)
+	Events.end_card_collected.connect(_on_end_card_collected)
 	
 	card_engine.card_drawn.connect(_on_card_drawn)
 	draw_timer.wait_time = draw_cooldown
@@ -133,6 +135,16 @@ func _on_spawn_requested() -> void:
 		
 		world.place_checkpoint(checkpoint)
 
+func _on_end_card_collected():
+	if Globals.is_last_level():
+		card_engine.create_card_in_pile("end_game", CardPileUI.Piles.hand_pile)
+	else:
+		card_engine.create_card_in_pile("end_level", CardPileUI.Piles.hand_pile)
+
+func _on_game_ended():	
+	Logger.info("You won!")
+	get_tree().quit() #TODO do ending
+
 
 func _on_level_ended():
 	Globals.current_level_idx += 1
@@ -140,9 +152,7 @@ func _on_level_ended():
 	if next_world:
 		load_world(next_world)	
 	else:
-		do_game_win()
-		
-func do_game_win():
-	Logger.info("You won!")
-	get_tree().quit() #TODO do ending
+		Logger.error("Can't find world at idx:%d" % Globals.current_level_idx)
+
+
 	
