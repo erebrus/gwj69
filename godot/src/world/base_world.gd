@@ -16,13 +16,25 @@ func _ready():
 	_on_player_respawned($Player)
 	
 
+func get_state() -> Dictionary:
+	return {
+		"platforms" = platforms_layer.get_state(),
+		"player" = $Player.get_state()
+	}
+	
+
+func set_state(state: Dictionary) -> void:
+	platforms_layer.set_state(state.platforms)
+	$Player.set_state(state.player)
+	
+
 func place_checkpoint(value: CheckPoint):
 	if checkpoint != null:
 		checkpoint.queue_free()
 	
 	checkpoint = value
 	
-	$PlatformsLayer.add_child(checkpoint)
+	platforms_layer.add_child(checkpoint)
 	
 
 func _on_player_respawned(player):

@@ -9,6 +9,7 @@ size = Vector2(16, 16)
 
 [node name="CheckpointBlock" instance=ExtResource("1_lt8ne")]
 script = ExtResource("2_6b0kt")
+timed = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 position = Vector2(4, 4)

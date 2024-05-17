@@ -36,7 +36,8 @@ func _ready():
 	Events.end_card_collected.connect(_on_end_card_collected)
 	
 	card_engine.card_drawn.connect(_on_card_drawn)
-	draw_timer.wait_time = draw_cooldown
+	if draw_cooldown > 0:
+		draw_timer.wait_time = draw_cooldown
 	
 func load_world(scene:PackedScene):
 		var old_world = get_child(0)
@@ -54,9 +55,8 @@ func create_checkpoint():
 	
 	checkpoint.position = Globals.tilemap.cell_top_left(Globals.player.position)
 	
-	checkpoint.player_state = Globals.player.get_state()
 	checkpoint.card_engine_state = card_engine.get_state()
-	checkpoint.tilemap_state = Globals.tilemap.get_state()
+	checkpoint.world_state = world.get_state()
 	
 	world.place_checkpoint(checkpoint)
 	
@@ -64,18 +64,17 @@ func create_checkpoint():
 func restore_checkpoint():
 	if checkpoint == null:
 		# TODO: should we create a checkpoint with the start-level state?
+		await get_tree().process_frame #necessary to let the discard finish
 		get_tree().reload_current_scene()
 	else:
 		checkpoint.get_parent().remove_child(checkpoint)
 		load_world(Globals.get_current_world_scene())
 		card_engine.set_state(checkpoint.card_engine_state)
-		Globals.tilemap.set_state(checkpoint.tilemap_state)
-		# TODO: add respawn card instead
-		Globals.player.set_state(checkpoint.player_state)
+		world.set_state(checkpoint.world_state)
+		
+		# TODO: add respawn card
 		
 		world.place_checkpoint(checkpoint)
-		
-	
 	
 
 func _on_card_error():
@@ -121,19 +120,8 @@ func _on_checkpoint_requested() -> void:
 	create_checkpoint()
 	
 func _on_spawn_requested() -> void:
-	if checkpoint == null:
-		# TODO: should we create a checkpoint with the start-level state?
-		await get_tree().process_frame #necessary to let the discard finish
-		get_tree().reload_current_scene()
-	else:
-		checkpoint.get_parent().remove_child(checkpoint)
-		load_world(Globals.get_current_world_scene())
-		card_engine.set_state(checkpoint.card_engine_state)
-		Globals.tilemap.set_state(checkpoint.tilemap_state)
-		# TODO: add respawn card instead
-		Globals.player.set_state(checkpoint.player_state)
-		
-		world.place_checkpoint(checkpoint)
+	restore_checkpoint()
+	
 
 func _on_end_card_collected():
 	if Globals.is_last_level():

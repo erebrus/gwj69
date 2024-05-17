@@ -35,6 +35,7 @@ var current_cell:Vector2i
 var cell_map_string:String =""
 
 var paused:bool = false
+var is_spawning:bool = true
 
 func _ready():
 	Globals.player_alive = true
@@ -57,6 +58,7 @@ func _ready():
 	in_animation = false
 	last_y_on_floor=position.y
 	current_cell = tilemap.local_to_map(position-Vector2(0,1))
+	is_spawning = false
 
 
 func init_log():
@@ -68,7 +70,7 @@ func remove_log():
 	HyperLog.remove_log(self)
 	
 func _physics_process(delta):
-	if paused:
+	if paused or is_spawning:
 		return
 	boost_duration = clamp(boost_duration-delta, 0, 100) 
 	# Add the gravity.
@@ -112,6 +114,10 @@ func _physics_process(delta):
 			_do_death("death")
 			return
 		
+	
+func _input(event: InputEvent):
+	if event.is_action_pressed("die"):
+		_do_death("death")
 	
 
 func _update_animation():
@@ -268,6 +274,7 @@ func get_cell_map_string()->String:
 			ret += "0" if tilemap.is_cell_empty(current_cell + Vector2i(x,y)) else "1"
 		ret += " "
 	return ret
+
 func get_state() -> Dictionary:
 	return {
 		"position" = position 
@@ -284,8 +291,6 @@ func _on_game_mode_changed(mode: Types.GameMode):
 	else:
 		animation_player.play()
 	
-		
-
 
 func _on_void_detector_body_entered(body: Node2D) -> void:
 	consume()

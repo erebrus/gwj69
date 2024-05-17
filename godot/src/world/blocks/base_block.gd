@@ -23,7 +23,7 @@ func disable() -> void:
 
 func enable() -> void:
 	enabled = true
-	if timed:
+	if timed and not Events.tick.is_connected(_on_tick):
 		Events.tick.connect(_on_tick)
 	
 
