@@ -1,7 +1,9 @@
 extends Node
 class_name World
 
-const PLAYER_SCENE:PackedScene = preload("res://src/player/player.tscn")
+
+@export var next_world:PackedScene 
+
 @onready var platforms_layer: PlatformsLayer = $PlatformsLayer
 
 

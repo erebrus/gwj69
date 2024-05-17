@@ -14,10 +14,12 @@ signal speed_requested(factor:float, duration:float)
 signal block_requested(placeholder: Placeholder)
 signal block_placed(block)
 
+
 signal player_died()
 signal player_respawned(player)
 
 signal checkpoint_requested()
 
-
+signal end_card_collected()
 signal tick()
+signal level_ended()

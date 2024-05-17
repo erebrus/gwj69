@@ -44,7 +44,10 @@ func _ready():
 	Events.jump_requested.connect(_on_jump_requested)
 	Events.speed_requested.connect(_on_speed_requested)
 	Events.game_mode_changed.connect(_on_game_mode_changed)
+	Events.end_card_collected.connect(_on_end_card_collected)
+	
 	Events.player_respawned.emit(self)
+	
 	Logger.info("player_respawned")
 	
 	in_animation = true
@@ -286,3 +289,10 @@ func _on_game_mode_changed(mode: Types.GameMode):
 
 func _on_void_detector_body_entered(body: Node2D) -> void:
 	consume()
+
+func _on_end_card_collected():
+	in_animation=true
+	collision_layer=0
+	velocity.x=0
+	velocity.y = jump_velocity
+	animation_player.play("level_end")
