@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b2q3ypwb3s64x"]
+[gd_scene load_steps=34 format=3 uid="uid://b2q3ypwb3s64x"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_x8yfo"]
 [ext_resource type="Texture2D" uid="uid://c5b2xq6jhm1ro" path="res://assets/gfx/character/mc-tall2-animations.png" id="2_faqy1"]
@@ -199,10 +199,29 @@ tracks/0/keys = {
 "values": [70, 71, 72, 73, 74, 75]
 }
 
+[sub_resource type="Animation" id="Animation_71bf2"]
+resource_name = "edge"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [84, 85, 86, 87, 88, 89, 90, 91, 92]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hukg5"]
 _data = {
 "RESET": SubResource("Animation_jq1uo"),
 "death": SubResource("Animation_pn6g2"),
+"edge": SubResource("Animation_71bf2"),
 "fall": SubResource("Animation_dn3hf"),
 "idle": SubResource("Animation_rr34h"),
 "jump": SubResource("Animation_8rpny"),

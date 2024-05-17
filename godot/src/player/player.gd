@@ -103,13 +103,17 @@ func _update_animation():
 		if velocity.x != 0:
 			new_anim = "move"
 		else:
-			new_anim = "idle"
+			if _is_on_deep_edge():
+				new_anim = "edge"
+			else:
+				new_anim = "idle"
 	else:
 		if velocity.y > 0:
 			new_anim = "jump"
 		else:
 			new_anim = "fall"
 	if animation_player.current_animation != new_anim:
+		Logger.info("change anim to %s" % new_anim)
 		animation_player.play(new_anim)
 		
 	
