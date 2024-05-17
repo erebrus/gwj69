@@ -13,5 +13,5 @@ func _on_body_entered(body: Node2D) -> void:
 	sprite.play("gather")
 	$sfx_gather.play()
 	Events.end_card_collected.emit()
-	await sprite.animation_finished
+	await get_tree().create_timer(1.4).timeout
 	Events.level_ended.emit()
