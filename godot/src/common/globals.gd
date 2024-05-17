@@ -11,7 +11,7 @@ var config:ConfigFile
 var debug_build := false
 
 var last_level:PackedScene
-var current_deck:Array = ["Space Jump", "Turn around", "Turn around", "Turn around","Space Jump", "Leave the void behind", "Miracle of creation", "Miracle of creation", "Two is better than one", "Two is better than one", "Three is a lucky number", "4 blocks", "Three is a lucky number", "4 blocks", "checkpoint"]
+var current_deck:Array = ["Space Jump","Space Jump", "Turn around", "Turn around", "Turn around","Space Jump", "Leave the void behind", "Miracle of creation", "Miracle of creation", "Two is better than one", "Two is better than one", "Three is a lucky number", "4 blocks", "Three is a lucky number", "4 blocks", "checkpoint"]
 #var current_deck:Array = ["Space Jump","Space Jump","Space Jump", "Turn around", "Turn around", "Turn around","Space Jump", "Leave the void behind", "Miracle of creation", "Miracle of creation", "checkpoint"]
 var player_alive:bool = false
 

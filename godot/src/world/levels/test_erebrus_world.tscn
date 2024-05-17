@@ -28,12 +28,3 @@ vertical_alignment = 2
 
 [node name="Player" parent="." index="2" node_paths=PackedStringArray("tilemap")]
 tilemap = NodePath("../PlatformsLayer")
-
-[connection signal="body_entered" from="PlatformsLayer/VoidTile" to="PlatformsLayer/VoidTile" method="_on_body_entered"]
-[connection signal="body_entered" from="PlatformsLayer/@Area2D@23335" to="PlatformsLayer/@Area2D@23335" method="_on_body_entered"]
-[connection signal="body_entered" from="PlatformsLayer/@Area2D@23336" to="PlatformsLayer/@Area2D@23336" method="_on_body_entered"]
-[connection signal="body_entered" from="PlatformsLayer/@Area2D@23337" to="PlatformsLayer/@Area2D@23337" method="_on_body_entered"]
-[connection signal="body_entered" from="PlatformsLayer/@Area2D@23338" to="PlatformsLayer/@Area2D@23338" method="_on_body_entered"]
-[connection signal="body_entered" from="PlatformsLayer/@Area2D@23339" to="PlatformsLayer/@Area2D@23339" method="_on_body_entered"]
-[connection signal="body_entered" from="PlatformsLayer/@Area2D@23340" to="PlatformsLayer/@Area2D@23340" method="_on_body_entered"]
-[connection signal="body_entered" from="PlatformsLayer/@Area2D@23341" to="PlatformsLayer/@Area2D@23341" method="_on_body_entered"]

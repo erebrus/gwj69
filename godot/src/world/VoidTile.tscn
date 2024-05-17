@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://nt28hssoogf2"]
+[gd_scene load_steps=10 format=3 uid="uid://da4l0a8jnhx5q"]
 
 [ext_resource type="Script" path="res://src/world/void_tile.gd" id="1_j318y"]
 [ext_resource type="Texture2D" uid="uid://c4vsbf73b7p2b" path="res://assets/gfx/world/void-tiles.png" id="2_r1p72"]
@@ -60,5 +60,6 @@ frame_progress = 0.0977147
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_b5u0w")
+disabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -51,7 +51,7 @@ func _ready():
 	
 	in_animation = false
 	last_y_on_floor=position.y
-	current_cell = tilemap.local_to_map(position)
+	current_cell = tilemap.local_to_map(position-Vector2(0,1))
 
 
 func init_log():
@@ -82,7 +82,7 @@ func _physics_process(delta):
 			$AnimationPlayer.speed_scale = base_speed/BASE_SPEED
 			$RunFast.emitting = true
 		velocity.x = base_speed * get_facing_direction()
-		if is_on_floor():
+		if is_on_floor() and not _can_walk():
 			if _should_jump():
 				velocity.y = jump_velocity
 				if high_jumps>0:
@@ -93,12 +93,12 @@ func _physics_process(delta):
 					get_tree().root.add_child(vfx)
 				else:
 					sfx_jump.play()
-			elif not _can_walk():#terrain_detector.wall_ahead:
+			else :
 				velocity.x=0 
 		_update_animation()		
 	var was_on_floor:bool = is_on_floor()
 	move_and_slide()
-	current_cell = tilemap.local_to_map(position)
+	current_cell = tilemap.local_to_map(position-Vector2(0,1))
 	cell_map_string = get_cell_map_string()
 	#if landed
 	if not was_on_floor and is_on_floor():
@@ -124,7 +124,7 @@ func _update_animation():
 		else:
 			new_anim = "fall"
 	if animation_player.current_animation != new_anim:
-		Logger.info("change anim to %s" % new_anim)
+		Logger.trace("change anim to %s" % new_anim)
 		animation_player.play(new_anim)
 		
 	
