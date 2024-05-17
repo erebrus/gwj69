@@ -50,7 +50,6 @@ func _ready():
 	await animation_player.animation_finished
 	
 	in_animation = false
-	Globals.last_checkpoint = position
 	last_y_on_floor=position.y
 	current_cell = tilemap.local_to_map(position)
 

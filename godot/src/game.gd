@@ -33,6 +33,7 @@ func _ready():
 	Events.card_error.connect(_on_card_error)
 	Events.player_died.connect(_on_player_died)
 	Events.checkpoint_requested.connect(_on_checkpoint_requested)
+	Events.spawn_requested.connect(_on_spawn_requested)
 	
 	card_engine.card_drawn.connect(_on_card_drawn)
 	draw_timer.wait_time = draw_cooldown
@@ -85,7 +86,7 @@ func _process(delta: float) -> void:
 	#TODO update draw cooldown label
 	if Input.is_action_just_pressed("restart_level"):
 		if Globals.last_level:
-			restore_checkpoint()
+			get_tree().reload_current_scene()
 		else:
 			Logger.warn("No level to load.")
 	if Input.is_action_just_pressed("debug"):
@@ -118,4 +119,21 @@ func _on_music_finished() -> void:
 
 func _on_checkpoint_requested() -> void:
 	create_checkpoint()
+	
+func _on_spawn_requested() -> void:
+	if checkpoint == null:
+		# TODO: should we create a checkpoint with the start-level state?
+		await get_tree().process_frame #necessary to let the discard finish
+		get_tree().reload_current_scene()
+	else:
+		checkpoint.get_parent().remove_child(checkpoint)
+		load_world(Globals.last_level)
+		card_engine.set_state(checkpoint.card_engine_state)
+		Globals.tilemap.set_state(checkpoint.tilemap_state)
+		# TODO: add respawn card instead
+		Globals.player.set_state(checkpoint.player_state)
+		
+		world.place_checkpoint(checkpoint)
+
+
 	
