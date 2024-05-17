@@ -29,11 +29,8 @@ func _process(delta: float) -> void:
 func _input(event):
 	if event is InputEventMouseMotion and activated:
 		var mouse_pos: Vector2 = get_global_mouse_position()
-		print(mouse_pos)
 		var viewport_rect: Vector2 = get_viewport_rect().size
-		print(viewport_rect)
 		var circle_pos: Vector2 = Vector2(mouse_pos.x / viewport_rect.x, mouse_pos.y / viewport_rect.y)
-		print(circle_pos)
 		material.set_shader_parameter("circle_position", circle_pos)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

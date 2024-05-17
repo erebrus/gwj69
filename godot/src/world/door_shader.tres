@@ -1,0 +1,223 @@
+[gd_resource type="VisualShader" load_steps=16 format=3 uid="uid://bgnnbqfawkp86"]
+
+[ext_resource type="Texture2D" uid="uid://d008cc2yfghpj" path="res://assets/gfx/world/door/outer-frays.png" id="1_8htow"]
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_8qpkg"]
+default_input_values = [0, Quaternion(0, 0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_io0kg"]
+size = Vector2(600, 420)
+expression = "noiseUv.x = floor(mod(uv.x + time * .05, 1.0) * 64.0) / 64.0;
+noiseUv.y = floor(mod(uv.y + time * .05, 1.0) * 64.0) / 64.0;
+
+
+pixelUvTime.x = uv.x + cos(time * .50) * .02 * (1.0 - clamp(pow(abs(uv.x - .5), 2.0) / .05, 0.0, 1.0));
+pixelUvTime.y = uv.y +  sin(time * 1.0) * .03 * (pow(abs(uv.x - .5),2.0) / .1);
+pixelUvTime.x = mod(pixelUvTime.x, 1.0);
+pixelUvTime.y = mod(pixelUvTime.y, 1.0);
+pixelUvTime.x = floor(pixelUvTime.x * 64.0) / 64.0;
+pixelUvTime.y = floor(pixelUvTime.y  * 64.0) / 64.0; 
+
+
+pixelUv.x = floor(uv.x * 64.0) / 64.0;
+pixelUv.y = floor(uv.y  * 64.0) / 64.0; "
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_d0fkq"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_ls2me"]
+parameter_name = "ColorParameter"
+default_value_enabled = true
+default_value = Color(0.811765, 0.984314, 0.945098, 1)
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_4gngc"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_tclcs"]
+parameter_name = "emission_f"
+default_value_enabled = true
+default_value = 40.0
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_2c3jg"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_whh5v"]
+input_name = "uv"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fs2eo"]
+seed = 2260
+frequency = 0.0046
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sgjww"]
+seamless = true
+noise = SubResource("FastNoiseLite_fs2eo")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_4i1cp"]
+texture = SubResource("NoiseTexture2D_sgjww")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_3aj7t"]
+texture = ExtResource("1_8htow")
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_k5yro"]
+size = Vector2(800, 460)
+expression = "
+colorMod = color + frays * (1.0 - noise.r * 40.0 *(pow(abs(uv.x - .5),2.0)));
+colorMod.a = clamp(colorMod.a, 0.0, 1.0);
+colorMod.rgb = portalColor.rgb;"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_jetwp"]
+input_name = "time"
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D tex_frg_6;
+uniform sampler2D tex_frg_7;
+uniform vec4 ColorParameter : source_color = vec4(0.811765, 0.984314, 0.945098, 1.000000);
+uniform float emission_f = 40;
+
+
+
+void fragment() {
+// Input:5
+	vec2 n_out5p0 = UV;
+
+
+// Input:13
+	float n_out13p0 = TIME;
+
+
+	vec2 n_out12p0;
+	vec2 n_out12p1;
+	vec2 n_out12p2;
+// Expression:12
+	n_out12p0 = vec2(0.0, 0.0);
+	n_out12p1 = vec2(0.0, 0.0);
+	n_out12p2 = vec2(0.0, 0.0);
+	{
+		n_out12p2.x = floor(mod(n_out5p0.x + n_out13p0 * .05, 1.0) * 64.0) / 64.0;
+		n_out12p2.y = floor(mod(n_out5p0.y + n_out13p0 * .05, 1.0) * 64.0) / 64.0;
+		
+		
+		n_out12p1.x = n_out5p0.x + cos(n_out13p0 * .50) * .02 * (1.0 - clamp(pow(abs(n_out5p0.x - .5), 2.0) / .05, 0.0, 1.0));
+		n_out12p1.y = n_out5p0.y +  sin(n_out13p0 * 1.0) * .03 * (pow(abs(n_out5p0.x - .5),2.0) / .1);
+		n_out12p1.x = mod(n_out12p1.x, 1.0);
+		n_out12p1.y = mod(n_out12p1.y, 1.0);
+		n_out12p1.x = floor(n_out12p1.x * 64.0) / 64.0;
+		n_out12p1.y = floor(n_out12p1.y  * 64.0) / 64.0; 
+		
+		
+		n_out12p0.x = floor(n_out5p0.x * 64.0) / 64.0;
+		n_out12p0.y = floor(n_out5p0.y  * 64.0) / 64.0; 
+	}
+
+
+// Texture2D:6
+	vec4 n_out6p0 = texture(tex_frg_6, n_out12p2);
+
+
+// Texture2D:7
+	vec4 n_out7p0 = texture(tex_frg_7, n_out12p1);
+
+
+// Input:9
+	float n_out9p0 = TIME;
+
+
+// Input:2
+	vec4 n_out2p0 = COLOR;
+
+
+// ColorParameter:14
+	vec4 n_out14p0 = ColorParameter;
+
+
+	vec4 n_out8p0;
+// Expression:8
+	n_out8p0 = vec4(0.0, 0.0, 0.0, 0.0);
+	{
+		
+		n_out8p0 = n_out2p0 + n_out7p0 * (1.0 - n_out6p0.r * 40.0 *(pow(abs(n_out5p0.x - .5),2.0)));
+		n_out8p0.a = clamp(n_out8p0.a, 0.0, 1.0);
+		n_out8p0.rgb = n_out14p0.rgb;
+	}
+
+
+// FloatParameter:3
+	float n_out3p0 = emission_f;
+
+
+// VectorOp:4
+	vec4 n_out4p0 = n_out8p0 * vec4(n_out3p0);
+
+
+// VectorDecompose:11
+	float n_out11p0 = n_out8p0.x;
+	float n_out11p1 = n_out8p0.y;
+	float n_out11p2 = n_out8p0.z;
+	float n_out11p3 = n_out8p0.w;
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out4p0.xyz);
+	COLOR.a = n_out11p3;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(1020, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_4gngc")
+nodes/fragment/2/position = Vector2(-1540, -40)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFloatParameter_tclcs")
+nodes/fragment/3/position = Vector2(-1580, 100)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorOp_2c3jg")
+nodes/fragment/4/position = Vector2(280, 180)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_whh5v")
+nodes/fragment/5/position = Vector2(-2660, 880)
+nodes/fragment/6/node = SubResource("VisualShaderNodeTexture_4i1cp")
+nodes/fragment/6/position = Vector2(-1280, 400)
+nodes/fragment/7/node = SubResource("VisualShaderNodeTexture_3aj7t")
+nodes/fragment/7/position = Vector2(-1060, 820)
+nodes/fragment/8/node = SubResource("VisualShaderNodeExpression_k5yro")
+nodes/fragment/8/position = Vector2(-580, 520)
+nodes/fragment/8/size = Vector2(800, 460)
+nodes/fragment/8/input_ports = "0,5,noise;1,5,frays;2,3,uv;3,0,time;4,5,color;5,5,portalColor;"
+nodes/fragment/8/output_ports = "0,5,colorMod;"
+nodes/fragment/8/expression = "
+colorMod = color + frays * (1.0 - noise.r * 40.0 *(pow(abs(uv.x - .5),2.0)));
+colorMod.a = clamp(colorMod.a, 0.0, 1.0);
+colorMod.rgb = portalColor.rgb;"
+nodes/fragment/9/node = SubResource("VisualShaderNodeInput_jetwp")
+nodes/fragment/9/position = Vector2(-1660, 700)
+nodes/fragment/11/node = SubResource("VisualShaderNodeVectorDecompose_8qpkg")
+nodes/fragment/11/position = Vector2(480, 520)
+nodes/fragment/12/node = SubResource("VisualShaderNodeExpression_io0kg")
+nodes/fragment/12/position = Vector2(-1980, 980)
+nodes/fragment/12/size = Vector2(600, 420)
+nodes/fragment/12/input_ports = "0,3,uv;1,0,time;"
+nodes/fragment/12/output_ports = "0,3,pixelUv;1,3,pixelUvTime;2,3,noiseUv;"
+nodes/fragment/12/expression = "noiseUv.x = floor(mod(uv.x + time * .05, 1.0) * 64.0) / 64.0;
+noiseUv.y = floor(mod(uv.y + time * .05, 1.0) * 64.0) / 64.0;
+
+
+pixelUvTime.x = uv.x + cos(time * .50) * .02 * (1.0 - clamp(pow(abs(uv.x - .5), 2.0) / .05, 0.0, 1.0));
+pixelUvTime.y = uv.y +  sin(time * 1.0) * .03 * (pow(abs(uv.x - .5),2.0) / .1);
+pixelUvTime.x = mod(pixelUvTime.x, 1.0);
+pixelUvTime.y = mod(pixelUvTime.y, 1.0);
+pixelUvTime.x = floor(pixelUvTime.x * 64.0) / 64.0;
+pixelUvTime.y = floor(pixelUvTime.y  * 64.0) / 64.0; 
+
+
+pixelUv.x = floor(uv.x * 64.0) / 64.0;
+pixelUv.y = floor(uv.y  * 64.0) / 64.0; "
+nodes/fragment/13/node = SubResource("VisualShaderNodeInput_d0fkq")
+nodes/fragment/13/position = Vector2(-2380, 1120)
+nodes/fragment/14/node = SubResource("VisualShaderNodeColorParameter_ls2me")
+nodes/fragment/14/position = Vector2(-1100.83, 1183.35)
+nodes/fragment/connections = PackedInt32Array(9, 0, 8, 3, 2, 0, 8, 4, 5, 0, 8, 2, 6, 0, 8, 0, 8, 0, 4, 0, 5, 0, 12, 0, 8, 0, 11, 0, 3, 0, 4, 1, 13, 0, 12, 1, 14, 0, 8, 5, 12, 2, 6, 0, 12, 1, 7, 0, 11, 3, 0, 1, 4, 0, 0, 0, 7, 0, 8, 1)

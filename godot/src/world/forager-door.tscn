@@ -1,0 +1,186 @@
+[gd_scene load_steps=11 format=4 uid="uid://dlidjwgjc4jwp"]
+
+[ext_resource type="Shader" path="res://src/world/door_shader.tres" id="2_vpeat"]
+[ext_resource type="Texture2D" path="res://assets/gfx/world/door/forager-door-inside.png" id="3_shse7"]
+[ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="4_suy0d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_71o1b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5yc7"]
+shader = ExtResource("2_vpeat")
+shader_parameter/ColorParameter = Color(0.811765, 0.984314, 0.945098, 1)
+shader_parameter/emission_f = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkbkj"]
+size = Vector2(20, 22)
+
+[sub_resource type="Animation" id="Animation_6ogaa"]
+resource_name = "DoorExisting"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorInside:material:shader_parameter/emission_f")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.5, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 1.5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorInside:material:shader_parameter/ColorParameter:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.811765, -0.25, 0, 0.25, 0, 0.811765, -0.25, 0, 0.25, 0, 0.988235, -0.25, 0, 0.25, 0, 0.988235, -0.25, 0, 0.25, 0, 0.811765, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 2, 3, 4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DoorInside:material:shader_parameter/ColorParameter:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.984314, -0.25, 0, 0.25, 0, 0.984314, -0.25, 0, 0.25, 0, 0.466667, -0.25, 0, 0.25, 0, 0.466667, -0.25, 0, 0.25, 0, 0.984314, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 2, 3, 4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DoorInside:material:shader_parameter/ColorParameter:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.945098, -0.25, 0, 0.25, 0, 0.945098, -0.25, 0, 0.25, 0, 0.333333, -0.25, 0, 0.25, 0, 0.333333, -0.25, 0, 0.25, 0, 0.945098, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 2, 3, 4)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DoorInside:material:shader_parameter/ColorParameter:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2)
+}
+
+[sub_resource type="Animation" id="Animation_p6f88"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorInside:material:shader_parameter/emission_f")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorInside:material:shader_parameter/ColorParameter:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.811765, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DoorInside:material:shader_parameter/ColorParameter:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.984314, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DoorInside:material:shader_parameter/ColorParameter:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.945098, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DoorInside:material:shader_parameter/ColorParameter:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ae0lu"]
+_data = {
+"DoorExisting": SubResource("Animation_6ogaa"),
+"RESET": SubResource("Animation_p6f88")
+}
+
+[sub_resource type="Environment" id="Environment_3bg3h"]
+background_mode = 3
+glow_enabled = true
+glow_levels/5 = 3.0
+glow_intensity = 0.5
+glow_strength = 0.45
+glow_bloom = 1.0
+glow_blend_mode = 1
+glow_hdr_threshold = 0.9
+
+[node name="Door" type="Node2D"]
+
+[node name="DoorFrame" type="TileMapLayer" parent="."]
+material = SubResource("ShaderMaterial_71o1b")
+scale = Vector2(1, 0.997185)
+tile_map_data = PackedByteArray("AAD+////AgAFAAAAAAD+//7/AgAGAAAAAAD+//3/AgAFAAAAAAD///z/AgAAAAAAAAD+//z/AgACAAAAAAAAAPz/AgAAAAAAAAABAPz/AgACAAAAAAABAP3/AgAHAAAAAAABAP7/AgAGAAAAAAABAP//AgABAAAAAAD///v/AgADAAEAAAAAAPv/AgADAAAAAAD+//v/AgAAAAAAAAACAP//AgAAAAAAAAACAP7/AgAAAAAAAAACAP3/AgAAAAAAAAACAPz/AgAAAAAAAAABAPv/AgADAAEAAAACAPv/AgAAAAAAAAA=")
+tile_set = ExtResource("4_suy0d")
+
+[node name="DoorInside" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_p5yc7")
+position = Vector2(0, -13)
+texture = ExtResource("3_shse7")
+
+[node name="DoorInside2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_p5yc7")
+position = Vector2(7, -13)
+scale = Vector2(-1, 1)
+texture = ExtResource("3_shse7")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_mkbkj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ae0lu")
+}
+autoplay = "DoorExisting"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3bg3h")

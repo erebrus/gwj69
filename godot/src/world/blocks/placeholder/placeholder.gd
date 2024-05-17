@@ -9,6 +9,9 @@ signal dismissed
 var block: BaseBlock
 
 
+@onready var build_block_sfx: AudioStreamPlayer2D = $sfx/build_block
+@onready var build_group_block_sfx: AudioStreamPlayer2D = $sfx/build_group_block
+
 var is_valid:=true:
 	set(value):
 		if value != is_valid:
@@ -47,9 +50,6 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("rotate_ccw"):
 		rotation -= PI/2
-		
-	
-	
 
 func _physics_process(_delta:float) -> void:
 	is_valid = area.get_overlapping_bodies().is_empty() and area.get_overlapping_areas().is_empty()
@@ -61,6 +61,10 @@ func _place() -> void:
 	
 	Logger.info("block placed")
 	var block_position = tilemap.to_local(block.global_position)
+	if len(tilemap.get_used_cells()) > 1:
+		build_block_sfx.play()
+	else:
+		build_group_block_sfx.play()
 	block.enable()
 	remove_child(block)
 	
@@ -69,8 +73,6 @@ func _place() -> void:
 	get_parent().add_child(block)
 	placed.emit()
 	Events.block_placed.emit(block)
-	
-	queue_free()
 	
 
 func _destroy() -> void:
@@ -83,4 +85,9 @@ func _center_on_cell(point: Vector2) -> void:
 	var tile = tilemap.local_to_map(tilemap.to_local(point))
 	global_position = tilemap.to_global(tilemap.map_to_local(tile) - half_size)
 	
+	
+func _on_build_block_finished() -> void:
+	queue_free()
 
+func _on_build_group_block_finished() -> void:
+	queue_free()

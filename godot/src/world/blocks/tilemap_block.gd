@@ -9,7 +9,6 @@ const VOID_ID := 3
 func _process(delta: float) -> void:
 	var parent = get_parent()
 	if parent is Placeholder:
-		print("DOIN IT")
 		tilemap.material.set_shader_parameter("ColorParameter", valid_placement_color if parent.is_valid else invalid_placement_color)
 
 func disable() -> void:
@@ -41,5 +40,7 @@ func get_collision_shapes() -> Array[CollisionPolygon2D]:
 	
 
 func is_cell_empty(coords: Vector2i) -> bool:
-	var cell_id = tilemap.get_cell_source_id(coords)
+	var cell_position = tilemap.map_to_local(coords)
+	var rotated_coords = tilemap.local_to_map(cell_position.rotated(-rotation))
+	var cell_id = tilemap.get_cell_source_id(rotated_coords)
 	return cell_id == -1 or cell_id == VOID_ID

@@ -31,6 +31,19 @@ func get_collision_shapes() -> Array[CollisionPolygon2D]:
 	return []
 	
 
+func get_state() -> Dictionary:
+	return {
+		"scene": scene_file_path,
+		"position": position,
+		"rotation": rotation,
+	}
+
+func set_state(state: Dictionary) -> void:
+	position = state.position
+	rotation = state.rotation
+	enable()
+	
+
 func _destroy_tile():
 	queue_free()
 	

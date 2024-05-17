@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://dplodxgtbever"]
+[gd_scene load_steps=11 format=3 uid="uid://dplodxgtbever"]
 
 [ext_resource type="PackedScene" uid="uid://k1ey4vvnmd50" path="res://src/world/blocks/base_block.tscn" id="1_m6ekt"]
 [ext_resource type="Script" path="res://src/world/blocks/tilemap_block.gd" id="2_mj4o5"]
 [ext_resource type="Shader" uid="uid://dc002tl5nvki8" path="res://src/world/blocks/tile_shader.tres" id="3_neqhh"]
 [ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="3_v2anq"]
-[ext_resource type="Texture2D" uid="uid://c3e7o0g4fmr8i" path="res://assets/gfx/world/blocks.png" id="5_i261o"]
 
 [sub_resource type="Animation" id="Animation_8h6m0"]
 resource_name = "Create"
@@ -32,36 +31,24 @@ tracks/1/keys = {
 "points": PackedFloat32Array(5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0.2, 0.7)
 }
-tracks/2/type = "value"
+tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../GPUParticles2D:emitting")
+tracks/2/path = NodePath(".:material:shader_parameter/color_factor")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.45),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:material:shader_parameter/color_factor")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:material:shader_parameter/alpha_f")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:material:shader_parameter/alpha_f")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
@@ -153,36 +140,24 @@ tracks/1/keys = {
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/2/type = "value"
+tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../GPUParticles2D:emitting")
+tracks/2/path = NodePath(".:material:shader_parameter/color_factor")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:material:shader_parameter/color_factor")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:material:shader_parameter/alpha_f")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:material:shader_parameter/alpha_f")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
@@ -205,42 +180,6 @@ shader_parameter/emission_f = 1.0
 shader_parameter/disintegration_factor = 1.0
 shader_parameter/alpha_f = 0.0
 
-[sub_resource type="Curve" id="Curve_nr8lu"]
-_data = [Vector2(0, 0.493141), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_hjmqh"]
-curve = SubResource("Curve_nr8lu")
-
-[sub_resource type="Curve" id="Curve_ijrk8"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.493141), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_0y0nk"]
-curve = SubResource("Curve_ijrk8")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mxcx1"]
-particle_flag_disable_z = true
-emission_shape = 6
-emission_ring_axis = Vector3(1, 0, 0)
-emission_ring_height = 2.0
-emission_ring_radius = 2.0
-emission_ring_inner_radius = 0.0
-spread = 180.0
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
-gravity = Vector3(0, 0, 0)
-damping_min = 16.645
-damping_max = 16.715
-scale_max = 4.0
-scale_curve = SubResource("CurveTexture_0y0nk")
-color = Color(0.714567, 0.691371, 0.715575, 1)
-alpha_curve = SubResource("CurveTexture_hjmqh")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_scwbq"]
-atlas = ExtResource("5_i261o")
-region = Rect2(0, 0, 8, 8)
-
 [node name="TilemapBlock" instance=ExtResource("1_m6ekt")]
 script = ExtResource("2_mj4o5")
 valid_placement_color = Color(0.332737, 0.521018, 0.262603, 1)
@@ -256,14 +195,3 @@ libraries = {
 material = SubResource("ShaderMaterial_o011r")
 tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 2, 0, 1, 0, 1, 0, 0, 0)
 tile_set = ExtResource("3_v2anq")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="2" groups=["scene_manager_entity_nodes"]]
-visible = false
-position = Vector2(4, 3)
-emitting = false
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_mxcx1")
-texture = SubResource("AtlasTexture_scwbq")
-lifetime = 0.5
-one_shot = true
-fixed_fps = 60

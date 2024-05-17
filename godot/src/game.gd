@@ -50,21 +50,29 @@ func load_world(scene:PackedScene):
 func create_checkpoint():
 	checkpoint = CHECKPOINT_SCENE.instantiate()
 	
-	# TODO: save player state
-	# TODO: save tilemap state
+	checkpoint.position = Globals.tilemap.cell_top_left(Globals.player.position)
+	
+	checkpoint.player_state = Globals.player.get_state()
 	checkpoint.card_engine_state = card_engine.get_state()
+	checkpoint.tilemap_state = Globals.tilemap.get_state()
 	
 	world.place_checkpoint(checkpoint)
 	
 
 func restore_checkpoint():
 	if checkpoint == null:
+		# TODO: should we create a checkpoint with the start-level state?
 		get_tree().reload_current_scene()
 	else:
+		checkpoint.get_parent().remove_child(checkpoint)
 		load_world(Globals.last_level)
 		card_engine.set_state(checkpoint.card_engine_state)
-		# TODO: restore player state
-		# TODO: restore tilemap state
+		Globals.tilemap.set_state(checkpoint.tilemap_state)
+		# TODO: add respawn card instead
+		Globals.player.set_state(checkpoint.player_state)
+		
+		world.place_checkpoint(checkpoint)
+		
 	
 	
 
