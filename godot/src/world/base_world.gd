@@ -26,8 +26,9 @@ func place_checkpoint(value: CheckPoint):
 	
 
 func _on_player_respawned(player):
-	var rt = RemoteTransform2D.new()
-	player.add_child(rt)
-	rt.remote_path="/root/Game/BaseWorld/Camera" #HACK unique name doesn't work
+	pass
+	#var rt = RemoteTransform2D.new()
+	#player.add_child(rt)
+	#rt.remote_path="/root/Game/BaseWorld/Camera" #HACK unique name doesn't work
 	
 

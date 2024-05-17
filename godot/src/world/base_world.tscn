@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpqcxdph2b0v0"]
+[gd_scene load_steps=8 format=3 uid="uid://dpqcxdph2b0v0"]
 
 [ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="1_1oa7u"]
 [ext_resource type="Script" path="res://src/world/base_world.gd" id="1_21j6r"]
 [ext_resource type="Script" path="res://src/world/platforms_layer.gd" id="3_l4642"]
 [ext_resource type="PackedScene" uid="uid://b2q3ypwb3s64x" path="res://src/player/player.tscn" id="3_yxkp1"]
 [ext_resource type="PackedScene" path="res://src/world/grid.tscn" id="4_e3vnd"]
+[ext_resource type="Script" path="res://src/MapCamera2D.gd" id="5_my2om"]
 
 [sub_resource type="Environment" id="Environment_ogdge"]
 background_mode = 3
@@ -33,5 +34,6 @@ environment = SubResource("Environment_ogdge")
 
 [node name="Camera" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+script = ExtResource("5_my2om")
 
 [node name="BlockGrid" parent="." instance=ExtResource("4_e3vnd")]

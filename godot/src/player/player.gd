@@ -43,7 +43,7 @@ func _ready():
 	Events.turn_around_requested.connect(_on_turn_around_requested)
 	Events.jump_requested.connect(_on_jump_requested)
 	Events.speed_requested.connect(_on_speed_requested)
-	Events.game_mode_changed.connect(_on_game_mode_changed)
+	#Events.game_mode_changed.connect(_on_game_mode_changed)
 	Events.player_respawned.emit(self)
 	Logger.info("player_respawned")
 	
