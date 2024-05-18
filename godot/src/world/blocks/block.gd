@@ -4,7 +4,8 @@ extends StaticBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Events.tick.connect(_on_tick)
+	#Events.tick.connect(_on_tick)
+	pass
 
 
 func _on_tick():
