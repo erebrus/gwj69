@@ -348,4 +348,6 @@ bus = &"Sfx"
 stream = SubResource("AudioStreamRandomizer_4tejj")
 bus = &"Sfx"
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+
 [connection signal="body_entered" from="VoidDetector" to="." method="_on_void_detector_body_entered"]

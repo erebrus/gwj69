@@ -4,14 +4,15 @@ class_name World
 
 @onready var platforms_layer: PlatformsLayer = $PlatformsLayer
 
-
+var camera_rt:RemoteTransform2D
 var checkpoint: CheckPoint
+@onready var camera: MapCamera2D = $Camera
 
 
 func _ready():
 	Globals.tilemap = $PlatformsLayer
 	Events.player_respawned.connect(_on_player_respawned)
-	
+	Events.camera_toggled.connect(_on_camera_toggled)
 	await get_tree().process_frame
 	_on_player_respawned($Player)
 	
@@ -38,8 +39,14 @@ func place_checkpoint(value: CheckPoint):
 	
 
 func _on_player_respawned(player):
-	var rt = RemoteTransform2D.new()
-	player.add_child(rt)
-	rt.remote_path="/root/Game/BaseWorld/Camera" #HACK unique name doesn't work
+	camera_rt = player.get_rt()
+	player.set_rt_target("/root/Game/BaseWorld/Camera") #HACK unique name doesn't work
+	
 	
 
+func _on_camera_toggled(mode:Types.CameraMode):
+	camera.drag = mode == Types.CameraMode.FREE
+	camera.pan_keyboard = mode == Types.CameraMode.FREE
+	camera_rt.update_position = mode != Types.CameraMode.FREE
+	
+		

@@ -304,3 +304,9 @@ func _on_end_card_collected():
 	velocity.x=0
 	velocity.y = jump_velocity
 	animation_player.play("level_end")
+
+func set_rt_target(node_path:String):
+	$RemoteTransform2D.remote_path = node_path
+
+func get_rt()->RemoteTransform2D:
+	return $RemoteTransform2D

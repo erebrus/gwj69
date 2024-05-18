@@ -14,6 +14,8 @@ var checkpoint: CheckPoint
 @onready var draw_timer: Timer = $DrawTimer
 @onready var music: AudioStreamPlayer = $music
 
+
+var camera_mode:= Types.CameraMode.TRACKING
 var world:World:
 	set(w):
 		world = w
@@ -98,8 +100,8 @@ func _process(delta: float) -> void:
 				Globals.player.init_log()
 			else:
 				Globals.player.remove_log()
-			
-
+	if Input.is_action_just_pressed("toggle_camera"):
+		toggle_camera()
 
 func _on_draw_timer_timeout() -> void:
 	card_engine.click_draw_pile_to_draw = true
@@ -150,3 +152,13 @@ func _on_level_ended():
 func _on_die_pressed():
 	if Globals.player_alive:
 		Events.die_requested.emit()
+
+func toggle_camera():
+	if not Globals.player_alive:
+		return
+	if camera_mode == Types.CameraMode.TRACKING:
+		camera_mode = Types.CameraMode.FREE		
+	else:
+		camera_mode = Types.CameraMode.TRACKING
+	Events.camera_toggled.emit(camera_mode)
+	Logger.info("Camera mode changed to %s" % Types.CameraMode.keys()[camera_mode])
