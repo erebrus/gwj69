@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bihds314832jb"]
+
+[ext_resource type="PackedScene" uid="uid://d01tdhr8nupat" path="res://src/cards/custom_card_ui.tscn" id="1_kqjqk"]
+[ext_resource type="Script" path="res://selection_card_ui.gd" id="2_vfvr5"]
+[ext_resource type="Shader" uid="uid://dmmobr85dhggi" path="res://src/cards/card_glow.tres" id="3_rh4w1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dh7lq"]
+resource_local_to_scene = true
+shader = ExtResource("3_rh4w1")
+shader_parameter/glow_color = Color(0.741549, 0.426297, 0.965097, 1)
+shader_parameter/emission_f = 20.0
+shader_parameter/position_delta = Vector2(0, 0)
+shader_parameter/alpha_f = 0.0
+
+[node name="CustomCardUi" instance=ExtResource("1_kqjqk")]
+script = ExtResource("2_vfvr5")
+
+[node name="Glow" parent="." index="0"]
+visible = true
+material = SubResource("ShaderMaterial_dh7lq")
+
+[connection signal="card_clicked" from="." to="Glow" method="_on_custom_card_ui_card_clicked"]
+[connection signal="card_dropped" from="." to="Glow" method="_on_custom_card_ui_card_dropped"]

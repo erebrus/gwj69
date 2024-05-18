@@ -54,6 +54,7 @@ texture = ExtResource("2_mfiwb")
 script = ExtResource("3_0qyvx")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_2xtv4")
 position = Vector2(115, 136)
 amount = 80
