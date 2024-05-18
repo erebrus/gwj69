@@ -21,6 +21,10 @@ func is_cell_empty(coords:Vector2i) -> bool:
 	return true
 	
 
+func global_cell(point: Vector2) -> Vector2i:
+	return local_to_map(to_local(point))
+	
+
 func cell_center(point: Vector2) -> Vector2i:
 	return map_to_local(local_to_map(point))
 	
