@@ -3,6 +3,7 @@ class_name World
 
 
 @onready var platforms_layer: PlatformsLayer = $PlatformsLayer
+@onready var voids_layer: VoidLayer = $VoidLayer
 
 var camera_rt:RemoteTransform2D
 var checkpoint: CheckPoint
@@ -21,12 +22,14 @@ func _ready():
 func get_state() -> Dictionary:
 	return {
 		"platforms" = platforms_layer.get_state(),
+		"voids" = voids_layer.get_state(),
 		"player" = $Player.get_state()
 	}
 	
 
 func set_state(state: Dictionary) -> void:
 	platforms_layer.set_state(state.platforms)
+	voids_layer.set_state(state.voids)
 	$Player.set_state(state.player)
 	
 

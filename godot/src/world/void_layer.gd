@@ -17,23 +17,26 @@ var cell_counters = {}
 
 func _ready() -> void:
 	Events.tick.connect(_on_tick)
-	for cell in get_used_cells():				
+	for cell in get_used_cells():
+		Events.new_void_cell.emit(cell)
+		cell_counters[cell]=TTL
 		if _has_empty_sides(cell):
 			border_cells.append(cell)
-			Events.new_void_cell.emit(cell)
-			cell_counters[cell]=TTL
 			
-		
 	
 
 func get_state() -> Dictionary:
 	return {
 		"tilemap": tile_map_data,
+		"border_cells": border_cells,
+		"cell_counters": cell_counters
 	}
 	
 
 func set_state(state: Dictionary) -> void:
 	tile_map_data = state.tilemap 
+	border_cells = state.border_cells
+	cell_counters = state.cell_counters
 	
 
 func expand(target: Vector2) -> void:
