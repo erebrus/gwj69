@@ -97,22 +97,25 @@ func _physics_process(delta):
 			$RunFast.emitting = true
 		velocity.x = base_speed * get_facing_direction()
 		if is_on_floor() and not _can_walk():
+			velocity.x=0 
 			if _should_jump():
-				velocity.y = jump_velocity
-				if high_jumps>0:
-					high_jumps -= 1
-					sfx_jump_high.play()
-					var vfx = vfx_jump_high.instantiate()
-					vfx.global_position = global_position
-					get_tree().root.add_child(vfx)
-				else:
-					sfx_jump.play()
-			else :
-				velocity.x=0 
-		_update_animation()		
+				in_animation = true
+				animation_player.play("jump")
+
+			#else :
+				#velocity.x=0 
+		if not in_animation:
+			_update_animation()		
 	var was_on_floor:bool = is_on_floor()
 	move_and_slide()
 	current_cell = tilemap.local_to_map(position-Vector2(0,1))
+	
+	if animation_player.current_animation=="edge":
+		var mid_cell_point = tilemap.map_to_local(current_cell)
+		if get_facing_direction() > 0 and position.x > mid_cell_point.x:
+			position.x = mid_cell_point.x+1
+		elif get_facing_direction() < 0 and position.x < mid_cell_point.x:
+			position.x = mid_cell_point.x-1
 	cell_map_string = get_cell_map_string()
 	#if landed
 	if not was_on_floor and is_on_floor():
@@ -120,7 +123,21 @@ func _physics_process(delta):
 			_do_gravity_death()
 			return
 		
-	
+
+func _do_jump():
+	in_animation=false
+	velocity.x = base_speed * get_facing_direction()
+	velocity.y = jump_velocity
+	if high_jumps>0:
+		high_jumps -= 1
+		sfx_jump_high.play()
+		var vfx = vfx_jump_high.instantiate()
+		vfx.global_position = global_position
+		get_tree().root.add_child(vfx)
+	else:
+		sfx_jump.play()	
+	move_and_slide()
+
 func _input(event: InputEvent):
 	if event.is_action_pressed("die"):
 		_do_death("death")
@@ -138,9 +155,9 @@ func _update_animation():
 				new_anim = "idle"
 	else:
 		if velocity.y > 0:
-			new_anim = "jump"
-		else:
 			new_anim = "fall"
+		#else:
+			#new_anim = "jump"
 	if animation_player.current_animation != new_anim:
 		Logger.trace("change anim to %s" % new_anim)
 		animation_player.play(new_anim)
@@ -237,6 +254,7 @@ func _should_jump()->bool:
 	if not front_cell_empty and \
 		front_cell_above1_empty and \
 		front_cell_above2_empty:
+			Logger.info ("1 block obstacle jump")
 			return true
 	
 	var front_cell_above3_empty := tilemap.is_cell_empty(front_cell+ Vector2i.UP * 3)
@@ -258,6 +276,7 @@ func _should_jump()->bool:
 		front_cell_below2_empty and\
 		front2_cell_empty and\
 		not front2_below1_empty :
+			Logger.info ("1 block gap jump")
 			return true
 
 	# step down
@@ -267,6 +286,7 @@ func _should_jump()->bool:
 		front_cell_above1_empty and \
 		not front_cell_below2_empty and\
 		front2_below1_empty:
+			Logger.info ("step down")
 			return true
 
 	# 2 block obstacle with jump card
@@ -274,12 +294,14 @@ func _should_jump()->bool:
 		if not front_cell_above1_empty and \
 			front_cell_above2_empty  and \
 			front_cell_above3_empty: #should we?
+				Logger.info ("2 block obstacle space jump")
 				return true
 				
 			
 	# edge but with jump card
 		if _is_on_deep_edge():
-			_on_speed_requested(2.1,.3)
+			_on_speed_requested(2,.5)
+			Logger.info ("space jump on edge")
 			return true
 	
 	return false
