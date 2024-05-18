@@ -10,15 +10,18 @@ const SIDES: Array[TileSet.CellNeighbor] = [
 ]
 
 const VOID_ID:= 1
-
+const TTL=3
 var border_cells: Array[Vector2i]
 
+var cell_counters = {}
 
 func _ready() -> void:
 	Events.tick.connect(_on_tick)
 	for cell in get_used_cells():
 		if _has_empty_sides(cell):
 			border_cells.append(cell)
+			cell_counters[cell]=TTL
+		
 	
 
 func get_state() -> Dictionary:
@@ -62,6 +65,8 @@ func _grow(cell: Vector2i, target: Vector2i) -> Array[Vector2i]:
 func _spawn_void(cell: Vector2i) ->  Array[Vector2i]:
 	var new_border:  Array[Vector2i]
 	
+	cell_counters[cell]=TTL
+	
 	set_cell(cell, VOID_ID, Vector2i.ZERO, 0)
 	void_expanded.emit(cell)
 	
@@ -96,8 +101,21 @@ func _cell_to_target_side(cell: Vector2i, target: Vector2i) -> TileSet.CellNeigh
 	
 	return  TileSet.CellNeighbor.CELL_NEIGHBOR_RIGHT_SIDE
 	
-
+func fade():
+	var to_remove=[]
+	for cell in cell_counters.keys():
+		if cell_counters[cell]<1:
+			to_remove.append(cell)
+		else:
+			cell_counters[cell] = cell_counters[cell] - 1
+			
+	for cell in to_remove:
+		set_cell(cell,-1)
+		cell_counters.erase(cell)
+			
 func _on_tick() -> void:
 	if (Globals.player_alive):
 		expand(Globals.player.position)
+		fade()
+		
 	
