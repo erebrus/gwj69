@@ -7,6 +7,7 @@ signal card_error()
 signal card_destroy_requested(card:CardUI)
 signal discard_requested()
 
+signal die_requested()
 signal spawn_requested()
 signal jump_requested()
 #signal long_jump_requested() #TODO implement or remove

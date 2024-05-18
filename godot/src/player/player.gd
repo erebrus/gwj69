@@ -47,6 +47,8 @@ func _ready():
 	Events.game_mode_changed.connect(_on_game_mode_changed)
 	Events.end_card_collected.connect(_on_end_card_collected)
 	
+	Events.die_requested.connect(_do_death.bind("death"))
+	
 	Events.player_respawned.emit(self)
 	
 	Logger.info("player_respawned")

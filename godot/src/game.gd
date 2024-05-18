@@ -27,6 +27,8 @@ func _ready():
 		
 	world = $BaseWorld
 	
+	%DieButton.pressed.connect(_on_die_pressed)
+	
 	Events.card_error.connect(_on_card_error)
 	Events.player_died.connect(_on_player_died)
 	Events.checkpoint_requested.connect(_on_checkpoint_requested)
@@ -38,6 +40,8 @@ func _ready():
 	card_engine.card_drawn.connect(_on_card_drawn)
 	if draw_cooldown > 0:
 		draw_timer.wait_time = draw_cooldown
+		draw_timer.start()
+	
 	
 func load_world(scene:PackedScene):
 		var old_world = get_child(0)
@@ -81,7 +85,7 @@ func _on_card_error():
 	sfx_err.play()
 
 func _process(delta: float) -> void:
-	#TODO update draw cooldown label
+	%TimeLabel.text = "%02.f" % draw_timer.time_left
 	if Input.is_action_just_pressed("restart_level"):
 		if Globals.get_current_world_scene():
 			get_tree().reload_current_scene()
@@ -143,4 +147,6 @@ func _on_level_ended():
 		Logger.error("Can't find world at idx:%d" % Globals.current_level_idx)
 
 
-	
+func _on_die_pressed():
+	if Globals.player_alive:
+		Events.die_requested.emit()
