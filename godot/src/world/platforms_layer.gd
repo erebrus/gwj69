@@ -1,7 +1,7 @@
 extends TileMapLayer
 class_name PlatformsLayer
 
-const VOID_ID := 3
+const VOID_ID := 1
 
 func is_cell_empty(coords:Vector2i) -> bool:
 	var cell_id = get_cell_source_id(coords)

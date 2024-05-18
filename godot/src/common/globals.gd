@@ -12,7 +12,10 @@ var debug_build := false
 
 var levels:Array[PackedScene] =[
 	#preload("res://src/world/levels/test_erebrus_world.tscn"),
-	preload("res://src/world/levels/level_01.tscn")
+	preload("res://src/world/levels/level_tutorial.tscn"),
+	preload("res://src/world/levels/level_01.tscn"),
+	preload("res://src/world/levels/level_02.tscn"),
+	preload("res://src/world/levels/level_03.tscn")
 	]
 var current_level_idx=0
 
