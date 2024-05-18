@@ -8,15 +8,24 @@ func _ready() -> void:
 	card_clicked.connect(func(x): Events.card_clicked.emit())
 	Events.discard_requested.connect(_on_discard_requested)
 	Events.card_destroy_requested.connect(_on_card_destroy_requested)
+	Events.card_clicked.connect(_on_card_clicked)
+	Events.card_played.connect(_on_card_played)
 	hand_pile_updated.connect(_on_hand_pile_updated)
 	draw(hand_start_size, false)
-	
+
+func draw(num_cards := 1, manual:=true):
+	for i in range(num_cards):
+		super.draw(1, manual)
+		$sfx_draw.play()
+		await get_tree().create_timer(.2).timeout
+		
 func _on_discard_requested(card_ui:CardUI):
 	set_card_pile(card_ui, CardPileUI.Piles.discard_pile)
 	
 func _on_hand_pile_updated():
 	if not get_card_pile_size(Piles.draw_pile):
 		_shuffle_discard_on_draw()
+		$sfx_reshuffle.play()
 		
 func load_json_path():
 	card_database = _load_json_cards_from_path(json_card_database_path)
@@ -45,3 +54,7 @@ func _get_card_name(card: CardUI) -> String:
 	return card.card_data.nice_name
 	
 
+func _on_card_clicked():
+	$sfx_pick.play()
+func _on_card_played(card:CardUI):
+	$sfx_play.play()

@@ -46,13 +46,13 @@ func _ready():
 	Events.speed_requested.connect(_on_speed_requested)
 	Events.game_mode_changed.connect(_on_game_mode_changed)
 	Events.end_card_collected.connect(_on_end_card_collected)
-	
+
 	Events.die_requested.connect(_do_death.bind("death"))
 	
 	Events.player_respawned.emit(self)
 	
 	Logger.info("player_respawned")
-	
+	$sfx/sfx_respawn.play()	
 	in_animation = true
 	animation_player.play("spawn")
 	await animation_player.animation_finished
@@ -82,7 +82,7 @@ func _physics_process(delta):
 		last_y_on_floor=position.y
 	if not in_animation:
 		if position.y > DEATH_Y:
-			_do_death("death")
+			_do_gravity_death()
 			return
 		if boost_duration == 0:
 			base_speed = BASE_SPEED
@@ -113,7 +113,7 @@ func _physics_process(delta):
 	#if landed
 	if not was_on_floor and is_on_floor():
 		if position.y-last_y_on_floor>DEATH_HEIGHT and last_y_on_floor!=-999:
-			_do_death("death")
+			_do_gravity_death()
 			return
 		
 	
@@ -169,8 +169,13 @@ func _on_speed_requested(factor:float, duration:float):
 	base_speed = BASE_SPEED * factor
 	boost_duration += duration 
 	
+func _do_gravity_death():
+	_do_death("death")
+	$sfx/sfx_death_gravity.play()
+	
 func consume():
 	_do_death("void_death")
+	$sfx/sfx_death_void.play()
 
 func _do_death(animation):
 	in_animation = true

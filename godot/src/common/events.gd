@@ -6,6 +6,7 @@ signal card_error()
 
 signal card_destroy_requested(card:CardUI)
 signal discard_requested()
+signal card_played(card:CardUI)
 
 signal die_requested()
 signal spawn_requested()
