@@ -93,17 +93,23 @@ func create_card(json_data):
 	return card_ui
 	
 func _on_card_selected(card: CardUI):
-	selected_card = card
-	choose_button.disabled = false
-	var children = card_control.get_children()
-	for child in children:
-		if child != card and child.is_clicked:
-			child.card_dropped.emit(child)
-			child.is_clicked = false
-			child.target_position.y += child.hover_distance
+	if card.is_clicked:
+		selected_card = card
+		choose_button.disabled = false
+		var children = card_control.get_children()
+		for child in children:
+			if child != card and child.is_clicked:
+				child.card_dropped.emit(child)
+				child.is_clicked = false
+				child.target_position.y += child.hover_distance
+	#else:
+		#selected_card = null
+		#choose_button.disabled = true
 
 func _on_card_dropped(card: CardUI):
-	pass
+	if card == selected_card:
+		selected_card = null
+		choose_button.disabled = true
 
 func _on_button_pressed() -> void:
 	var card_name = selected_card.card_data.nice_name
@@ -122,7 +128,7 @@ func _on_button_pressed() -> void:
 			var target_pos = Vector2(1280 / 2 - 75, -50)
 			var pos_tween = child.create_tween()
 			pos_tween.tween_property(child, "target_position",target_pos, .5 ).set_ease(Tween.EASE_OUT)
-			pos_tween.tween_property(child, "target_position",Vector2(target_pos.x, target_pos.y + 800), .5 ).set_ease(Tween.EASE_OUT).set_delay(.85)
+			pos_tween.tween_property(child, "target_position",Vector2(target_pos.x, target_pos.y + 200), .5 ).set_ease(Tween.EASE_OUT).set_delay(.85)
 			child.create_tween().tween_property(child, "modulate:a", 0.0, .25 ).set_ease(Tween.EASE_OUT).set_delay(1.25)
 	anim_player.play("Hide2")
 
@@ -139,6 +145,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			child.can_do_selection = true
 
 func _disable_selected_card():
-	selected_card.card_dropped.emit(selected_card)
-	selected_card.is_clicked = false
+	if selected_card != null:
+		selected_card.is_clicked = false
+		selected_card.card_dropped.emit(selected_card)
 	

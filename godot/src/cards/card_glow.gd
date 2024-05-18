@@ -51,3 +51,4 @@ func _on_custom_card_ui_card_dropped(card: CardUI) -> void:
 
 func _on_custom_card_ui_card_clicked(card: CardUI) -> void:
 	clicked = true
+	create_tween().tween_method(set_alpha, material.get_shader_parameter("alpha_f"), 1.0, .30)
