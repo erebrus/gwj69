@@ -107,6 +107,7 @@ func _physics_process(delta):
 		if not in_animation:
 			_update_animation()		
 	var was_on_floor:bool = is_on_floor()
+	var last_vy=velocity.y
 	move_and_slide()
 	current_cell = tilemap.local_to_map(position-Vector2(0,1))
 	
@@ -117,13 +118,22 @@ func _physics_process(delta):
 		elif get_facing_direction() < 0 and position.x < mid_cell_point.x:
 			position.x = mid_cell_point.x-1
 	cell_map_string = get_cell_map_string()
+	
 	#if landed
 	if not was_on_floor and is_on_floor():
-		if position.y-last_y_on_floor>DEATH_HEIGHT and last_y_on_floor!=-999:
+		Logger.info("Landing speed = %2f" % last_vy)
+		if last_vy > 300:
+			_do_landing()
+		if position.y-last_y_on_floor>DEATH_HEIGHT and last_y_on_floor!=-999:			
 			_do_gravity_death()
 			return
 		
-
+func _do_landing():
+	in_animation=true
+	velocity.x=0
+	animation_player.play("land")
+	await animation_player.animation_finished
+	in_animation=false
 func _do_jump():
 	in_animation=false
 	velocity.x = base_speed * get_facing_direction()
