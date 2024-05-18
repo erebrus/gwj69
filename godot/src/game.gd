@@ -3,7 +3,7 @@ extends Node
 
 const CHECKPOINT_SCENE = preload("res://src/world/blocks/checkpoint_block.tscn")
 
-
+@export var card_play_cooldown_impact=1
 @export var scale_factor:int = 2
 @export var draw_cooldown:float = 2
 
@@ -38,7 +38,7 @@ func _ready():
 	Events.level_ended.connect(_on_level_ended)
 	Events.game_ended.connect(_on_game_ended)
 	Events.end_card_collected.connect(_on_end_card_collected)
-	
+	Events.card_played.connect(_on_card_played)
 	card_engine.card_drawn.connect(_on_card_drawn)
 	if draw_cooldown > 0:
 		draw_timer.wait_time = draw_cooldown
@@ -162,3 +162,10 @@ func toggle_camera():
 		camera_mode = Types.CameraMode.TRACKING
 	Events.camera_toggled.emit(camera_mode)
 	Logger.info("Camera mode changed to %s" % Types.CameraMode.keys()[camera_mode])
+
+func _on_card_played(card:CardUI):
+	if draw_timer.wait_time>0:
+		if draw_timer.wait_time>1:
+			draw_timer.wait_time -= 1
+		else:
+			_on_draw_timer_timeout()

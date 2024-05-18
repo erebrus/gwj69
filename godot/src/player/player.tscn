@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b2q3ypwb3s64x"]
+[gd_scene load_steps=40 format=3 uid="uid://b2q3ypwb3s64x"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_x8yfo"]
 [ext_resource type="Texture2D" uid="uid://c5b2xq6jhm1ro" path="res://assets/gfx/character/mc-tall2-animations.png" id="2_faqy1"]
@@ -12,8 +12,11 @@
 [ext_resource type="AudioStream" uid="uid://b8jcuekywla74" path="res://assets/sfx/MC_Jump_2.wav" id="9_um7bx"]
 [ext_resource type="AudioStream" uid="uid://b3qw35bfdgj80" path="res://assets/sfx/MC_BigJump_1.wav" id="10_3rsyp"]
 [ext_resource type="AudioStream" uid="uid://dy4t7x874kfjw" path="res://assets/sfx/MC_BigJump_2.wav" id="11_sns7m"]
-[ext_resource type="PackedScene" uid="uid://c1akb2kfch56o" path="res://src/player/jump_vfx.tscn" id="13_qyi5a"]
+[ext_resource type="PackedScene" path="res://src/player/jump_vfx.tscn" id="13_qyi5a"]
 [ext_resource type="PackedScene" uid="uid://42qodo87uoyq" path="res://src/world/terrain_detection_debug.tscn" id="14_g5t11"]
+[ext_resource type="AudioStream" uid="uid://rdm1r0v0bs4m" path="res://assets/sfx/Save_your_soul.wav" id="14_mix8g"]
+[ext_resource type="AudioStream" uid="uid://cp3w83gfwpf7k" path="res://assets/sfx/Player_dies_by_Void.wav" id="15_itwl1"]
+[ext_resource type="AudioStream" uid="uid://hb048laabmq4" path="res://assets/sfx/Player_dies_Falling.wav" id="16_e5p12"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywd1q"]
 radius = 2.0
@@ -347,6 +350,15 @@ bus = &"Sfx"
 [node name="sfx_jump_high" type="AudioStreamPlayer2D" parent="sfx"]
 stream = SubResource("AudioStreamRandomizer_4tejj")
 bus = &"Sfx"
+
+[node name="sfx_respawn" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("14_mix8g")
+
+[node name="sfx_death_void" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("15_itwl1")
+
+[node name="sfx_death_gravity" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("16_e5p12")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 
