@@ -233,7 +233,8 @@ func _should_jump()->bool:
 	var front2_below1_empty := tilemap.is_cell_empty(front_cell+ Vector2i.DOWN+Vector2i.RIGHT*get_facing_direction())
 	# 1 block gap
 	
-	var past_mid_x:bool = position.x > mid_cell_position.x
+	var past_mid_x:bool = position.x > mid_cell_position.x if get_facing_direction() > 0 \
+			else position.x < mid_cell_position.x
 	if  past_mid_x and \
 		front_cell_empty and \
 		front_cell_above1_empty and \
@@ -264,7 +265,7 @@ func _should_jump()->bool:
 			
 	# edge but with jump card
 		if _is_on_deep_edge():
-			_on_speed_requested(2,.2)
+			_on_speed_requested(2,.3)
 			return true
 	
 	return false

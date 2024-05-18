@@ -27,7 +27,7 @@ label_settings = SubResource("LabelSettings_ac5ny")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="Player" parent="." index="2" node_paths=PackedStringArray("tilemap")]
+[node name="Player" parent="." index="3" node_paths=PackedStringArray("tilemap")]
 tilemap = NodePath("../PlatformsLayer")
 
 [node name="EndCard" parent="." index="6" instance=ExtResource("2_osy4t")]
