@@ -174,15 +174,20 @@ func _on_speed_requested(factor:float, duration:float):
 	boost_duration += duration 
 	
 func _do_gravity_death():
+	if not Globals.player_alive:
+		return
 	_do_death("death")
 	$sfx/sfx_death_gravity.play()
 	
 func consume():
+	if not Globals.player_alive:
+		return
 	_do_death("void_death")
 	$sfx/sfx_death_void.play()
 
 func _do_death(animation):
 	in_animation = true
+	Globals.player_alive = false	
 	if is_on_floor():
 		velocity.x=0
 	animation_player.play(animation)
@@ -191,7 +196,7 @@ func _do_death(animation):
 	Events.player_died.emit()
 	if get_parent():
 		get_parent().remove_child(self)	
-	Globals.player_alive = false	
+	
 	remove_log()
 	queue_free()
 
@@ -308,7 +313,7 @@ func _on_void_detector_body_entered(body: Node2D) -> void:
 	consume()
 
 func _on_end_card_collected():
-	in_animation=true
+	in_animation = true
 	collision_layer=0
 	velocity.x=0
 	velocity.y = jump_velocity
