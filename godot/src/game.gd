@@ -14,7 +14,7 @@ var checkpoint: CheckPoint
 @onready var draw_timer: Timer = $DrawTimer
 @onready var music: AudioStreamPlayer = $music
 @onready var sfx_button: AudioStreamPlayer = $CanvasLayer/sfx_button
-@onready var card_selection: SelectionUI
+@onready var card_selection: SelectionUI = $"CanvasLayer/Card Selection"
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 var camera_mode:= Types.CameraMode.TRACKING
@@ -147,7 +147,7 @@ func _on_level_ended():
 	var next_world := Globals.get_current_world_scene()
 	if next_world:
 		card_selection.show_card_selection()
-		anim_player.play("Show Card Selection")
+		anim_player.play("FadeOut")
 		#load_world(next_world)	
 	else:
 		Logger.error("Can't find world at idx:%d" % Globals.current_level_idx)
@@ -179,5 +179,5 @@ func _on_card_played(card:CardUI):
 func _on_card_selection_card_selected(card: CardUI) -> void:
 	var next_world := Globals.get_current_world_scene()
 	load_world(next_world)	
-	anim_player.play("Hide Card Selection")
+	anim_player.play("FadeIn")
 	

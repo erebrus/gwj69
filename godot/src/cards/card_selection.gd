@@ -85,7 +85,9 @@ func create_card(json_data):
 	#card_ui.connect("card_unhovered", func(c_ui): emit_signal("card_unhovered", c_ui))
 	card_ui.connect("card_clicked", _on_card_selected)
 	card_ui.connect("card_dropped", _on_card_dropped)
-	card_ui.target_position.x = 1280/2 - 275 + card_control.get_child_count() * x_offset
+	var target_pos: Vector2 = Vector2(1280/2 - 275 + card_control.get_child_count() * x_offset, 0.0)
+	#card_ui.target_position.x = 1280/2 - 275 + card_control.get_child_count() * x_offset
+	card_ui.create_tween().tween_property(card_ui, "target_position",target_pos, 1.0).set_ease(Tween.EASE_OUT).set_delay(4)
 	card_ui.can_do_selection = false
 	card_control.add_child(card_ui)
 	return card_ui
@@ -111,12 +113,21 @@ func _on_button_pressed() -> void:
 		Globals.current_deck[card_name] = 1
 	var children = card_control.get_children()
 	for child in children:
-		child.can_do_selection = false
-		child.emit_signal("card_dropped", child)
-	anim_player.play("Hide")
+		if child != selected_card:
+			child.can_do_selection = false
+			child.emit_signal("card_dropped", child)
+			child.create_tween().tween_property(child, "modulate:a", 0.0, .5 ).set_ease(Tween.EASE_OUT)
+		else:
+			child.can_do_selection = false
+			var target_pos = Vector2(1280 / 2 - 75, -50)
+			var pos_tween = child.create_tween()
+			pos_tween.tween_property(child, "target_position",target_pos, .5 ).set_ease(Tween.EASE_OUT)
+			pos_tween.tween_property(child, "target_position",Vector2(target_pos.x, target_pos.y + 800), .5 ).set_ease(Tween.EASE_OUT).set_delay(.85)
+			child.create_tween().tween_property(child, "modulate:a", 0.0, .25 ).set_ease(Tween.EASE_OUT).set_delay(1.25)
+	anim_player.play("Hide2")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "Hide":
+	if anim_name == "Hide2" or anim_name == "Hide":
 		var children = card_control.get_children()
 		card_selected.emit(selected_card)
 		for child in children:
@@ -126,3 +137,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		var children = card_control.get_children()
 		for child in children:
 			child.can_do_selection = true
+
+func _disable_selected_card():
+	selected_card.card_dropped.emit(selected_card)
+	selected_card.is_clicked = false
+	
