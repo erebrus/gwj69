@@ -80,6 +80,18 @@
 	"traits":{}
   },
   {
+	"nice_name": "3 blocks in a row",
+	"display_name": "Three for luck",
+	"description": "Create 3 simple blocks in a pictured pattern",
+	"cost": 0,
+	"resource_script_path": "res://src/cards/logic/card_block.gd",
+	"image_path": "res://assets/gfx/ui/illustrations/block-card.png",
+	"texture_path": "res://assets/gfx/ui/card-border.png",
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"block_scene_path": "res://src/world/blocks/3_h_blocks.tscn",
+	"traits":{}
+  },
+  {
 	"nice_name": "4 blocks",
 	"display_name": "On all four sides",
 	"description": "Create 4 simple blocks in the pictured pattern",

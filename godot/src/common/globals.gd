@@ -28,6 +28,7 @@ var current_deck: Dictionary = {
 	"Miracle of creation": 2,
 	"Two is better than one": 2,
 	"Three is a lucky number": 2,
+	"3 blocks in a row": 2,
 	"4 blocks": 2,
 }
 
