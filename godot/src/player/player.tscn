@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://b8jcuekywla74" path="res://assets/sfx/MC_Jump_2.wav" id="9_um7bx"]
 [ext_resource type="AudioStream" uid="uid://b3qw35bfdgj80" path="res://assets/sfx/MC_BigJump_1.wav" id="10_3rsyp"]
 [ext_resource type="AudioStream" uid="uid://dy4t7x874kfjw" path="res://assets/sfx/MC_BigJump_2.wav" id="11_sns7m"]
-[ext_resource type="PackedScene" path="res://src/player/jump_vfx.tscn" id="13_qyi5a"]
+[ext_resource type="PackedScene" uid="uid://c1akb2kfch56o" path="res://src/player/jump_vfx.tscn" id="13_qyi5a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywd1q"]
 radius = 2.0
