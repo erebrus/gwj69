@@ -18,7 +18,7 @@ glow_bloom = 1.0
 glow_blend_mode = 1
 glow_hdr_threshold = 0.9
 
-[node name="BaseWorld" type="Node2D"]
+[node name="BaseWorld3" type="Node2D"]
 script = ExtResource("1_21j6r")
 
 [node name="PlatformsLayer" type="TileMapLayer" parent="."]
@@ -47,4 +47,8 @@ script = ExtResource("6_p6ks1")
 zoom_enabled = false
 pan_margin = 0.0
 
-[node name="BlockGrid" parent="." instance=ExtResource("4_e3vnd")]
+[node name="BlockGrid" parent="." node_paths=PackedStringArray("platform_layer", "camera") instance=ExtResource("4_e3vnd")]
+scale = Vector2(1, 1)
+centered = true
+platform_layer = NodePath("../PlatformsLayer")
+camera = NodePath("../Camera")
