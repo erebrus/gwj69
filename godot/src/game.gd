@@ -108,7 +108,7 @@ func _on_draw_timer_timeout() -> void:
 	Logger.info("Draw allowed")
 
 func _on_card_drawn():
-	#Events.tick.emit()
+	Events.tick.emit()
 	if draw_cooldown:
 		card_engine.click_draw_pile_to_draw = false
 		Logger.info("Draw in cooldown")
