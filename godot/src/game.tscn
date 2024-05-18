@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://duka5rbd4bxdc"]
+[gd_scene load_steps=28 format=3 uid="uid://duka5rbd4bxdc"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_k8n5x"]
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="2_euer7"]
@@ -17,6 +17,9 @@
 [ext_resource type="FontFile" uid="uid://bjm5umnjo1est" path="res://assets/fonts/font-menu-UI-20px-portable_tube/PortableTube.ttf" id="9_8kile"]
 [ext_resource type="Texture2D" uid="uid://de1ojyk5cf3be" path="res://assets/gfx/ui/3x-question.png" id="9_htd5q"]
 [ext_resource type="Texture2D" uid="uid://dlur7wfwdlpm3" path="res://assets/gfx/ui/skull.png" id="10_osbeo"]
+[ext_resource type="AudioStream" uid="uid://crqv5mo4s7dqv" path="res://assets/sfx/Void_movement_1.wav" id="17_d2wr4"]
+[ext_resource type="AudioStream" uid="uid://dc61ldek8njt6" path="res://assets/sfx/Void_movement_2.wav" id="18_sshy1"]
+[ext_resource type="AudioStream" uid="uid://ydfhklw5pqxa" path="res://assets/sfx/Void_movement_3.wav" id="19_ieyke"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57o5p"]
 streams_count = 3
@@ -44,6 +47,12 @@ font_size = 20
 font_color = Color(0.811765, 0.984314, 0.945098, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_at35o"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ox273"]
+streams_count = 3
+stream_0/stream = ExtResource("17_d2wr4")
+stream_1/stream = ExtResource("18_sshy1")
+stream_2/stream = ExtResource("19_ieyke")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_k8n5x")
@@ -168,6 +177,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="DrawTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="sfx_void" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ox273")
+volume_db = 5.0
+bus = &"Sfx"
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_xqxae")

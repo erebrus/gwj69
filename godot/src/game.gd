@@ -40,6 +40,7 @@ func _ready():
 	Events.game_ended.connect(_on_game_ended)
 	Events.end_card_collected.connect(_on_end_card_collected)
 	Events.card_played.connect(_on_card_played)
+	Events.void_expanded.connect(func(): $sfx_void.play())
 	card_engine.card_drawn.connect(_on_card_drawn)
 	if draw_cooldown > 0:
 		draw_timer.wait_time = draw_cooldown

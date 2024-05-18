@@ -117,5 +117,6 @@ func _on_tick() -> void:
 	if (Globals.player_alive):
 		expand(Globals.player.position)
 		fade()
+		Events.void_expanded.emit()
 		
 	
