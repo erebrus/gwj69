@@ -265,7 +265,7 @@ func _should_jump()->bool:
 			
 	# edge but with jump card
 		if _is_on_deep_edge():
-			_on_speed_requested(2,.3)
+			_on_speed_requested(2.1,.3)
 			return true
 	
 	return false
