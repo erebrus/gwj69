@@ -1,7 +1,7 @@
 extends TileMapLayer
 class_name PlatformsLayer
 
-const VOID_ID := 1
+const VOID_ID := VoidLayer.VOID_ID
 
 func is_cell_empty(coords:Vector2i) -> bool:
 	var cell_id = get_cell_source_id(coords)
@@ -54,3 +54,19 @@ func set_state(state: Dictionary) -> void:
 		add_child(block)
 		block.set_state(block_state)
 	
+func clear_blocks_at(coords:Vector2i)->void:
+	var cell_id = get_cell_source_id(coords)
+	if cell_id != -1 and cell_id != VOID_ID:
+		set_cell(coords,-1)
+	
+	for child in get_children():
+		if (child.has_method("is_cell_empty")) and not child is VoidLayer:
+			var child_cell_offset = local_to_map(child.position)
+			var child_coords = coords - child_cell_offset
+			if child_coords.x < -10 or child_coords.x > 10 or child_coords.y < -10 or child_coords.y > 10:
+				continue
+			
+			if !child.is_cell_empty(child_coords):
+				child.clear_blocks_at(child_coords)
+		
+

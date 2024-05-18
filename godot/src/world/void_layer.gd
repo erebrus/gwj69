@@ -1,6 +1,6 @@
 class_name VoidLayer extends TileMapLayer
 
-signal void_expanded(cell: Vector2i)
+
 
 const SIDES: Array[TileSet.CellNeighbor] = [
 	TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE,
@@ -68,7 +68,7 @@ func _spawn_void(cell: Vector2i) ->  Array[Vector2i]:
 	cell_counters[cell]=TTL
 	
 	set_cell(cell, VOID_ID, Vector2i.ZERO, 0)
-	void_expanded.emit(cell)
+	Events.new_void_cell.emit(cell)
 	
 	if _has_empty_sides(cell):
 		new_border.append(cell)
@@ -117,6 +117,6 @@ func _on_tick() -> void:
 	if (Globals.player_alive):
 		expand(Globals.player.position)
 		fade()
-		Events.void_expanded.emit()
+		Events.global_void_expanded.emit()
 		
 	

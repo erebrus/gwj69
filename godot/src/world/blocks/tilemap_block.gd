@@ -1,6 +1,6 @@
 class_name TilemapBlock extends BaseBlock
 
-const VOID_ID := 3
+const VOID_ID := VoidLayer.VOID_ID
 
 
 @onready var tilemap: TileMapLayer = $TileMapLayer
@@ -38,7 +38,9 @@ func get_collision_shapes() -> Array[CollisionPolygon2D]:
 	
 	return shapes
 	
-
+func clear_blocks_at(coords: Vector2i) -> void:
+	tilemap.set_cell(coords, -1)
+	
 func is_cell_empty(coords: Vector2i) -> bool:
 	var cell_position = tilemap.map_to_local(coords)
 	var rotated_coords = tilemap.local_to_map(cell_position.rotated(-rotation))

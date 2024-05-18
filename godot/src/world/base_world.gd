@@ -13,6 +13,7 @@ func _ready():
 	Globals.tilemap = $PlatformsLayer
 	Events.player_respawned.connect(_on_player_respawned)
 	Events.camera_toggled.connect(_on_camera_toggled)
+	Events.new_void_cell.connect(_on_new_void_cell)
 	await get_tree().process_frame
 	_on_player_respawned($Player)
 	
@@ -50,3 +51,5 @@ func _on_camera_toggled(mode:Types.CameraMode):
 	camera_rt.update_position = mode != Types.CameraMode.FREE
 	
 		
+func _on_new_void_cell(coords:Vector2i):
+	platforms_layer.clear_blocks_at(coords)
