@@ -7,10 +7,10 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dh7lq"]
 resource_local_to_scene = true
 shader = ExtResource("3_rh4w1")
-shader_parameter/glow_color = Color(0.741549, 0.426297, 0.965097, 1)
+shader_parameter/glow_color = Color(0.339379, 0.729487, 0.814181, 1)
 shader_parameter/emission_f = 20.0
 shader_parameter/position_delta = Vector2(0, 0)
-shader_parameter/alpha_f = 0.0
+shader_parameter/alpha_f = 1.0
 
 [node name="CustomCardUi" instance=ExtResource("1_kqjqk")]
 script = ExtResource("2_vfvr5")
@@ -18,6 +18,10 @@ script = ExtResource("2_vfvr5")
 [node name="Glow" parent="." index="0"]
 visible = true
 material = SubResource("ShaderMaterial_dh7lq")
+offset_left = -38.0
+offset_top = -35.0
+offset_right = 219.0
+offset_bottom = 274.0
 
 [connection signal="card_clicked" from="." to="Glow" method="_on_custom_card_ui_card_clicked"]
 [connection signal="card_dropped" from="." to="Glow" method="_on_custom_card_ui_card_dropped"]
