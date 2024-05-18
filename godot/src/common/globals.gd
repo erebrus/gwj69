@@ -30,6 +30,7 @@ var current_deck: Dictionary = {
 	"Three is a lucky number": 2,
 	"3 blocks in a row": 2,
 	"4 blocks": 2,
+	"moving block": 2,
 }
 
 var player_alive:bool = false

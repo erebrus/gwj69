@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://5e3x03bfbswm"]
+
+[ext_resource type="PackedScene" uid="uid://dplodxgtbever" path="res://src/world/blocks/tilemap_block.tscn" id="1_p8poh"]
+[ext_resource type="Shader" uid="uid://dc002tl5nvki8" path="res://src/world/blocks/tile_shader.tres" id="2_2f8l6"]
+[ext_resource type="Script" path="res://src/world/blocks/moving_block.gd" id="2_2fhgt"]
+[ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="4_ul8uq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j2b8n"]
+resource_local_to_scene = true
+shader = ExtResource("2_2f8l6")
+shader_parameter/ColorParameter = Color(0.735881, 0.108295, 0.299178, 1)
+shader_parameter/color_factor = 0.0
+shader_parameter/emission_f = 1.0
+shader_parameter/disintegration_factor = 1.0
+shader_parameter/alpha_f = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j43ga"]
+size = Vector2(4, 4)
+
+[node name="TilemapBlock" instance=ExtResource("1_p8poh")]
+script = ExtResource("2_2fhgt")
+speed = 50.0
+
+[node name="SliderLayer" type="TileMapLayer" parent="." index="1"]
+tile_map_data = PackedByteArray(0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0)
+tile_set = ExtResource("4_ul8uq")
+
+[node name="TileMapLayer" parent="." index="2"]
+material = SubResource("ShaderMaterial_j2b8n")
+tile_map_data = PackedByteArray(0, 0, 254, 255, 0, 0, 2, 0, 3, 0, 1, 0, 0, 0)
+
+[node name="RotationPoint" type="Node2D" parent="TileMapLayer" index="0"]
+unique_name_in_owner = true
+position = Vector2(-12, 4)
+
+[node name="PlayerDetection" type="Area2D" parent="TileMapLayer/RotationPoint" index="0"]
+position = Vector2(0, -6)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/RotationPoint/PlayerDetection" index="0"]
+shape = SubResource("RectangleShape2D_j43ga")

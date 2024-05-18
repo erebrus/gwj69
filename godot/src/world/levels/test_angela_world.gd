@@ -9,3 +9,8 @@ func _input(event):
 		%MouseCoords.text = str(event.global_position)
 		var tile = tilemap.local_to_map(tilemap.to_local(event.global_position))
 		%TileCoords.text = str(tile)
+		
+	
+func _physics_process(delta):
+	if $TerrainDetectionDebug.enabled:
+		$TerrainDetectionDebug.update()

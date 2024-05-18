@@ -39,10 +39,14 @@ func get_collision_shapes() -> Array[CollisionPolygon2D]:
 	return shapes
 	
 func clear_blocks_at(coords: Vector2i) -> void:
-	tilemap.set_cell(coords, -1)
+	tilemap.set_cell(_get_rotated_coords(coords), -1)
 	
 func is_cell_empty(coords: Vector2i) -> bool:
-	var cell_position = tilemap.map_to_local(coords)
-	var rotated_coords = tilemap.local_to_map(cell_position.rotated(-rotation))
+	var rotated_coords = _get_rotated_coords(coords)
 	var cell_id = tilemap.get_cell_source_id(rotated_coords)
 	return cell_id == -1 or cell_id == VOID_ID
+
+func _get_rotated_coords(coords: Vector2i) -> Vector2i:
+	var cell_position = tilemap.map_to_local(coords)
+	return tilemap.local_to_map(cell_position.rotated(-rotation))
+	

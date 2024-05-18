@@ -27,6 +27,11 @@ func enable() -> void:
 		Events.tick.connect(_on_tick)
 	
 
+func place(at: Vector2, angle: float) -> void:
+	position = at
+	rotation = angle
+	
+
 func get_collision_shapes() -> Array[CollisionPolygon2D]:
 	return []
 	

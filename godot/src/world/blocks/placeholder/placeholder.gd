@@ -72,8 +72,7 @@ func _place() -> void:
 	block.enable()
 	remove_child(block)
 	
-	block.position = block_position
-	block.rotation = rotation
+	block.place(block_position, rotation)
 	get_parent().add_child(block)
 	placed.emit()
 	Events.block_placed.emit(block)

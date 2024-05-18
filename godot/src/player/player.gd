@@ -319,3 +319,9 @@ func set_rt_target(node_path:String):
 
 func get_rt()->RemoteTransform2D:
 	return $RemoteTransform2D
+
+func capture(target: Vector2) -> void:
+	pass
+	
+func release() -> void:
+	pass
