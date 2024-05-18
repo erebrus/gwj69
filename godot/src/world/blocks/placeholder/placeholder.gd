@@ -26,6 +26,8 @@ var is_valid:=true:
 
 
 func _ready() -> void:
+	Events.player_died.connect(_destroy)
+	
 	_center_on_cell(global_position)
 	
 	add_child(block)
