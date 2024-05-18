@@ -30,7 +30,12 @@ func _on_hand_pile_updated():
 		
 func load_json_path():
 	card_database = _load_json_cards_from_path(json_card_database_path)
-	card_collection = Globals.current_deck
+	var cards: Array[String]
+	for card_name in Globals.current_deck:
+		for i in Globals.current_deck[card_name]:
+			cards.append(card_name)
+	
+	card_collection = cards
 
 func get_state():
 	return {

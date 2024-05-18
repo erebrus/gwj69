@@ -21,8 +21,16 @@ var levels:Array[PackedScene] =[
 	]
 var current_level_idx=0
 
-var current_deck:Array = ["Space Jump","Space Jump", "Turn around", "Turn around", "Turn around","Space Jump", "Leave the void behind", "Miracle of creation", "Miracle of creation", "Two is better than one", "Two is better than one", "Three is a lucky number", "4 blocks", "Three is a lucky number", "4 blocks", "checkpoint"]
-#var current_deck:Array = ["Space Jump","Space Jump","Space Jump", "Turn around", "Turn around", "Turn around","Space Jump", "Leave the void behind", "Miracle of creation", "Miracle of creation", "checkpoint"]
+var current_deck: Dictionary = {
+	"Space Jump": 3,
+	"Turn around": 3,
+	"Leave the void behind": 1, 
+	"Miracle of creation": 2,
+	"Two is better than one": 2,
+	"Three is a lucky number": 2,
+	"4 blocks": 2,
+}
+
 var player_alive:bool = false
 
 var game_mode: Types.GameMode:
