@@ -190,7 +190,7 @@ func _get_dropzones(node: Node, className : String, result : Array) -> void:
 	if node is CardDropzone:
 		result.push_back(node)
 	for child in node.get_children():
-		if child is AudioStreamPlayer: #HACKs
+		if not child is CardUI:
 			continue
 		_get_dropzones(child, className, result)
 	
@@ -214,7 +214,7 @@ func reset():
 
 func _reset_card_collection():
 	for child in get_children():
-		if child is AudioStreamPlayer: #HACKs
+		if not child is CardUI:
 			continue
 		_maybe_remove_card_from_any_piles(child)
 		_maybe_remove_card_from_any_dropzones(child)
