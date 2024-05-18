@@ -17,10 +17,12 @@ var cell_counters = {}
 
 func _ready() -> void:
 	Events.tick.connect(_on_tick)
-	for cell in get_used_cells():
+	for cell in get_used_cells():				
 		if _has_empty_sides(cell):
 			border_cells.append(cell)
+			Events.new_void_cell.emit(cell)
 			cell_counters[cell]=TTL
+			
 		
 	
 
