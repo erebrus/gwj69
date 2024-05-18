@@ -13,6 +13,7 @@ var checkpoint: CheckPoint
 @onready var card_engine: Control = $CanvasLayer/CardEngine
 @onready var draw_timer: Timer = $DrawTimer
 @onready var music: AudioStreamPlayer = $music
+@onready var sfx_button: AudioStreamPlayer = $CanvasLayer/sfx_button
 
 
 var camera_mode:= Types.CameraMode.TRACKING
@@ -151,6 +152,7 @@ func _on_level_ended():
 
 func _on_die_pressed():
 	if Globals.player_alive:
+		sfx_button.play()
 		Events.die_requested.emit()
 
 func toggle_camera():

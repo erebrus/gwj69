@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://duka5rbd4bxdc"]
+[gd_scene load_steps=24 format=3 uid="uid://duka5rbd4bxdc"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_k8n5x"]
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="2_euer7"]
@@ -8,8 +8,12 @@
 [ext_resource type="AudioStream" uid="uid://dre04a01cjhaa" path="res://assets/music/Main Background Music_1.mp3" id="5_xqxae"]
 [ext_resource type="AudioStream" uid="uid://cfufwtelrqb1g" path="res://assets/sfx/Card_Error_3.wav" id="6_gx4rj"]
 [ext_resource type="Texture2D" uid="uid://dbhcemgu8khk5" path="res://assets/gfx/ui/UI-main.png" id="6_j5rl2"]
+[ext_resource type="AudioStream" uid="uid://11677xre8rtj" path="res://assets/sfx/UI_Button_1.wav" id="6_tuk3h"]
+[ext_resource type="AudioStream" uid="uid://lbuwv71j81k" path="res://assets/sfx/UI_Button_2.wav" id="7_74je8"]
+[ext_resource type="AudioStream" uid="uid://b72gxnfohwqko" path="res://assets/sfx/UI_Button_3.wav" id="8_05dlp"]
 [ext_resource type="FontFile" uid="uid://dq6ireqn37l7t" path="res://assets/fonts/font-Card-title-16px-pixelplay/pixelplay.ttf" id="8_ajtl3"]
 [ext_resource type="Texture2D" uid="uid://cdnhwywjng08n" path="res://assets/gfx/ui/symbol-timer-orange.png" id="8_g2lcw"]
+[ext_resource type="AudioStream" uid="uid://dnpkscn0nhp0u" path="res://assets/sfx/UI_Button_4.wav" id="9_2h868"]
 [ext_resource type="FontFile" uid="uid://bjm5umnjo1est" path="res://assets/fonts/font-menu-UI-20px-portable_tube/PortableTube.ttf" id="9_8kile"]
 [ext_resource type="Texture2D" uid="uid://de1ojyk5cf3be" path="res://assets/gfx/ui/3x-question.png" id="9_htd5q"]
 [ext_resource type="Texture2D" uid="uid://dlur7wfwdlpm3" path="res://assets/gfx/ui/skull.png" id="10_osbeo"]
@@ -19,6 +23,13 @@ streams_count = 3
 stream_0/stream = ExtResource("4_wwjtp")
 stream_1/stream = ExtResource("5_lyh6t")
 stream_2/stream = ExtResource("6_gx4rj")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e5lxy"]
+streams_count = 4
+stream_0/stream = ExtResource("6_tuk3h")
+stream_1/stream = ExtResource("7_74je8")
+stream_2/stream = ExtResource("8_05dlp")
+stream_3/stream = ExtResource("9_2h868")
 
 [sub_resource type="Theme" id="Theme_28032"]
 default_font = ExtResource("8_ajtl3")
@@ -45,6 +56,9 @@ draw_cooldown = 0.0
 [node name="sfx_err" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = SubResource("AudioStreamRandomizer_57o5p")
 bus = &"Sfx"
+
+[node name="sfx_button" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = SubResource("AudioStreamRandomizer_e5lxy")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 12
