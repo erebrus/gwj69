@@ -115,6 +115,18 @@
 	"block_scene_path": "res://src/world/blocks/moving_block.tscn",
 	"traits":{}
   },
+{
+	"nice_name": "Stairway to Heaven",
+	"display_name": "Stairway to Heaven",
+	"description": "Is there an elevator?",
+	"cost": 0,
+	"resource_script_path": "res://src/cards/logic/card_block.gd",
+	"image_path": "res://assets/gfx/ui/illustrations/4-block-t-card.png",
+	"texture_path": "res://assets/gfx/ui/card-border.png",
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"block_scene_path": "res://src/world/blocks/stair_blocks.tscn",
+	"traits":{}
+  },
   {
 	"nice_name": "checkpoint",
 	"display_name": "Save your soul",
