@@ -10,7 +10,7 @@ func _ready() -> void:
 	Events.card_destroy_requested.connect(_on_card_destroy_requested)
 	Events.card_clicked.connect(_on_card_clicked)
 	Events.card_played.connect(_on_card_played)
-	draw_pile_updated.connect(_on_draw_pile_updated)
+	card_drawn.connect(_on_card_drawn)
 	draw(hand_start_size, false)
 	
 func reset():
@@ -27,7 +27,7 @@ func draw(num_cards := 1, manual:=true):
 func _on_discard_requested(card_ui:CardUI):
 	set_card_pile(card_ui, CardPileUI.Piles.discard_pile)
 	
-func _on_draw_pile_updated():
+func _on_card_drawn():
 	if not get_card_pile_size(Piles.draw_pile):
 		_shuffle_discard_on_draw()
 		Events.reshuffled_discard_pile.emit()

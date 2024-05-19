@@ -114,6 +114,7 @@ func restore_checkpoint():
 	
 func reset_void_cooldown():
 	if void_cooldown > 0:
+		void_cooldown = start_void_cooldown
 		void_timer.wait_time = void_cooldown
 		Logger.info("Void cooldown is %.2fs" % void_cooldown)
 		void_timer.start()
@@ -122,10 +123,10 @@ func reload_level():
 	if Globals.get_current_world_scene():
 		await get_tree().process_frame #necessary to let the discard finish
 		load_world(Globals.get_current_world_scene())
-		Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
+		#Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
 		card_engine.reset()
 		card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
-		Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)
+		#Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)
 		reset_void_cooldown()
 		
 	else:
@@ -199,7 +200,7 @@ func _on_game_ended():
 
 func _on_level_ended():
 	void_timer.stop()
-	Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
+	#Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
 	player_needed = true
 	Globals.player_alive=false
 	if Globals.player:
@@ -246,7 +247,7 @@ func _on_card_selection_card_selected(card: CardUI) -> void:
 	card_engine.add_card(card.card_data)	
 	card_engine.reset()
 	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)	
-	Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)	
+	#Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)	
 	anim_player.play("FadeIn")
 
 func toggle_menu():
