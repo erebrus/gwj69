@@ -30,6 +30,7 @@ func _on_discard_requested(card_ui:CardUI):
 func _on_hand_pile_updated():
 	if not get_card_pile_size(Piles.draw_pile):
 		_shuffle_discard_on_draw()
+		Events.reshuffled_discard_pile.emit()
 		$sfx_reshuffle.play()
 		
 func load_json_path():
@@ -81,6 +82,3 @@ func add_card(card:CustomCardUIData):
 	Globals.current_deck[card.nice_name] = Globals.current_deck[card.nice_name] + 1
 	load_json_path()
 
-func _shuffle_discard_on_draw():
-	Events.reshuffled_discard_pile.emit()
-	super._shuffle_discard_on_draw()

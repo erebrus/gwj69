@@ -6,7 +6,7 @@ const PLAYER_SCENE = preload("res://src/player/player.tscn")
 @export var card_play_cooldown_impact=1
 @export var scale_factor:int = 2
 @export var draw_cooldown:float = 2
-@export var void_cooldown:float = 15
+@export var start_void_cooldown:float = 15
 @export var void_cooldown_progression=.5
 
 
@@ -21,7 +21,7 @@ var checkpoint: CheckPoint
 @onready var card_selection: SelectionUI = $"CanvasLayer/Card Selection"
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var game_menu: Panel = $CanvasLayer/GameMenu
-
+@onready var void_cooldown = start_void_cooldown
 var camera_mode:= Types.CameraMode.TRACKING
 var world:World:
 	set(w):
@@ -55,10 +55,7 @@ func _ready():
 	if draw_cooldown > 0:
 		draw_timer.wait_time = draw_cooldown
 		draw_timer.start()
-	if void_cooldown > 0:
-		Logger.info("void cool down set to %.2fs" % void_cooldown)
-		void_timer.wait_time = void_cooldown
-		void_timer.start()
+	reset_void_cooldown()
 		
 	Globals.play_music(Globals.game_music)
 	
@@ -78,7 +75,7 @@ func load_world(scene:PackedScene):
 
 func create_checkpoint():
 	checkpoint = CHECKPOINT_SCENE.instantiate()
-	
+	checkpoint.void_cooldown = void_cooldown
 	checkpoint.position = Globals.tilemap.cell_top_left(Globals.player.position)
 	
 	checkpoint.card_engine_state = card_engine.get_state()
@@ -108,16 +105,27 @@ func restore_checkpoint():
 		card_engine.set_state(checkpoint.card_engine_state)
 		card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
 		world.set_state(checkpoint.world_state)
+		void_cooldown = checkpoint.void_cooldown
+		Logger.info("Checkpoint void cooldown is %.2fs" % void_cooldown)
+		if void_cooldown > 0:
+			void_timer.start()
 		world.place_checkpoint(checkpoint)
 		return
 	
-
+func reset_void_cooldown():
+	if void_cooldown > 0:
+		void_timer.wait_time = void_cooldown
+		Logger.info("Void cooldown is %.2fs" % void_cooldown)
+		void_timer.start()
+			
 func reload_level():
 	if Globals.get_current_world_scene():
 		await get_tree().process_frame #necessary to let the discard finish
 		load_world(Globals.get_current_world_scene())
 		card_engine.reset()
 		card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
+		reset_void_cooldown()
+		
 	else:
 		Logger.warn("No level to load.")
 	
@@ -187,6 +195,8 @@ func _on_game_ended():
 
 
 func _on_level_ended():
+	void_timer.stop()
+	Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
 	player_needed = true
 	Globals.player_alive=false
 	if Globals.player:
@@ -229,9 +239,11 @@ func _on_card_selection_card_selected(card: CardUI) -> void:
 	var next_world := Globals.get_current_world_scene()
 	
 	load_world(next_world)	
+	reset_void_cooldown()
 	card_engine.add_card(card.card_data)	
 	card_engine.reset()
 	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)	
+	Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)	
 	anim_player.play("FadeIn")
 
 func toggle_menu():
