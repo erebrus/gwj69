@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dt405k5ltcwc5"]
+[gd_scene load_steps=18 format=3 uid="uid://dt405k5ltcwc5"]
 
 [ext_resource type="PackedScene" uid="uid://k1ey4vvnmd50" path="res://src/world/blocks/base_block.tscn" id="1_lt8ne"]
 [ext_resource type="Script" path="res://src/world/blocks/checkpoint_block.gd" id="2_6b0kt"]
 [ext_resource type="Texture2D" uid="uid://bg2we71fvvgyk" path="res://assets/gfx/world/flag-checkpoint.png" id="3_8hdcm"]
+[ext_resource type="AudioStream" uid="uid://c6u61fqpfairj" path="res://assets/sfx/Trigger_checkpoint.wav" id="4_bah06"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_khm6m"]
 atlas = ExtResource("3_8hdcm")
@@ -255,6 +256,21 @@ tracks/8/keys = {
 "points": PackedFloat32Array(2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.6327, 0.9334)
 }
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AudioStreamPlayer2D")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_bah06")
+}],
+"times": PackedFloat32Array(0.3996)
+}
+tracks/9/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4ioan"]
 _data = {
@@ -310,3 +326,6 @@ process_material = SubResource("ParticleProcessMaterial_m1503")
 one_shot = true
 explosiveness = 0.8
 randomness = 0.3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
+bus = &"Sfx"
