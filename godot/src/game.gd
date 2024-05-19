@@ -122,8 +122,10 @@ func reload_level():
 	if Globals.get_current_world_scene():
 		await get_tree().process_frame #necessary to let the discard finish
 		load_world(Globals.get_current_world_scene())
+		Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
 		card_engine.reset()
 		card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
+		Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)
 		reset_void_cooldown()
 		
 	else:
