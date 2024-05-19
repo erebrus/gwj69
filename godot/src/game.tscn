@@ -475,6 +475,8 @@ _data = {
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_k8n5x")
+draw_cooldown = 0.0
+start_void_cooldown = 5.0
 
 [node name="BaseWorld" parent="." instance=ExtResource("2_euer7")]
 
@@ -670,8 +672,12 @@ libraries = {
 "": SubResource("AnimationLibrary_ioik2")
 }
 
+[node name="VoidTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="pressed" from="CanvasLayer/Butttons/VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Butttons/VBoxContainer/Menu/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="card_selected" from="CanvasLayer/Card Selection" to="." method="_on_card_selection_card_selected"]
 [connection signal="card_selected" from="CanvasLayer/Card Selection" to="CanvasLayer/DrawPileLabel" method="_on_card_selection_card_selected"]
 [connection signal="timeout" from="DrawTimer" to="." method="_on_draw_timer_timeout"]
+[connection signal="timeout" from="VoidTimer" to="." method="_on_void_timer_timeout"]
