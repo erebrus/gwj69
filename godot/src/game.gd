@@ -86,9 +86,7 @@ func spawn_player():
 
 func restore_checkpoint():
 	if checkpoint == null:
-		# TODO: should we create a checkpoint with the start-level state?
-		await get_tree().process_frame #necessary to let the discard finish
-		get_tree().reload_current_scene()
+		reload_level()
 	elif checkpoint:
 		checkpoint.get_parent().remove_child(checkpoint)
 		load_world(Globals.get_current_world_scene())
@@ -97,6 +95,14 @@ func restore_checkpoint():
 		world.set_state(checkpoint.world_state)
 		world.place_checkpoint(checkpoint)
 		return
+	
+
+func reload_level():
+	if Globals.get_current_world_scene():
+		await get_tree().process_frame #necessary to let the discard finish
+		get_tree().reload_current_scene()
+	else:
+		Logger.warn("No level to load.")
 	
 
 func _on_card_error():
@@ -108,10 +114,7 @@ func _process(delta: float) -> void:
 		_on_level_ended()
 		
 	if Input.is_action_just_pressed("restart_level"):
-		if Globals.get_current_world_scene():
-			get_tree().reload_current_scene()
-		else:
-			Logger.warn("No level to load.")
+		reload_level()
 	if Input.is_action_just_pressed("debug"):
 		debug_mode = not debug_mode
 		if Globals.player and Globals.player_alive:
