@@ -79,7 +79,7 @@ color += calcColor * step((blockHeight - remainderHeight), uvOutlineSize.y);
 
 color *= step(circle_distance, circleSize / 2.0);
 
-color = mix(color, transparent, vec4(clamp(circle_distance + circle_distance * 2.0, 0.0, 1.0)));
+color = mix(color, transparent, vec4(clamp(circle_distance + circle_distance * 3.0, 0.0, 1.0)));
 
 
 
@@ -200,7 +200,7 @@ void fragment() {
 		
 		n_out4p0 *= step(circle_distance, n_out10p0 / 2.0);
 		
-		n_out4p0 = mix(n_out4p0, transparent, vec4(clamp(circle_distance + circle_distance * 2.0, 0.0, 1.0)));
+		n_out4p0 = mix(n_out4p0, transparent, vec4(clamp(circle_distance + circle_distance * 3.0, 0.0, 1.0)));
 		
 		
 		
@@ -230,6 +230,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-547.6, 1162.53)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(2460, 440)
@@ -268,7 +269,7 @@ color += calcColor * step((blockHeight - remainderHeight), uvOutlineSize.y);
 
 color *= step(circle_distance, circleSize / 2.0);
 
-color = mix(color, transparent, vec4(clamp(circle_distance + circle_distance * 2.0, 0.0, 1.0)));
+color = mix(color, transparent, vec4(clamp(circle_distance + circle_distance * 3.0, 0.0, 1.0)));
 
 
 
