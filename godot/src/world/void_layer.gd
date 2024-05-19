@@ -28,13 +28,13 @@ func _ready() -> void:
 func get_state() -> Dictionary:
 	return {
 		"tilemap": tile_map_data,
-		"cell_counters": cell_counters
+		"cell_counters": cell_counters.duplicate()
 	}
 	
 
 func set_state(state: Dictionary) -> void:
 	tile_map_data = state.tilemap 
-	cell_counters = state.cell_counters
+	cell_counters = state.cell_counters.duplicate()
 	
 
 func expand(target: Vector2) -> void:
