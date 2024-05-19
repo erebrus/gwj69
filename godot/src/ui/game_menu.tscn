@@ -139,7 +139,7 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_lcit1")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_ch13d")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x18il")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_lif1r")
-text = "Quit"
+text = "Quit To Title"
 
 [node name="sfx_button" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_ghqw6")
