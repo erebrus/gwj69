@@ -287,9 +287,9 @@ tracks/0/path = NodePath("CanvasLayer/FadeRect:material:shader_parameter/fadeAmo
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -1.7, -0.0172188, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 2)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -1.7, -0.0172188, 0.25, 0),
+"times": PackedFloat32Array(0, 2)
 }
 tracks/1/type = "value"
 tracks/1/imported = false
