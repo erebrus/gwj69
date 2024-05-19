@@ -24,15 +24,16 @@ var current_level_idx=0
 
 var starting_deck: Dictionary = {
 	"jump": 3,
-	"turn_around": 3,
+	"turn_around": 2,
 	"speed": 1, 
-	"block1": 2,
+	"block1": 3,
 	"block2": 2,
 	"block3_step": 2,
-	"block3_row": 2,
-	"block4": 2,
+	"block3_row": 1,
+	"block4": 1,
 	#"moving_block": 2,
-	"checkpoint":1
+	"checkpoint":1,
+	#"stairs": 2,
 }
 
 var current_deck: Dictionary = {}
