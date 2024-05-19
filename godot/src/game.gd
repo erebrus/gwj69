@@ -169,7 +169,8 @@ func _on_game_ended():
 func _on_level_ended():
 	player_needed = true
 	Globals.player_alive=false
-	Globals.player.queue_free()
+	if Globals.player:
+		Globals.player.queue_free()
 	Globals.current_level_idx += 1
 	var next_world := Globals.get_current_world_scene()
 	if next_world:
@@ -206,8 +207,11 @@ func _on_card_played(card:CardUI):
 
 func _on_card_selection_card_selected(card: CardUI) -> void:
 	var next_world := Globals.get_current_world_scene()
-	card_engine.reset()
+	
 	load_world(next_world)	
+	card_engine.add_card(card.card_data)	
+	card_engine.reset()
+	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)	
 	anim_player.play("FadeIn")
 	
 
