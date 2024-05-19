@@ -34,17 +34,19 @@ func _physics_process(delta: float) -> void:
 		return
 		
 	var movement = speed * delta
-	
+
 	if start < end:
 		# go forward
-		tilemap.position.x = min(end - start + 1, tilemap.position.x + movement)
+		tilemap.position.x = tilemap.position.x + movement
 		if tilemap.position.x >= end - start + 1:
+			tilemap.position.x = end - start + 1
 			_reach_end()
-	
+		
 	if start > end:
 		# go backwards
-		tilemap.position.x = max(0, tilemap.position.x - movement)
+		tilemap.position.x = tilemap.position.x - movement
 		if tilemap.position.x <= 0:
+			tilemap.position.x = 0
 			_reach_end()
 	
 
