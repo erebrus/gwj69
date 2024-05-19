@@ -117,7 +117,7 @@ func _on_card_drawn():
 		draw_timer.start()
 	
 func _on_player_died():
-	card_engine.create_card_in_pile("The abyss will gaze back into you", CardPileUI.Piles.hand_pile)
+	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
 	
 
 func _on_music_finished() -> void:

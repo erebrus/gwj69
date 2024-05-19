@@ -13,7 +13,7 @@ var debug_build := false
 var levels:Array[PackedScene] =[
 	#preload("res://src/world/levels/test_angela_world.tscn"),
 	#preload("res://src/world/levels/test_erebrus_world.tscn"),
-	#preload("res://src/world/levels/level_tutorial.tscn"),
+	preload("res://src/world/levels/level_tutorial.tscn"),
 	#preload("res://src/world/levels/level_01.tscn"),
 	#preload("res://src/world/levels/level_02.tscn"),
 	#preload("res://src/world/levels/level_03.tscn"),
@@ -22,15 +22,15 @@ var levels:Array[PackedScene] =[
 var current_level_idx=0
 
 var current_deck: Dictionary = {
-	"Space Jump": 3,
-	"Turn around": 3,
-	"Leave the void behind": 1, 
-	"Miracle of creation": 2,
-	"Two is better than one": 2,
-	"Three is a lucky number": 2,
-	"3 blocks in a row": 2,
-	"4 blocks": 2,
-	"moving block": 2,
+	"jump": 3,
+	"turn_around": 3,
+	"speed": 1, 
+	"block1": 2,
+	"block2": 2,
+	"block3_step": 2,
+	"block3_row": 2,
+	"block4": 2,
+	"moving_block": 2,
 }
 
 var player_alive:bool = false

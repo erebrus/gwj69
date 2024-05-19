@@ -19,7 +19,7 @@ var initial_starting_pos: Vector2 = Vector2(1280.0/2.0, 760.0/2.0)
 var x_offset = 200.0
 
 var card_database := [] # an array of JSON `Card` data
-var excluded_cards := ["end_game", "end_level", "The abyss will gaze back into you"]
+var excluded_cards := ["end_game", "end_level", "spawn"]
 var selected_card: CardUI
 
 var hiding_cards = false
