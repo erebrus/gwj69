@@ -40,6 +40,7 @@ func _ready() -> void:
 	Events.player_respawned.connect(_on_player_respawned)
 	Events.card_played.connect(_on_card_played)
 	Events.jump_requested.connect(_on_jump_requested)
+	Events.level_ended.connect(_on_level_ended)
 	Events.checkpoint_requested.connect(_on_checkpoint_requested)
 	card_engine.reset_and_clear_card_collection()
 	#card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
@@ -65,6 +66,12 @@ func _process(delta: float) -> void:
 		if step_i == TutorialStep.DrawFirstHand and card_engine.get_card_pile_size(CardPileUI.Piles.hand_pile) == 1:
 			current_step.complete_requested = true
 
+func _on_level_ended() -> void:
+	Globals.current_deck= Globals.starting_deck.duplicate()
+	card_engine.reset_and_set_to_starting_deck()
+	create_tween().tween_property(self, "modulate:a", 0.0, 1.0)
+	await get_tree().create_timer(1.0).timeout
+	queue_free()
 
 func do_tutorial_step_kludge(index: int) -> void:
 	match index:
@@ -88,7 +95,7 @@ func do_tutorial_step_kludge(index: int) -> void:
 		TutorialStep.USeSpecialPowers:
 			card_engine.create_card_in_pile("jump", CardPileUI.Piles.hand_pile)
 		TutorialStep.Checkpoint:
-			card_engine.create_card_in_pile("checkpoint", CardPileUI.Piles.draw_pile)
+			card_engine.create_card_in_pile("checkpoint", CardPileUI.Piles.hand_pile)
 		TutorialStep.DieUseRespawn:
 			pass
 		TutorialStep.AvoidVoid:
