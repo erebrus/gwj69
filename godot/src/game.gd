@@ -138,7 +138,8 @@ func _process(delta: float) -> void:
 	if Globals.game_mode != Types.GameMode.SelectionScreen:
 		if Input.is_action_just_pressed("skip_intro") and world.can_skip:
 			_on_level_ended()
-		
+		if Input.is_action_just_pressed("toggle_void"):
+			toggle_void()
 		if Input.is_action_just_pressed("restart_level"):
 			reload_level()
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -272,3 +273,15 @@ func _on_void_timer_timeout() -> void:
 func _on_reshuffled_discard_pile():
 	void_cooldown *= void_cooldown_progression
 	Logger.info("New void cooldown is %.2fs" % void_cooldown)
+
+func toggle_void():
+	if start_void_cooldown == 0:
+		return
+	if void_cooldown == 0:
+		void_cooldown = start_void_cooldown
+		void_timer.start()
+		Logger.info("Reset void cooldown is %.2fs" % void_cooldown)
+	else:
+		void_cooldown = 0 
+		void_timer.stop()
+		Logger.info("Stopped void timer.")
