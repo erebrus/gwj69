@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/win_screen.gd" id="1_1prml"]
 [ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="1_eccrg"]
-[ext_resource type="Theme" uid="uid://cr6hvivwpbv0r" path="res://src/cards/card_theme.tres" id="2_ubsdm"]
+[ext_resource type="Theme" uid="uid://b7jm7ogqwlkvk" path="res://src/cards/card_theme.tres" id="2_ubsdm"]
 [ext_resource type="FontFile" uid="uid://bjm5umnjo1est" path="res://assets/fonts/font-menu-UI-20px-portable_tube/PortableTube.ttf" id="4_m1rrc"]
 [ext_resource type="Texture2D" uid="uid://lwykjg4se6m0" path="res://assets/gfx/title/win-Sheet.png" id="4_w7a12"]
 [ext_resource type="AudioStream" uid="uid://11677xre8rtj" path="res://assets/sfx/UI_Button_1.wav" id="6_wkrdg"]
@@ -93,8 +93,8 @@ _data = {
 script = ExtResource("1_1prml")
 
 [node name="Background" type="TileMapLayer" parent="."]
-scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAAXABEAAQAAAAAAAAATAA4AAQAAAAAAAABDAAYAAQAAAAAAAABLABAAAQAAAAAAAABHAB8AAQAAAAAAAAA9ACgAAQAAAAAAAAAJABgAAQAAAAAAAAARACMAAQAAAAAAAAA8ACgAAQAAAAAAAAA8ACkAAQAAAAAAAAAXACkAAQAAAAAAAAAqACkAAQAAAAAAAAAGAAQAAQAAAAAAAAAyACMAAQAAAAAAAAA6ABEAAQAAAAAAAAA6ABIAAQAAAAAAAAA6ABMAAQAAAAAAAAA6ABQAAQAAAAAAAAA7ABIAAQAAAAAAAAA7ABMAAQAAAAAAAAA5ABQAAQAAAAAAAAA5ABUAAQAAAAAAAAAeAAMAAQAAAAAAAAA2AAIAAQAAAAAAAAAeABoAAQAAAAAAAAAdABsAAQAAAAAAAAACACwAAQAAAAAAAABPACgAAQAAAAAAAAA=")
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAXABEAAQAAAAAAAAAGAAQAAQAAAAAAAAAeAAMAAQAAAAAAAAANAAsAAQAAAAAAAAAMAAwAAQAAAAAAAAAiAA4AAQAAAAAAAAAhABAAAQAAAAAAAAAiAA8AAQAAAAAAAAAEABMAAQAAAAAAAAAJABcAAQAAAAAAAAAeABUAAQAAAAAAAAAmAAQAAQAAAAAAAAA=")
 tile_set = ExtResource("1_eccrg")
 navigation_enabled = false
 
