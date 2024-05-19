@@ -48,10 +48,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		
 		
 func _on_game_mode_changed(mode: Types.GameMode) -> void:
-	if mode == Types.GameMode.ChoosingCard:
-		deactivate()
-	elif mode == Types.GameMode.PlacingBlock:
+	if mode == Types.GameMode.PlacingBlock:
 		activate()
+	else:
+		deactivate()
 	
 func _on_block_requested(event_placeholder: Placeholder) -> void:
 	placeholder = event_placeholder

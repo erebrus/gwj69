@@ -34,6 +34,7 @@ func _ready() -> void:
 func show_card_selection() -> void:
 	visible = true
 	choose_button.disabled = true
+	Globals.game_mode = Types.GameMode.SelectionScreen
 	load_json_path()
 	create_cards(total_options)
 	anim_player.play("Show")
@@ -121,10 +122,7 @@ func _on_button_pressed() -> void:
 	confirm_sfx.play()
 	confirmed_card = selected_card
 	var card_name = selected_card.card_data.nice_name
-	if card_name in Globals.current_deck:
-		Globals.current_deck[card_name] += 1
-	else:
-		Globals.current_deck[card_name] = 1
+
 	var children = card_control.get_children()
 	for child in children:
 		if child != selected_card:

@@ -58,7 +58,7 @@ func load_world(scene:PackedScene):
 		move_child(new_world, 0)
 		world = new_world
 		player_needed = true
-
+		Globals.game_mode = Types.GameMode.ChoosingCard
 		
 	
 
@@ -113,11 +113,12 @@ func _on_card_error():
 
 func _process(delta: float) -> void:
 	%TimeLabel.text = "%02.f" % draw_timer.time_left
-	if Input.is_action_just_pressed("skip_intro") and world.can_skip:
-		_on_level_ended()
+	if Globals.game_mode != Types.GameMode.SelectionScreen:
+		if Input.is_action_just_pressed("skip_intro") and world.can_skip:
+			_on_level_ended()
 		
-	if Input.is_action_just_pressed("restart_level"):
-		reload_level()
+		if Input.is_action_just_pressed("restart_level"):
+			reload_level()
 	if Input.is_action_just_pressed("debug"):
 		debug_mode = not debug_mode
 		if Globals.player and Globals.player_alive:
@@ -213,5 +214,6 @@ func _on_card_selection_card_selected(card: CardUI) -> void:
 	card_engine.reset()
 	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)	
 	anim_player.play("FadeIn")
+
 	
 
