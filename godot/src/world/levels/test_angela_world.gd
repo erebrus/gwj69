@@ -11,6 +11,6 @@ func _input(event):
 		%TileCoords.text = str(tile)
 		
 	
-func _physics_process(delta):
-	if $TerrainDetectionDebug.enabled:
-		$TerrainDetectionDebug.update()
+#func _physics_process(delta):
+	#if $TerrainDetectionDebug.enabled:
+		#$TerrainDetectionDebug.update()
