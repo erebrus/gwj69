@@ -21,8 +21,8 @@ Logger="*res://addons/gs_logger/logger.gd"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 Types="*res://src/common/types.gd"
 Events="*res://src/common/events.gd"
-Globals="*res://src/common/globals.gd"
 HyperLog="*res://addons/hyperlog/hyperlog.tscn"
+Globals="*res://src/common/globals.tscn"
 
 [display]
 

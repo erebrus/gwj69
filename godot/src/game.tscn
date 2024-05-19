@@ -1,11 +1,10 @@
-[gd_scene load_steps=45 format=3 uid="uid://duka5rbd4bxdc"]
+[gd_scene load_steps=44 format=3 uid="uid://duka5rbd4bxdc"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_k8n5x"]
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="2_euer7"]
 [ext_resource type="PackedScene" uid="uid://cl2x45a8d01v4" path="res://src/cards/card_engine.tscn" id="3_bitsc"]
 [ext_resource type="AudioStream" uid="uid://cbjvypec266rn" path="res://assets/sfx/Card_Error_1.wav" id="4_wwjtp"]
 [ext_resource type="AudioStream" uid="uid://cdrvh6ccbcxb6" path="res://assets/sfx/Card_Error_2.wav" id="5_lyh6t"]
-[ext_resource type="AudioStream" uid="uid://dre04a01cjhaa" path="res://assets/music/Main Background Music_1.mp3" id="5_xqxae"]
 [ext_resource type="AudioStream" uid="uid://cfufwtelrqb1g" path="res://assets/sfx/Card_Error_3.wav" id="6_gx4rj"]
 [ext_resource type="Texture2D" uid="uid://dbhcemgu8khk5" path="res://assets/gfx/ui/UI-main.png" id="6_j5rl2"]
 [ext_resource type="AudioStream" uid="uid://11677xre8rtj" path="res://assets/sfx/UI_Button_1.wav" id="6_tuk3h"]
@@ -667,12 +666,6 @@ stream = SubResource("AudioStreamRandomizer_ox273")
 volume_db = 5.0
 bus = &"Sfx"
 
-[node name="music" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-stream = ExtResource("5_xqxae")
-autoplay = true
-bus = &"Music"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ioik2")
@@ -683,4 +676,3 @@ libraries = {
 [connection signal="card_selected" from="CanvasLayer/Card Selection" to="." method="_on_card_selection_card_selected"]
 [connection signal="card_selected" from="CanvasLayer/Card Selection" to="CanvasLayer/DrawPileLabel" method="_on_card_selection_card_selected"]
 [connection signal="timeout" from="DrawTimer" to="." method="_on_draw_timer_timeout"]
-[connection signal="finished" from="music" to="." method="_on_music_finished"]

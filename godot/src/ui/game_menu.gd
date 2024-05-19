@@ -24,6 +24,7 @@ func close():
 
 func _on_quit_button_pressed() -> void:
 	sfx_button.play()
+	Globals.fade_music(Globals.game_music)
 	await sfx_button.finished 
 	Events.close_menu_requested.emit()
 	get_tree().change_scene_to_file("res://src/start_screen.tscn")

@@ -52,6 +52,8 @@ var game_mode: Types.GameMode:
 var tilemap: PlatformsLayer
 var player: Player
 
+@onready var menu_music: AudioStreamPlayer = $menu_music
+@onready var game_music: AudioStreamPlayer = $game_music
 
 func _ready():
 	_init_logger()
@@ -84,10 +86,15 @@ func init_music():
 	tween.tween_property(%Music,"volume_db",0,2)
 	
 
-func fade_music():
+func play_music(node):
+	node.play()
+	
+func fade_music(node:AudioStreamPlayer, duration := 1):
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property(%Music,"volume_db",-60,1)
-
+	tween.tween_property(node,"volume_db",-20 , duration)
+	await tween.finished
+	node.stop()
+	
 func get_current_world_scene()->PackedScene:	
 	if current_level_idx < levels.size():
 		return levels[current_level_idx]

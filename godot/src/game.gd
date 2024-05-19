@@ -50,6 +50,8 @@ func _ready():
 	if draw_cooldown > 0:
 		draw_timer.wait_time = draw_cooldown
 		draw_timer.start()
+		
+	Globals.play_music(Globals.game_music)
 	
 func load_world(scene:PackedScene):
 		var old_world = get_child(0)
