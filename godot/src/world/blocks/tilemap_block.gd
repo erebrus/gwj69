@@ -24,7 +24,6 @@ func disable() -> void:
 
 func enable() -> void:
 	super.enable()
-	print(global_rotation_degrees)
 	particles.global_rotation_degrees = 0.0
 	$AnimationPlayer.play("Create")
 	tilemap.collision_enabled = true
