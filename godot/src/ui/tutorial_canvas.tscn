@@ -89,7 +89,7 @@ offset_bottom = -53.0
 alignment = 1
 
 [node name="Label" parent="Tutorial/MarginContainer/Step List/ProphetWill/MarginContainer/Control/MarginContainer" index="0"]
-text = "The prophet will go to fulfil Your will. Such an independent fellow."
+text = "The prophet will go to fulfill Your will. Such an independent fellow."
 
 [node name="Camera" type="Control" parent="Tutorial/MarginContainer/Step List"]
 layout_mode = 2
@@ -170,7 +170,7 @@ offset_bottom = -37.0
 alignment = 1
 
 [node name="Label" parent="Tutorial/MarginContainer/Step List/DrawFirstHand/MarginContainer/Control/MarginContainer" index="0"]
-text = "Your powers are great, but unpredictable. Look, what You can do now. (LMB on the draw pile to take a card on the hand).
+text = "Your powers are great, but unpredictable. Look, what You can do now. (LMB on the draw pile to put a card into hand).
 Beware, creating a new Miracle makes the Void feels you, and it starts to grow! (Void will grow each time you draw a card)."
 
 [node name="NavigateToHandUseCard" type="Control" parent="Tutorial/MarginContainer/Step List"]
@@ -190,7 +190,7 @@ offset_bottom = -53.0
 alignment = 1
 
 [node name="Label" parent="Tutorial/MarginContainer/Step List/NavigateToHandUseCard/MarginContainer/Control/MarginContainer" index="0"]
-text = "To use Your power, proclaim the Miracle. (Navigate to the card in the hand and RMB to use it. LMB to cancel and return card to the hand)."
+text = "To use Your power, proclaim the Miracle. (Navigate to the card in the hand and LMB to use it. RMB to cancel and return card to the hand)."
 
 [node name="Play2block" type="Control" parent="Tutorial/MarginContainer/Step List"]
 layout_mode = 2
