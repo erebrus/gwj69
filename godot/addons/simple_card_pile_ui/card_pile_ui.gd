@@ -276,7 +276,7 @@ func _set_draw_pile_target_positions(instantly_move = false):
 func _set_hand_pile_target_positions():
 	for i in _hand_pile.size():
 		var card_ui = _hand_pile[i]
-		card_ui.move_to_front()
+		card_ui.move_to_front.call_deferred()
 		var hand_ratio = 0.5
 		if _hand_pile.size() > 1:
 			hand_ratio = float(i) / float(_hand_pile.size() - 1)
@@ -342,7 +342,7 @@ func _reset_hand_pile_z_index():
 	for i in _hand_pile.size():
 		var card_ui = _hand_pile[i]
 		card_ui.z_index = 1000 + i
-		card_ui.move_to_front()
+		card_ui.move_to_front.call_deferred()
 		if card_ui.mouse_is_hovering:
 			card_ui.z_index = 2000 + i
 		if card_ui.is_clicked:
