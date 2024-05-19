@@ -531,14 +531,14 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="CanvasLayer/Butttons/VBoxContainer/Timer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "DRAW"
+text = "VOID"
 label_settings = SubResource("LabelSettings_uhyp7")
 
 [node name="TimeLabel" type="Label" parent="CanvasLayer/Butttons/VBoxContainer/Timer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-text = "20"
+text = "00"
 label_settings = SubResource("LabelSettings_ihr14")
 horizontal_alignment = 1
 

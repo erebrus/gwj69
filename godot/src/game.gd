@@ -8,7 +8,7 @@ const PLAYER_SCENE = preload("res://src/player/player.tscn")
 @export var draw_cooldown:float = 2
 @export var start_void_cooldown:float = 15
 @export var void_cooldown_progression=.5
-
+@export var do_void_progression := true
 
 var checkpoint: CheckPoint
 
@@ -20,7 +20,7 @@ var checkpoint: CheckPoint
 @onready var sfx_button: AudioStreamPlayer = $CanvasLayer/sfx_button
 @onready var card_selection: SelectionUI = $"CanvasLayer/Card Selection"
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
-@onready var game_menu: Panel = $CanvasLayer/GameMenu
+@onready var game_menu: PanelContainer = $CanvasLayer/GameMenu
 @onready var void_cooldown = start_void_cooldown
 var camera_mode:= Types.CameraMode.TRACKING
 var world:World:
@@ -38,6 +38,7 @@ func _ready():
 	world = $BaseWorld
 	
 	%DieButton.pressed.connect(_on_die_pressed)
+	game_menu.void_toggled.connect(toggle_void_progression)
 	
 	Events.card_error.connect(_on_card_error)
 	Events.player_died.connect(_on_player_died)
@@ -122,10 +123,11 @@ func reset_void_cooldown():
 func reload_level():
 	if Globals.get_current_world_scene():
 		await get_tree().process_frame #necessary to let the discard finish
-		load_world(Globals.get_current_world_scene())
+		load_world(Globals.get_current_world_scene())		
 		#Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
 		card_engine.reset()
 		card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
+		Globals.player_alive = false
 		#Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)
 		reset_void_cooldown()
 		
@@ -137,12 +139,18 @@ func _on_card_error():
 	sfx_err.play()
 
 func _process(delta: float) -> void:
-	%TimeLabel.text = "%02.f" % draw_timer.time_left
+	if void_timer.is_stopped():
+		%TimeLabel.text = "--"
+	else:
+		%TimeLabel.text = "%02.f" % void_timer.time_left
+	
 	if Globals.game_mode != Types.GameMode.SelectionScreen:
 		if Input.is_action_just_pressed("skip_intro") and world.can_skip:
 			Events.level_ended.emit()
 		if Input.is_action_just_pressed("toggle_void"):
 			toggle_void()
+		if Input.is_action_just_pressed("toggle_void_progression"):
+			game_menu.toggle_void()
 		if Input.is_action_just_pressed("restart_level"):
 			reload_level()
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -247,6 +255,7 @@ func _on_card_selection_card_selected(card: CardUI) -> void:
 	card_engine.add_card(card.card_data)	
 	card_engine.reset()
 	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)	
+	Globals.player_alive = false
 	#Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)	
 	anim_player.play("FadeIn")
 
@@ -274,6 +283,9 @@ func _on_void_timer_timeout() -> void:
 	void_timer.start()
 
 func _on_reshuffled_discard_pile():
+	if not do_void_progression:
+		Logger.info("Not doing void cooldown progression")
+		return 
 	void_cooldown *= void_cooldown_progression
 	Logger.info("New void cooldown is %.2fs" % void_cooldown)
 
@@ -288,3 +300,10 @@ func toggle_void():
 		void_cooldown = 0 
 		void_timer.stop()
 		Logger.info("Stopped void timer.")
+
+
+func toggle_void_progression():
+	do_void_progression = not do_void_progression
+	Logger.info("void timer cooldown progression: %s" % do_void_progression)
+	if not do_void_progression:
+		void_cooldown = start_void_cooldown

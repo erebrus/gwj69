@@ -63,8 +63,8 @@ func get_start_position()->Vector2:
 	return $StartPosition.position
 
 func get_void_target():
-	if Globals.player_alive:
-		return $Player.global_position
+	if Globals.player and Globals.player_alive:
+		return Globals.player.global_position
 	if checkpoint != null:
 		return checkpoint.global_position
 	else:
