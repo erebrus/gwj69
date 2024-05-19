@@ -20,7 +20,7 @@ var checkpoint: CheckPoint
 @onready var sfx_button: AudioStreamPlayer = $CanvasLayer/sfx_button
 @onready var card_selection: SelectionUI = $"CanvasLayer/Card Selection"
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
-@onready var game_menu: Panel = $CanvasLayer/GameMenu
+@onready var game_menu: PanelContainer = $CanvasLayer/GameMenu
 @onready var void_cooldown = start_void_cooldown
 var camera_mode:= Types.CameraMode.TRACKING
 var world:World:
@@ -38,6 +38,7 @@ func _ready():
 	world = $BaseWorld
 	
 	%DieButton.pressed.connect(_on_die_pressed)
+	game_menu.void_toggled.connect(toggle_void_progression)
 	
 	Events.card_error.connect(_on_card_error)
 	Events.player_died.connect(_on_player_died)
@@ -148,7 +149,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("toggle_void"):
 			toggle_void()
 		if Input.is_action_just_pressed("toggle_void_progression"):
-			toggle_void_progression()
+			game_menu.toggle_void()
 		if Input.is_action_just_pressed("restart_level"):
 			reload_level()
 	if Input.is_action_just_pressed("ui_cancel"):
