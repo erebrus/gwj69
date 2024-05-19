@@ -123,10 +123,11 @@ func reset_void_cooldown():
 func reload_level():
 	if Globals.get_current_world_scene():
 		await get_tree().process_frame #necessary to let the discard finish
-		load_world(Globals.get_current_world_scene())
+		load_world(Globals.get_current_world_scene())		
 		#Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
 		card_engine.reset()
 		card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
+		Globals.player_alive = false
 		#Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)
 		reset_void_cooldown()
 		
@@ -254,6 +255,7 @@ func _on_card_selection_card_selected(card: CardUI) -> void:
 	card_engine.add_card(card.card_data)	
 	card_engine.reset()
 	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)	
+	Globals.player_alive = false
 	#Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)	
 	anim_player.play("FadeIn")
 
