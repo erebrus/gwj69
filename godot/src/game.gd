@@ -44,7 +44,7 @@ func _ready():
 	Events.end_card_collected.connect(_on_end_card_collected)
 	Events.card_played.connect(_on_card_played)
 	Events.restart_requested.connect(func(): reload_level())
-	Events.close_menu_requested.connect(func(): game_menu.hide())
+	Events.close_menu_requested.connect(func(): game_menu.hide(); get_tree().paused = false)
 	Events.global_void_expanded.connect(func(): $sfx_void.play())
 	card_engine.card_drawn.connect(_on_card_drawn)
 	if draw_cooldown > 0:
@@ -222,4 +222,5 @@ func _on_card_selection_card_selected(card: CardUI) -> void:
 
 func toggle_menu():
 	game_menu.visible = not game_menu.visible
+	get_tree().paused = game_menu.visible
 
