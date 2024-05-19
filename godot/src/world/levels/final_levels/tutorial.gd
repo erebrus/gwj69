@@ -100,10 +100,9 @@ func do_tutorial_step_kludge(index: int) -> void:
 		TutorialStep.VoidSpreads:
 			pass
 		TutorialStep.BeatEnd:
+			Globals.current_deck= Globals.starting_deck.duplicate()
 			card_engine.reset_and_set_to_starting_deck()
 		
-
-
 func _on_timer_timeout() -> void:
 	pass # Replace with function body.
 	
