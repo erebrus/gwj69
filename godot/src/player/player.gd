@@ -220,11 +220,11 @@ func _do_death(animation):
 	animation_player.play(animation)
 	#TODO we should prevent the player from playing cards until animation is over
 	await animation_player.animation_finished	
-	Events.player_died.emit()
+	
 	if get_parent():
 		get_parent().remove_child(self)	
-	
 	remove_log()
+	Events.player_died.emit()	
 	queue_free()
 
 func _can_walk()->bool:

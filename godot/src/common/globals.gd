@@ -30,7 +30,8 @@ var current_deck: Dictionary = {
 	"block3_step": 2,
 	"block3_row": 2,
 	"block4": 2,
-	"moving_block": 2,
+	#"moving_block": 2,
+	"checkpoint":1
 }
 
 var player_alive:bool = false

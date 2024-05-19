@@ -2,7 +2,7 @@ extends Node
 
 
 const CHECKPOINT_SCENE = preload("res://src/world/blocks/checkpoint_block.tscn")
-
+const PLAYER_SCENE = preload("res://src/player/player.tscn")
 @export var card_play_cooldown_impact=1
 @export var scale_factor:int = 2
 @export var draw_cooldown:float = 2
@@ -24,7 +24,7 @@ var world:World:
 		world.scale=Vector2.ONE*scale_factor
 
 var debug_mode:bool = false
-
+var player_needed:= true
 func _ready():
 
 	load_world(Globals.get_current_world_scene())
@@ -56,6 +56,9 @@ func load_world(scene:PackedScene):
 		add_child(new_world)
 		move_child(new_world, 0)
 		world = new_world
+		player_needed = true
+		card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
+		
 	
 
 func create_checkpoint():
@@ -68,21 +71,32 @@ func create_checkpoint():
 	
 	world.place_checkpoint(checkpoint)
 	
+func spawn_player():
+	if player_needed:
+		var player = PLAYER_SCENE.instantiate()
+		player.tilemap = Globals.tilemap		
+		
+		if checkpoint:
+			player.set_state(checkpoint.world_state.player)
+		else:
+			player.position = world.get_start_position()	
+		world.add_child(player)
+		player_needed = false
+		world._on_player_respawned(player)		
 
 func restore_checkpoint():
 	if checkpoint == null:
 		# TODO: should we create a checkpoint with the start-level state?
 		await get_tree().process_frame #necessary to let the discard finish
 		get_tree().reload_current_scene()
-	else:
+	elif checkpoint:
 		checkpoint.get_parent().remove_child(checkpoint)
 		load_world(Globals.get_current_world_scene())
 		card_engine.set_state(checkpoint.card_engine_state)
+		card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
 		world.set_state(checkpoint.world_state)
-		
-		# TODO: add respawn card
-		
 		world.place_checkpoint(checkpoint)
+		return
 	
 
 func _on_card_error():
@@ -90,6 +104,9 @@ func _on_card_error():
 
 func _process(delta: float) -> void:
 	%TimeLabel.text = "%02.f" % draw_timer.time_left
+	if Input.is_action_just_pressed("skip_intro") and world.can_skip:
+		_on_level_ended()
+		
 	if Input.is_action_just_pressed("restart_level"):
 		if Globals.get_current_world_scene():
 			get_tree().reload_current_scene()
@@ -117,7 +134,8 @@ func _on_card_drawn():
 		draw_timer.start()
 	
 func _on_player_died():
-	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
+	await get_tree().process_frame
+	restore_checkpoint()
 	
 
 func _on_music_finished() -> void:
@@ -128,7 +146,7 @@ func _on_checkpoint_requested() -> void:
 	create_checkpoint()
 	
 func _on_spawn_requested() -> void:
-	restore_checkpoint()
+	spawn_player()
 	
 
 func _on_end_card_collected():
@@ -143,6 +161,9 @@ func _on_game_ended():
 
 
 func _on_level_ended():
+	player_needed = true
+	Globals.player_alive=false
+	Globals.player.queue_free()
 	Globals.current_level_idx += 1
 	var next_world := Globals.get_current_world_scene()
 	if next_world:
@@ -157,6 +178,7 @@ func _on_die_pressed():
 	if Globals.player_alive:
 		sfx_button.play()
 		Events.die_requested.emit()
+		
 
 func toggle_camera():
 	if not Globals.player_alive:
@@ -178,6 +200,8 @@ func _on_card_played(card:CardUI):
 
 func _on_card_selection_card_selected(card: CardUI) -> void:
 	var next_world := Globals.get_current_world_scene()
+	card_engine.reset()
 	load_world(next_world)	
 	anim_player.play("FadeIn")
 	
+

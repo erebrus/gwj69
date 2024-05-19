@@ -12,7 +12,11 @@ func _ready() -> void:
 	Events.card_played.connect(_on_card_played)
 	hand_pile_updated.connect(_on_hand_pile_updated)
 	draw(hand_start_size, false)
-
+	
+func reset():
+	_reset_card_collection()
+	draw(hand_start_size, false)
+	
 func draw(num_cards := 1, manual:=true):
 	for i in range(num_cards):
 		super.draw(1, manual)

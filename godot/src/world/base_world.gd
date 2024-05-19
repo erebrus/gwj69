@@ -1,6 +1,7 @@
 extends Node
 class_name World
 
+@export var can_skip:bool = false
 
 @onready var platforms_layer: PlatformsLayer = $PlatformsLayer
 @onready var voids_layer: VoidLayer = $VoidLayer
@@ -15,8 +16,8 @@ func _ready():
 	Events.player_respawned.connect(_on_player_respawned)
 	Events.camera_toggled.connect(_on_camera_toggled)
 	Events.new_void_cell.connect(_on_new_void_cell)
-	await get_tree().process_frame
-	_on_player_respawned($Player)
+	$Camera.position = $StartPosition.position
+	
 	
 
 func get_state() -> Dictionary:
@@ -30,7 +31,8 @@ func get_state() -> Dictionary:
 func set_state(state: Dictionary) -> void:
 	platforms_layer.set_state(state.platforms)
 	voids_layer.set_state(state.voids)
-	$Player.set_state(state.player)
+	camera.position = state.player.position
+	
 	
 
 func place_checkpoint(value: CheckPoint):
@@ -56,3 +58,6 @@ func _on_camera_toggled(mode:Types.CameraMode):
 		
 func _on_new_void_cell(coords:Vector2i):
 	platforms_layer.clear_blocks_at(coords)
+
+func get_start_position()->Vector2:
+	return $StartPosition.position
