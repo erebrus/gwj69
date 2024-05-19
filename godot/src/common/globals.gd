@@ -57,7 +57,7 @@ var player: Player
 
 func _ready():
 	_init_logger()
-	start_game() #TODO move to start screen
+
 	
 func start_game():
 	current_deck = starting_deck.duplicate()
@@ -86,7 +86,8 @@ func init_music():
 	tween.tween_property(%Music,"volume_db",0,2)
 	
 
-func play_music(node):
+func play_music(node:AudioStreamPlayer):
+	node.volume_db = 0
 	node.play()
 	
 func fade_music(node:AudioStreamPlayer, duration := 1):
