@@ -22,7 +22,7 @@ var levels:Array[PackedScene] =[
 	]
 var current_level_idx=0
 
-var current_deck: Dictionary = {
+var starting_deck: Dictionary = {
 	"jump": 3,
 	"turn_around": 3,
 	"speed": 1, 
@@ -34,6 +34,8 @@ var current_deck: Dictionary = {
 	#"moving_block": 2,
 	"checkpoint":1
 }
+
+var current_deck: Dictionary = {}
 
 var player_alive:bool = false
 
@@ -52,7 +54,10 @@ var player: Player
 
 func _ready():
 	_init_logger()
-
+	start_game() #TODO move to start screen
+	
+func start_game():
+	current_deck = starting_deck.duplicate()
 
 func _init_logger():
 	Logger.set_logger_level(Logger.LOG_LEVEL_INFO)
@@ -87,3 +92,4 @@ func get_current_world_scene()->PackedScene:
 
 func is_last_level()->bool:
 	return current_level_idx + 1 == levels.size()
+
