@@ -28,6 +28,18 @@ func enable() -> void:
 	$AnimationPlayer.play("Create")
 	tilemap.collision_enabled = true
 	
+func get_state() -> Dictionary:
+	return {
+		"scene": scene_file_path,
+		"position": position,
+		"rotation": rotation,
+		"tilemap_data": tilemap.tile_map_data
+	}
+
+func set_state(state: Dictionary) -> void:
+	super.set_state(state)
+	tilemap.tile_map_data = state.tilemap_data
+	
 
 func get_collision_shapes() -> Array[CollisionPolygon2D]:
 	var shapes: Array[CollisionPolygon2D]
