@@ -225,5 +225,17 @@ func _on_card_selection_card_selected(card: CardUI) -> void:
 
 func toggle_menu():
 	game_menu.visible = not game_menu.visible
+	await get_tree().process_frame
 	get_tree().paused = game_menu.visible
 
+
+
+func _on_help_button_pressed() -> void:
+	sfx_button.play()
+	$CanvasLayer/MarginContainer2/HelpPanel.show()	
+	get_tree().paused = true
+
+
+func _on_menu_button_pressed() -> void:
+	sfx_button.play()
+	toggle_menu()
