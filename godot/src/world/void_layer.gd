@@ -10,6 +10,7 @@ const SIDES: Array[TileSet.CellNeighbor] = [
 ]
 
 const VOID_ID:= 1
+const VOID_TERRAIN:=1
 const TTL=3
 const SPAWN_MOD = 2
 
@@ -72,7 +73,7 @@ func _spawn_void(cell: Vector2i, direction: Vector2i) ->  Array[Vector2i]:
 	
 	cell_counters[cell]=TTL
 	
-	set_cell(cell, VOID_ID, Vector2i.ZERO, 0)
+	set_cells_terrain_connect([cell], 0, VOID_TERRAIN)
 	Events.new_void_cell.emit(cell)
 	
 	if _has_empty_sides(cell):

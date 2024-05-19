@@ -23,7 +23,7 @@ var levels:Array[PackedScene] =[
 var current_level_idx=0
 
 var starting_deck: Dictionary = {
-	"jump": 3,
+	"jump": 2,
 	"turn_around": 2,
 	"speed": 1, 
 	"block1": 3,
