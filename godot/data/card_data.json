@@ -1,6 +1,6 @@
 [
   {
-	"nice_name": "Space Jump",
+	"nice_name": "jump",
 	"display_name": "Space Jump",
 	"description": "Give your prophet ability to get over twice as bigger obstacle next time.",
 	"cost": 0,
@@ -11,7 +11,7 @@
 	"traits":{}
   },
   {
-	"nice_name": "Leave the void behind",
+	"nice_name": "speed",
 	"display_name": "Run beyond the Void",
 	"description": "Make your prophet run faster.",
 	"cost": 0,
@@ -22,7 +22,7 @@
 	"traits":{}
   },
 {
-	"nice_name": "Turn around",
+	"nice_name": "turn_around",
 	"display_name": "Don't look back",
 	"description": "Turn your prophet around.",
 	"cost": 0,
@@ -33,7 +33,7 @@
 	"traits":{}
   },
 {
-	"nice_name": "The abyss will gaze back into you",
+	"nice_name": "spawn",
 	"display_name": "The Abyss Look Back",
 	"description": "Give your prophet the second chance to fulfil their mission.",
 	"cost": 0,
@@ -44,7 +44,7 @@
 	"traits":{"ONE_USE":true}
   },
   {
-	"nice_name": "Miracle of creation",
+	"nice_name": "block1",
 	"display_name": "One will stay",
 	"description": "Create one simple block.",
 	"cost": 0,
@@ -56,7 +56,7 @@
 	"traits":{}
   },
   {
-	"nice_name": "Two is better than one",
+	"nice_name": "block2",
 	"display_name": "The power of two",
 	"description": "Create 2 simple blocks in the pictured pattern.",
 	"cost": 0,
@@ -68,7 +68,7 @@
 	"traits":{}
   },
   {
-	"nice_name": "Three is a lucky number",
+	"nice_name": "block3_step",
 	"display_name": "Three for luck",
 	"description": "Create 3 simple blocks in a pictured pattern.",
 	"cost": 0,
@@ -80,7 +80,7 @@
 	"traits":{}
   },
   {
-	"nice_name": "3 blocks in a row",
+	"nice_name": "block3_row",
 	"display_name": "Three for luck",
 	"description": "Create 3 simple blocks in a pictured pattern.",
 	"cost": 0,
@@ -92,7 +92,7 @@
 	"traits":{}
   },
   {
-	"nice_name": "4 blocks",
+	"nice_name": "block4",
 	"display_name": "On all four sides",
 	"description": "Create 4 simple blocks in the pictured pattern.",
 	"cost": 0,
@@ -104,7 +104,7 @@
 	"traits":{}
   },
   {
-	"nice_name": "moving block",
+	"nice_name": "moving_block",
 	"display_name": "moving block",
 	"description": "Invention of laziness.",
 	"cost": 0,
@@ -116,7 +116,7 @@
 	"traits":{}
   },
 {
-	"nice_name": "Stairway to Heaven",
+	"nice_name": "stairs",
 	"display_name": "Stairway to Heaven",
 	"description": "Is there an elevator?",
 	"cost": 0,
