@@ -16,8 +16,9 @@ tile_map_data = PackedByteArray("AAAVAC4AAgACAAAAAAAVAC0AAgADAAAAAAAWAC0AAgAFAAA
 [node name="VoidLayer" parent="." index="1"]
 tile_map_data = PackedByteArray("AAAEAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAGAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAIAAEAAQAAAAAAAAAZAAEAAQAAAAAAAAAYAAEAAQAAAAAAAAAWAAEAAQAAAAAAAAAXAAEAAQAAAAAAAAAVAAEAAQAAAAAAAAAUAAEAAQAAAAAAAAATAAEAAQAAAAAAAAASAAEAAQAAAAAAAAARAAEAAQAAAAAAAAAQAAEAAQAAAAAAAAAPAAEAAQAAAAAAAAAOAAEAAQAAAAAAAAANAAEAAQAAAAAAAAAMAAEAAQAAAAAAAAALAAEAAQAAAAAAAAAKAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAAgABYAAQAAAAAAAAAlABUAAQAAAAAAAAAkABUAAQAAAAAAAAAnABUAAQAAAAAAAAAmABUAAQAAAAAAAAAoABQAAQAAAAAAAAApABQAAQAAAAAAAAA=")
 
-[node name="Player" parent="." index="2" node_paths=PackedStringArray("tilemap")]
-tilemap = NodePath("../PlatformsLayer")
+[node name="BlockGrid" parent="." index="4" node_paths=PackedStringArray("platform_layer", "camera")]
+platform_layer = NodePath("../PlatformsLayer")
+camera = NodePath("../Camera")
 
 [node name="DebugInfo" type="VBoxContainer" parent="." index="6"]
 anchors_preset = 3
@@ -61,5 +62,3 @@ vertical_alignment = 2
 enabled = false
 start_cell = Vector2i(10, 10)
 end_cell = Vector2i(20, 20)
-
-[editable path="Player"]
