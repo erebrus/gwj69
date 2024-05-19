@@ -61,3 +61,12 @@ func _on_new_void_cell(coords:Vector2i):
 
 func get_start_position()->Vector2:
 	return $StartPosition.position
+
+func get_void_target():
+	if Globals.player_alive:
+		return $Player.global_position
+	if checkpoint != null:
+		return checkpoint.global_position
+	else:
+		return get_start_position()
+	
