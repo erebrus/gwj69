@@ -35,6 +35,7 @@ func _ready() -> void:
 
 func show_card_selection() -> void:
 	visible = true
+	await get_tree().create_timer(3.0).timeout
 	choose_button.disabled = true
 	Globals.game_mode = Types.GameMode.SelectionScreen
 	load_json_path()

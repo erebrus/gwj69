@@ -24,7 +24,7 @@
 [ext_resource type="Shader" path="res://src/world/levels/level_screenspace_distortion_shader.tres.gdshader" id="19_m6cv3"]
 [ext_resource type="PackedScene" uid="uid://chsanmrigp4n" path="res://src/ui/game_menu.tscn" id="21_qnhfn"]
 [ext_resource type="Script" path="res://src/cards/draw_pile_label.gd" id="21_uneno"]
-[ext_resource type="PackedScene" path="res://src/ui/help_panel.tscn" id="22_nehuc"]
+[ext_resource type="PackedScene" uid="uid://c8wd3tm3aybu3" path="res://src/ui/help_panel.tscn" id="22_nehuc"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57o5p"]
 streams_count = 3
@@ -142,7 +142,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_1xsm3"]
 resource_name = "FadeOut"
-length = 2.0
+length = 4.0
 step = 0.1
 tracks/0/type = "bezier"
 tracks/0/imported = false
@@ -153,7 +153,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -1.7, -0.0172188, 0.25, 0),
-"times": PackedFloat32Array(0, 2)
+"times": PackedFloat32Array(0, 4)
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -162,7 +162,7 @@ tracks/1/path = NodePath("CanvasLayer/FadeRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
@@ -174,7 +174,7 @@ tracks/2/path = NodePath("CanvasLayer/ScreenSpaceVfx:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.9, 2),
+"times": PackedFloat32Array(0, 3.9, 4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, true, false]
@@ -188,7 +188,7 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0.75, -0.25, 0, 0.25, 0, 0.75, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 2)
+"times": PackedFloat32Array(0, 4)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -199,7 +199,7 @@ tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0, -0.25, 0, 1.5, 0.0019292, 10, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 2)
+"times": PackedFloat32Array(0, 4)
 }
 
 [sub_resource type="Animation" id="Animation_jijd3"]
