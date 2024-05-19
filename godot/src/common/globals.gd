@@ -59,7 +59,11 @@ func _ready():
 	
 func start_game():
 	current_deck = starting_deck.duplicate()
+	get_tree().change_scene_to_file("res://src/game.tscn")
 
+func win_game():
+	get_tree().change_scene_to_file("res://src/win_screen.tscn")
+	
 func _init_logger():
 	Logger.set_logger_level(Logger.LOG_LEVEL_INFO)
 	Logger.set_logger_format(Logger.LOG_FORMAT_MORE)

@@ -24,7 +24,6 @@ func play():
 	placeholder.placed.connect(_on_block_placed)
 	placeholder.dismissed.connect(_on_card_dismissed)
 	
-	# TODO: should add to world instead of tilemap?
 	Globals.tilemap.add_child(placeholder)
 	Events.block_requested.emit(placeholder)
 	

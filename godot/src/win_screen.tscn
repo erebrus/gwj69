@@ -1,0 +1,136 @@
+[gd_scene load_steps=23 format=4 uid="uid://dls5c3igs44b3"]
+
+[ext_resource type="Script" path="res://src/win_screen.gd" id="1_1prml"]
+[ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="1_eccrg"]
+[ext_resource type="Texture2D" uid="uid://ddjalj3w4768c" path="res://assets/gfx/title/you-win.png" id="2_kvhi7"]
+[ext_resource type="Theme" uid="uid://cr6hvivwpbv0r" path="res://src/cards/card_theme.tres" id="2_ubsdm"]
+[ext_resource type="FontFile" uid="uid://bjm5umnjo1est" path="res://assets/fonts/font-menu-UI-20px-portable_tube/PortableTube.ttf" id="4_m1rrc"]
+[ext_resource type="AudioStream" uid="uid://11677xre8rtj" path="res://assets/sfx/UI_Button_1.wav" id="6_wkrdg"]
+[ext_resource type="AudioStream" uid="uid://lbuwv71j81k" path="res://assets/sfx/UI_Button_2.wav" id="7_6segk"]
+[ext_resource type="AudioStream" uid="uid://b72gxnfohwqko" path="res://assets/sfx/UI_Button_3.wav" id="8_uphsn"]
+[ext_resource type="AudioStream" uid="uid://dnpkscn0nhp0u" path="res://assets/sfx/UI_Button_4.wav" id="9_xf6yd"]
+[ext_resource type="AudioStream" uid="uid://756p0df31i8" path="res://assets/music/Main Background Music_2.mp3" id="10_rm01l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yuxf7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gi7d8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_srx67"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1e6gx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qsl1p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8xehc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ro5ui"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_46tdq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6bk3l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u6l25"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dbbft"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_iojin"]
+streams_count = 4
+stream_0/stream = ExtResource("6_wkrdg")
+stream_1/stream = ExtResource("7_6segk")
+stream_2/stream = ExtResource("8_uphsn")
+stream_3/stream = ExtResource("9_xf6yd")
+
+[node name="WinScreen" type="Node"]
+script = ExtResource("1_1prml")
+
+[node name="Background" type="TileMapLayer" parent="."]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAXABEAAQAAAAAAAAATAA4AAQAAAAAAAABDAAYAAQAAAAAAAABLABAAAQAAAAAAAABHAB8AAQAAAAAAAAA9ACgAAQAAAAAAAAAJABgAAQAAAAAAAAARACMAAQAAAAAAAAA8ACgAAQAAAAAAAAA8ACkAAQAAAAAAAAAXACkAAQAAAAAAAAAqACkAAQAAAAAAAAAGAAQAAQAAAAAAAAAyACMAAQAAAAAAAAA6ABEAAQAAAAAAAAA6ABIAAQAAAAAAAAA6ABMAAQAAAAAAAAA6ABQAAQAAAAAAAAA7ABIAAQAAAAAAAAA7ABMAAQAAAAAAAAA5ABQAAQAAAAAAAAA5ABUAAQAAAAAAAAAeAAMAAQAAAAAAAAA2AAIAAQAAAAAAAAAeABoAAQAAAAAAAAAdABsAAQAAAAAAAAACACwAAQAAAAAAAABPACgAAQAAAAAAAAA=")
+tile_set = ExtResource("1_eccrg")
+navigation_enabled = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_ubsdm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+
+[node name="Sprite2D" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_kvhi7")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "erebrus - Lead Programmer
+angelalb - Programmer
+Skwid - Lead Artist
+Thom13made - Music/SFX
+Rita.PressAnyKey - Designer
+Forager - Juicer"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(184, 0)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_fonts/font = ExtResource("4_m1rrc")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yuxf7")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_gi7d8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_srx67")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_1e6gx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_qsl1p")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_8xehc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ro5ui")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_46tdq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6bk3l")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_u6l25")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dbbft")
+text = "Start Game"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_fonts/font = ExtResource("4_m1rrc")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yuxf7")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_gi7d8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_srx67")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_1e6gx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_qsl1p")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_8xehc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ro5ui")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_46tdq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6bk3l")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_u6l25")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dbbft")
+text = "Quit"
+
+[node name="sfx_button" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_iojin")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_rm01l")
+autoplay = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

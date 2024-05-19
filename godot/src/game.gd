@@ -169,7 +169,10 @@ func _on_end_card_collected():
 
 func _on_game_ended():	
 	Logger.info("You won!")
-	get_tree().quit() #TODO do ending
+	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property($music,"volume_db",-60,.5)
+	await tween.finished
+	Globals.win_game()
 
 
 func _on_level_ended():
