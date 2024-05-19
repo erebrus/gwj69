@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bn01q40wbxihj"]
+[gd_scene load_steps=14 format=3 uid="uid://bn01q40wbxihj"]
 
 [ext_resource type="Script" path="res://src/world/blocks/placeholder/placeholder.gd" id="1_uflqj"]
 [ext_resource type="AudioStream" uid="uid://cmod4gmqqe0u8" path="res://assets/sfx/Build_Block_1.wav" id="2_le35q"]
@@ -7,6 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://cunjxbujlmad6" path="res://assets/sfx/Build_GroupBlocks_1.wav" id="5_tl6i3"]
 [ext_resource type="AudioStream" uid="uid://eemkwr1s5ddw" path="res://assets/sfx/Build_GroupBlocks_2.wav" id="6_ncslk"]
 [ext_resource type="AudioStream" uid="uid://cdwd2qe8q3ogj" path="res://assets/sfx/Build_GroupBlocks_3.wav" id="7_0gbg8"]
+[ext_resource type="AudioStream" uid="uid://cbjvypec266rn" path="res://assets/sfx/Card_Error_1.wav" id="8_hdijv"]
+[ext_resource type="AudioStream" uid="uid://cdrvh6ccbcxb6" path="res://assets/sfx/Card_Error_2.wav" id="9_kbtw8"]
+[ext_resource type="AudioStream" uid="uid://cfufwtelrqb1g" path="res://assets/sfx/Card_Error_3.wav" id="10_bsbks"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vc5fi"]
 streams_count = 3
@@ -19,6 +22,12 @@ streams_count = 3
 stream_0/stream = ExtResource("5_tl6i3")
 stream_1/stream = ExtResource("6_ncslk")
 stream_2/stream = ExtResource("7_0gbg8")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jrcjh"]
+streams_count = 3
+stream_0/stream = ExtResource("8_hdijv")
+stream_1/stream = ExtResource("9_kbtw8")
+stream_2/stream = ExtResource("10_bsbks")
 
 [node name="Placeholder" type="Node2D"]
 script = ExtResource("1_uflqj")
@@ -34,6 +43,9 @@ stream = SubResource("AudioStreamRandomizer_vc5fi")
 
 [node name="build_group_block" type="AudioStreamPlayer2D" parent="sfx"]
 stream = SubResource("AudioStreamRandomizer_2snsp")
+
+[node name="error" type="AudioStreamPlayer2D" parent="sfx"]
+stream = SubResource("AudioStreamRandomizer_jrcjh")
 
 [connection signal="finished" from="sfx/build_block" to="." method="_on_build_block_finished"]
 [connection signal="finished" from="sfx/build_group_block" to="." method="_on_build_group_block_finished"]

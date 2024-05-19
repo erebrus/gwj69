@@ -11,6 +11,7 @@ var block: BaseBlock
 
 @onready var build_block_sfx: AudioStreamPlayer2D = $sfx/build_block
 @onready var build_group_block_sfx: AudioStreamPlayer2D = $sfx/build_group_block
+@onready var error_sfx: AudioStreamPlayer2D = $sfx/error
 
 var is_valid:=true:
 	set(value):
@@ -60,7 +61,7 @@ func _physics_process(_delta:float) -> void:
 
 func _place() -> void:
 	if not is_valid:
-		# TODO: play invalid placement ui sound
+		error_sfx.play()
 		return
 	
 	Logger.info("block placed")
