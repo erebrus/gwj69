@@ -1,9 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5dt8nmriyclv"]
+[gd_scene load_steps=24 format=3 uid="uid://b5dt8nmriyclv"]
 
 [ext_resource type="Script" path="res://src/cards/card_selection.gd" id="1_r37i3"]
 [ext_resource type="Theme" path="res://src/cards/card_theme.tres" id="1_s6l6k"]
 [ext_resource type="PackedScene" uid="uid://bihds314832jb" path="res://src/cards/selection_card_ui.tscn" id="2_1s48p"]
 [ext_resource type="FontFile" uid="uid://dq6ireqn37l7t" path="res://assets/fonts/font-Card-title-16px-pixelplay/pixelplay.ttf" id="3_xrjo6"]
+[ext_resource type="AudioStream" uid="uid://crwjgjhu38pn1" path="res://assets/sfx/Pick_card_1.wav" id="5_0xwgs"]
+[ext_resource type="AudioStream" uid="uid://sg0kqprseln4" path="res://assets/sfx/Pick_card_2.wav" id="6_tc1g3"]
+[ext_resource type="AudioStream" uid="uid://bp8l7ujc4aacs" path="res://assets/sfx/Pick_card_3.wav" id="7_kp1q7"]
+[ext_resource type="AudioStream" uid="uid://11677xre8rtj" path="res://assets/sfx/UI_Button_1.wav" id="8_fm3e4"]
+[ext_resource type="AudioStream" uid="uid://lbuwv71j81k" path="res://assets/sfx/UI_Button_2.wav" id="9_yu61c"]
+[ext_resource type="AudioStream" uid="uid://b72gxnfohwqko" path="res://assets/sfx/UI_Button_3.wav" id="10_lwkb5"]
+[ext_resource type="AudioStream" uid="uid://dnpkscn0nhp0u" path="res://assets/sfx/UI_Button_4.wav" id="11_4qaxg"]
+[ext_resource type="AudioStream" uid="uid://dcl0kxuysu8nf" path="res://assets/sfx/Renew_Pile_1.wav" id="12_ijtkq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4821"]
 bg_color = Color(0.552941, 0.4, 0.294118, 1)
@@ -422,6 +430,20 @@ tracks/15/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 4, 5)
 }
+tracks/16/type = "method"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath(".")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_draw_cards"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_e2m8e"]
 resource_name = "Hide2"
@@ -626,6 +648,23 @@ _data = {
 "Show": SubResource("Animation_2f0m4")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xql0j"]
+streams_count = 3
+stream_0/stream = ExtResource("5_0xwgs")
+stream_1/stream = ExtResource("6_tc1g3")
+stream_2/stream = ExtResource("7_kp1q7")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bb488"]
+streams_count = 4
+stream_0/stream = ExtResource("8_fm3e4")
+stream_1/stream = ExtResource("9_yu61c")
+stream_2/stream = ExtResource("10_lwkb5")
+stream_3/stream = ExtResource("11_4qaxg")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hcdk7"]
+streams_count = 1
+stream_0/stream = ExtResource("12_ijtkq")
+
 [node name="Card Selection" type="MarginContainer"]
 modulate = Color(1, 1, 1, 0)
 z_index = 500
@@ -708,6 +747,20 @@ text = "CONFIRM"
 libraries = {
 "": SubResource("AnimationLibrary_3yxku")
 }
+
+[node name="sfx" type="Node2D" parent="."]
+
+[node name="PickCard" type="AudioStreamPlayer2D" parent="sfx"]
+stream = SubResource("AudioStreamRandomizer_xql0j")
+bus = &"Sfx"
+
+[node name="Confirm" type="AudioStreamPlayer2D" parent="sfx"]
+stream = SubResource("AudioStreamRandomizer_bb488")
+bus = &"Sfx"
+
+[node name="CardDraw" type="AudioStreamPlayer2D" parent="sfx"]
+stream = SubResource("AudioStreamRandomizer_hcdk7")
+bus = &"Sfx"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/ButtonMargins/Button" to="." method="_on_button_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

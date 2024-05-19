@@ -6,6 +6,9 @@ class_name SelectionUI
 @onready var card_control: Control = $MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/CardContainer
 @onready var choose_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/ButtonMargins/Button
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var pick_card_sfx: AudioStreamPlayer2D  = $sfx/PickCard
+@onready var confirm_sfx: AudioStreamPlayer2D = $sfx/Confirm
+@onready var card_draw_sfx: AudioStreamPlayer2D = $sfx/CardDraw
 
 @export var cards: Array[CustomCardUI]
 @export var total_options = 3
@@ -87,12 +90,13 @@ func create_card(json_data):
 	card_ui.connect("card_dropped", _on_card_dropped)
 	var target_pos: Vector2 = Vector2(1280/2 - 275 + card_control.get_child_count() * x_offset, 0.0)
 	#card_ui.target_position.x = 1280/2 - 275 + card_control.get_child_count() * x_offset
-	card_ui.create_tween().tween_property(card_ui, "target_position",target_pos, 1.0).set_ease(Tween.EASE_OUT).set_delay(4)
+	card_ui.create_tween().tween_property(card_ui, "target_position",target_pos, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_delay(4)
 	card_ui.can_do_selection = false
 	card_control.add_child(card_ui)
 	return card_ui
 	
 func _on_card_selected(card: CardUI):
+	pick_card_sfx.play()
 	if card.is_clicked:
 		selected_card = card
 		choose_button.disabled = false
@@ -107,11 +111,13 @@ func _on_card_selected(card: CardUI):
 		#choose_button.disabled = true
 
 func _on_card_dropped(card: CardUI):
+	pick_card_sfx.play()
 	if card == selected_card:
 		selected_card = null
 		choose_button.disabled = true
 
 func _on_button_pressed() -> void:
+	confirm_sfx.play()
 	var card_name = selected_card.card_data.nice_name
 	if card_name in Globals.current_deck:
 		Globals.current_deck[card_name] += 1
@@ -148,4 +154,6 @@ func _disable_selected_card():
 	if selected_card != null:
 		selected_card.is_clicked = false
 		selected_card.card_dropped.emit(selected_card)
-	
+
+func _draw_cards():
+	card_draw_sfx.play()
