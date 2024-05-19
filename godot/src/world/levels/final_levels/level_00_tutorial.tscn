@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=4 uid="uid://nwq2ivq1qui"]
+[gd_scene load_steps=5 format=4 uid="uid://nwq2ivq1qui"]
 
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="1_yetrq"]
+[ext_resource type="Script" path="res://src/world/levels/final_levels/level_00_tutorial.gd" id="2_htkoh"]
 [ext_resource type="PackedScene" uid="uid://bhlc28vc4kusx" path="res://src/world/end_card.tscn" id="3_f40h2"]
+[ext_resource type="PackedScene" uid="uid://b7wg0y71h4qy8" path="res://src/ui/tutorial_canvas.tscn" id="4_2057p"]
 
 [node name="BaseWorld" instance=ExtResource("1_yetrq")]
+script = ExtResource("2_htkoh")
+tutorial_scene = ExtResource("4_2057p")
 can_skip = true
 
 [node name="PlatformsLayer" parent="." index="0"]

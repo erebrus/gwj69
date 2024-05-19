@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://la2i5x8emihl"]
+[gd_scene load_steps=4 format=3 uid="uid://c7uhhgribx0o3"]
 
 [ext_resource type="PackedScene" uid="uid://dplodxgtbever" path="res://src/world/blocks/tilemap_block.tscn" id="1_s41nh"]
 [ext_resource type="Shader" uid="uid://dc002tl5nvki8" path="res://src/world/blocks/tile_shader.tres" id="2_4vvew"]

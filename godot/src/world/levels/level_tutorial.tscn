@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=4 uid="uid://cemjaqjsjl6er"]
+[gd_scene load_steps=3 format=4 uid="uid://cqsd8qtt6ms3k"]
 
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="1_0h8eo"]
 [ext_resource type="PackedScene" uid="uid://bhlc28vc4kusx" path="res://src/world/end_card.tscn" id="3_uugx3"]
@@ -20,6 +20,8 @@ limit_top = -50
 limit_right = 1700
 limit_bottom = 900
 editor_draw_limits = true
+pan_keyboard = false
+drag = false
 
 [node name="BlockGrid" parent="." index="5" node_paths=PackedStringArray("platform_layer", "camera")]
 platform_layer = NodePath("../PlatformsLayer")

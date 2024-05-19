@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://d01tdhr8nupat"]
+[gd_scene load_steps=13 format=3 uid="uid://d01tdhr8nupat"]
 
 [ext_resource type="Script" path="res://src/cards/custom_card_ui.gd" id="1_b2mpq"]
-[ext_resource type="Theme" uid="uid://cr6hvivwpbv0r" path="res://src/cards/card_theme.tres" id="1_p8h4s"]
+[ext_resource type="Theme" uid="uid://bw3dixp8o2jlc" path="res://src/cards/card_theme.tres" id="1_p8h4s"]
 [ext_resource type="PackedScene" uid="uid://crhnx3pau8rue" path="res://src/cards/card_glow.tscn" id="3_dgtta"]
 [ext_resource type="Texture2D" uid="uid://cepvm4s2rykou" path="res://assets/gfx/ui/card-border.png" id="3_vps5k"]
 [ext_resource type="Texture2D" uid="uid://njkyw8722nij" path="res://assets/gfx/ui/card-back.png" id="4_f0x2i"]
@@ -16,9 +16,6 @@ shader_parameter/glow_color = Color(0.118108, 0.402233, 0.409386, 1)
 shader_parameter/emission_f = 20.0
 shader_parameter/position_delta = Vector2(0, 0)
 shader_parameter/alpha_f = 0.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_5xm57"]
-line_spacing = 0.0
 
 [sub_resource type="Animation" id="Animation_kk7xi"]
 resource_name = "Draw"

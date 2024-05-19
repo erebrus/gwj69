@@ -1,0 +1,387 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7wg0y71h4qy8"]
+
+[ext_resource type="Script" path="res://src/world/levels/final_levels/tutorial.gd" id="1_7ggp5"]
+[ext_resource type="Script" path="res://src/world/levels/final_levels/timed_step.gd" id="2_7l3fx"]
+[ext_resource type="PackedScene" uid="uid://cissnhm8hgmk4" path="res://src/ui/tutorial_dialog.tscn" id="3_ju5qn"]
+[ext_resource type="Script" path="res://src/world/levels/final_levels/tutorial_step.gd" id="4_ddcp2"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Tutorial" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_7ggp5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Step List" type="CenterContainer" parent="Tutorial/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Intro" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("2_7l3fx")
+time_to_wait = 4.0
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/Intro" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/Intro/MarginContainer/Control/MarginContainer" index="0"]
+text = "“Hear Me, prophet! 
+The Void is destroying our world. 
+I will lead you to the sacred shrine. Light the Fire of My power!
+I will save you. I will conquer the Void.”"
+
+[node name="PlayCharacter" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+can_skip = false
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/PlayCharacter" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/PlayCharacter/MarginContainer/Control/MarginContainer" index="0"]
+text = "Play The Abyss Look Back to spawn the prophet."
+
+[node name="ProphetWill" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/ProphetWill" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/ProphetWill/MarginContainer/Control/MarginContainer" index="0"]
+text = "The prophet will go to fulfil Your will. Such an independent fellow."
+
+[node name="Camera" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/Camera" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/Camera/MarginContainer/Control/MarginContainer" index="0"]
+text = "You can observe the world with Your own eyes. (Move camera with WASD)
+
+But you should look after Your prophet (Switch camera mode on Space button)"
+
+[node name="SimpleObstacles" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("2_7l3fx")
+time_to_wait = 5.0
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/SimpleObstacles" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/SimpleObstacles/MarginContainer/Control/MarginContainer" index="0"]
+text = "The prophet can overcome simple obstacles on its own. "
+
+[node name="UseDivinePowers" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("2_7l3fx")
+time_to_wait = 5.0
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/UseDivinePowers" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/UseDivinePowers/MarginContainer/Control/MarginContainer" index="0"]
+text = "You can use Your divine powers to help the prophet to beat more difficult challenges on its way."
+
+[node name="DrawFirstHand" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+can_skip = false
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/DrawFirstHand" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -37.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/DrawFirstHand/MarginContainer/Control/MarginContainer" index="0"]
+text = "Your powers are great, but unpredictable. Look, what You can do now. (RMB on the draw pile to take a card on the hand).
+Beware, creating a new Miracle makes the Void feels you, and it starts to grow! (Void will grow each time you draw a card)."
+
+[node name="NavigateToHandUseCard" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/NavigateToHandUseCard" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/NavigateToHandUseCard/MarginContainer/Control/MarginContainer" index="0"]
+text = "To use Your power, proclaim the Miracle. (Navigate to the card in the hand and RMB to use it. LMB to cancel and return card to the hand)."
+
+[node name="Play2block" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/Play2block" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -42.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/Play2block/MarginContainer/Control/MarginContainer" index="0"]
+text = "You can change the world itself! (To create a block of solid ground, play the card with the block from the hand, then choose a place you want it to be placed. Rotate block with mouse wheel.)
+
+Created ground won’t last long, place them wisely!"
+
+[node name="USeSpecialPowers" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+can_skip = false
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/USeSpecialPowers" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/USeSpecialPowers/MarginContainer/Control/MarginContainer" index="0"]
+text = "You can also give some of Your divine powers to the prophet. (To give the prophet new abilities, play a special card from the hand. The effect will be temporary)"
+
+[node name="Checkpoint" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+can_skip = false
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/Checkpoint" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/Checkpoint/MarginContainer/Control/MarginContainer" index="0"]
+text = "The world can changes quickly, but You will remember. (To create a checkpoint, play the checkpoint card from the hand. Remember, that you can’t place blocks near the checkpoint, so place it wisely!)"
+
+[node name="DieUseRespawn" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/DieUseRespawn" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -43.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/DieUseRespawn/MarginContainer/Control/MarginContainer" index="0"]
+text = "Ah, the Void presence. Anything that comes to it, will be destroyed. So, sometimes the little prophet doesn’t make it. But with Your power, it can try again. Many times more. (Play the respawn card, it will load the level from the last check point. To restart level, use R button.)"
+
+[node name="AvoidVoid" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/AvoidVoid" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/AvoidVoid/MarginContainer/Control/MarginContainer" index="0"]
+text = "Avoid the void along the way (swirling portals). They will lead to your destruction."
+
+[node name="UseDeathIfStuck" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/UseDeathIfStuck" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/UseDeathIfStuck/MarginContainer/Control/MarginContainer" index="0"]
+text = "The prophet will fulfill any of Your will. It will die for You. Literally. (If you get stuck or just want to start again from last checkpoint, use the Death button.)"
+
+[node name="ShuffleExplanation" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/ShuffleExplanation" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -45.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/ShuffleExplanation/MarginContainer/Control/MarginContainer" index="0"]
+text = "Don’t be afraid to use Your power, o mighty God! They will be full again. (When you used all cards from the draw pile, discard pile will reshuffle and the new draw pile will be made. Note, that some cards can be used only once and won’t go to the discard pile, but will be destroyed instead)."
+
+[node name="VoidSpreads" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/VoidSpreads" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/VoidSpreads/MarginContainer/Control/MarginContainer" index="0"]
+text = "Void never sleeps. It will destroy all on its way, so hurry up! (After you spend some time on the level, the Void will spreads towards the prophet. It will destroy all the blocks and the prophet, so be quicker than it.)"
+
+[node name="BeatEnd" type="Control" parent="Tutorial/MarginContainer/Step List"]
+layout_mode = 2
+script = ExtResource("4_ddcp2")
+
+[node name="MarginContainer" parent="Tutorial/MarginContainer/Step List/BeatEnd" instance=ExtResource("3_ju5qn")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -242.0
+offset_top = -253.0
+offset_right = 177.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="Label" parent="Tutorial/MarginContainer/Step List/BeatEnd/MarginContainer/Control/MarginContainer" index="0"]
+text = "Find the way to lead Your prophet through the shattered world. (Find end-level card and play it to finish the level)."
+
+[node name="Timer" type="Timer" parent="Tutorial"]
+
+[connection signal="timeout" from="Tutorial/Timer" to="Tutorial" method="_on_timer_timeout"]
+
+[editable path="Tutorial/MarginContainer/Step List/Intro/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/PlayCharacter/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/ProphetWill/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/Camera/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/SimpleObstacles/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/UseDivinePowers/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/DrawFirstHand/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/NavigateToHandUseCard/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/Play2block/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/USeSpecialPowers/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/Checkpoint/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/DieUseRespawn/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/AvoidVoid/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/UseDeathIfStuck/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/ShuffleExplanation/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/VoidSpreads/MarginContainer"]
+[editable path="Tutorial/MarginContainer/Step List/BeatEnd/MarginContainer"]

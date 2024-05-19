@@ -78,6 +78,7 @@ func _card_can_be_interacted_with():
 		# check for cards in hand
 		if parent.is_card_ui_in_hand(self):
 			valid = parent.is_hand_enabled() and not parent.is_any_card_ui_clicked()
+			print(valid)
 		# check for cards in dropzone
 		var dropzone = parent.get_card_dropzone(self)
 		if dropzone:

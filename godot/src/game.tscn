@@ -24,7 +24,7 @@
 [ext_resource type="Shader" path="res://src/world/levels/level_screenspace_distortion_shader.tres.gdshader" id="19_m6cv3"]
 [ext_resource type="PackedScene" uid="uid://chsanmrigp4n" path="res://src/ui/game_menu.tscn" id="21_qnhfn"]
 [ext_resource type="Script" path="res://src/cards/draw_pile_label.gd" id="21_uneno"]
-[ext_resource type="PackedScene" uid="uid://c8wd3tm3aybu3" path="res://src/ui/help_panel.tscn" id="22_nehuc"]
+[ext_resource type="PackedScene" path="res://src/ui/help_panel.tscn" id="22_nehuc"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57o5p"]
 streams_count = 3
