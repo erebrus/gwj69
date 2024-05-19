@@ -37,6 +37,7 @@ var current_cell:Vector2i:
 		current_cell = value
 		terrain_detection_debug.current_cell = current_cell
 var cell_map_string:String =""
+var follow_target: Node2D = null
 
 var paused:bool = false
 var is_spawning:bool = true
@@ -79,6 +80,11 @@ func _physics_process(delta):
 	if paused or is_spawning:
 		return
 	boost_duration = clamp(boost_duration-delta, 0, 100) 
+	
+	if follow_target != null:
+		global_position = follow_target.global_position
+		return
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -357,8 +363,12 @@ func set_rt_target(node_path:String):
 func get_rt()->RemoteTransform2D:
 	return $RemoteTransform2D
 
-func capture(target: Vector2) -> void:
-	pass
+func capture(target: Node2D) -> void:
+	animation_player.play("idle")
+	follow_target = target
 	
+
 func release() -> void:
-	pass
+	follow_target = null
+	current_cell = tilemap.local_to_map(position-Vector2(0,1))
+	

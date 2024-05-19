@@ -10,7 +10,7 @@ const PLAYER_SCENE = preload("res://src/player/player.tscn")
 var checkpoint: CheckPoint
 
 @onready var sfx_err: AudioStreamPlayer = $CanvasLayer/sfx_err
-@onready var card_engine: Control = $CanvasLayer/CardEngine
+@onready var card_engine: CardPileUI = $CanvasLayer/CardEngine
 @onready var draw_timer: Timer = $DrawTimer
 @onready var music: AudioStreamPlayer = $music
 @onready var sfx_button: AudioStreamPlayer = $CanvasLayer/sfx_button

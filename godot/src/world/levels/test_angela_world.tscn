@@ -20,6 +20,9 @@ tile_map_data = PackedByteArray("AAAEAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAGAAEAAQAAAAA
 platform_layer = NodePath("../PlatformsLayer")
 camera = NodePath("../Camera")
 
+[node name="StartPosition" parent="." index="5"]
+position = Vector2(90, 148)
+
 [node name="DebugInfo" type="VBoxContainer" parent="." index="6"]
 anchors_preset = 3
 anchor_left = 1.0
@@ -59,6 +62,5 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="TerrainDetectionDebug" parent="." index="7" instance=ExtResource("3_51aro")]
-enabled = false
-start_cell = Vector2i(10, 10)
-end_cell = Vector2i(20, 20)
+start_cell = Vector2i(12, 15)
+end_cell = Vector2i(24, 25)

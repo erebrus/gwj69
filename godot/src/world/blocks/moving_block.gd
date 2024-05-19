@@ -24,6 +24,11 @@ func _ready() -> void:
 	end = slider_layer.map_to_local(end_coords).x
 	
 
+func _exit_tree() -> void:
+	if player != null:
+		player.release()
+	
+
 func _physics_process(delta: float) -> void:
 	if player == null:
 		return
@@ -32,8 +37,8 @@ func _physics_process(delta: float) -> void:
 	
 	if start < end:
 		# go forward
-		tilemap.position.x = min(end - start, tilemap.position.x + movement)
-		if tilemap.position.x >= end - start:
+		tilemap.position.x = min(end - start + 1, tilemap.position.x + movement)
+		if tilemap.position.x >= end - start + 1:
 			_reach_end()
 	
 	if start > end:
@@ -65,7 +70,7 @@ func clear_blocks_at(coords: Vector2i) -> void:
 
 func is_cell_empty(coords: Vector2i) -> bool:
 	var block_offset = tilemap.local_to_map(tilemap.position)
-	var rotated_coords = _get_rotated_coords(coords - block_offset)
+	var rotated_coords = _get_rotated_coords(coords) - block_offset
 	var cell_id = tilemap.get_cell_source_id(rotated_coords)
 	return cell_id == -1 or cell_id == VOID_ID
 	
@@ -83,6 +88,6 @@ func _on_player_entered(body) -> void:
 		return
 	
 	player = body
-	player.capture(player_detector.global_position)
+	player.capture(player_detector)
 	
 	
