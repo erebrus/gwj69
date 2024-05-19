@@ -167,7 +167,7 @@ offset_bottom = -37.0
 alignment = 1
 
 [node name="Label" parent="Tutorial/MarginContainer/Step List/DrawFirstHand/MarginContainer/Control/MarginContainer" index="0"]
-text = "Your powers are great, but unpredictable. Look, what You can do now. (RMB on the draw pile to take a card on the hand).
+text = "Your powers are great, but unpredictable. Look, what You can do now. (LMB on the draw pile to take a card on the hand).
 Beware, creating a new Miracle makes the Void feels you, and it starts to grow! (Void will grow each time you draw a card)."
 
 [node name="NavigateToHandUseCard" type="Control" parent="Tutorial/MarginContainer/Step List"]

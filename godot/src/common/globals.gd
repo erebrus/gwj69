@@ -37,7 +37,7 @@ var starting_deck: Dictionary = {
 }
 
 var current_deck: Dictionary = {}
-
+var showed_tutorial: bool = false
 var player_alive:bool = false
 
 var game_mode: Types.GameMode:
