@@ -21,6 +21,7 @@ var x_offset = 200.0
 var card_database := [] # an array of JSON `Card` data
 var excluded_cards := ["end_game", "end_level", "spawn"]
 var selected_card: CardUI
+var confirmed_card: CardUI
 
 var hiding_cards = false
 
@@ -118,6 +119,7 @@ func _on_card_dropped(card: CardUI):
 
 func _on_button_pressed() -> void:
 	confirm_sfx.play()
+	confirmed_card = selected_card
 	var card_name = selected_card.card_data.nice_name
 	if card_name in Globals.current_deck:
 		Globals.current_deck[card_name] += 1
@@ -141,7 +143,7 @@ func _on_button_pressed() -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Hide2" or anim_name == "Hide":
 		var children = card_control.get_children()
-		card_selected.emit(selected_card)
+		card_selected.emit(confirmed_card)
 		for child in children:
 			child.queue_free()
 		visible = false

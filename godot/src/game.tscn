@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://duka5rbd4bxdc"]
+[gd_scene load_steps=43 format=3 uid="uid://duka5rbd4bxdc"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_k8n5x"]
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="2_euer7"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://dc61ldek8njt6" path="res://assets/sfx/Void_movement_2.wav" id="18_sshy1"]
 [ext_resource type="AudioStream" uid="uid://ydfhklw5pqxa" path="res://assets/sfx/Void_movement_3.wav" id="19_ieyke"]
 [ext_resource type="Shader" path="res://src/world/levels/level_screenspace_distortion_shader.tres.gdshader" id="19_m6cv3"]
+[ext_resource type="Script" path="res://src/cards/draw_pile_label.gd" id="21_uneno"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57o5p"]
 streams_count = 3
@@ -412,7 +413,53 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1, 2, 3)
+"times": PackedFloat32Array(0, 1, 2.7, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ScreenSpaceVfx:material:shader_parameter/angleFactor")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/ScreenSpaceVfx:material:shader_parameter/effectRadius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.7, -0.25, 0, 0.25, 0, 0.7, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 4)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/ScreenSpaceVfx:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/FadeRect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ioik2"]
@@ -574,6 +621,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="DrawPileLabel" type="Label" parent="CanvasLayer"]
+offset_left = 48.0
+offset_top = 440.0
+offset_right = 183.0
+offset_bottom = 463.0
+theme_override_fonts/font = ExtResource("8_ajtl3")
+text = "+1 Stairway to Heaven"
+horizontal_alignment = 1
+script = ExtResource("21_uneno")
+
 [node name="DrawTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -593,5 +650,6 @@ libraries = {
 }
 
 [connection signal="card_selected" from="CanvasLayer/Card Selection" to="." method="_on_card_selection_card_selected"]
+[connection signal="card_selected" from="CanvasLayer/Card Selection" to="CanvasLayer/DrawPileLabel" method="_on_card_selection_card_selected"]
 [connection signal="timeout" from="DrawTimer" to="." method="_on_draw_timer_timeout"]
 [connection signal="finished" from="music" to="." method="_on_music_finished"]
