@@ -74,3 +74,9 @@ func _on_card_clicked():
 	$sfx_pick.play()
 func _on_card_played(card:CardUI):
 	$sfx_play.play()
+
+func add_card(card:CustomCardUIData):
+	if not card.nice_name in Globals.current_deck:
+		Globals.current_deck[card.nice_name] = 0
+	Globals.current_deck[card.nice_name] = Globals.current_deck[card.nice_name] + 1
+	load_json_path()

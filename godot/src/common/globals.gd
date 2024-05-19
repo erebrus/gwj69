@@ -17,6 +17,7 @@ var levels:Array[PackedScene] =[
 	preload("res://src/world/levels/final_levels/level_00_tutorial.tscn"),
 	preload("res://src/world/levels/final_levels/level_01.tscn"),
 	preload("res://src/world/levels/final_levels/level_02.tscn"),
+	preload("res://src/world/levels/final_levels/level_03.tscn"),
 	#preload("res://src/world/levels/level_03.tscn"),
 	]
 var current_level_idx=0
