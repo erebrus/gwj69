@@ -89,34 +89,33 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("4_7p4ak")
 theme_override_font_sizes/normal_font_size = 16
-text = "Controls
+bbcode_enabled = true
+text = "[color=#fc7755]Controls[/color]
 
 R - restart current level from the start
 
-Camera
+[color=#fc7755]Camera[/color]
 AWSD - Move camera.
 Space - Toggle camera mode.
 
-Deck
-Hand
+[color=#fc7755]Hand[/color]
 RMB - Pickup/play a card.
 LMB - Cancel chosen card.
 Q/E, Mouse Wheel - Rotate a block from chosen card.
 
-Draw pile
+[color=#fc7755]Draw pile[/color]
 RMB - Draw a card.
 
-Game rules
+[color=#fc7755]Game rules[/color]
 Your goal is to lead the prophet to the win-level card.
 The prophet moves automatically, if there is a proper path ahead. 
 Play cards to edit the level or give new abilities to the prophet.
 
-Checkpoints
+[color=#fc7755]Checkpoints[/color]
 To save your level progress, play a checkpoint card.
 When the Prophet dies, the level restarts from the last checkpoint.
 
-UI
-
+[color=#fc7755]UI[/color]
 Timer - Seconds until the void expands
 Help - This button
 Menu - Show in game menu. You can toggle easy mode there.
