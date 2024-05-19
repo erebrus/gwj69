@@ -136,7 +136,11 @@ func _on_card_error():
 	sfx_err.play()
 
 func _process(delta: float) -> void:
-	%TimeLabel.text = "%02.f" % draw_timer.time_left
+	if void_timer.is_stopped():
+		%TimeLabel.text = "--"
+	else:
+		%TimeLabel.text = "%02.f" % void_timer.time_left
+	
 	if Globals.game_mode != Types.GameMode.SelectionScreen:
 		if Input.is_action_just_pressed("skip_intro") and world.can_skip:
 			_on_level_ended()
