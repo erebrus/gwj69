@@ -5,6 +5,9 @@ const VOID_ID := VoidLayer.VOID_ID
 
 @onready var tilemap: TileMapLayer = $TileMapLayer
 @onready var half_size = tilemap.tile_set.tile_size / 2
+@onready var particles: GPUParticles2D = $GPUParticles2D
+@export var min_particles_emitted = 10
+@export var max_particles_emitted = 30
 
 func _process(delta: float) -> void:
 	var parent = get_parent()
@@ -13,12 +16,16 @@ func _process(delta: float) -> void:
 
 func disable() -> void:
 	super.disable()
+	var cell_count = len(tilemap.get_used_cells())
+	particles.amount = lerp(min_particles_emitted, max_particles_emitted, clamp(cell_count / 15.0, 0.0, 1.0))
 	$AnimationPlayer.play("Place")
 	tilemap.collision_enabled = false
 	
 
 func enable() -> void:
 	super.enable()
+	print(global_rotation_degrees)
+	particles.global_rotation_degrees = 0.0
 	$AnimationPlayer.play("Create")
 	tilemap.collision_enabled = true
 	

@@ -38,11 +38,9 @@ func _input(event):
 	if event is InputEventMouseMotion and activated:
 		var mouse_pos: Vector2 = get_global_mouse_position()
 		var offset = (mouse_pos - global_position) / 2.0
-		print(offset)
 		var viewport_rect: Vector2 = get_viewport_rect().size
 		var circle_pos: Vector2 = Vector2(.5, .5) + Vector2((offset.x) / viewport_rect.x, (offset.y) / viewport_rect.y)
 		material.set_shader_parameter("circle_position", circle_pos)
-		#print(circle_pos)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Appear":

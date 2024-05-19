@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://5e3x03bfbswm"]
+[gd_scene load_steps=7 format=3 uid="uid://bgbdhghms855v"]
 
 [ext_resource type="PackedScene" uid="uid://dplodxgtbever" path="res://src/world/blocks/tilemap_block.tscn" id="1_p8poh"]
 [ext_resource type="Shader" uid="uid://dc002tl5nvki8" path="res://src/world/blocks/tile_shader.tres" id="2_2f8l6"]
@@ -20,6 +20,8 @@ size = Vector2(4, 4)
 [node name="TilemapBlock" instance=ExtResource("1_p8poh")]
 script = ExtResource("2_2fhgt")
 speed = 50.0
+min_particles_emitted = 10
+max_particles_emitted = 30
 
 [node name="SliderLayer" type="TileMapLayer" parent="." index="1"]
 tile_map_data = PackedByteArray(0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0)
@@ -40,3 +42,6 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/RotationPoint/PlayerDetection" index="0"]
 shape = SubResource("RectangleShape2D_j43ga")
+
+[node name="GPUParticles2D" parent="." index="3"]
+position = Vector2(-12, -2)

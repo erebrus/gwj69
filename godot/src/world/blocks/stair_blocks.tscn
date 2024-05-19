@@ -13,7 +13,13 @@ shader_parameter/disintegration_factor = 1.0
 shader_parameter/alpha_f = 0.0
 
 [node name="TilemapBlock" instance=ExtResource("1_j0uyr")]
+min_particles_emitted = 10
+max_particles_emitted = 30
 
 [node name="TileMapLayer" parent="." index="1"]
 material = SubResource("ShaderMaterial_chmff")
 tile_map_data = PackedByteArray("AAAAAAAAAgAEAAAAAAABAP//AgAEAAAAAAACAP7/AgACAAAAAAABAAAAAgACAAAAAAACAAAAAgAGAAAAAAACAP//AgAHAAAAAAD+/wAAAgAHAAAAAAD//wAAAgAEAAAAAAAAAP//AgACAAAAAAD/////AgAHAAAAAAAAAP7/AgAHAAAAAAABAP7/AgAEAAAAAAACAP3/AgABAAAAAAABAP3/AgAHAAAAAAACAPz/AgAHAAAAAAA=")
+
+[node name="GPUParticles2D" parent="." index="2"]
+position = Vector2(7, -3)
+randomness = 0.3

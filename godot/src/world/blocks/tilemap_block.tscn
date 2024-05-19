@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dplodxgtbever"]
+[gd_scene load_steps=14 format=3 uid="uid://dplodxgtbever"]
 
 [ext_resource type="PackedScene" uid="uid://k1ey4vvnmd50" path="res://src/world/blocks/base_block.tscn" id="1_m6ekt"]
 [ext_resource type="Script" path="res://src/world/blocks/tilemap_block.gd" id="2_mj4o5"]
@@ -52,6 +52,18 @@ tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../GPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_uobuy"]
@@ -162,6 +174,18 @@ tracks/3/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../GPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tgb86"]
 _data = {
@@ -180,8 +204,30 @@ shader_parameter/emission_f = 1.0
 shader_parameter/disintegration_factor = 1.0
 shader_parameter/alpha_f = 0.0
 
+[sub_resource type="Curve" id="Curve_q6cj6"]
+_data = [Vector2(0.00735294, 0), 0.0, 0.0, 0, 0, Vector2(0.341912, 0.715257), 0.0, 0.0, 0, 0, Vector2(0.665441, 0.705438), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_5hhj0"]
+curve = SubResource("Curve_q6cj6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_msg48"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 8, 1)
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 98, 0)
+scale_max = 2.0
+color = Color(0.552941, 0.4, 0.294118, 1)
+alpha_curve = SubResource("CurveTexture_5hhj0")
+
 [node name="TilemapBlock" instance=ExtResource("1_m6ekt")]
 script = ExtResource("2_mj4o5")
+min_particles_emitted = 10
+max_particles_emitted = 30
 valid_placement_color = Color(0.332737, 0.521018, 0.262603, 1)
 invalid_placement_color = Color(0.749957, 0, 0.12187, 1)
 
@@ -195,3 +241,12 @@ libraries = {
 material = SubResource("ShaderMaterial_o011r")
 tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 2, 0, 1, 0, 1, 0, 0, 0)
 tile_set = ExtResource("3_v2anq")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="2"]
+position = Vector2(3, 2)
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_msg48")
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.81
