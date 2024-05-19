@@ -16,7 +16,7 @@
 	"description": "Make your prophet run faster.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_faster.gd",
-	"image_path": "res://assets/gfx/ui/illustrations/jump-long-card.png",
+	"image_path": "res://assets/gfx/ui/illustrations/speed-card.png",
 	"texture_path": "res://assets/gfx/ui/card-border.png",
 	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
 	"traits":{}
