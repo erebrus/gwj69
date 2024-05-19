@@ -8,7 +8,7 @@ const PLAYER_SCENE = preload("res://src/player/player.tscn")
 @export var draw_cooldown:float = 2
 @export var start_void_cooldown:float = 15
 @export var void_cooldown_progression=.5
-
+@export var do_void_progression := true
 
 var checkpoint: CheckPoint
 
@@ -114,6 +114,7 @@ func restore_checkpoint():
 	
 func reset_void_cooldown():
 	if void_cooldown > 0:
+		void_cooldown = start_void_cooldown
 		void_timer.wait_time = void_cooldown
 		Logger.info("Void cooldown is %.2fs" % void_cooldown)
 		void_timer.start()
@@ -122,10 +123,10 @@ func reload_level():
 	if Globals.get_current_world_scene():
 		await get_tree().process_frame #necessary to let the discard finish
 		load_world(Globals.get_current_world_scene())
-		Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
+		#Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
 		card_engine.reset()
 		card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
-		Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)
+		#Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)
 		reset_void_cooldown()
 		
 	else:
@@ -146,6 +147,8 @@ func _process(delta: float) -> void:
 			_on_level_ended()
 		if Input.is_action_just_pressed("toggle_void"):
 			toggle_void()
+		if Input.is_action_just_pressed("toggle_void_progression"):
+			toggle_void_progression()
 		if Input.is_action_just_pressed("restart_level"):
 			reload_level()
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -203,7 +206,7 @@ func _on_game_ended():
 
 func _on_level_ended():
 	void_timer.stop()
-	Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
+	#Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
 	player_needed = true
 	Globals.player_alive=false
 	if Globals.player:
@@ -250,7 +253,7 @@ func _on_card_selection_card_selected(card: CardUI) -> void:
 	card_engine.add_card(card.card_data)	
 	card_engine.reset()
 	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)	
-	Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)	
+	#Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)	
 	anim_player.play("FadeIn")
 
 func toggle_menu():
@@ -277,6 +280,9 @@ func _on_void_timer_timeout() -> void:
 	void_timer.start()
 
 func _on_reshuffled_discard_pile():
+	if not do_void_progression:
+		Logger.info("Not doing void cooldown progression")
+		return 
 	void_cooldown *= void_cooldown_progression
 	Logger.info("New void cooldown is %.2fs" % void_cooldown)
 
@@ -291,3 +297,10 @@ func toggle_void():
 		void_cooldown = 0 
 		void_timer.stop()
 		Logger.info("Stopped void timer.")
+
+
+func toggle_void_progression():
+	do_void_progression = not do_void_progression
+	Logger.info("void timer cooldown progression: %s" % do_void_progression)
+	if not do_void_progression:
+		void_cooldown = start_void_cooldown
