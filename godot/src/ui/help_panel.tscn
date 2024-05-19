@@ -1,9 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8wd3tm3aybu3"]
+[gd_scene load_steps=22 format=3 uid="uid://c8wd3tm3aybu3"]
 
 [ext_resource type="Texture2D" uid="uid://by5pc7fmuy4ha" path="res://assets/gfx/ui/menu-ui.png" id="1_mh07p"]
 [ext_resource type="FontFile" uid="uid://bjm5umnjo1est" path="res://assets/fonts/font-menu-UI-20px-portable_tube/PortableTube.ttf" id="2_2pmxa"]
 [ext_resource type="Script" path="res://src/ui/help_panel.gd" id="2_sp852"]
 [ext_resource type="FontFile" uid="uid://dq6ireqn37l7t" path="res://assets/fonts/font-Card-title-16px-pixelplay/pixelplay.ttf" id="4_7p4ak"]
+[ext_resource type="AudioStream" uid="uid://11677xre8rtj" path="res://assets/sfx/UI_Button_1.wav" id="5_esql7"]
+[ext_resource type="AudioStream" uid="uid://lbuwv71j81k" path="res://assets/sfx/UI_Button_2.wav" id="6_s60qj"]
+[ext_resource type="AudioStream" uid="uid://b72gxnfohwqko" path="res://assets/sfx/UI_Button_3.wav" id="7_0uwkd"]
+[ext_resource type="AudioStream" uid="uid://dnpkscn0nhp0u" path="res://assets/sfx/UI_Button_4.wav" id="8_v6vo3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h0p28"]
 texture = ExtResource("1_mh07p")
@@ -34,7 +38,15 @@ texture_margin_bottom = 40.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pbysj"]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ewo7d"]
+streams_count = 4
+stream_0/stream = ExtResource("5_esql7")
+stream_1/stream = ExtResource("6_s60qj")
+stream_2/stream = ExtResource("7_0uwkd")
+stream_3/stream = ExtResource("8_v6vo3")
+
 [node name="HelpPanel" type="Panel"]
+process_mode = 3
 custom_minimum_size = Vector2(528, 400)
 anchors_preset = 8
 anchor_left = 0.5
@@ -101,6 +113,9 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_3epxb")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_ccvpf")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8dmi7")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_pbysj")
-text = "Resume Game"
+text = "Close"
+
+[node name="sfx_button" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ewo7d")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://duka5rbd4bxdc"]
+[gd_scene load_steps=45 format=3 uid="uid://duka5rbd4bxdc"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_k8n5x"]
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="2_euer7"]
@@ -25,6 +25,7 @@
 [ext_resource type="Shader" path="res://src/world/levels/level_screenspace_distortion_shader.tres.gdshader" id="19_m6cv3"]
 [ext_resource type="PackedScene" uid="uid://chsanmrigp4n" path="res://src/ui/game_menu.tscn" id="21_qnhfn"]
 [ext_resource type="Script" path="res://src/cards/draw_pile_label.gd" id="21_uneno"]
+[ext_resource type="PackedScene" uid="uid://c8wd3tm3aybu3" path="res://src/ui/help_panel.tscn" id="22_nehuc"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57o5p"]
 streams_count = 3
@@ -486,6 +487,7 @@ stream = SubResource("AudioStreamRandomizer_57o5p")
 bus = &"Sfx"
 
 [node name="sfx_button" type="AudioStreamPlayer" parent="CanvasLayer"]
+process_mode = 3
 stream = SubResource("AudioStreamRandomizer_e5lxy")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
@@ -647,6 +649,16 @@ offset_top = -127.0
 offset_right = 132.0
 offset_bottom = 73.0
 
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+offset_left = 376.0
+offset_right = 416.0
+offset_bottom = 40.0
+theme_override_constants/margin_top = 30
+
+[node name="HelpPanel" parent="CanvasLayer/MarginContainer2" instance=ExtResource("22_nehuc")]
+visible = false
+layout_mode = 2
+
 [node name="DrawTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -666,6 +678,8 @@ libraries = {
 "": SubResource("AnimationLibrary_ioik2")
 }
 
+[connection signal="pressed" from="CanvasLayer/Butttons/VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Butttons/VBoxContainer/Menu/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="card_selected" from="CanvasLayer/Card Selection" to="." method="_on_card_selection_card_selected"]
 [connection signal="card_selected" from="CanvasLayer/Card Selection" to="CanvasLayer/DrawPileLabel" method="_on_card_selection_card_selected"]
 [connection signal="timeout" from="DrawTimer" to="." method="_on_draw_timer_timeout"]
