@@ -48,6 +48,22 @@ func _physics_process(delta: float) -> void:
 			_reach_end()
 	
 
+func get_collision_shapes() -> Array[CollisionPolygon2D]:
+	var shapes = super.get_collision_shapes()
+	
+	for cell in slider_layer.get_used_cells():
+		var cell_data = slider_layer.get_cell_tile_data(cell)
+		for layer in 3: # number of layers in tileset (only layer 1 is used for blocks so far)
+			for i in cell_data.get_collision_polygons_count(layer):
+				var collision_polygon = cell_data.get_collision_polygon_points(layer, i) * collision_shape_transform
+				var collision_shape = CollisionPolygon2D.new()
+				collision_shape.polygon = collision_polygon
+				collision_shape.position = Vector2i((2 * cell.x + 1) * half_size.x, (2 * cell.y + 1) * half_size.y)
+				shapes.append(collision_shape)
+	
+	return shapes
+	
+
 func disable() -> void:
 	super.disable()
 	slider_layer.collision_enabled = false
