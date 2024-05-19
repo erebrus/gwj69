@@ -28,7 +28,8 @@ var player_needed:= true
 func _ready():
 
 	load_world(Globals.get_current_world_scene())
-		
+	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
+			
 	world = $BaseWorld
 	
 	%DieButton.pressed.connect(_on_die_pressed)
@@ -57,7 +58,7 @@ func load_world(scene:PackedScene):
 		move_child(new_world, 0)
 		world = new_world
 		player_needed = true
-		card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
+
 		
 	
 
@@ -100,7 +101,9 @@ func restore_checkpoint():
 func reload_level():
 	if Globals.get_current_world_scene():
 		await get_tree().process_frame #necessary to let the discard finish
-		get_tree().reload_current_scene()
+		load_world(Globals.get_current_world_scene())
+		card_engine.reset()
+		card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
 	else:
 		Logger.warn("No level to load.")
 	
