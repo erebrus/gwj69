@@ -1,0 +1,148 @@
+[gd_scene load_steps=21 format=3 uid="uid://chsanmrigp4n"]
+
+[ext_resource type="Texture2D" uid="uid://by5pc7fmuy4ha" path="res://assets/gfx/ui/menu-ui.png" id="1_gs2pb"]
+[ext_resource type="FontFile" uid="uid://bjm5umnjo1est" path="res://assets/fonts/font-menu-UI-20px-portable_tube/PortableTube.ttf" id="2_dv10a"]
+[ext_resource type="Script" path="res://src/ui/game_menu.gd" id="2_xhs56"]
+[ext_resource type="AudioStream" uid="uid://11677xre8rtj" path="res://assets/sfx/UI_Button_1.wav" id="4_3d2yl"]
+[ext_resource type="AudioStream" uid="uid://lbuwv71j81k" path="res://assets/sfx/UI_Button_2.wav" id="5_n76fn"]
+[ext_resource type="AudioStream" uid="uid://b72gxnfohwqko" path="res://assets/sfx/UI_Button_3.wav" id="6_xqf0t"]
+[ext_resource type="AudioStream" uid="uid://dnpkscn0nhp0u" path="res://assets/sfx/UI_Button_4.wav" id="7_qxgw5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nq8ff"]
+texture = ExtResource("1_gs2pb")
+texture_margin_left = 40.0
+texture_margin_top = 40.0
+texture_margin_right = 40.0
+texture_margin_bottom = 40.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lma4g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh4vp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y5srl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8mwhl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k2yeh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3p0er"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_or8io"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcit1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ch13d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x18il"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lif1r"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ghqw6"]
+streams_count = 4
+stream_0/stream = ExtResource("4_3d2yl")
+stream_1/stream = ExtResource("5_n76fn")
+stream_2/stream = ExtResource("6_xqf0t")
+stream_3/stream = ExtResource("7_qxgw5")
+
+[node name="GameMenu" type="Panel"]
+custom_minimum_size = Vector2(264, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1016.0
+offset_bottom = -560.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_nq8ff")
+script = ExtResource("2_xhs56")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dv10a")
+theme_override_font_sizes/font_size = 20
+text = "MENU"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RestartLevelButton" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_fonts/font = ExtResource("2_dv10a")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lma4g")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kh4vp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_y5srl")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_8mwhl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_k2yeh")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3p0er")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_or8io")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_lcit1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ch13d")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x18il")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lif1r")
+text = "Restart Level"
+
+[node name="ResumeGameButton" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_fonts/font = ExtResource("2_dv10a")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lma4g")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kh4vp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_y5srl")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_8mwhl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_k2yeh")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3p0er")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_or8io")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_lcit1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ch13d")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x18il")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lif1r")
+text = "Resume Game"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_fonts/font = ExtResource("2_dv10a")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lma4g")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kh4vp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_y5srl")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_8mwhl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_k2yeh")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3p0er")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_or8io")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_lcit1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ch13d")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x18il")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lif1r")
+text = "Quit"
+
+[node name="sfx_button" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ghqw6")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/VBoxContainer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

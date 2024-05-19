@@ -30,3 +30,6 @@ signal game_ended()
 signal camera_toggled(mode:Types.CameraMode)
 signal global_void_expanded()
 signal new_void_cell(cell: Vector2i)
+
+signal restart_requested()
+signal close_menu_requested()

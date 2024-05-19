@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://duka5rbd4bxdc"]
+[gd_scene load_steps=44 format=3 uid="uid://duka5rbd4bxdc"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_k8n5x"]
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="2_euer7"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://dc61ldek8njt6" path="res://assets/sfx/Void_movement_2.wav" id="18_sshy1"]
 [ext_resource type="AudioStream" uid="uid://ydfhklw5pqxa" path="res://assets/sfx/Void_movement_3.wav" id="19_ieyke"]
 [ext_resource type="Shader" path="res://src/world/levels/level_screenspace_distortion_shader.tres.gdshader" id="19_m6cv3"]
+[ext_resource type="PackedScene" uid="uid://chsanmrigp4n" path="res://src/ui/game_menu.tscn" id="21_qnhfn"]
 [ext_resource type="Script" path="res://src/cards/draw_pile_label.gd" id="21_uneno"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57o5p"]
@@ -633,6 +634,18 @@ theme_override_fonts/font = ExtResource("8_ajtl3")
 text = "+1 Stairway to Heaven"
 horizontal_alignment = 1
 script = ExtResource("21_uneno")
+
+[node name="GameMenu" parent="CanvasLayer" instance=ExtResource("21_qnhfn")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -127.0
+offset_right = 132.0
+offset_bottom = 73.0
 
 [node name="DrawTimer" type="Timer" parent="."]
 one_shot = true

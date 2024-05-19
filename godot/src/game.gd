@@ -16,6 +16,7 @@ var checkpoint: CheckPoint
 @onready var sfx_button: AudioStreamPlayer = $CanvasLayer/sfx_button
 @onready var card_selection: SelectionUI = $"CanvasLayer/Card Selection"
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var game_menu: Panel = $CanvasLayer/GameMenu
 
 var camera_mode:= Types.CameraMode.TRACKING
 var world:World:
@@ -42,6 +43,8 @@ func _ready():
 	Events.game_ended.connect(_on_game_ended)
 	Events.end_card_collected.connect(_on_end_card_collected)
 	Events.card_played.connect(_on_card_played)
+	Events.restart_requested.connect(func(): reload_level())
+	Events.close_menu_requested.connect(func(): game_menu.hide())
 	Events.global_void_expanded.connect(func(): $sfx_void.play())
 	card_engine.card_drawn.connect(_on_card_drawn)
 	if draw_cooldown > 0:
@@ -119,6 +122,8 @@ func _process(delta: float) -> void:
 		
 		if Input.is_action_just_pressed("restart_level"):
 			reload_level()
+	if Input.is_action_just_pressed("ui_cancel"):
+		toggle_menu()
 	if Input.is_action_just_pressed("debug"):
 		debug_mode = not debug_mode
 		if Globals.player and Globals.player_alive:
@@ -215,5 +220,6 @@ func _on_card_selection_card_selected(card: CardUI) -> void:
 	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)	
 	anim_player.play("FadeIn")
 
-	
+func toggle_menu():
+	game_menu.visible = not game_menu.visible
 
