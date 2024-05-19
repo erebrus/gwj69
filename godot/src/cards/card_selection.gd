@@ -11,6 +11,7 @@ class_name SelectionUI
 @onready var card_draw_sfx: AudioStreamPlayer2D = $sfx/CardDraw
 
 @export var cards: Array[CustomCardUI]
+@export var special_options = 1
 @export var total_options = 3
 @export var select_amount = 1
 @export var card_ui_scene: PackedScene
@@ -20,6 +21,7 @@ var x_offset = 200.0
 
 var card_database := [] # an array of JSON `Card` data
 var excluded_cards := ["end_game", "end_level", "spawn"]
+var special_cards := ["stairs", "moving_block", "checkpoint"]
 var selected_card: CardUI
 var confirmed_card: CardUI
 
@@ -66,12 +68,26 @@ func is_excluded_card(json_data):
 func create_cards(total: int)->void:
 	var total_cards = len(card_database)
 	var picked_numbers = []
-	for i in range(total):
-		var random_card_i = randi_range(0, total_cards - 1)
+	for i in range(total - special_options):
+		var random_card_i = randi_range(0, total_cards - special_options - 1)
 		while random_card_i in picked_numbers or is_excluded_card(card_database[random_card_i]):
-			random_card_i = randi_range(0, total_cards - 1)
+			random_card_i = randi_range(0, total_cards - special_options -1)
 		picked_numbers.append(random_card_i)
 		create_card(card_database[random_card_i])
+	
+	for i in range(special_options):
+		var random_card_i = randi_range(0, special_cards.size() - 1)
+		while random_card_i in picked_numbers:
+			random_card_i = randi_range(0, special_cards.size() - 1)
+		picked_numbers.append(random_card_i)
+		create_card(card_database[_get_index_for_card(special_cards[random_card_i])])
+
+func _get_index_for_card(nice_name:String)->int:
+	for i in range(card_database.size()):
+		if card_database[i].nice_name == nice_name:
+			return i
+	Logger.warn("Failed to obtain a special card. Couldn't find %s" % nice_name)
+	return 0
 
 func create_card(json_data):
 	var card_ui = card_ui_scene.instantiate()
