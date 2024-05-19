@@ -1,5 +1,4 @@
 extends CustomCardUIData
-#TODO implement or remove
 
 func can_play():
 	return Globals.player_alive
