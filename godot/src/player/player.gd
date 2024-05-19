@@ -127,7 +127,7 @@ func _physics_process(delta):
 	
 	#if landed
 	if not was_on_floor and is_on_floor():
-		Logger.info("Landing speed = %2f" % last_vy)
+		Logger.trace("Landing speed = %2f" % last_vy)
 		if last_vy > 300:
 			_do_landing()
 		if position.y-last_y_on_floor>DEATH_HEIGHT and last_y_on_floor!=-999:			

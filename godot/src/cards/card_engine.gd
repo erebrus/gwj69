@@ -80,3 +80,7 @@ func add_card(card:CustomCardUIData):
 		Globals.current_deck[card.nice_name] = 0
 	Globals.current_deck[card.nice_name] = Globals.current_deck[card.nice_name] + 1
 	load_json_path()
+
+func _shuffle_discard_on_draw():
+	Events.reshuffled_discard_pile.emit()
+	super._shuffle_discard_on_draw()

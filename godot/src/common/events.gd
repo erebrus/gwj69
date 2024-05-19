@@ -7,6 +7,8 @@ signal card_error()
 signal card_destroy_requested(card:CardUI)
 signal discard_requested()
 signal card_played(card:CardUI)
+signal reshuffled_discard_pile()
+
 
 signal die_requested()
 signal spawn_requested()

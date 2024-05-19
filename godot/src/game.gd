@@ -6,12 +6,16 @@ const PLAYER_SCENE = preload("res://src/player/player.tscn")
 @export var card_play_cooldown_impact=1
 @export var scale_factor:int = 2
 @export var draw_cooldown:float = 2
+@export var void_cooldown:float = 15
+@export var void_cooldown_progression=.5
+
 
 var checkpoint: CheckPoint
 
 @onready var sfx_err: AudioStreamPlayer = $CanvasLayer/sfx_err
 @onready var card_engine: CardPileUI = $CanvasLayer/CardEngine
 @onready var draw_timer: Timer = $DrawTimer
+@onready var void_timer: Timer = $VoidTimer
 @onready var music: AudioStreamPlayer = $music
 @onready var sfx_button: AudioStreamPlayer = $CanvasLayer/sfx_button
 @onready var card_selection: SelectionUI = $"CanvasLayer/Card Selection"
@@ -46,10 +50,15 @@ func _ready():
 	Events.restart_requested.connect(func(): reload_level())
 	Events.close_menu_requested.connect(func(): game_menu.hide(); get_tree().paused = false)
 	Events.global_void_expanded.connect(func(): $sfx_void.play())
+	Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)
 	card_engine.card_drawn.connect(_on_card_drawn)
 	if draw_cooldown > 0:
 		draw_timer.wait_time = draw_cooldown
 		draw_timer.start()
+	if void_cooldown > 0:
+		Logger.info("void cool down set to %fs" % void_cooldown)
+		void_timer.wait_time = void_cooldown
+		void_timer.start()
 		
 	Globals.play_music(Globals.game_music)
 	
@@ -241,3 +250,13 @@ func _on_help_button_pressed() -> void:
 func _on_menu_button_pressed() -> void:
 	sfx_button.play()
 	toggle_menu()
+
+
+func _on_void_timer_timeout() -> void:
+	Events.tick.emit()
+	void_timer.wait_time = void_cooldown
+	void_timer.start()
+
+func _on_reshuffled_discard_pile():
+	void_cooldown *= void_cooldown_progression
+	Logger.info("New void cooldown is %fs" % void_cooldown)
