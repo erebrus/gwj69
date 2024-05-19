@@ -11,8 +11,9 @@ const SIDES: Array[TileSet.CellNeighbor] = [
 
 const VOID_ID:= 1
 const TTL=3
-var border_cells: Array[Vector2i]
+const SPAWN_MOD = 2
 
+var current_spawn = 1
 var cell_counters = {}
 
 func _ready() -> void:
@@ -20,22 +21,18 @@ func _ready() -> void:
 	for cell in get_used_cells():
 		Events.new_void_cell.emit(cell)
 		cell_counters[cell]=TTL
-		if _has_empty_sides(cell):
-			border_cells.append(cell)
-			
+		
 	
 
 func get_state() -> Dictionary:
 	return {
 		"tilemap": tile_map_data,
-		"border_cells": border_cells,
 		"cell_counters": cell_counters
 	}
 	
 
 func set_state(state: Dictionary) -> void:
 	tile_map_data = state.tilemap 
-	border_cells = state.border_cells
 	cell_counters = state.cell_counters
 	
 
@@ -47,28 +44,31 @@ func expand(target: Vector2) -> void:
 		target_coord
 	])
 	
-	var new_border: Array[Vector2i]
-	for cell in border_cells:
-		new_border.append_array(_grow(cell, target_coord))
-	
-	border_cells = new_border
+	for cell in cell_counters.keys():
+		_grow(cell, target_coord)
 	
 
-func _grow(cell: Vector2i, target: Vector2i) -> Array[Vector2i]:
-	var new_border: Array[Vector2i]
-	
-	var n = get_neighbor_cell(cell, _cell_to_target_side(cell, target))
-	if cell_is_empty(n):
-		new_border.append_array(_spawn_void(n))
-	
-	if _has_empty_sides(cell):
-		new_border.append(cell)
-	
-	return new_border
+func _grow(cell: Vector2i, target: Vector2i) -> void:
+	for side in _cell_to_target_sides(cell, target):
+		var n = get_neighbor_cell(cell, side)
+		if cell_is_empty(n):
+			_spawn_void(n, n-cell)
+		
 	
 
-func _spawn_void(cell: Vector2i) ->  Array[Vector2i]:
+func _should_spawn(cell: Vector2i, direction: Vector2i) -> bool:
+	if direction.x != 0 and cell.y % SPAWN_MOD != current_spawn:
+		return false
+	if direction.y != 0 and cell.x % SPAWN_MOD != current_spawn:
+		return false
+	return true
+	
+
+func _spawn_void(cell: Vector2i, direction: Vector2i) ->  Array[Vector2i]:
 	var new_border:  Array[Vector2i]
+	
+	if not _should_spawn(cell, direction):
+		return new_border
 	
 	cell_counters[cell]=TTL
 	
@@ -93,19 +93,25 @@ func cell_is_empty(cell: Vector2i) -> bool:
 	return get_cell_source_id(cell) == -1
 	
 
-func _cell_to_target_side(cell: Vector2i, target: Vector2i) -> TileSet.CellNeighbor:
-	var angle = Vector2(target - cell).angle()
-	var quadrant = roundi(angle / (PI / 2))
+func _cell_to_target_sides(cell: Vector2i, target: Vector2i) -> Array[TileSet.CellNeighbor]:
+	var sides: Array[TileSet.CellNeighbor]
 	
-	match (quadrant):
-		0: return TileSet.CellNeighbor.CELL_NEIGHBOR_RIGHT_SIDE
-		1: return TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE
-		2: return TileSet.CellNeighbor.CELL_NEIGHBOR_LEFT_SIDE
-		-2: return TileSet.CellNeighbor.CELL_NEIGHBOR_LEFT_SIDE
-		-1: return TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_SIDE
+	if cell.x != target.x:
+		if cell.x < target.x:
+			sides.append(TileSet.CellNeighbor.CELL_NEIGHBOR_RIGHT_SIDE)
+		else:
+			sides.append(TileSet.CellNeighbor.CELL_NEIGHBOR_LEFT_SIDE)
+		
 	
-	return  TileSet.CellNeighbor.CELL_NEIGHBOR_RIGHT_SIDE
+	if cell.y != target.y:
+		if cell.y < target.y:
+			sides.append(TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE)
+		else:
+			sides.append(TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_SIDE)
+		
+	return sides
 	
+
 func fade():
 	var to_remove=[]
 	for cell in cell_counters.keys():
@@ -117,11 +123,13 @@ func fade():
 	for cell in to_remove:
 		set_cell(cell,-1)
 		cell_counters.erase(cell)
-			
+	
+
 func _on_tick() -> void:
-	if (Globals.player_alive):
-		expand(Globals.player.position)
-		fade()
-		Events.global_void_expanded.emit()
+	current_spawn = (current_spawn + 1) % SPAWN_MOD
+	var target: Vector2 = get_parent().get_void_target()
+	expand(target)
+	fade()
+	Events.global_void_expanded.emit()
 		
 	
