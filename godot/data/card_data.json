@@ -46,7 +46,7 @@
   {
 	"nice_name": "Miracle of creation",
 	"display_name": "One will stay",
-	"description": "Create one simple block",
+	"description": "Create one simple block.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/block-card.png",
@@ -58,7 +58,7 @@
   {
 	"nice_name": "Two is better than one",
 	"display_name": "The power of two",
-	"description": "Create 2 simple blocks in the pictured pattern",
+	"description": "Create 2 simple blocks in the pictured pattern.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/2-block-h-card.png",
@@ -70,7 +70,7 @@
   {
 	"nice_name": "Three is a lucky number",
 	"display_name": "Three for luck",
-	"description": "Create 3 simple blocks in a pictured pattern",
+	"description": "Create 3 simple blocks in a pictured pattern.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/3-block-l-card.png",
@@ -82,7 +82,7 @@
   {
 	"nice_name": "3 blocks in a row",
 	"display_name": "Three for luck",
-	"description": "Create 3 simple blocks in a pictured pattern",
+	"description": "Create 3 simple blocks in a pictured pattern.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/3-block-h-card.png",
@@ -94,7 +94,7 @@
   {
 	"nice_name": "4 blocks",
 	"display_name": "On all four sides",
-	"description": "Create 4 simple blocks in the pictured pattern",
+	"description": "Create 4 simple blocks in the pictured pattern.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/4-block-t-card.png",
@@ -106,7 +106,7 @@
   {
 	"nice_name": "moving block",
 	"display_name": "moving block",
-	"description": "Invention of laziness",
+	"description": "Invention of laziness.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/moving-block-card.png",
@@ -130,7 +130,7 @@
   {
 	"nice_name": "checkpoint",
 	"display_name": "Save your soul",
-	"description": "Meditate, reflect on your surroundings. If your prophet dies, they can start again from here",
+	"description": "Meditate, reflect on your surroundings. If your prophet dies, they can start again from here.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_checkpoint.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/checkpoint-card.png",
