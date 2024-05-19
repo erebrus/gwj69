@@ -56,7 +56,7 @@ func _ready():
 		draw_timer.wait_time = draw_cooldown
 		draw_timer.start()
 	if void_cooldown > 0:
-		Logger.info("void cool down set to %fs" % void_cooldown)
+		Logger.info("void cool down set to %.2fs" % void_cooldown)
 		void_timer.wait_time = void_cooldown
 		void_timer.start()
 		
@@ -259,4 +259,4 @@ func _on_void_timer_timeout() -> void:
 
 func _on_reshuffled_discard_pile():
 	void_cooldown *= void_cooldown_progression
-	Logger.info("New void cooldown is %fs" % void_cooldown)
+	Logger.info("New void cooldown is %.2fs" % void_cooldown)
