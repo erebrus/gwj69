@@ -42,7 +42,7 @@ func _ready() -> void:
 	Events.jump_requested.connect(_on_jump_requested)
 	Events.checkpoint_requested.connect(_on_checkpoint_requested)
 	card_engine.reset_and_clear_card_collection()
-	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
+	#card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
 	player = get_tree().get_first_node_in_group("player") as Player
 	get_tree().root.get_node("/root/Game")
 	steps.assign(step_list.get_children())
