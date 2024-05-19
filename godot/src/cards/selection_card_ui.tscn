@@ -10,7 +10,7 @@ shader = ExtResource("3_rh4w1")
 shader_parameter/glow_color = Color(0.339379, 0.729487, 0.814181, 1)
 shader_parameter/emission_f = 20.0
 shader_parameter/position_delta = Vector2(0, 0)
-shader_parameter/alpha_f = 1.0
+shader_parameter/alpha_f = 0.0
 
 [node name="CustomCardUi" instance=ExtResource("1_kqjqk")]
 script = ExtResource("2_vfvr5")

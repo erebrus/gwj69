@@ -7,6 +7,7 @@ class_name CustomCardUI
 @onready var one_use: TextureRect = $Frontface/MarginContainer4/VBoxContainer/OneUse
 
 @onready var custom_data: CustomCardUIData = card_data as CustomCardUIData
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 signal card_shuffled_to_draw(card: CardUI)
 signal card_drawn(card: CardUI)
@@ -44,6 +45,7 @@ func set_pile(value: CardPileUI.Piles) -> void:
 			card_discarded.emit(self)
 		elif in_hand():
 			card_drawn.emit(self)
+			anim_player.play("Draw")
 		elif in_draw():
 			card_shuffled_to_draw.emit(self)
 
