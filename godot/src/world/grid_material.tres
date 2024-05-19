@@ -6,7 +6,7 @@
 shader = ExtResource("1_1elkw")
 shader_parameter/pixel_width = 1280.0
 shader_parameter/pixel_height = 760.0
-shader_parameter/grid_color = Color(0.344663, 0.628047, 0.323307, 1)
+shader_parameter/grid_color = Color(0.446143, 0.912735, 0.881778, 1)
 shader_parameter/block_size = Vector2(8, 8)
 shader_parameter/grid_outline_size = 0.4
 shader_parameter/circle_size = 0.0
