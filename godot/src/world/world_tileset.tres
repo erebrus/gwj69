@@ -1,8 +1,11 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://djuv4ds6emddb"]
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://djuv4ds6emddb"]
 
 [ext_resource type="Texture2D" uid="uid://c4vsbf73b7p2b" path="res://assets/gfx/world/void-tiles.png" id="1_5ap2o"]
 [ext_resource type="Texture2D" uid="uid://d2alxofwhssjg" path="res://assets/gfx/world/block-slider.png" id="1_vax00"]
 [ext_resource type="Texture2D" uid="uid://c3e7o0g4fmr8i" path="res://assets/gfx/world/blocks.png" id="3_3ay0i"]
+[ext_resource type="Texture2D" uid="uid://dxd8ohr8mqfca" path="res://assets/gfx/world/void snake.png" id="4_dqr3p"]
+[ext_resource type="Texture2D" uid="uid://dmwc41voytiqb" path="res://assets/gfx/world/void snake2.png" id="5_4pxex"]
+[ext_resource type="Texture2D" uid="uid://3750f3waoral" path="res://assets/gfx/world/void snake3.png" id="6_6vc05"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk6tt"]
 texture = ExtResource("1_vax00")
@@ -84,6 +87,53 @@ texture_region_size = Vector2i(8, 8)
 7:1/0 = 0
 7:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rkjgv"]
+texture = ExtResource("4_dqr3p")
+texture_region_size = Vector2i(8, 8)
+0:0/size_in_atlas = Vector2i(3, 1)
+0:0/animation_mode = 1
+0:0/animation_frame_0/duration = 0.1
+0:0/animation_frame_1/duration = 0.1
+0:0/animation_frame_2/duration = 0.1
+0:0/animation_frame_3/duration = 0.1
+0:0/animation_frame_4/duration = 0.1
+0:0/animation_frame_5/duration = 0.1
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gkme5"]
+texture = ExtResource("5_4pxex")
+texture_region_size = Vector2i(10, 8)
+0:0/animation_mode = 1
+0:0/animation_frame_0/duration = 0.1
+0:0/animation_frame_1/duration = 0.1
+0:0/animation_frame_2/duration = 0.1
+0:0/animation_frame_3/duration = 0.1
+0:0/animation_frame_4/duration = 0.1
+0:0/animation_frame_5/duration = 0.1
+0:0/animation_frame_6/duration = 0.1
+0:0/animation_frame_7/duration = 0.1
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eqtbs"]
+texture = ExtResource("6_6vc05")
+texture_region_size = Vector2i(8, 8)
+0:0/next_alternative_id = 2
+0:0/animation_speed = 10.0
+0:0/animation_mode = 1
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:0/1 = 1
+0:0/1/flip_h = true
+
 [resource]
 tile_size = Vector2i(8, 8)
 physics_layer_0/collision_layer = 2
@@ -100,3 +150,6 @@ terrain_set_0/terrain_1/color = Color(0.501961, 0.439216, 0.752941, 1)
 sources/2 = SubResource("TileSetAtlasSource_y8d3f")
 sources/1 = SubResource("TileSetAtlasSource_o23mx")
 sources/0 = SubResource("TileSetAtlasSource_bk6tt")
+sources/3 = SubResource("TileSetAtlasSource_rkjgv")
+sources/4 = SubResource("TileSetAtlasSource_gkme5")
+sources/5 = SubResource("TileSetAtlasSource_eqtbs")
