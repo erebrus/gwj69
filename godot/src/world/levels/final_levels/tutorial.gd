@@ -75,6 +75,7 @@ func _on_level_ended() -> void:
 	Globals.current_deck= Globals.starting_deck.duplicate()
 	card_engine.reset_and_set_to_starting_deck()
 	create_tween().tween_property(self, "modulate:a", 0.0, 1.0)
+	card_engine.hand_enabled = true
 	await get_tree().create_timer(1.0).timeout
 	queue_free()
 
