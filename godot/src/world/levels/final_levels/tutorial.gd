@@ -8,6 +8,7 @@ var step_i: int = 0
 var card_engine: CardEngine
 var player: Player
 var end_level_card
+var tutorial_areas: Array[TutorialAreaProgress]
 
 var step_dialog: Array[String] = [
 	
@@ -25,7 +26,6 @@ enum TutorialStep {
 	Play2block,
 	USeSpecialPowers,
 	Checkpoint,
-	DieUseRespawn,
 	AvoidVoid,
 	UseDeathIfStuck,
 	ShuffleExplanation,
@@ -41,12 +41,17 @@ func _ready() -> void:
 	Events.card_played.connect(_on_card_played)
 	Events.jump_requested.connect(_on_jump_requested)
 	Events.level_ended.connect(_on_level_ended)
+	Events.block_placed.connect(_on_block_placed)
 	Events.checkpoint_requested.connect(_on_checkpoint_requested)
 	card_engine.reset_and_clear_card_collection()
 	#card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
 	player = get_tree().get_first_node_in_group("player") as Player
 	get_tree().root.get_node("/root/Game")
 	steps.assign(step_list.get_children())
+	tutorial_areas.assign(get_tree().get_nodes_in_group("TutorialArea"))
+	for area in tutorial_areas:
+		area.player_entered_progress_area.connect(_on_player_entered_progress_area)
+		
 	for step in steps:
 		step.tutorial = self
 
@@ -96,8 +101,6 @@ func do_tutorial_step_kludge(index: int) -> void:
 			card_engine.create_card_in_pile("jump", CardPileUI.Piles.hand_pile)
 		TutorialStep.Checkpoint:
 			card_engine.create_card_in_pile("checkpoint", CardPileUI.Piles.hand_pile)
-		TutorialStep.DieUseRespawn:
-			pass
 		TutorialStep.AvoidVoid:
 			pass
 		TutorialStep.UseDeathIfStuck:
@@ -130,4 +133,17 @@ func _on_jump_requested() -> void:
 
 func _on_checkpoint_requested() -> void:
 	if step_i == TutorialStep.Checkpoint:
+		current_step.complete_requested = true
+		
+func _on_block_placed(block) -> void:
+	if step_i == TutorialStep.NavigateToHandUseCard:
+		await get_tree().create_timer(4.0).timeout
+		if step_i == TutorialStep.NavigateToHandUseCard:
+			var cards = card_engine.get_cards_in_pile(CardPileUI.Piles.discard_pile)
+			if len(cards) > 0:
+				card_engine.set_card_pile(cards[0], CardPileUI.Piles.hand_pile)
+		#current_step.complete_requested = true
+
+func _on_player_entered_progress_area(tutorial_area: TutorialAreaProgress) -> void:
+	if step_i == TutorialStep.NavigateToHandUseCard:
 		current_step.complete_requested = true

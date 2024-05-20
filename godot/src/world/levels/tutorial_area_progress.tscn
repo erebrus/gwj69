@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1nh4qn8b42y4"]
+
+[ext_resource type="Script" path="res://src/world/levels/final_levels/player_step_progress.gd" id="1_pphjr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2y1f2"]
+size = Vector2(16, 20)
+
+[node name="TutorialAreaProgress" type="Area2D" groups=["TutorialArea"]]
+position = Vector2(300, 200)
+collision_mask = 4
+script = ExtResource("1_pphjr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_2y1f2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

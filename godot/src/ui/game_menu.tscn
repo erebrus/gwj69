@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://chsanmrigp4n"]
 
 [ext_resource type="Texture2D" uid="uid://by5pc7fmuy4ha" path="res://assets/gfx/ui/menu-ui.png" id="1_gs2pb"]
-[ext_resource type="Theme" uid="uid://b7jm7ogqwlkvk" path="res://src/cards/card_theme.tres" id="1_l0aic"]
+[ext_resource type="Theme" uid="uid://bw3dixp8o2jlc" path="res://src/cards/card_theme.tres" id="1_l0aic"]
 [ext_resource type="FontFile" uid="uid://bjm5umnjo1est" path="res://assets/fonts/font-menu-UI-20px-portable_tube/PortableTube.ttf" id="2_dv10a"]
 [ext_resource type="Script" path="res://src/ui/game_menu.gd" id="2_xhs56"]
 [ext_resource type="AudioStream" uid="uid://11677xre8rtj" path="res://assets/sfx/UI_Button_1.wav" id="4_3d2yl"]
