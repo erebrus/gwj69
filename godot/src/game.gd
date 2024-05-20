@@ -146,7 +146,7 @@ func _process(delta: float) -> void:
 	
 	if Globals.game_mode != Types.GameMode.SelectionScreen:
 		if Input.is_action_just_pressed("skip_intro") and world.can_skip:
-			_on_level_ended()
+			Events.level_ended.emit()
 		if Input.is_action_just_pressed("toggle_void"):
 			toggle_void()
 		if Input.is_action_just_pressed("toggle_void_progression"):

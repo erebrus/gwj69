@@ -19,7 +19,7 @@ const BASE_SPEED :=50.0
 @onready var sfx_walk: AudioStreamPlayer2D = $sfx/sfx_walk
 @onready var sfx_jump: AudioStreamPlayer2D = $sfx/sfx_jump
 @onready var sfx_jump_high: AudioStreamPlayer2D = $sfx/sfx_jump_high
-@onready var terrain_detection_debug: TerrainDetectionDebug = $TerrainDetectionDebug
+#@onready var terrain_detection_debug: TerrainDetectionDebug = $TerrainDetectionDebug
 
 var high_jumps := 0:
 	set(hj):
@@ -35,7 +35,7 @@ var in_animation:bool = true
 var current_cell:Vector2i:
 	set(value):
 		current_cell = value
-		terrain_detection_debug.current_cell = current_cell
+		#terrain_detection_debug.current_cell = current_cell
 var cell_map_string:String =""
 var follow_target: Node2D = null
 

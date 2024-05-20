@@ -31,7 +31,7 @@ stream_0/stream = ExtResource("9_w6asb")
 stream_1/stream = ExtResource("10_6yt8v")
 stream_2/stream = ExtResource("11_i60ae")
 
-[node name="CardEngine" type="Control"]
+[node name="CardEngine" type="Control" groups=["card_engine"]]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

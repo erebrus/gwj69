@@ -212,6 +212,11 @@ func _load_json_cards_from_path(path : String):
 func reset():
 	_reset_card_collection()
 
+func reset_and_clear_card_collection():
+	card_collection.clear()
+	_reset_card_collection()
+
+
 func _reset_card_collection():
 	for child in get_children():
 		if not child is CardUI:

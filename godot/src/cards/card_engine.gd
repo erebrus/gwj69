@@ -1,4 +1,5 @@
 extends CardPileUI
+class_name CardEngine
 
 @export var hand_start_size:=3
 
@@ -16,7 +17,12 @@ func _ready() -> void:
 func reset():
 	_reset_card_collection()
 	draw(hand_start_size, false)
-	
+
+func reset_and_set_to_starting_deck():
+	load_json_path()
+	_reset_card_collection()
+	draw(hand_start_size, false)
+
 func draw(num_cards := 1, manual:=true):
 	for i in range(num_cards):
 		super.draw(1, manual)
