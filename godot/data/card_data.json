@@ -2,7 +2,7 @@
   {
 	"nice_name": "jump",
 	"display_name": "Space Jump",
-	"description": "Give your prophet ability to get over twice as bigger obstacle next time.",
+	"description": "Give your prophet ability to get over a twice as big obstacle next time.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_jump.gd",
 	"image_path": "res://assets/gfx/ui/illustrations/jump-card.png",

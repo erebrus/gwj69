@@ -121,7 +121,6 @@ func _on_player_respawned(player: Player) -> void:
 		current_step.complete_requested = true
 
 func _on_card_played(card: CardUI) -> void:
-	print(card.card_name)	
 	if card.card_name == "checkpoint":
 		current_step.complete_requested = true
 	elif card.card_name == "jump":

@@ -225,7 +225,6 @@ func _reset_card_collection():
 		_maybe_remove_card_from_any_dropzones(child)
 		remove_card_from_game(child)
 	for nice_name in card_collection:
-		print(nice_name)
 		var card_data = _get_card_data_by_nice_name(nice_name)
 		var card_ui = _create_card_ui(card_data)
 		_draw_pile.push_back(card_ui)
