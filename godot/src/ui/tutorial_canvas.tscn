@@ -341,8 +341,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = -242.0
 offset_top = -253.0
-offset_right = 177.0
-offset_bottom = -53.0
+offset_right = 178.0
+offset_bottom = -40.0
 alignment = 1
 
 [node name="Label" parent="Tutorial/MarginContainer/Step List/BeatEnd/MarginContainer/Control/MarginContainer" index="0"]
