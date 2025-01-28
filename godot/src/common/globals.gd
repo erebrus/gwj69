@@ -14,6 +14,9 @@ var levels:Array[PackedScene] =[
 	#preload("res://src/world/levels/test_angela_world.tscn"),
 	#preload("res://src/world/levels/test_erebrus_world.tscn"),
 	#preload("res://src/world/levels/level_tutorial.tscn"),
+	preload("res://src/world/levels/test_level_tunnel.tscn"),
+	preload("res://src/world/levels/test_level_up.tscn"),
+	preload("res://src/world/levels/test_level_swirl.tscn"),
 	preload("res://src/world/levels/final_levels/level_00_tutorial.tscn"),
 	preload("res://src/world/levels/final_levels/level_01.tscn"),
 	preload("res://src/world/levels/final_levels/level_02.tscn"),
@@ -105,4 +108,3 @@ func get_current_world_scene()->PackedScene:
 
 func is_last_level()->bool:
 	return current_level_idx + 1 == levels.size()
-
