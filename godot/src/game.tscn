@@ -567,11 +567,11 @@ layout_mode = 2
 [node name="MenuButton" type="Button" parent="CanvasLayer/Butttons/VBoxContainer/Menu"]
 layout_mode = 2
 focus_mode = 0
-theme_override_colors/font_color = Color(0.811765, 0.984314, 0.945098, 1)
-theme_override_colors/font_focus_color = Color(0.811765, 0.984314, 0.945098, 1)
-theme_override_colors/font_pressed_color = Color(0.811765, 0.984314, 0.945098, 1)
-theme_override_colors/font_hover_color = Color(0.811765, 0.984314, 0.945098, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.811765, 0.984314, 0.945098, 1)
+theme_override_colors/font_hover_color = Color(0.811765, 0.984314, 0.945098, 1)
+theme_override_colors/font_pressed_color = Color(0.811765, 0.984314, 0.945098, 1)
+theme_override_colors/font_focus_color = Color(0.811765, 0.984314, 0.945098, 1)
+theme_override_colors/font_color = Color(0.811765, 0.984314, 0.945098, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_at35o")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_at35o")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_at35o")

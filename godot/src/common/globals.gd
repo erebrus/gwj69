@@ -1,5 +1,7 @@
 extends Node
 
+@export var void_time_tick:=true
+@export var void_card_tick:=true
 
 var master_volume:float = 100
 var music_volume:float = 100
