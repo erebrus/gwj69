@@ -92,7 +92,7 @@ func spawn_player():
 		var player = PLAYER_SCENE.instantiate()
 		player.tilemap = Globals.tilemap		
 		
-		if checkpoint:
+		if is_instance_valid(checkpoint):
 			player.set_state(checkpoint.world_state.player)
 		else:
 			player.position = world.get_start_position()	
