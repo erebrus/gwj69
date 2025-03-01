@@ -2,6 +2,9 @@ extends PanelContainer
 
 
 func _ready() -> void:
+	for music in Types.GameMusic:
+		%MusicTension.add_item(music, Types.GameMusic[music])
+	
 	hide()
 	 
 
@@ -18,11 +21,8 @@ func open() -> void:
 	show()
 	
 
-func _on_music_tension_toggle_pressed() -> void:
-	if Globals.music_manager.current_game_music_id==Types.GameMusic.HARD:
-		Globals.music_manager.change_game_music_to(Types.GameMusic.EASY)
-	else:
-		Globals.music_manager.change_game_music_to(Globals.music_manager.current_game_music_id+1)
+func _on_music_tension_item_selected(index:int):
+	Globals.music_manager.change_game_music_to(index)
 	
 
 func _on_game_over_pressed():

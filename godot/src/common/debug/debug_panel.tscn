@@ -9,13 +9,13 @@ content_margin_right = 8.0
 content_margin_bottom = 8.0
 
 [node name="DebugPanel" type="PanelContainer"]
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 11
+anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -109.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_left = -111.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kvt4n")
 script = ExtResource("1_ihtat")
 
@@ -25,10 +25,13 @@ layout_mode = 2
 [node name="HFlowContainer2" type="HFlowContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="MusicTensionToggle" type="Button" parent="VBoxContainer/HFlowContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer/HFlowContainer2"]
 layout_mode = 2
-focus_mode = 0
-text = "Swap Music"
+text = "Music"
+
+[node name="MusicTension" type="OptionButton" parent="VBoxContainer/HFlowContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="GameOverLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -49,6 +52,6 @@ focus_mode = 0
 text = "Win Game
 "
 
-[connection signal="pressed" from="VBoxContainer/HFlowContainer2/MusicTensionToggle" to="." method="_on_music_tension_toggle_pressed"]
+[connection signal="item_selected" from="VBoxContainer/HFlowContainer2/MusicTension" to="." method="_on_music_tension_item_selected"]
 [connection signal="pressed" from="VBoxContainer/HFlowContainer/GameOver" to="." method="_on_game_over_pressed"]
 [connection signal="pressed" from="VBoxContainer/HFlowContainer/WinGame" to="." method="_on_win_game_pressed"]
