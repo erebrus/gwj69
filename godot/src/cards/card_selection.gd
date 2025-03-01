@@ -45,7 +45,7 @@ func hide_card_selection() -> void:
 	anim_player.play("Hide")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -106,6 +106,7 @@ func create_card(json_data):
 	#card_ui.connect("card_unhovered", func(c_ui): emit_signal("card_unhovered", c_ui))
 	card_ui.connect("card_clicked", _on_card_selected)
 	card_ui.connect("card_dropped", _on_card_dropped)
+	@warning_ignore("integer_division")
 	var target_pos: Vector2 = Vector2(1280/2 - 275 + card_control.get_child_count() * x_offset, 0.0)
 	#card_ui.target_position.x = 1280/2 - 275 + card_control.get_child_count() * x_offset
 	card_ui.create_tween().tween_property(card_ui, "target_position",target_pos, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_delay(4)
@@ -137,7 +138,6 @@ func _on_card_dropped(card: CardUI):
 func _on_button_pressed() -> void:
 	confirm_sfx.play()
 	confirmed_card = selected_card
-	var card_name = selected_card.card_data.nice_name
 
 	var children = card_control.get_children()
 	for child in children:
@@ -147,6 +147,7 @@ func _on_button_pressed() -> void:
 			child.create_tween().tween_property(child, "modulate:a", 0.0, .5 ).set_ease(Tween.EASE_OUT)
 		else:
 			child.can_do_selection = false
+			@warning_ignore("integer_division")
 			var target_pos = Vector2(1280 / 2 - 75, -50)
 			var pos_tween = child.create_tween()
 			pos_tween.tween_property(child, "target_position",target_pos, .5 ).set_ease(Tween.EASE_OUT)
