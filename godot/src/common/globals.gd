@@ -1,13 +1,12 @@
 extends Node
 
-var master_volume:float = 100
-var music_volume:float = 100
-var sfx_volume:float = 100
+const GAME_SCENE_PATH = "res://src/game.tscn"
+const WIN_SCENE_PATH = "res://src/win_screen.tscn"
+
 
 const GameDataPath = "user://conf.cfg"
 var config:ConfigFile
 
-var debug_build := false
 
 var levels:Array[PackedScene] =[
 	#preload("res://src/world/levels/test_angela_world.tscn"),
@@ -48,26 +47,35 @@ var game_mode: Types.GameMode:
 			game_mode = value
 			Events.game_mode_changed.emit(game_mode)
 	
-
-
+var in_game:=false
 
 var tilemap: PlatformsLayer
 var player: Player
+var game: Game
 
-@onready var menu_music: AudioStreamPlayer = $menu_music
-@onready var game_music: AudioStreamPlayer = $game_music
+@onready var music_manager: MusicManager = $MusicManager
 
 func _ready():
 	_init_logger()
-
 	
+
 func start_game():
+	Logger.info("Starting Game")
+	in_game=true
+	
+	music_manager.fade_menu_music()
+	await get_tree().create_timer(1).timeout
+	music_manager.reset_synchronized_stream()
+	
 	current_deck = starting_deck.duplicate()
-	get_tree().change_scene_to_file("res://src/game.tscn")
+	get_tree().change_scene_to_file(GAME_SCENE_PATH)
+	music_manager.fade_in_game_music()
+	
 
 func win_game():
-	get_tree().change_scene_to_file("res://src/win_screen.tscn")
+	get_tree().change_scene_to_file(WIN_SCENE_PATH)
 	
+
 func _init_logger():
 	Logger.set_logger_level(Logger.LOG_LEVEL_INFO)
 	Logger.set_logger_format(Logger.LOG_FORMAT_MORE)
@@ -78,27 +86,9 @@ func _init_logger():
 	file_appender.logger_format=Logger.LOG_FORMAT_FULL
 	file_appender.logger_level = Logger.LOG_LEVEL_DEBUG
 	Logger.info("Logger initialized.")
-
-
-func init_music():
-	%Music.stop()
-	%Music.volume_db=-60
-	%Music.play()
-	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property(%Music,"volume_db",0,2)
 	
 
-func play_music(node:AudioStreamPlayer):
-	node.volume_db = 0
-	node.play()
-	
-func fade_music(node:AudioStreamPlayer, duration := 1):
-	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property(node,"volume_db",-20 , duration)
-	await tween.finished
-	node.stop()
-	
-func get_current_world_scene()->PackedScene:	
+func get_current_world_scene()-> PackedScene:
 	if current_level_idx < levels.size():
 		return levels[current_level_idx]
 	else:

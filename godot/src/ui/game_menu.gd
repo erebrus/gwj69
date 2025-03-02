@@ -6,7 +6,7 @@ signal void_toggled
 @onready var sfx_button: AudioStreamPlayer = $sfx_button
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if visible and Input.is_action_just_pressed("ui_cancel"):
 		close()
 		return
@@ -37,5 +37,5 @@ func _on_quit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://src/start_screen.tscn")
 
 
-func _on_check_box_toggled(toggled_on):
+func _on_check_box_toggled(_toggled_on):
 	void_toggled.emit()

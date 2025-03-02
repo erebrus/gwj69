@@ -1,0 +1,114 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctrd2c74fom4t"]
+
+[ext_resource type="Script" path="res://src/common/debug/debug_panel.gd" id="1_ihtat"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvt4n"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+
+[node name="DebugPanel" type="PanelContainer"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -111.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kvt4n")
+script = ExtResource("1_ihtat")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Music" type="HFlowContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Music"]
+layout_mode = 2
+text = "Music"
+
+[node name="MusicTension" type="OptionButton" parent="VBoxContainer/Music"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GameOverLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Levels"
+
+[node name="Level" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LevelSelection" type="OptionButton" parent="VBoxContainer/Level"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Restart" type="Button" parent="VBoxContainer/Level"]
+layout_mode = 2
+focus_mode = 0
+text = "Start
+"
+
+[node name="NextLevel" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Next Level"
+
+[node name="GameOver" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Game Over
+"
+
+[node name="WinGame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Win Game
+"
+
+[node name="VoidLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Void"
+
+[node name="TickOnTimer" type="CheckBox" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Advance on timer"
+
+[node name="TickOnCardDrawn" type="CheckBox" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Advance on card drawn"
+
+[node name="ResetVoidCooldown" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Reset cooldown
+"
+
+[node name="CardsLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Cards"
+
+[node name="Cards" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CardSelection" type="OptionButton" parent="VBoxContainer/Cards"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AddCard" type="Button" parent="VBoxContainer/Cards"]
+layout_mode = 2
+focus_mode = 0
+text = "Add"
+
+[connection signal="item_selected" from="VBoxContainer/Music/MusicTension" to="." method="_on_music_tension_item_selected"]
+[connection signal="pressed" from="VBoxContainer/Level/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="VBoxContainer/GameOver" to="." method="_on_game_over_pressed"]
+[connection signal="pressed" from="VBoxContainer/WinGame" to="." method="_on_win_game_pressed"]
+[connection signal="toggled" from="VBoxContainer/TickOnTimer" to="." method="_on_tick_on_timer_toggled"]
+[connection signal="toggled" from="VBoxContainer/TickOnCardDrawn" to="." method="_on_tick_on_card_drawn_toggled"]
+[connection signal="pressed" from="VBoxContainer/ResetVoidCooldown" to="." method="_on_reset_void_cooldown_pressed"]
+[connection signal="pressed" from="VBoxContainer/Cards/AddCard" to="." method="_on_add_card_pressed"]

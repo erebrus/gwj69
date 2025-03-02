@@ -25,7 +25,7 @@ func deactivate() -> void:
 	activated = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 	
@@ -37,9 +37,9 @@ func _process(delta: float) -> void:
 func _input(event):
 	if event is InputEventMouseMotion and activated:
 		var mouse_pos: Vector2 = get_global_mouse_position()
-		var offset = (mouse_pos - global_position) / 2.0
+		var mouse_offset = (mouse_pos - global_position) / 2.0
 		var viewport_rect: Vector2 = get_viewport_rect().size
-		var circle_pos: Vector2 = Vector2(.5, .5) + Vector2((offset.x) / viewport_rect.x, (offset.y) / viewport_rect.y)
+		var circle_pos: Vector2 = Vector2(.5, .5) + Vector2((mouse_offset.x) / viewport_rect.x, (mouse_offset.y) / viewport_rect.y)
 		material.set_shader_parameter("circle_position", circle_pos)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -57,5 +57,5 @@ func _on_block_requested(event_placeholder: Placeholder) -> void:
 	placeholder = event_placeholder
 	#activate()
 
-func _on_block_played(block) -> void:
+func _on_block_played(_block) -> void:
 	placeholder = null
