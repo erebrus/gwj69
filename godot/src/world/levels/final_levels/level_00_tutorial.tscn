@@ -22,9 +22,5 @@ limit_right = 1800
 limit_bottom = 1000
 editor_draw_limits = true
 
-[node name="BlockGrid" parent="." index="5" node_paths=PackedStringArray("platform_layer", "camera")]
-platform_layer = NodePath("../PlatformsLayer")
-camera = NodePath("../Camera")
-
 [node name="StartPosition" parent="." index="6"]
 position = Vector2(89, 223)
