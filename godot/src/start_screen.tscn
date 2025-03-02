@@ -173,8 +173,8 @@ layout_mode = 2
 
 [node name="StartButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
 theme_override_fonts/font = ExtResource("23_leh6x")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yye0d")
@@ -192,8 +192,8 @@ text = "Start Game"
 
 [node name="QuitButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
 theme_override_fonts/font = ExtResource("23_leh6x")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yye0d")
