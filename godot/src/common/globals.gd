@@ -51,6 +51,7 @@ var in_game:=false
 
 var tilemap: PlatformsLayer
 var player: Player
+var game: Game
 
 @onready var music_manager: MusicManager = $MusicManager
 
@@ -87,7 +88,7 @@ func _init_logger():
 	Logger.info("Logger initialized.")
 	
 
-func get_current_world_scene()->PackedScene:
+func get_current_world_scene()-> PackedScene:
 	if current_level_idx < levels.size():
 		return levels[current_level_idx]
 	else:

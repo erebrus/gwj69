@@ -1,4 +1,4 @@
-extends Node
+class_name Game extends Node
 
 
 const CHECKPOINT_SCENE = preload("res://src/world/blocks/checkpoint_block.tscn")
@@ -33,7 +33,8 @@ var world:World:
 var debug_mode:bool = false
 var player_needed:= true
 func _ready():
-
+	Globals.game = self
+	
 	load_world(Globals.get_current_world_scene())
 	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
 			
@@ -207,10 +208,10 @@ func _on_level_ended():
 	#Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
 	player_needed = true
 	Globals.player_alive=false
-	if Globals.player:
+	if is_instance_valid(Globals.player):
 		Globals.player.queue_free()
 	Globals.current_level_idx += 1
-	var next_world := Globals.get_current_world_scene()
+	var next_world = Globals.get_current_world_scene()
 	if next_world:
 		card_selection.show_card_selection()
 		anim_player.play("FadeOut")
@@ -244,7 +245,7 @@ func _on_card_played(_card:CardUI):
 
 
 func _on_card_selection_card_selected(card: CardUI) -> void:
-	var next_world := Globals.get_current_world_scene()
+	var next_world = Globals.get_current_world_scene()
 	
 	load_world(next_world)	
 	reset_void_cooldown()
