@@ -24,8 +24,8 @@ jobs:
     - name: Setup
       run: |
         mkdir -v -p ~/.local/share/godot/export_templates/
-        mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-        ls ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+        mv /root/.local/share/godot/export_templates/${GODOT_VERSION} ~/.local/share/godot/export_templates/${GODOT_VERSION}
+        ls ~/.local/share/godot/export_templates/${GODOT_VERSION}
     - name: Web Build
       run: |
         cd godot
@@ -52,8 +52,8 @@ jobs:
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-          ls ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION} ~/.local/share/godot/export_templates/${GODOT_VERSION}
+          ls ~/.local/share/godot/export_templates/${GODOT_VERSION}
       - name: Mac Build
         run: |
           cd godot
@@ -79,8 +79,8 @@ jobs:
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-          ls ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION} ~/.local/share/godot/export_templates/${GODOT_VERSION}
+          ls ~/.local/share/godot/export_templates/${GODOT_VERSION}
       - name: Windows Build
         run: |
           cd godot
@@ -107,8 +107,8 @@ jobs:
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-          ls ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION} ~/.local/share/godot/export_templates/${GODOT_VERSION}
+          ls ~/.local/share/godot/export_templates/${GODOT_VERSION}
       - name: Linux Build
         run: |
           cd godot
