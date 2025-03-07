@@ -1,6 +1,6 @@
 [gd_scene load_steps=50 format=3 uid="uid://cvlps0q7qnfou"]
 
-[ext_resource type="Script" path="res://src/start_screen.gd" id="1_eftrj"]
+[ext_resource type="Script" uid="uid://ob5jukhgu1t4" path="res://src/start_screen.gd" id="1_eftrj"]
 [ext_resource type="Texture2D" uid="uid://bmiekdb8xu253" path="res://assets/gfx/title/title/title1.png" id="1_ex27u"]
 [ext_resource type="Texture2D" uid="uid://bdvalh5hn6lc4" path="res://assets/gfx/title/title/title2.png" id="2_vmynn"]
 [ext_resource type="Texture2D" uid="uid://cyqx80ebp7t1s" path="res://assets/gfx/title/title/title3.png" id="3_edyp1"]
@@ -81,9 +81,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kmxbk"]
 _data = {
-"RESET": SubResource("Animation_ojilk"),
-"loop": SubResource("Animation_tg1kf"),
-"start": SubResource("Animation_522l4")
+&"RESET": SubResource("Animation_ojilk"),
+&"loop": SubResource("Animation_tg1kf"),
+&"start": SubResource("Animation_522l4")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58p3f"]
@@ -163,7 +163,7 @@ texture = ExtResource("1_ex27u")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_kmxbk")
+&"": SubResource("AnimationLibrary_kmxbk")
 }
 
 [node name="Volume" type="GridContainer" parent="."]

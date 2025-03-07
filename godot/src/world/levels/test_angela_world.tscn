@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://b55be43ctmn7a"]
 
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="1_h8fil"]
-[ext_resource type="Script" path="res://src/world/levels/test_angela_world.gd" id="2_y73eh"]
+[ext_resource type="Script" uid="uid://2554gp5rt6p8" path="res://src/world/levels/test_angela_world.gd" id="2_y73eh"]
 [ext_resource type="PackedScene" uid="uid://42qodo87uoyq" path="res://src/world/terrain_detection_debug.tscn" id="3_51aro"]
 [ext_resource type="PackedScene" uid="uid://bhlc28vc4kusx" path="res://src/world/end_card.tscn" id="4_uj6oq"]
 

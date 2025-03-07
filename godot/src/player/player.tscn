@@ -1,10 +1,10 @@
 [gd_scene load_steps=40 format=3 uid="uid://b2q3ypwb3s64x"]
 
-[ext_resource type="Script" path="res://src/player/player.gd" id="1_x8yfo"]
+[ext_resource type="Script" uid="uid://d0re6w1cetdos" path="res://src/player/player.gd" id="1_x8yfo"]
 [ext_resource type="Texture2D" uid="uid://c5b2xq6jhm1ro" path="res://assets/gfx/character/mc-tall2-animations.png" id="2_faqy1"]
 [ext_resource type="AudioStream" uid="uid://dmdyoke7mnsvn" path="res://assets/sfx/MC_Footstep_1.wav" id="4_6flkn"]
 [ext_resource type="Texture2D" uid="uid://42wccejd5kvf" path="res://assets/gfx/character/mc-tall2.png" id="4_12tjh"]
-[ext_resource type="Script" path="res://src/player/run_fast.gd" id="5_43nh5"]
+[ext_resource type="Script" uid="uid://b5qstrdmqrh4d" path="res://src/player/run_fast.gd" id="5_43nh5"]
 [ext_resource type="AudioStream" uid="uid://dqv7w77xxcd1r" path="res://assets/sfx/MC_Footstep_2.wav" id="5_hsjxc"]
 [ext_resource type="AudioStream" uid="uid://dd7cyf5x0cgte" path="res://assets/sfx/MC_Footstep_3.wav" id="6_o2d62"]
 [ext_resource type="AudioStream" uid="uid://8j68mwhjwdav" path="res://assets/sfx/MC_Footstep_4.wav" id="7_2cxwf"]
@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://b8jcuekywla74" path="res://assets/sfx/MC_Jump_2.wav" id="9_um7bx"]
 [ext_resource type="AudioStream" uid="uid://b3qw35bfdgj80" path="res://assets/sfx/MC_BigJump_1.wav" id="10_3rsyp"]
 [ext_resource type="AudioStream" uid="uid://dy4t7x874kfjw" path="res://assets/sfx/MC_BigJump_2.wav" id="11_sns7m"]
-[ext_resource type="PackedScene" path="res://src/player/jump_vfx.tscn" id="13_qyi5a"]
+[ext_resource type="PackedScene" uid="uid://c1akb2kfch56o" path="res://src/player/jump_vfx.tscn" id="13_qyi5a"]
 [ext_resource type="PackedScene" uid="uid://42qodo87uoyq" path="res://src/world/terrain_detection_debug.tscn" id="14_g5t11"]
 [ext_resource type="AudioStream" uid="uid://rdm1r0v0bs4m" path="res://assets/sfx/Save_your_soul.wav" id="14_mix8g"]
 [ext_resource type="AudioStream" uid="uid://cp3w83gfwpf7k" path="res://assets/sfx/Player_dies_by_Void.wav" id="15_itwl1"]
@@ -269,17 +269,17 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hukg5"]
 _data = {
-"RESET": SubResource("Animation_jq1uo"),
-"death": SubResource("Animation_pn6g2"),
-"edge": SubResource("Animation_71bf2"),
-"fall": SubResource("Animation_dn3hf"),
-"idle": SubResource("Animation_rr34h"),
-"jump": SubResource("Animation_8rpny"),
-"land": SubResource("Animation_7sceb"),
-"level_end": SubResource("Animation_2rfjq"),
-"move": SubResource("Animation_qax8x"),
-"spawn": SubResource("Animation_fulwp"),
-"void_death": SubResource("Animation_308mq")
+&"RESET": SubResource("Animation_jq1uo"),
+&"death": SubResource("Animation_pn6g2"),
+&"edge": SubResource("Animation_71bf2"),
+&"fall": SubResource("Animation_dn3hf"),
+&"idle": SubResource("Animation_rr34h"),
+&"jump": SubResource("Animation_8rpny"),
+&"land": SubResource("Animation_7sceb"),
+&"level_end": SubResource("Animation_2rfjq"),
+&"move": SubResource("Animation_qax8x"),
+&"spawn": SubResource("Animation_fulwp"),
+&"void_death": SubResource("Animation_308mq")
 }
 
 [sub_resource type="Curve" id="Curve_64uc3"]

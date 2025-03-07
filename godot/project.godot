@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Avoid the Void"
 run/main_scene="res://src/start_screen.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
@@ -107,5 +107,5 @@ toggle_void_progression={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0.227451, 0.223529, 0.286275, 1)
 viewport/hdr_2d=true
+environment/defaults/default_clear_color=Color(0.227451, 0.223529, 0.286275, 1)

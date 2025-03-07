@@ -1,7 +1,7 @@
 [gd_scene load_steps=37 format=3 uid="uid://bhlc28vc4kusx"]
 
 [ext_resource type="Texture2D" uid="uid://b62ac7gke2nqp" path="res://assets/gfx/world/door/end-card-idle.png" id="1_iiww1"]
-[ext_resource type="Script" path="res://src/world/end_card.gd" id="1_k8bdo"]
+[ext_resource type="Script" uid="uid://6fml4cwvhm1g" path="res://src/world/end_card.gd" id="1_k8bdo"]
 [ext_resource type="Texture2D" uid="uid://ren4glqld0im" path="res://assets/gfx/world/door/end-card-gather.png" id="2_sbq26"]
 [ext_resource type="AudioStream" uid="uid://bfwge3ev8u7fa" path="res://assets/sfx/End_of_Level.wav" id="4_aewdq"]
 

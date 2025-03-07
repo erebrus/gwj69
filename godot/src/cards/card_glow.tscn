@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://dmmobr85dhggi" path="res://src/cards/card_glow.tres" id="1_eycqe"]
 [ext_resource type="Texture2D" uid="uid://3cd5kxapg3es" path="res://assets/gfx/ui/card-back-glow.png" id="2_mfiwb"]
-[ext_resource type="Script" path="res://src/cards/card_glow.gd" id="3_0qyvx"]
+[ext_resource type="Script" uid="uid://cyoeiwhtafxid" path="res://src/cards/card_glow.gd" id="3_0qyvx"]
 [ext_resource type="Shader" uid="uid://b4cyjulq2e7f6" path="res://src/cards/card_glow_particle.tres" id="4_jt1ap"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l4cdd"]

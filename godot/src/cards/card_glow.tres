@@ -121,10 +121,10 @@ code = "shader_type canvas_item;
 render_mode blend_mix;
 
 uniform vec4 glow_color : source_color = vec4(1.000000, 0.628090, 0.628987, 1.000000);
-uniform float emission_f : hint_range(0, 100) = 50;
+uniform float emission_f : hint_range(0.0, 100.0) = 50.0;
 uniform vec2 position_delta = vec2(0.000000, 0.000000);
 uniform sampler2D tex_frg_26;
-uniform float alpha_f : hint_range(0, 1) = 1;
+uniform float alpha_f : hint_range(0.0, 1.0) = 1.0;
 
 
 

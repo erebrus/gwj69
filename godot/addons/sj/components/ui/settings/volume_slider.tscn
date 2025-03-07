@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://to3p8qv7p8yo"]
 
-[ext_resource type="Script" path="res://addons/sj/components/ui/settings/volume_slider.gd" id="1_42p7s"]
+[ext_resource type="Script" uid="uid://buhrxy8xeqjee" path="res://addons/sj/components/ui/settings/volume_slider.gd" id="1_42p7s"]
 
 [node name="VolumeSlider" type="HSlider"]
 size_flags_horizontal = 3

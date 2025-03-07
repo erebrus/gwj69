@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=4 uid="uid://dlidjwgjc4jwp"]
 
-[ext_resource type="Shader" path="res://src/world/door_shader.tres" id="2_vpeat"]
-[ext_resource type="Texture2D" path="res://assets/gfx/world/door/forager-door-inside.png" id="3_shse7"]
+[ext_resource type="Shader" uid="uid://bgnnbqfawkp86" path="res://src/world/door_shader.tres" id="2_vpeat"]
+[ext_resource type="Texture2D" uid="uid://bil3l781aidi0" path="res://assets/gfx/world/door/forager-door-inside.png" id="3_shse7"]
 [ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="4_suy0d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_71o1b"]
@@ -135,8 +135,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ae0lu"]
 _data = {
-"DoorExisting": SubResource("Animation_6ogaa"),
-"RESET": SubResource("Animation_p6f88")
+&"DoorExisting": SubResource("Animation_6ogaa"),
+&"RESET": SubResource("Animation_p6f88")
 }
 
 [sub_resource type="Environment" id="Environment_3bg3h"]

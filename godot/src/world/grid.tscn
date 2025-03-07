@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bh4vo6ctka1x1" path="res://assets/gfx/world/grid-fill.png" id="1_fhang"]
 [ext_resource type="Material" uid="uid://bi4qwnglvwx8d" path="res://src/world/grid_material.tres" id="1_q87t4"]
-[ext_resource type="Script" path="res://src/world/grid.gd" id="3_15rbi"]
+[ext_resource type="Script" uid="uid://bvxyg72qdt0gh" path="res://src/world/grid.gd" id="3_15rbi"]
 
 [sub_resource type="Animation" id="Animation_a0ooq"]
 resource_name = "Appear"
@@ -113,10 +113,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pbbs4"]
 _data = {
-"Appear": SubResource("Animation_a0ooq"),
-"Disappear": SubResource("Animation_k11ll"),
-"PlaceBlockLoop": SubResource("Animation_xm3y7"),
-"RESET": SubResource("Animation_376t2")
+&"Appear": SubResource("Animation_a0ooq"),
+&"Disappear": SubResource("Animation_k11ll"),
+&"PlaceBlockLoop": SubResource("Animation_xm3y7"),
+&"RESET": SubResource("Animation_376t2")
 }
 
 [node name="BlockGrid" type="Sprite2D"]

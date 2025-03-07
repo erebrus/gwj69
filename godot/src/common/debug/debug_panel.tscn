@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctrd2c74fom4t"]
 
-[ext_resource type="Script" path="res://src/common/debug/debug_panel.gd" id="1_ihtat"]
+[ext_resource type="Script" uid="uid://fuql3faxprw7" path="res://src/common/debug/debug_panel.gd" id="1_ihtat"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvt4n"]
 content_margin_left = 8.0

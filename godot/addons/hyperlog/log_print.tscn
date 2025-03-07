@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://duoh7js70k7fv"]
 
-[ext_resource type="Script" path="res://addons/hyperlog/log_print.gd" id="1"]
+[ext_resource type="Script" uid="uid://b0hoirloh3qbq" path="res://addons/hyperlog/log_print.gd" id="1"]
 
 [node name="LoggerPrint" type="ScrollContainer"]
 anchors_preset = 15

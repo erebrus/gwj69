@@ -123,10 +123,10 @@ render_mode blend_mix;
 
 uniform vec4 ColorParameter : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
 uniform float color_factor = 0.5;
-uniform float emission_f = 1;
+uniform float emission_f = 1.0;
 uniform float disintegration_factor;
 uniform sampler2D tex_frg_9 : source_color;
-uniform float alpha_f = 1;
+uniform float alpha_f = 1.0;
 
 
 

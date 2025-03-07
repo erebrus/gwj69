@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dplodxgtbever" path="res://src/world/blocks/tilemap_block.tscn" id="1_p8poh"]
 [ext_resource type="Shader" uid="uid://dc002tl5nvki8" path="res://src/world/blocks/tile_shader.tres" id="2_2f8l6"]
-[ext_resource type="Script" path="res://src/world/blocks/moving_block.gd" id="2_2fhgt"]
+[ext_resource type="Script" uid="uid://cdf5ftn2mk4at" path="res://src/world/blocks/moving_block.gd" id="2_2fhgt"]
 [ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="4_ul8uq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j2b8n"]

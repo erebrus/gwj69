@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dplodxgtbever"]
 
 [ext_resource type="PackedScene" uid="uid://k1ey4vvnmd50" path="res://src/world/blocks/base_block.tscn" id="1_m6ekt"]
-[ext_resource type="Script" path="res://src/world/blocks/tilemap_block.gd" id="2_mj4o5"]
+[ext_resource type="Script" uid="uid://cg7o0t6jokve7" path="res://src/world/blocks/tilemap_block.gd" id="2_mj4o5"]
 [ext_resource type="Shader" uid="uid://dc002tl5nvki8" path="res://src/world/blocks/tile_shader.tres" id="3_neqhh"]
 [ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="3_v2anq"]
 
@@ -189,10 +189,10 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tgb86"]
 _data = {
-"Create": SubResource("Animation_8h6m0"),
-"Hide": SubResource("Animation_uobuy"),
-"Place": SubResource("Animation_ujvvb"),
-"RESET": SubResource("Animation_rbd20")
+&"Create": SubResource("Animation_8h6m0"),
+&"Hide": SubResource("Animation_uobuy"),
+&"Place": SubResource("Animation_ujvvb"),
+&"RESET": SubResource("Animation_rbd20")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o011r"]

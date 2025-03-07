@@ -111,11 +111,11 @@ default_value = 1.0
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
-uniform float pixel_width = 1280;
-uniform float pixel_height = 760;
+uniform float pixel_width = 1280.0;
+uniform float pixel_height = 760.0;
 uniform vec4 grid_color : source_color = vec4(0.899842, 0.368310, 0.646314, 1.000000);
 uniform vec2 block_size = vec2(8.000000, 8.000000);
-uniform float grid_outline_size = 1;
+uniform float grid_outline_size = 1.0;
 uniform float circle_size = 0.20000000298023;
 uniform vec2 circle_position = vec2(0.500000, 0.500000);
 uniform sampler2D tex_frg_14;
