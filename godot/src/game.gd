@@ -10,6 +10,9 @@ const PLAYER_SCENE = preload("res://src/player/player.tscn")
 @export var void_cooldown_progression=.5
 @export var do_void_progression := true
 
+@export var void_time_tick:=true
+@export var void_card_tick:=true
+
 var checkpoint: CheckPoint
 
 @onready var sfx_err: AudioStreamPlayer = $CanvasLayer/sfx_err
@@ -89,7 +92,7 @@ func spawn_player():
 		var player = PLAYER_SCENE.instantiate()
 		player.tilemap = Globals.tilemap		
 		
-		if checkpoint:
+		if is_instance_valid(checkpoint):
 			player.set_state(checkpoint.world_state.player)
 		else:
 			player.position = world.get_start_position()	
@@ -170,7 +173,8 @@ func _on_draw_timer_timeout() -> void:
 	Logger.info("Draw allowed")
 
 func _on_card_drawn():
-	Events.tick.emit()
+	if void_card_tick:
+		Events.tick.emit()
 	if draw_cooldown:
 		card_engine.click_draw_pile_to_draw = false
 		Logger.info("Draw in cooldown")
@@ -278,7 +282,8 @@ func _on_menu_button_pressed() -> void:
 
 
 func _on_void_timer_timeout() -> void:
-	Events.tick.emit()
+	if void_time_tick:
+		Events.tick.emit()
 	void_timer.wait_time = void_cooldown
 	void_timer.start()
 
