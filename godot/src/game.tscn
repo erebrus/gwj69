@@ -1,6 +1,6 @@
 [gd_scene load_steps=44 format=3 uid="uid://duka5rbd4bxdc"]
 
-[ext_resource type="Script" path="res://src/game.gd" id="1_k8n5x"]
+[ext_resource type="Script" uid="uid://08vewb4st243" path="res://src/game.gd" id="1_k8n5x"]
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="2_euer7"]
 [ext_resource type="PackedScene" uid="uid://cl2x45a8d01v4" path="res://src/cards/card_engine.tscn" id="3_bitsc"]
 [ext_resource type="AudioStream" uid="uid://cbjvypec266rn" path="res://assets/sfx/Card_Error_1.wav" id="4_wwjtp"]
@@ -21,9 +21,9 @@
 [ext_resource type="Shader" uid="uid://blrihjr2wncij" path="res://src/world/levels/level_fade_shader.res" id="18_hcjui"]
 [ext_resource type="AudioStream" uid="uid://dc61ldek8njt6" path="res://assets/sfx/Void_movement_2.wav" id="18_sshy1"]
 [ext_resource type="AudioStream" uid="uid://ydfhklw5pqxa" path="res://assets/sfx/Void_movement_3.wav" id="19_ieyke"]
-[ext_resource type="Shader" path="res://src/world/levels/level_screenspace_distortion_shader.tres.gdshader" id="19_m6cv3"]
+[ext_resource type="Shader" uid="uid://d23wog7nipw8b" path="res://src/world/levels/level_screenspace_distortion_shader.tres.gdshader" id="19_m6cv3"]
 [ext_resource type="PackedScene" uid="uid://chsanmrigp4n" path="res://src/ui/game_menu.tscn" id="21_qnhfn"]
-[ext_resource type="Script" path="res://src/cards/draw_pile_label.gd" id="21_uneno"]
+[ext_resource type="Script" uid="uid://b4ii0di18r5oe" path="res://src/cards/draw_pile_label.gd" id="21_uneno"]
 [ext_resource type="PackedScene" uid="uid://c8wd3tm3aybu3" path="res://src/ui/help_panel.tscn" id="22_nehuc"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57o5p"]
@@ -66,11 +66,11 @@ noise = SubResource("FastNoiseLite_c4yed")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jy3my"]
 shader = ExtResource("19_m6cv3")
+shader_parameter/noise = SubResource("NoiseTexture2D_yekip")
 shader_parameter/center = Vector2(0.5, 0.5)
 shader_parameter/iResolution = Vector2(1280, 760)
 shader_parameter/angleFactor = 0.0
 shader_parameter/effectRadius = 0.0
-shader_parameter/noise = SubResource("NoiseTexture2D_yekip")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ox273"]
 streams_count = 3
@@ -465,12 +465,12 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ioik2"]
 _data = {
-"FadeIn": SubResource("Animation_nomcj"),
-"FadeOut": SubResource("Animation_1xsm3"),
-"FadeOutIn": SubResource("Animation_jijd3"),
-"Hide Card Selection": SubResource("Animation_e2k8d"),
-"RESET": SubResource("Animation_kbt87"),
-"Show Card Selection": SubResource("Animation_pe2ot")
+&"FadeIn": SubResource("Animation_nomcj"),
+&"FadeOut": SubResource("Animation_1xsm3"),
+&"FadeOutIn": SubResource("Animation_jijd3"),
+&"Hide Card Selection": SubResource("Animation_e2k8d"),
+&"RESET": SubResource("Animation_kbt87"),
+&"Show Card Selection": SubResource("Animation_pe2ot")
 }
 
 [node name="Game" type="Node2D"]
@@ -567,11 +567,11 @@ layout_mode = 2
 [node name="MenuButton" type="Button" parent="CanvasLayer/Butttons/VBoxContainer/Menu"]
 layout_mode = 2
 focus_mode = 0
+theme_override_colors/font_hover_pressed_color = Color(0.811765, 0.984314, 0.945098, 1)
+theme_override_colors/font_hover_color = Color(0.811765, 0.984314, 0.945098, 1)
 theme_override_colors/font_color = Color(0.811765, 0.984314, 0.945098, 1)
 theme_override_colors/font_focus_color = Color(0.811765, 0.984314, 0.945098, 1)
 theme_override_colors/font_pressed_color = Color(0.811765, 0.984314, 0.945098, 1)
-theme_override_colors/font_hover_color = Color(0.811765, 0.984314, 0.945098, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.811765, 0.984314, 0.945098, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_at35o")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_at35o")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_at35o")
@@ -669,7 +669,7 @@ bus = &"Sfx"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ioik2")
+&"": SubResource("AnimationLibrary_ioik2")
 }
 
 [node name="VoidTimer" type="Timer" parent="."]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=45 format=3 uid="uid://cvlps0q7qnfou"]
+[gd_scene load_steps=50 format=3 uid="uid://cvlps0q7qnfou"]
 
-[ext_resource type="Script" path="res://src/start_screen.gd" id="1_eftrj"]
+[ext_resource type="Script" uid="uid://ob5jukhgu1t4" path="res://src/start_screen.gd" id="1_eftrj"]
 [ext_resource type="Texture2D" uid="uid://bmiekdb8xu253" path="res://assets/gfx/title/title/title1.png" id="1_ex27u"]
 [ext_resource type="Texture2D" uid="uid://bdvalh5hn6lc4" path="res://assets/gfx/title/title/title2.png" id="2_vmynn"]
 [ext_resource type="Texture2D" uid="uid://cyqx80ebp7t1s" path="res://assets/gfx/title/title/title3.png" id="3_edyp1"]
@@ -21,8 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://bl1qqxcaifyya" path="res://assets/gfx/title/title/title18.png" id="18_p5q7p"]
 [ext_resource type="Texture2D" uid="uid://b10hrhr1wc7n4" path="res://assets/gfx/title/title/title19.png" id="19_kfmhj"]
 [ext_resource type="Texture2D" uid="uid://gss2kv5n2ar3" path="res://assets/gfx/title/title/title20.png" id="20_oj31q"]
+[ext_resource type="Texture2D" uid="uid://dvcyb584hqot6" path="res://assets/gfx/ui/slider_grabber.png" id="22_l5lr2"]
 [ext_resource type="Texture2D" uid="uid://c52sllhu5qjb6" path="res://assets/gfx/title/UI-title.png" id="22_ud1aq"]
 [ext_resource type="FontFile" uid="uid://bjm5umnjo1est" path="res://assets/fonts/font-menu-UI-20px-portable_tube/PortableTube.ttf" id="23_leh6x"]
+[ext_resource type="PackedScene" uid="uid://to3p8qv7p8yo" path="res://addons/sj/components/ui/settings/volume_slider.tscn" id="24_7gifx"]
 [ext_resource type="AudioStream" uid="uid://11677xre8rtj" path="res://assets/sfx/UI_Button_1.wav" id="24_fmnmr"]
 [ext_resource type="AudioStream" uid="uid://lbuwv71j81k" path="res://assets/sfx/UI_Button_2.wav" id="25_l2ewj"]
 [ext_resource type="AudioStream" uid="uid://b72gxnfohwqko" path="res://assets/sfx/UI_Button_3.wav" id="26_4t44w"]
@@ -79,10 +81,34 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kmxbk"]
 _data = {
-"RESET": SubResource("Animation_ojilk"),
-"loop": SubResource("Animation_tg1kf"),
-"start": SubResource("Animation_522l4")
+&"RESET": SubResource("Animation_ojilk"),
+&"loop": SubResource("Animation_tg1kf"),
+&"start": SubResource("Animation_522l4")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58p3f"]
+content_margin_left = 0.0
+content_margin_top = 1.0
+content_margin_right = 0.0
+content_margin_bottom = 1.0
+bg_color = Color(0.988235, 0.466667, 0.333333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k715e"]
+content_margin_left = 0.0
+content_margin_top = 1.0
+content_margin_right = 0.0
+content_margin_bottom = 1.0
+bg_color = Color(0.87451, 0.87451, 0.87451, 1)
+
+[sub_resource type="Theme" id="Theme_je0ac"]
+default_font = ExtResource("23_leh6x")
+default_font_size = 20
+HSlider/icons/grabber = ExtResource("22_l5lr2")
+HSlider/icons/grabber_disabled = ExtResource("22_l5lr2")
+HSlider/icons/grabber_highlight = ExtResource("22_l5lr2")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_58p3f")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_58p3f")
+HSlider/styles/slider = SubResource("StyleBoxFlat_k715e")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8sq5c"]
 texture = ExtResource("22_ud1aq")
@@ -137,8 +163,35 @@ texture = ExtResource("1_ex27u")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_kmxbk")
+&"": SubResource("AnimationLibrary_kmxbk")
 }
+
+[node name="Volume" type="GridContainer" parent="."]
+layout_mode = 2
+offset_left = 167.0
+offset_top = 569.0
+offset_right = 361.0
+offset_bottom = 592.0
+theme = SubResource("Theme_je0ac")
+columns = 2
+
+[node name="Label" type="Label" parent="Volume"]
+layout_mode = 2
+text = "MUSIC"
+
+[node name="VolumeSlider" parent="Volume" instance=ExtResource("24_7gifx")]
+layout_mode = 2
+size_flags_vertical = 4
+bus_name = "Music"
+
+[node name="Label2" type="Label" parent="Volume"]
+layout_mode = 2
+text = "SFX"
+
+[node name="VolumeSlider2" parent="Volume" instance=ExtResource("24_7gifx")]
+layout_mode = 2
+size_flags_vertical = 4
+bus_name = "Sfx"
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(264, 136)
@@ -173,8 +226,8 @@ layout_mode = 2
 
 [node name="StartButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
 theme_override_fonts/font = ExtResource("23_leh6x")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yye0d")
@@ -192,8 +245,8 @@ text = "Start Game"
 
 [node name="QuitButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
 theme_override_fonts/font = ExtResource("23_leh6x")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yye0d")

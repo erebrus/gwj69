@@ -5,7 +5,7 @@ extends CardPileUI
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
-	card_clicked.connect(func(x): Events.card_clicked.emit())
+	card_clicked.connect(func(_x): Events.card_clicked.emit())
 	Events.discard_requested.connect(_on_discard_requested)
 	Events.card_destroy_requested.connect(_on_card_destroy_requested)
 	Events.card_clicked.connect(_on_card_clicked)
@@ -73,7 +73,7 @@ func _get_card_name(card: CardUI) -> String:
 
 func _on_card_clicked():
 	$sfx_pick.play()
-func _on_card_played(card:CardUI):
+func _on_card_played(_card:CardUI):
 	$sfx_play.play()
 
 func add_card(card:CustomCardUIData):
@@ -81,4 +81,3 @@ func add_card(card:CustomCardUIData):
 		Globals.current_deck[card.nice_name] = 0
 	Globals.current_deck[card.nice_name] = Globals.current_deck[card.nice_name] + 1
 	load_json_path()
-

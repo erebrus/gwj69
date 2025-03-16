@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="Avoid the Void"
+config/version="1.0.1"
 run/main_scene="res://src/start_screen.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
@@ -24,6 +25,7 @@ Types="*res://src/common/types.gd"
 Events="*res://src/common/events.gd"
 HyperLog="*res://addons/hyperlog/hyperlog.tscn"
 Globals="*res://src/common/globals.tscn"
+Debug="*res://src/common/debug/debug.tscn"
 
 [display]
 
@@ -34,7 +36,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Asset_Drawer/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/gs_logger/plugin.cfg", "res://addons/hyperlog/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/simple_card_pile_ui/plugin.cfg", "res://addons/xsm/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/gs_logger/plugin.cfg", "res://addons/hyperlog/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/simple_card_pile_ui/plugin.cfg", "res://addons/xsm/plugin.cfg")
 
 [input]
 
@@ -106,5 +108,5 @@ toggle_void_progression={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0.227451, 0.223529, 0.286275, 1)
 viewport/hdr_2d=true
+environment/defaults/default_clear_color=Color(0.227451, 0.223529, 0.286275, 1)

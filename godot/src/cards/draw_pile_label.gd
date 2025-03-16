@@ -8,11 +8,6 @@ func _ready() -> void:
 	modulate.a = 0
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_card_selection_card_selected(card: CardUI) -> void:
 	text = "+1 " + card.card_name.text
 	visible = true

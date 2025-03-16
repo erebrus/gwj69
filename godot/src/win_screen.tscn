@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=4 uid="uid://dls5c3igs44b3"]
 
-[ext_resource type="Script" path="res://src/win_screen.gd" id="1_1prml"]
+[ext_resource type="Script" uid="uid://c06h3j3ivdfxq" path="res://src/win_screen.gd" id="1_1prml"]
 [ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="1_eccrg"]
 [ext_resource type="Theme" uid="uid://b7jm7ogqwlkvk" path="res://src/cards/card_theme.tres" id="2_ubsdm"]
 [ext_resource type="FontFile" uid="uid://bjm5umnjo1est" path="res://assets/fonts/font-menu-UI-20px-portable_tube/PortableTube.ttf" id="4_m1rrc"]
@@ -86,7 +86,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k75vw"]
 _data = {
-"default": SubResource("Animation_kps5e")
+&"default": SubResource("Animation_kps5e")
 }
 
 [node name="WinScreen" type="Node"]

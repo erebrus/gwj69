@@ -5,12 +5,17 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Globals.in_game = false
+	Globals.music_manager.fade_in_menu_music()
+	
 	animation_player.play("start")
-	Globals.play_music(Globals.menu_music)
 	await animation_player.animation_finished
 	animation_player.play("loop")
+	
 
-
+func _exit_tree() -> void:
+	Globals.music_manager.fade_menu_music()
+	
 
 func _on_quit_button_pressed() -> void:
 	sfx_button.play()
@@ -20,7 +25,6 @@ func _on_quit_button_pressed() -> void:
 
 func _on_start_button_pressed() -> void:
 	sfx_button.play()
-	Globals.fade_music(Globals.menu_music)
 	#await sfx_button.finished	
 	await get_tree().create_timer(.75).timeout
-	Globals.start_game()	
+	Globals.start_game()

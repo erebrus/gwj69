@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	Logger.info("End Level Card Collected.")
 	sprite.play("gather")
 	$sfx_gather.play()

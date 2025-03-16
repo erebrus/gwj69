@@ -1,4 +1,4 @@
-extends Node
+class_name Game extends Node
 
 
 const CHECKPOINT_SCENE = preload("res://src/world/blocks/checkpoint_block.tscn")
@@ -10,13 +10,15 @@ const PLAYER_SCENE = preload("res://src/player/player.tscn")
 @export var void_cooldown_progression=.5
 @export var do_void_progression := true
 
+@export var void_time_tick:=true
+@export var void_card_tick:=true
+
 var checkpoint: CheckPoint
 
 @onready var sfx_err: AudioStreamPlayer = $CanvasLayer/sfx_err
 @onready var card_engine: CardPileUI = $CanvasLayer/CardEngine
 @onready var draw_timer: Timer = $DrawTimer
 @onready var void_timer: Timer = $VoidTimer
-@onready var music: AudioStreamPlayer = $music
 @onready var sfx_button: AudioStreamPlayer = $CanvasLayer/sfx_button
 @onready var card_selection: SelectionUI = $"CanvasLayer/Card Selection"
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
@@ -31,7 +33,8 @@ var world:World:
 var debug_mode:bool = false
 var player_needed:= true
 func _ready():
-
+	Globals.game = self
+	
 	load_world(Globals.get_current_world_scene())
 	card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
 			
@@ -57,9 +60,8 @@ func _ready():
 		draw_timer.wait_time = draw_cooldown
 		draw_timer.start()
 	reset_void_cooldown()
-		
-	Globals.play_music(Globals.game_music)
 	
+
 func load_world(scene:PackedScene):
 		var old_world = get_child(0)
 		remove_child(old_world)		
@@ -89,7 +91,7 @@ func spawn_player():
 		var player = PLAYER_SCENE.instantiate()
 		player.tilemap = Globals.tilemap		
 		
-		if checkpoint:
+		if is_instance_valid(checkpoint):
 			player.set_state(checkpoint.world_state.player)
 		else:
 			player.position = world.get_start_position()	
@@ -138,7 +140,7 @@ func reload_level():
 func _on_card_error():
 	sfx_err.play()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if void_timer.is_stopped():
 		%TimeLabel.text = "--"
 	else:
@@ -170,7 +172,8 @@ func _on_draw_timer_timeout() -> void:
 	Logger.info("Draw allowed")
 
 func _on_card_drawn():
-	Events.tick.emit()
+	if void_card_tick:
+		Events.tick.emit()
 	if draw_cooldown:
 		card_engine.click_draw_pile_to_draw = false
 		Logger.info("Draw in cooldown")
@@ -181,13 +184,10 @@ func _on_player_died():
 	restore_checkpoint()
 	
 
-func _on_music_finished() -> void:
-	music.play() #not using loop, because we might want to change songs
-	
-
 func _on_checkpoint_requested() -> void:
 	create_checkpoint()
 	
+
 func _on_spawn_requested() -> void:
 	spawn_player()
 	
@@ -198,23 +198,20 @@ func _on_end_card_collected():
 	else:
 		card_engine.create_card_in_pile("end_level", CardPileUI.Piles.hand_pile)
 
-func _on_game_ended():	
+func _on_game_ended():
 	Logger.info("You won!")
-	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property($music,"volume_db",-60,.5)
-	await tween.finished
 	Globals.win_game()
-
+	
 
 func _on_level_ended():
 	void_timer.stop()
 	#Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
 	player_needed = true
 	Globals.player_alive=false
-	if Globals.player:
+	if is_instance_valid(Globals.player):
 		Globals.player.queue_free()
 	Globals.current_level_idx += 1
-	var next_world := Globals.get_current_world_scene()
+	var next_world = Globals.get_current_world_scene()
 	if next_world:
 		card_selection.show_card_selection()
 		anim_player.play("FadeOut")
@@ -239,7 +236,7 @@ func toggle_camera():
 	Events.camera_toggled.emit(camera_mode)
 	Logger.info("Camera mode changed to %s" % Types.CameraMode.keys()[camera_mode])
 
-func _on_card_played(card:CardUI):
+func _on_card_played(_card:CardUI):
 	if draw_timer.wait_time>0:
 		if draw_timer.wait_time>1:
 			draw_timer.wait_time -= 1
@@ -248,7 +245,7 @@ func _on_card_played(card:CardUI):
 
 
 func _on_card_selection_card_selected(card: CardUI) -> void:
-	var next_world := Globals.get_current_world_scene()
+	var next_world = Globals.get_current_world_scene()
 	
 	load_world(next_world)	
 	reset_void_cooldown()
@@ -278,7 +275,8 @@ func _on_menu_button_pressed() -> void:
 
 
 func _on_void_timer_timeout() -> void:
-	Events.tick.emit()
+	if void_time_tick:
+		Events.tick.emit()
 	void_timer.wait_time = void_cooldown
 	void_timer.start()
 

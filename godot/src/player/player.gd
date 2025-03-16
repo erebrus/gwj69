@@ -24,7 +24,7 @@ const BASE_SPEED :=50.0
 var high_jumps := 0:
 	set(hj):
 		high_jumps=hj
-		jump_velocity = JUMP_VELOCITY* (1 if hj == 0 else 1.5)#HACK magic value
+		jump_velocity = JUMP_VELOCITY * (1.0 if hj == 0 else 1.5)#HACK magic value
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -347,7 +347,7 @@ func _on_game_mode_changed(mode: Types.GameMode):
 		animation_player.play()
 	
 
-func _on_void_detector_body_entered(body: Node2D) -> void:
+func _on_void_detector_body_entered(_body: Node2D) -> void:
 	consume()
 
 func _on_end_card_collected():

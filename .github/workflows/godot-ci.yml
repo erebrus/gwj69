@@ -1,31 +1,31 @@
 name: "godot-ci export"
 on:
   push:
-    branches:
-      - release
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
 
 env:
-  GODOT_VERSION: 4.2.2
+  GODOT_VERSION: 4.4.stable
   EXPORT_NAME: gwj69
-  ITCH_GAME: gwj-69
-  ITCH_USER: erebrus
+  ITCH_GAME: avoid-the-void
+  ITCH_USER: superjammers
 
 jobs:
   export-web:
     name: Web Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.2.2
+      image: barichello/godot-ci:4.4
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         lfs: true
     - name: Setup
       run: |
         mkdir -v -p ~/.local/share/godot/export_templates/
-        mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-        ls ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+        mv /root/.local/share/godot/export_templates/${GODOT_VERSION} ~/.local/share/godot/export_templates/${GODOT_VERSION}
+        ls ~/.local/share/godot/export_templates/${GODOT_VERSION}
     - name: Web Build
       run: |
         cd godot
@@ -38,21 +38,22 @@ jobs:
         BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
         CHANNEL: web
         PACKAGE: godot/build/html
+  
   export-mac:
     name: Mac Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.2.2
+      image: barichello/godot-ci:4.4
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           lfs: true
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-          ls ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION} ~/.local/share/godot/export_templates/${GODOT_VERSION}
+          ls ~/.local/share/godot/export_templates/${GODOT_VERSION}
       - name: Mac Build
         run: |
           cd godot
@@ -69,17 +70,17 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.2.2
+      image: barichello/godot-ci:4.4
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           lfs: true
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-          ls ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION} ~/.local/share/godot/export_templates/${GODOT_VERSION}
+          ls ~/.local/share/godot/export_templates/${GODOT_VERSION}
       - name: Windows Build
         run: |
           cd godot
@@ -97,17 +98,17 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.2.2
+      image: barichello/godot-ci:4.4
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           lfs: true
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-          ls ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION} ~/.local/share/godot/export_templates/${GODOT_VERSION}
+          ls ~/.local/share/godot/export_templates/${GODOT_VERSION}
       - name: Linux Build
         run: |
           cd godot

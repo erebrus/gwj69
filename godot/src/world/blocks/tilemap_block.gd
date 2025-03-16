@@ -9,7 +9,7 @@ const VOID_ID := VoidLayer.VOID_ID
 @export var min_particles_emitted = 10
 @export var max_particles_emitted = 30
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var parent = get_parent()
 	if parent is Placeholder:
 		tilemap.material.set_shader_parameter("ColorParameter", valid_placement_color if parent.is_valid else invalid_placement_color)

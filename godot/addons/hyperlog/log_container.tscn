@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dkgwe3j8h4ol3"]
 
-[ext_resource type="Script" path="res://addons/hyperlog/log_container.gd" id="1"]
+[ext_resource type="Script" uid="uid://57cdlg8lswl3" path="res://addons/hyperlog/log_container.gd" id="1"]
 [ext_resource type="Material" uid="uid://bfcius4ai3u24" path="res://addons/hyperlog/log_container.material" id="1_i7b0d"]
 
 [sub_resource type="StyleBoxFlat" id="3"]

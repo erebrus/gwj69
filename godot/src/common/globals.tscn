@@ -1,18 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://rumvotveqal5"]
+[gd_scene load_steps=6 format=3 uid="uid://rumvotveqal5"]
 
-[ext_resource type="Script" path="res://src/common/globals.gd" id="1_noqpm"]
+[ext_resource type="Script" uid="uid://djyw1e4ljndcv" path="res://src/common/globals.gd" id="1_noqpm"]
 [ext_resource type="AudioStream" uid="uid://dre04a01cjhaa" path="res://assets/music/Main Background Music_1.mp3" id="2_vtkhm"]
 [ext_resource type="AudioStream" uid="uid://756p0df31i8" path="res://assets/music/Main Background Music_2.mp3" id="3_qdevs"]
+[ext_resource type="Script" uid="uid://lr3j7du62akg" path="res://src/common/music_manager.gd" id="4_ruc8d"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_i7uig"]
+stream_count = 1
+stream_0/stream = ExtResource("2_vtkhm")
+stream_0/volume = 0.0
 
 [node name="Globals" type="Node"]
 script = ExtResource("1_noqpm")
 
-[node name="game_music" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-stream = ExtResource("2_vtkhm")
-bus = &"Music"
+[node name="MusicManager" type="Node" parent="."]
+script = ExtResource("4_ruc8d")
 
-[node name="menu_music" type="AudioStreamPlayer" parent="."]
+[node name="menu_music" type="AudioStreamPlayer" parent="MusicManager"]
 process_mode = 3
 stream = ExtResource("3_qdevs")
+bus = &"Music"
+
+[node name="game_music" type="AudioStreamPlayer" parent="MusicManager"]
+process_mode = 3
+stream = SubResource("AudioStreamSynchronized_i7uig")
 bus = &"Music"
