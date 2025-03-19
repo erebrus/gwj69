@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b6whpgaimxar4"
+path="res://.godot/imported/Music Stress Loop.mp3-9c3b9e5067002f3cc70a24b86691bfe9.mp3str"
+
+[deps]
+
+source_file="res://assets/music/New Music/Music Stress Loop.mp3"
+dest_files=["res://.godot/imported/Music Stress Loop.mp3-9c3b9e5067002f3cc70a24b86691bfe9.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

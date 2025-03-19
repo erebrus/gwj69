@@ -50,6 +50,7 @@ var game_mode: Types.GameMode:
 var in_game:=false
 
 var tilemap: PlatformsLayer
+var void_tilemap: VoidLayer
 var player: Player
 var game: Game
 

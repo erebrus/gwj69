@@ -1,14 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://rumvotveqal5"]
+[gd_scene load_steps=8 format=3 uid="uid://rumvotveqal5"]
 
 [ext_resource type="Script" uid="uid://djyw1e4ljndcv" path="res://src/common/globals.gd" id="1_noqpm"]
-[ext_resource type="AudioStream" uid="uid://dre04a01cjhaa" path="res://assets/music/Main Background Music_1.mp3" id="2_vtkhm"]
 [ext_resource type="AudioStream" uid="uid://756p0df31i8" path="res://assets/music/Main Background Music_2.mp3" id="3_qdevs"]
 [ext_resource type="Script" uid="uid://lr3j7du62akg" path="res://src/common/music_manager.gd" id="4_ruc8d"]
+[ext_resource type="AudioStream" uid="uid://dchmco1y0k3dx" path="res://assets/music/New Music/Music Main Loop.mp3" id="4_wac4y"]
+[ext_resource type="AudioStream" uid="uid://pcd2vecfceq4" path="res://assets/music/New Music/Music Rhythm Loop.mp3" id="5_2nufq"]
+[ext_resource type="AudioStream" uid="uid://b6whpgaimxar4" path="res://assets/music/New Music/Music Stress Loop.mp3" id="6_0o1u7"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_i7uig"]
-stream_count = 1
-stream_0/stream = ExtResource("2_vtkhm")
+stream_count = 3
+stream_0/stream = ExtResource("4_wac4y")
 stream_0/volume = 0.0
+stream_1/stream = ExtResource("5_2nufq")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("6_0o1u7")
+stream_2/volume = -60.0
 
 [node name="Globals" type="Node"]
 script = ExtResource("1_noqpm")

@@ -13,6 +13,7 @@ var checkpoint: CheckPoint
 
 func _ready():
 	Globals.tilemap = $PlatformsLayer
+	Globals.void_tilemap = $VoidLayer
 	Events.player_respawned.connect(_on_player_respawned)
 	Events.camera_toggled.connect(_on_camera_toggled)
 	Events.new_void_cell.connect(_on_new_void_cell)

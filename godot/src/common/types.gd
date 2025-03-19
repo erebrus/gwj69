@@ -1,6 +1,6 @@
 extends Node
 
-enum GameMusic {EASY, NORMAL, HARD}
+enum GameMusic {MAIN, RHYTHM, STRESS}
 
 enum GameMode {
 	ChoosingCard,
