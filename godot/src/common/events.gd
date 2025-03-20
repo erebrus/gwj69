@@ -55,6 +55,11 @@ signal camera_toggled(mode:Types.CameraMode)
 signal global_void_expanded()
 @warning_ignore("unused_signal")
 signal new_void_cell(cell: Vector2i)
+@warning_ignore("unused_signal")
+signal in_danger()
+@warning_ignore("unused_signal")
+signal not_in_danger()
+
 
 @warning_ignore("unused_signal")
 signal restart_requested()

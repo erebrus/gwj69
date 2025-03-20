@@ -6,7 +6,7 @@ class_name MusicManager extends Node
 
 
 @onready var game_music_stream:AudioStreamSynchronized = game_music.stream
-var current_game_music_id = Types.GameMusic.EASY
+var current_game_music_id = Types.GameMusic.MAIN
 
 
 func fade_in_menu_music(time:float=1.0):
@@ -59,3 +59,16 @@ func change_game_music_to(new_id:Types.GameMusic, time:=1.0):
 	await tween.finished
 	current_game_music_id = new_id
 	Logger.info("Music changed to: %s" % new_id)
+	
+func fade_in_game_stream(stream_id, time:=1.0):
+	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tween.tween_method(_helper_set_volume.bind(stream_id),-60,0, time)
+	await tween.finished
+	Logger.debug("Faded in game music stream %d" % stream_id)
+
+func fade_out_game_stream(stream_id, time:=1.0):
+	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tween.tween_method(_helper_set_volume.bind(stream_id),0,-60, time)
+	await tween.finished
+	Logger.debug("Faded out game music stream %d" % stream_id)
+	

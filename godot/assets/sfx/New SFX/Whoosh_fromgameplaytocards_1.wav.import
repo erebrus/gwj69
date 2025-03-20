@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://4vf5i82hfko6"
+path="res://.godot/imported/Whoosh_fromgameplaytocards_1.wav-37bb9b4f13f3e0b4de7223cedad0f531.sample"
+
+[deps]
+
+source_file="res://assets/sfx/New SFX/Whoosh_fromgameplaytocards_1.wav"
+dest_files=["res://.godot/imported/Whoosh_fromgameplaytocards_1.wav-37bb9b4f13f3e0b4de7223cedad0f531.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

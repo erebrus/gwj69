@@ -133,4 +133,11 @@ func _on_tick() -> void:
 	fade()
 	Events.global_void_expanded.emit()
 		
-	
+
+func count_void_in_area(pos:Vector2i, size:int)->int:
+	var count:=0
+	for x in range(pos.x-size, pos.x+size+1):
+		for y in range(pos.y-size, pos.y+size+1):
+			if not cell_is_empty(Vector2i(x,y)):
+				count += 1
+	return count

@@ -41,6 +41,7 @@ var follow_target: Node2D = null
 
 var paused:bool = false
 var is_spawning:bool = true
+var safe := true
 
 func _ready():
 	Globals.player_alive = true
@@ -372,3 +373,32 @@ func release() -> void:
 	follow_target = null
 	current_cell = tilemap.local_to_map(position-Vector2(0,1))
 	
+
+
+func _on_safety_timer_timeout() -> void:
+	check_safety()
+	
+#TODO Review formula and handle magic numbers
+func check_safety():
+	var was_safe := safe
+	
+	current_cell = tilemap.local_to_map(position-Vector2(0,1))
+	var close_area_count :int = Globals.void_tilemap.count_void_in_area(current_cell, 2)
+	if close_area_count > 4:
+		safe = false
+	else:
+		var large_area_count :int = Globals.void_tilemap.count_void_in_area(current_cell, 8)
+		var small_area_count :int = Globals.void_tilemap.count_void_in_area(current_cell, 4)
+		var danger_ratio:float = large_area_count/64*.3+ small_area_count/16*.7
+		safe = danger_ratio <.3	
+	
+	if was_safe and not safe:
+		Globals.music_manager.fade_in_game_stream(Types.GameMusic.STRESS)
+		Logger.info("Player in danger")
+		Events.in_danger.emit()
+	elif not was_safe and safe:
+		Logger.info("Player safe")
+		Events.not_in_danger.emit()
+		Globals.music_manager.fade_out_game_stream(Types.GameMusic.STRESS)
+
+		

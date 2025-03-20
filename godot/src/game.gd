@@ -24,6 +24,9 @@ var checkpoint: CheckPoint
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var game_menu: PanelContainer = $CanvasLayer/GameMenu
 @onready var void_cooldown = start_void_cooldown
+@onready var sfx_swoosh_to_game: AudioStreamPlayer = $CanvasLayer/sfx_swoosh_to_game
+@onready var sfx_swoosh_to_place: AudioStreamPlayer = $CanvasLayer/sfx_swoosh_to_place
+
 var camera_mode:= Types.CameraMode.TRACKING
 var world:World:
 	set(w):
@@ -55,12 +58,22 @@ func _ready():
 	Events.close_menu_requested.connect(func(): game_menu.hide(); get_tree().paused = false)
 	Events.global_void_expanded.connect(func(): $sfx_void.play())
 	Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)
+	Events.game_mode_changed.connect(_on_game_mode_changed)
 	card_engine.card_drawn.connect(_on_card_drawn)
 	if draw_cooldown > 0:
 		draw_timer.wait_time = draw_cooldown
 		draw_timer.start()
 	reset_void_cooldown()
+	Globals.music_manager.fade_in_game_stream(Types.GameMusic.RHYTHM, .15)
+
 	
+func _on_game_mode_changed(mode: Types.GameMode):
+	if mode == Types.GameMode.ChoosingCard:
+		Globals.music_manager.fade_in_game_stream(Types.GameMusic.RHYTHM, .15)
+		sfx_swoosh_to_game.play()
+	elif mode == Types.GameMode.PlacingBlock:
+		sfx_swoosh_to_place.play()
+		Globals.music_manager.fade_out_game_stream(Types.GameMusic.RHYTHM, .15)
 
 func load_world(scene:PackedScene):
 		var old_world = get_child(0)
