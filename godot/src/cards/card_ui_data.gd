@@ -35,4 +35,3 @@ func _do_play():
 func has_trait(_trait:Traits)->bool:
 	var key = Traits.keys()[_trait]	
 	return key in traits and traits[key]
-
