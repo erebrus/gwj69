@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b2q3ypwb3s64x"]
+[gd_scene load_steps=42 format=3 uid="uid://b2q3ypwb3s64x"]
 
 [ext_resource type="Script" uid="uid://d0re6w1cetdos" path="res://src/player/player.gd" id="1_x8yfo"]
 [ext_resource type="Texture2D" uid="uid://h086k7te1vmm" path="res://assets/gfx/character/mc-animations.png" id="3_hrerp"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://rdm1r0v0bs4m" path="res://assets/sfx/Save_your_soul.wav" id="14_mix8g"]
 [ext_resource type="AudioStream" uid="uid://cp3w83gfwpf7k" path="res://assets/sfx/Player_dies_by_Void.wav" id="15_itwl1"]
 [ext_resource type="AudioStream" uid="uid://hb048laabmq4" path="res://assets/sfx/Player_dies_Falling.wav" id="16_e5p12"]
+[ext_resource type="AudioStream" uid="uid://qn81we10yrye" path="res://assets/sfx/New SFX/Player_dies_splat.wav" id="17_oyld2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywd1q"]
 radius = 2.0
@@ -61,7 +62,50 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -3)]
+"values": [Vector2(0, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_hrerp"]
+resource_name = "crash_death"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [98, 99, 103, 104, 105]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -1), Vector2(0, -3), Vector2(0, -3)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sfx/sfx_death_crash")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_pn6g2"]
@@ -279,35 +323,6 @@ tracks/0/keys = {
 "values": [70, 71, 72, 73, 74, 75]
 }
 
-[sub_resource type="Animation" id="Animation_hrerp"]
-resource_name = "crash_death"
-length = 0.4
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [98, 99, 103, 104, 105]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Vector2(0, -1), Vector2(0, -3), Vector2(0, -3)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hukg5"]
 _data = {
 &"RESET": SubResource("Animation_jq1uo"),
@@ -374,7 +389,7 @@ vfx_jump_high = ExtResource("13_qyi5a")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -4)
 texture = ExtResource("3_hrerp")
-offset = Vector2(0, -3)
+offset = Vector2(0, -1)
 hframes = 14
 vframes = 8
 
@@ -422,12 +437,19 @@ bus = &"Sfx"
 
 [node name="sfx_respawn" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("14_mix8g")
+bus = &"Sfx"
 
 [node name="sfx_death_void" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("15_itwl1")
+bus = &"Sfx"
 
 [node name="sfx_death_gravity" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("16_e5p12")
+bus = &"Sfx"
+
+[node name="sfx_death_crash" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("17_oyld2")
+bus = &"Sfx"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 

@@ -217,7 +217,8 @@ func _do_gravity_death(crash:=false):
 	if not Globals.player_alive:
 		return
 	_do_death("crash_death" if crash else "death")
-	$sfx/sfx_death_gravity.play()
+	if not crash:
+		$sfx/sfx_death_gravity.play()
 	
 func consume():
 	if not Globals.player_alive:
