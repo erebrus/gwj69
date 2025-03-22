@@ -2,6 +2,7 @@ extends Node2D
 class_name Placeholder
 
 signal valid_changed(valid:bool)
+signal position_selected
 signal placed
 signal dismissed
 
@@ -64,6 +65,7 @@ func _place() -> void:
 		error_sfx.play()
 		return
 	
+	position_selected.emit()
 	Logger.info("block placed")
 	var block_position = tilemap.to_local(block.global_position)
 	if len(tilemap.get_used_cells()) > 1:

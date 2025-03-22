@@ -21,6 +21,7 @@ func play():
 	
 	var placeholder = PlaceholderScene.instantiate()
 	placeholder.block = _get_block()
+	placeholder.position_selected.connect(_on_position_selected)
 	placeholder.placed.connect(_on_block_placed)
 	placeholder.dismissed.connect(_on_card_dismissed)
 	
@@ -28,10 +29,13 @@ func play():
 	Events.block_requested.emit(placeholder)
 	
 
-func _on_block_placed() -> void:
+func _on_position_selected() -> void:
 	Logger.info("Played %s card" % nice_name)
-	_do_play()
 	played.emit()
+	_do_play()
+	
+
+func _on_block_placed() -> void:
 	Globals.game_mode = Types.GameMode.ChoosingCard
 	
 

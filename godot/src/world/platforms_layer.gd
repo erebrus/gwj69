@@ -69,4 +69,3 @@ func clear_blocks_at(coords:Vector2i)->void:
 			if !child.is_cell_empty(child_coords):
 				child.clear_blocks_at(child_coords)
 		
-

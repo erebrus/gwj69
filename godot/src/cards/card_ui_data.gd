@@ -19,8 +19,8 @@ var traits:={}
 func play():
 	if can_play():
 		Logger.info("Played %s card" % nice_name)
-		_do_play()
 		played.emit()
+		_do_play()
 		
 	else:
 		Logger.info("Can't play %s card" % nice_name)
@@ -35,4 +35,3 @@ func _do_play():
 func has_trait(_trait:Traits)->bool:
 	var key = Traits.keys()[_trait]	
 	return key in traits and traits[key]
-

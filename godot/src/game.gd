@@ -14,6 +14,7 @@ const PLAYER_SCENE = preload("res://src/player/player.tscn")
 @export var void_card_tick:=true
 
 var checkpoint: CheckPoint
+var save_stack: Array[SaveState]
 
 @onready var sfx_err: AudioStreamPlayer = $CanvasLayer/sfx_err
 @onready var card_engine: CardPileUI = $CanvasLayer/CardEngine
@@ -75,6 +76,7 @@ func _on_game_mode_changed(mode: Types.GameMode):
 	elif mode == Types.GameMode.PlacingBlock:
 		sfx_swoosh_to_place.play()
 		Globals.music_manager.fade_out_game_stream(Types.GameMusic.RHYTHM, .15)
+	
 
 func load_world(scene:PackedScene):
 		var old_world = get_child(0)
@@ -87,57 +89,88 @@ func load_world(scene:PackedScene):
 		world = new_world
 		player_needed = true
 		Globals.game_mode = Types.GameMode.ChoosingCard
-		
 	
 
 func create_checkpoint():
 	checkpoint = CHECKPOINT_SCENE.instantiate()
-	checkpoint.void_cooldown = void_cooldown
 	checkpoint.position = Globals.tilemap.cell_top_left(Globals.player.position)
-	
-	checkpoint.card_engine_state = card_engine.get_state()
-	checkpoint.world_state = world.get_state()
+	checkpoint.save_state = create_save_state()
 	
 	world.place_checkpoint(checkpoint)
 	
-func spawn_player():
+
+func create_save():
+	var save = create_save_state()
+	save_stack.append(save)
+	
+
+func create_save_state() -> SaveState:
+	var save_state = SaveState.new()
+	save_state.void_cooldown = void_cooldown
+	save_state.card_engine_state = card_engine.get_state()
+	save_state.world_state = world.get_state()
+	
+	return save_state
+	
+
+func spawn_player(save_state: SaveState):
 	if player_needed:
 		var player = PLAYER_SCENE.instantiate()
-		player.tilemap = Globals.tilemap		
+		player.tilemap = Globals.tilemap
 		
-		if is_instance_valid(checkpoint):
-			player.set_state(checkpoint.world_state.player)
+		if is_instance_valid(save_state):
+			player.set_state(save_state.world_state.player)
 		else:
 			player.position = world.get_start_position()	
 		world.add_child(player)
 		player_needed = false
-		world._on_player_respawned(player)		
+		world._on_player_respawned(player)
+	
 
 func restore_checkpoint():
 	if checkpoint == null:
 		reload_level()
 	elif checkpoint:
 		checkpoint.get_parent().remove_child(checkpoint)
-		load_world(Globals.get_current_world_scene())
-		card_engine.set_state(checkpoint.card_engine_state)
+		restore_save_state(checkpoint.save_state)
+		
 		card_engine.create_card_in_pile("spawn", CardPileUI.Piles.hand_pile)
-		world.set_state(checkpoint.world_state)
-		void_cooldown = checkpoint.void_cooldown
-		Logger.info("Checkpoint void cooldown is %.2fs" % void_cooldown)
-		if void_cooldown > 0:
-			void_timer.start()
 		world.place_checkpoint(checkpoint)
 		return
 	
+
+func restore_save():
+	if save_stack.is_empty():
+		reload_level()
+	else:
+		var save: SaveState = save_stack.pop_back()
+		Logger.info("Restoring state: %s" % save)
+		restore_save_state(save)
+		if save.world_state.player != null:
+			spawn_player(save)
+	
+
+func restore_save_state(save_state: SaveState) -> void:
+	load_world(Globals.get_current_world_scene())
+	card_engine.set_state(save_state.card_engine_state)
+	world.set_state(save_state.world_state)
+	void_cooldown = save_state.void_cooldown
+	Logger.info("Checkpoint void cooldown is %.2fs" % void_cooldown)
+	if void_cooldown > 0:
+		void_timer.start()
+	
+
 func reset_void_cooldown():
 	if void_cooldown > 0:
 		void_cooldown = start_void_cooldown
 		void_timer.wait_time = void_cooldown
 		Logger.info("Void cooldown is %.2fs" % void_cooldown)
 		void_timer.start()
-			
+	
+
 func reload_level():
 	if Globals.get_current_world_scene():
+		Logger.info("Reloading level")
 		await get_tree().process_frame #necessary to let the discard finish
 		load_world(Globals.get_current_world_scene())		
 		#Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
@@ -203,7 +236,10 @@ func _on_checkpoint_requested() -> void:
 	
 
 func _on_spawn_requested() -> void:
-	spawn_player()
+	if is_instance_valid(checkpoint):
+		spawn_player(checkpoint.save_state)
+	else:
+		spawn_player(null)
 	
 
 func _on_end_card_collected():
@@ -218,6 +254,7 @@ func _on_game_ended():
 	
 
 func _on_level_ended():
+	# TODO: empty save stack
 	void_timer.stop()
 	#Events.reshuffled_discard_pile.disconnect(_on_reshuffled_discard_pile)
 	player_needed = true
@@ -251,11 +288,7 @@ func toggle_camera():
 	Logger.info("Camera mode changed to %s" % Types.CameraMode.keys()[camera_mode])
 
 func _on_card_played(_card:CardUI):
-	if draw_timer.wait_time>0:
-		if draw_timer.wait_time>1:
-			draw_timer.wait_time -= 1
-		else:
-			_on_draw_timer_timeout()
+	create_save() 
 
 
 func _on_card_selection_card_selected(card: CardUI) -> void:
@@ -274,7 +307,6 @@ func toggle_menu():
 	game_menu.visible = not game_menu.visible
 	await get_tree().process_frame
 	get_tree().paused = game_menu.visible
-
 
 
 func _on_help_button_pressed() -> void:
@@ -319,3 +351,8 @@ func toggle_void_progression():
 	Logger.info("void timer cooldown progression: %s" % do_void_progression)
 	if not do_void_progression:
 		void_cooldown = start_void_cooldown
+
+
+func _on_undo_button_pressed():
+	sfx_button.play()
+	restore_save()

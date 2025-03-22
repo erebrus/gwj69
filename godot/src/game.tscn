@@ -579,6 +579,31 @@ size_flags_vertical = 4
 texture = ExtResource("8_g2lcw")
 stretch_mode = 4
 
+[node name="Undo" type="MarginContainer" parent="CanvasLayer/Butttons/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="UndoButton" type="Button" parent="CanvasLayer/Butttons/VBoxContainer/Undo"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_hover_pressed_color = Color(0.811765, 0.984314, 0.945098, 1)
+theme_override_colors/font_hover_color = Color(0.811765, 0.984314, 0.945098, 1)
+theme_override_colors/font_color = Color(0.811765, 0.984314, 0.945098, 1)
+theme_override_colors/font_focus_color = Color(0.811765, 0.984314, 0.945098, 1)
+theme_override_colors/font_pressed_color = Color(0.811765, 0.984314, 0.945098, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_at35o")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_at35o")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_at35o")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_at35o")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_at35o")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_at35o")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_at35o")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_at35o")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_at35o")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_at35o")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_at35o")
+text = "UNDO"
+
 [node name="HelpButton" type="TextureButton" parent="CanvasLayer/Butttons/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -705,6 +730,7 @@ libraries = {
 [node name="VoidTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="pressed" from="CanvasLayer/Butttons/VBoxContainer/Undo/UndoButton" to="." method="_on_undo_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Butttons/VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Butttons/VBoxContainer/Menu/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="card_selected" from="CanvasLayer/Card Selection" to="." method="_on_card_selection_card_selected"]

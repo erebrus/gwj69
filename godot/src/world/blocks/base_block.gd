@@ -58,4 +58,3 @@ func _on_tick():
 	if ttl == 0:
 		_destroy_tile()
 	
-

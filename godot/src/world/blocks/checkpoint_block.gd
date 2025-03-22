@@ -1,8 +1,6 @@
 class_name CheckPoint extends BaseBlock
 
-var void_cooldown:int
-var card_engine_state: Dictionary
-var world_state: Dictionary
+var save_state: SaveState
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 

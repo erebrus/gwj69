@@ -20,8 +20,6 @@ size = Vector2(4, 6)
 [node name="TilemapBlock" instance=ExtResource("1_p8poh")]
 script = ExtResource("2_2fhgt")
 speed = 50.0
-min_particles_emitted = 10
-max_particles_emitted = 30
 
 [node name="SliderLayer" type="TileMapLayer" parent="." index="1"]
 tile_map_data = PackedByteArray(0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0)

@@ -22,17 +22,22 @@ func _ready():
 	
 
 func get_state() -> Dictionary:
+	var player_state = null
+	if get_node_or_null("Player") != null:
+		player_state = $Player.get_state()
+	
 	return {
 		"platforms" = platforms_layer.get_state(),
 		"voids" = voids_layer.get_state(),
-		"player" = $Player.get_state()
+		"player" = player_state
 	}
 	
 
 func set_state(state: Dictionary) -> void:
 	platforms_layer.set_state(state.platforms)
 	voids_layer.set_state(state.voids)
-	camera.position = state.player.position
+	if state.player != null:
+		camera.position = state.player.position
 	
 	
 

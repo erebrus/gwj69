@@ -7,8 +7,8 @@ func can_play() -> bool:
 
 func play():
 	if can_play():
-		Logger.info("Played %s card" % nice_name)
 		played.emit()
+		Logger.info("Played %s card" % nice_name)
 		Events.checkpoint_requested.emit()
 		
 	else:

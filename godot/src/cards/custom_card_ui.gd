@@ -50,12 +50,13 @@ func set_pile(value: CardPileUI.Piles) -> void:
 			card_shuffled_to_draw.emit(self)
 
 func _on_card_played():
+	Events.card_played.emit(self)
 	Events.discard_requested.emit(self)
 	
 	card_played.emit(self)
 	#HACK logic shouldn't be here...
 	if custom_data.has_trait(CustomCardUIData.Traits.ONE_USE):
 		Events.card_destroy_requested.emit(self)
-	#Events.card_played.emit(self)
+	
 func _on_card_drawn():
 	pass
