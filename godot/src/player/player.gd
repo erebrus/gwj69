@@ -139,7 +139,7 @@ func _physics_process(delta):
 		if last_vy > 300:
 			_do_landing()
 		if position.y-last_y_on_floor>DEATH_HEIGHT and last_y_on_floor!=-999:			
-			_do_gravity_death()
+			_do_gravity_death(true)
 			return
 		
 func _do_landing():
@@ -213,10 +213,10 @@ func _on_speed_requested(factor:float, duration:float):
 	base_speed = BASE_SPEED * factor
 	boost_duration += duration 
 	
-func _do_gravity_death():
+func _do_gravity_death(crash:=false):
 	if not Globals.player_alive:
 		return
-	_do_death("death")
+	_do_death("crash_death" if crash else "death")
 	$sfx/sfx_death_gravity.play()
 	
 func consume():

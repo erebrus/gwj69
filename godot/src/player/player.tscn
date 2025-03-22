@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b2q3ypwb3s64x"]
+[gd_scene load_steps=41 format=3 uid="uid://b2q3ypwb3s64x"]
 
 [ext_resource type="Script" uid="uid://d0re6w1cetdos" path="res://src/player/player.gd" id="1_x8yfo"]
 [ext_resource type="Texture2D" uid="uid://h086k7te1vmm" path="res://assets/gfx/character/mc-animations.png" id="3_hrerp"]
@@ -50,6 +50,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [10.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -3)]
 }
 
 [sub_resource type="Animation" id="Animation_pn6g2"]
@@ -267,9 +279,39 @@ tracks/0/keys = {
 "values": [70, 71, 72, 73, 74, 75]
 }
 
+[sub_resource type="Animation" id="Animation_hrerp"]
+resource_name = "crash_death"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [98, 99, 103, 104, 105]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -1), Vector2(0, -3), Vector2(0, -3)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hukg5"]
 _data = {
 &"RESET": SubResource("Animation_jq1uo"),
+&"crash_death": SubResource("Animation_hrerp"),
 &"death": SubResource("Animation_pn6g2"),
 &"edge": SubResource("Animation_71bf2"),
 &"fall": SubResource("Animation_dn3hf"),
@@ -332,12 +374,11 @@ vfx_jump_high = ExtResource("13_qyi5a")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -4)
 texture = ExtResource("3_hrerp")
-offset = Vector2(0, -1)
+offset = Vector2(0, -3)
 hframes = 14
 vframes = 8
 
 [node name="VoidDetector" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -346,7 +387,6 @@ position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_ywd1q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_fxkft")
 

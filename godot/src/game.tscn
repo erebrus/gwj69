@@ -498,7 +498,7 @@ _data = {
 [node name="Game" type="Node2D"]
 script = ExtResource("1_k8n5x")
 draw_cooldown = 0.0
-start_void_cooldown = 2.0
+start_void_cooldown = 10.0
 
 [node name="BaseWorld" parent="." instance=ExtResource("2_euer7")]
 
