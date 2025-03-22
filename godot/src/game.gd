@@ -71,9 +71,9 @@ func _ready():
 func _on_game_mode_changed(mode: Types.GameMode):
 	if mode == Types.GameMode.ChoosingCard:
 		Globals.music_manager.fade_in_game_stream(Types.GameMusic.RHYTHM, .15)
-		sfx_swoosh_to_game.play()
+		#sfx_swoosh_to_game.play()
 	elif mode == Types.GameMode.PlacingBlock:
-		sfx_swoosh_to_place.play()
+		#sfx_swoosh_to_place.play()
 		Globals.music_manager.fade_out_game_stream(Types.GameMusic.RHYTHM, .15)
 
 func load_world(scene:PackedScene):
