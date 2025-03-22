@@ -35,6 +35,7 @@ var world:World:
 
 var debug_mode:bool = false
 var player_needed:= true
+
 func _ready():
 	Globals.game = self
 	

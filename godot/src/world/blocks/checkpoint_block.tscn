@@ -5,43 +5,43 @@
 [ext_resource type="Texture2D" uid="uid://bg2we71fvvgyk" path="res://assets/gfx/world/flag-checkpoint.png" id="3_8hdcm"]
 [ext_resource type="AudioStream" uid="uid://c6u61fqpfairj" path="res://assets/sfx/Trigger_checkpoint.wav" id="4_bah06"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_khm6m"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uv8b0"]
 atlas = ExtResource("3_8hdcm")
-region = Rect2(0, 0, 12, 20)
+region = Rect2(0, 0, 8, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8rh7h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qf3g"]
 atlas = ExtResource("3_8hdcm")
-region = Rect2(12, 0, 12, 20)
+region = Rect2(8, 0, 8, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kigwd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsva4"]
 atlas = ExtResource("3_8hdcm")
-region = Rect2(24, 0, 12, 20)
+region = Rect2(16, 0, 8, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jm1h1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_60cxr"]
 atlas = ExtResource("3_8hdcm")
-region = Rect2(36, 0, 12, 20)
+region = Rect2(24, 0, 8, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hobwp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5hw5"]
 atlas = ExtResource("3_8hdcm")
-region = Rect2(48, 0, 12, 20)
+region = Rect2(32, 0, 8, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kyl4x"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_khm6m")
+"texture": SubResource("AtlasTexture_uv8b0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8rh7h")
+"texture": SubResource("AtlasTexture_1qf3g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kigwd")
+"texture": SubResource("AtlasTexture_fsva4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jm1h1")
+"texture": SubResource("AtlasTexture_60cxr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hobwp")
+"texture": SubResource("AtlasTexture_n5hw5")
 }],
 "loop": true,
 "name": &"default",
@@ -316,16 +316,16 @@ shape = SubResource("RectangleShape2D_3aq7j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
-"": SubResource("AnimationLibrary_4ioan")
+&"": SubResource("AnimationLibrary_4ioan")
 }
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="3"]
 position = Vector2(3, 8)
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_m1503")
 one_shot = true
 explosiveness = 0.8
 randomness = 0.3
+process_material = SubResource("ParticleProcessMaterial_m1503")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
 bus = &"Sfx"

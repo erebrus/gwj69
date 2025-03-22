@@ -11,5 +11,6 @@ func _ready() -> void:
 	timed = false
 	anim_player.play("Place")
 	
+
 func get_state() -> Dictionary:
 	return {}

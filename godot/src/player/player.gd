@@ -26,6 +26,12 @@ var high_jumps := 0:
 		high_jumps=hj
 		jump_velocity = JUMP_VELOCITY * (1.0 if hj == 0 else 1.5)#HACK magic value
 
+var facing_direction := 1:
+	set(value):
+		facing_direction = value
+		_turn_to_facing_direction()
+	
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
@@ -59,6 +65,7 @@ func _ready():
 	
 	Logger.info("player_respawned")
 	$sfx/sfx_respawn.play()	
+	_turn_to_facing_direction()
 	in_animation = true
 	animation_player.play("spawn")
 	await animation_player.animation_finished
@@ -102,7 +109,7 @@ func _physics_process(delta):
 		else:
 			$AnimationPlayer.speed_scale = base_speed/BASE_SPEED
 			$RunFast.emitting = true
-		velocity.x = base_speed * get_facing_direction()
+		velocity.x = base_speed * facing_direction
 		if is_on_floor() and not _can_walk():
 			velocity.x=0 
 			if _should_jump():
@@ -120,9 +127,9 @@ func _physics_process(delta):
 	
 	if animation_player.current_animation=="edge":
 		var mid_cell_point = tilemap.map_to_local(current_cell)
-		if get_facing_direction() > 0 and position.x > mid_cell_point.x:
+		if facing_direction > 0 and position.x > mid_cell_point.x:
 			position.x = mid_cell_point.x+1
-		elif get_facing_direction() < 0 and position.x < mid_cell_point.x:
+		elif facing_direction < 0 and position.x < mid_cell_point.x:
 			position.x = mid_cell_point.x-1
 	cell_map_string = get_cell_map_string()
 	
@@ -143,7 +150,7 @@ func _do_landing():
 	in_animation=false
 func _do_jump():
 	in_animation=false
-	velocity.x = base_speed * get_facing_direction()
+	velocity.x = base_speed * facing_direction
 	velocity.y = jump_velocity
 	if high_jumps>0:
 		high_jumps -= 1
@@ -178,15 +185,12 @@ func _update_animation():
 	if animation_player.current_animation != new_anim:
 		Logger.trace("change anim to %s" % new_anim)
 		animation_player.play(new_anim)
-		
 	
-func get_facing_direction()->int:
-	return -1 if sprite.flip_h else 1
-	
-func _turn_around() -> void:
-	Logger.debug("turning")
-	sprite.flip_h = !sprite.flip_h
-	#terrain_detector.flip = sprite.flip_h
+
+func _turn_to_facing_direction() -> void:
+	if sprite != null and sprite.is_inside_tree():
+		sprite.flip_h = facing_direction < 0
+		#terrain_detector.flip = sprite.flip_h
 	
 
 func _on_jump_detected(height: float) -> void:
@@ -198,7 +202,9 @@ func _on_fall_detected(height: float) -> void:
 	Logger.debug("Fall of %s detected!" % height)
 
 func _on_turn_around_requested():
-	_turn_around()
+	Logger.debug("turning")
+	facing_direction = -facing_direction
+	
 
 func _on_jump_requested():
 	high_jumps += 1
@@ -239,9 +245,9 @@ func _can_walk()->bool:
 	
 	var mid_cell_position = tilemap.map_to_local(current_cell)
 	#if we haven't reached the middle position of the cell, we can still walk
-	if get_facing_direction()>0 and position.x < mid_cell_position.x:
+	if facing_direction>0 and position.x < mid_cell_position.x:
 		return true
-	if get_facing_direction()<0 and position.x > mid_cell_position.x:
+	if facing_direction<0 and position.x > mid_cell_position.x:
 		return true
 		
 	var front_cell := _get_front_cell()
@@ -257,7 +263,7 @@ func _is_on_deep_edge()->bool:
 
 
 func _get_front_cell()->Vector2i:
-	return current_cell + Vector2i.RIGHT * get_facing_direction()
+	return current_cell + Vector2i.RIGHT * facing_direction
 
 func _should_jump()->bool:
 	var mid_cell_position = tilemap.map_to_local(current_cell)
@@ -278,11 +284,11 @@ func _should_jump()->bool:
 	var front_cell_below1_empty := tilemap.is_cell_empty(front_cell+ Vector2i.DOWN)
 	var front_cell_below2_empty := tilemap.is_cell_empty(front_cell+ Vector2i.DOWN * 2)
 	
-	var front2_cell_empty := tilemap.is_cell_empty(front_cell+ Vector2i.RIGHT*get_facing_direction())
-	var front2_below1_empty := tilemap.is_cell_empty(front_cell+ Vector2i.DOWN+Vector2i.RIGHT*get_facing_direction())
+	var front2_cell_empty := tilemap.is_cell_empty(front_cell+ Vector2i.RIGHT*facing_direction)
+	var front2_below1_empty := tilemap.is_cell_empty(front_cell+ Vector2i.DOWN+Vector2i.RIGHT*facing_direction)
 	# 1 block gap
 	
-	var past_mid_x:bool = position.x > mid_cell_position.x if get_facing_direction() > 0 \
+	var past_mid_x:bool = position.x > mid_cell_position.x if facing_direction > 0 \
 			else position.x < mid_cell_position.x
 	if  past_mid_x and \
 		front_cell_empty and \
@@ -333,13 +339,16 @@ func get_cell_map_string()->String:
 
 func get_state() -> Dictionary:
 	return {
-		"position" = position 
+		"position" = position,
+		"direction" = facing_direction,
 	}
 	
 
 func set_state(state: Dictionary) -> void:
 	position = state.position
+	facing_direction = state.direction
 	
+
 func _on_game_mode_changed(mode: Types.GameMode):
 	paused = mode == Types.GameMode.PlacingBlock
 	if paused:
