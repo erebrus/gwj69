@@ -18,9 +18,5 @@ limit_right = 2600
 limit_bottom = 1200
 editor_draw_limits = true
 
-[node name="BlockGrid" parent="." index="4" node_paths=PackedStringArray("platform_layer", "camera")]
-platform_layer = NodePath("../PlatformsLayer")
-camera = NodePath("../Camera")
-
 [node name="EndCard" parent="." index="6" instance=ExtResource("3_xspyc")]
 position = Vector2(1203, 217)

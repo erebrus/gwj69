@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7hn5c6brd5tt"
-path="res://.godot/imported/mockup-main-5.png-09ccda1b184a5a03ebd9a1754bd33fe7.ctex"
+uid="uid://c71pq2q0qskw3"
+path="res://.godot/imported/doublecard1.png-25e7f732ade5f8417273c6f85f233c22.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gfx/mockup-main-5.png"
-dest_files=["res://.godot/imported/mockup-main-5.png-09ccda1b184a5a03ebd9a1754bd33fe7.ctex"]
+source_file="res://assets/gfx/mocks/doublecard1.png"
+dest_files=["res://.godot/imported/doublecard1.png-25e7f732ade5f8417273c6f85f233c22.ctex"]
 
 [params]
 

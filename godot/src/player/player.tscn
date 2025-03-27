@@ -1,7 +1,7 @@
-[gd_scene load_steps=40 format=3 uid="uid://b2q3ypwb3s64x"]
+[gd_scene load_steps=42 format=3 uid="uid://b2q3ypwb3s64x"]
 
 [ext_resource type="Script" uid="uid://d0re6w1cetdos" path="res://src/player/player.gd" id="1_x8yfo"]
-[ext_resource type="Texture2D" uid="uid://c5b2xq6jhm1ro" path="res://assets/gfx/character/mc-tall2-animations.png" id="2_faqy1"]
+[ext_resource type="Texture2D" uid="uid://h086k7te1vmm" path="res://assets/gfx/character/mc-animations.png" id="3_hrerp"]
 [ext_resource type="AudioStream" uid="uid://dmdyoke7mnsvn" path="res://assets/sfx/MC_Footstep_1.wav" id="4_6flkn"]
 [ext_resource type="Texture2D" uid="uid://42wccejd5kvf" path="res://assets/gfx/character/mc-tall2.png" id="4_12tjh"]
 [ext_resource type="Script" uid="uid://b5qstrdmqrh4d" path="res://src/player/run_fast.gd" id="5_43nh5"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://rdm1r0v0bs4m" path="res://assets/sfx/Save_your_soul.wav" id="14_mix8g"]
 [ext_resource type="AudioStream" uid="uid://cp3w83gfwpf7k" path="res://assets/sfx/Player_dies_by_Void.wav" id="15_itwl1"]
 [ext_resource type="AudioStream" uid="uid://hb048laabmq4" path="res://assets/sfx/Player_dies_Falling.wav" id="16_e5p12"]
+[ext_resource type="AudioStream" uid="uid://qn81we10yrye" path="res://assets/sfx/New SFX/Player_dies_splat.wav" id="17_oyld2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywd1q"]
 radius = 2.0
@@ -51,10 +52,65 @@ tracks/1/keys = {
 "update": 0,
 "values": [10.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_hrerp"]
+resource_name = "crash_death"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [98, 99, 103, 104, 105]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -1), Vector2(0, -3), Vector2(0, -3)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sfx/sfx_death_crash")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_pn6g2"]
 resource_name = "death"
-length = 0.7
+length = 0.8
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -75,10 +131,10 @@ tracks/1/path = NodePath("Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [56, 57, 58, 59, 60, 61, 62]
+"values": [56, 57, 58, 59, 60, 61, 62, 63]
 }
 
 [sub_resource type="Animation" id="Animation_71bf2"]
@@ -93,10 +149,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [84, 85, 86, 87, 88, 89, 90, 91, 92]
+"values": [84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97]
 }
 
 [sub_resource type="Animation" id="Animation_dn3hf"]
@@ -136,7 +192,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8rpny"]
 resource_name = "jump"
-length = 0.5
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -145,10 +201,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [28, 29, 30, 31, 32]
+"values": [28, 29, 30, 31]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -167,7 +223,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_7sceb"]
 resource_name = "land"
-length = 0.3
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -176,10 +232,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [34, 35, 36]
+"values": [33, 34, 35, 36]
 }
 
 [sub_resource type="Animation" id="Animation_2rfjq"]
@@ -201,7 +257,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_qax8x"]
 resource_name = "move"
-length = 0.5
+length = 0.4
 loop_mode = 1
 step = 0.1
 tracks/0/type = "method"
@@ -211,7 +267,7 @@ tracks/0/path = NodePath("sfx/sfx_walk")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.3),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [0.0],
@@ -228,10 +284,10 @@ tracks/1/path = NodePath("Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [14, 15, 16, 17, 18]
+"values": [14, 15, 16, 17]
 }
 
 [sub_resource type="Animation" id="Animation_fulwp"]
@@ -270,6 +326,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hukg5"]
 _data = {
 &"RESET": SubResource("Animation_jq1uo"),
+&"crash_death": SubResource("Animation_hrerp"),
 &"death": SubResource("Animation_pn6g2"),
 &"edge": SubResource("Animation_71bf2"),
 &"fall": SubResource("Animation_dn3hf"),
@@ -331,10 +388,10 @@ vfx_jump_high = ExtResource("13_qyi5a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -4)
-texture = ExtResource("2_faqy1")
+texture = ExtResource("3_hrerp")
 offset = Vector2(0, -1)
 hframes = 14
-vframes = 7
+vframes = 8
 
 [node name="VoidDetector" type="Area2D" parent="."]
 collision_layer = 0
@@ -380,12 +437,19 @@ bus = &"Sfx"
 
 [node name="sfx_respawn" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("14_mix8g")
+bus = &"Sfx"
 
 [node name="sfx_death_void" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("15_itwl1")
+bus = &"Sfx"
 
 [node name="sfx_death_gravity" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("16_e5p12")
+bus = &"Sfx"
+
+[node name="sfx_death_crash" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("17_oyld2")
+bus = &"Sfx"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 

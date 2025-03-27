@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://qn81we10yrye"
+path="res://.godot/imported/Player_dies_splat.wav-dc866b0c68b9f69da8a65e959f70da23.sample"
+
+[deps]
+
+source_file="res://assets/sfx/New SFX/Player_dies_splat.wav"
+dest_files=["res://.godot/imported/Player_dies_splat.wav-dc866b0c68b9f69da8a65e959f70da23.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
