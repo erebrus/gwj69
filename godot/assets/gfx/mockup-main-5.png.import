@@ -1,0 +1,44 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+<<<<<<< HEAD
+uid="uid://c7hn5c6brd5tt"
+path="res://.godot/imported/mockup-main-5.png-09ccda1b184a5a03ebd9a1754bd33fe7.ctex"
+=======
+uid="uid://b0jhdkfajtxwn"
+path="res://.godot/imported/mockup-main-5.png-ce8d7a7ba259923f3c170ec7fa86034a.ctex"
+>>>>>>> c820bf36758797a48d175133a8bd974397b52e7f
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+<<<<<<< HEAD
+source_file="res://assets/gfx/mockup-main-5.png"
+dest_files=["res://.godot/imported/mockup-main-5.png-09ccda1b184a5a03ebd9a1754bd33fe7.ctex"]
+=======
+source_file="res://assets/gfx/mocks/mockup-main-5.png"
+dest_files=["res://.godot/imported/mockup-main-5.png-ce8d7a7ba259923f3c170ec7fa86034a.ctex"]
+>>>>>>> c820bf36758797a48d175133a8bd974397b52e7f
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1
