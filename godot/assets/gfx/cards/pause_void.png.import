@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5vtu02u5ag8o"
-path="res://.godot/imported/3-block-v-card.png-9fd9d1181d7c29af3b62443f64742246.ctex"
+uid="uid://cj8eofd16rn5a"
+path="res://.godot/imported/pause_void.png-affb638ffdc98e491b04fd6b7446cc63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gfx/cards/old/3-block-v-card.png"
-dest_files=["res://.godot/imported/3-block-v-card.png-9fd9d1181d7c29af3b62443f64742246.ctex"]
+source_file="res://assets/gfx/cards/pause_void.png"
+dest_files=["res://.godot/imported/pause_void.png-affb638ffdc98e491b04fd6b7446cc63.ctex"]
 
 [params]
 

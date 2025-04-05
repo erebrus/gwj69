@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://iy3dan6oe0cj"
-path="res://.godot/imported/moving-block-card.png-e13facb44c40c8b4bb660c8c6064b674.ctex"
+path="res://.godot/imported/moving-block-card.png-c82e4f0a417506e957f94c1ce077eafd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gfx/ui/illustrations/moving-block-card.png"
-dest_files=["res://.godot/imported/moving-block-card.png-e13facb44c40c8b4bb660c8c6064b674.ctex"]
+source_file="res://assets/gfx/cards/old/moving-block-card.png"
+dest_files=["res://.godot/imported/moving-block-card.png-c82e4f0a417506e957f94c1ce077eafd.ctex"]
 
 [params]
 

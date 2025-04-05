@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bduxonrc57opq"
-path="res://.godot/imported/end-game-card.png-d4402a6aa16d013b5cdd028e395dd8a1.ctex"
+path="res://.godot/imported/end-game-card.png-ed56ea6772ae5b1f1cc0bbc8b453c0f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gfx/ui/illustrations/end-game-card.png"
-dest_files=["res://.godot/imported/end-game-card.png-d4402a6aa16d013b5cdd028e395dd8a1.ctex"]
+source_file="res://assets/gfx/cards/old/end-game-card.png"
+dest_files=["res://.godot/imported/end-game-card.png-ed56ea6772ae5b1f1cc0bbc8b453c0f6.ctex"]
 
 [params]
 

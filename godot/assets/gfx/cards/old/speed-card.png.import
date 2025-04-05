@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjwevqfy3udnu"
-path="res://.godot/imported/speed-card.png-500aece729c244e1b5b7d1e60ae2d051.ctex"
+path="res://.godot/imported/speed-card.png-cbaf416c092554cec372028eb06a238e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gfx/ui/illustrations/speed-card.png"
-dest_files=["res://.godot/imported/speed-card.png-500aece729c244e1b5b7d1e60ae2d051.ctex"]
+source_file="res://assets/gfx/cards/old/speed-card.png"
+dest_files=["res://.godot/imported/speed-card.png-cbaf416c092554cec372028eb06a238e.ctex"]
 
 [params]
 

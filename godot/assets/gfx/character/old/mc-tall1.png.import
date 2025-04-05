@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d31vj31pmjilc"
-path="res://.godot/imported/mc-tall1.png-992057bef410851eb18c55780dfe8216.ctex"
+path="res://.godot/imported/mc-tall1.png-3681b6ed136bbb48e67098835afa9131.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gfx/character/mc-tall1.png"
-dest_files=["res://.godot/imported/mc-tall1.png-992057bef410851eb18c55780dfe8216.ctex"]
+source_file="res://assets/gfx/character/old/mc-tall1.png"
+dest_files=["res://.godot/imported/mc-tall1.png-3681b6ed136bbb48e67098835afa9131.ctex"]
 
 [params]
 

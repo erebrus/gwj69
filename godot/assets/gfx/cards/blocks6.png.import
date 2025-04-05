@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sdolsmukaogf"
-path="res://.godot/imported/blocks6.png-a6592481d5f6cfb77f3e1569e8589b12.ctex"
+path="res://.godot/imported/blocks6.png-4a797f7c21441de94980d4cc79a5c6ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gfx/ui/illustrations/blocks6.png"
-dest_files=["res://.godot/imported/blocks6.png-a6592481d5f6cfb77f3e1569e8589b12.ctex"]
+source_file="res://assets/gfx/cards/blocks6.png"
+dest_files=["res://.godot/imported/blocks6.png-4a797f7c21441de94980d4cc79a5c6ea.ctex"]
 
 [params]
 

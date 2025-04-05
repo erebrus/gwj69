@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccjqxu18e3ikn"
-path="res://.godot/imported/turn7.png-fc5b314dd6ed78595165cdaa1ece9301.ctex"
+path="res://.godot/imported/turn7.png-44f8c0dcc2435ace72ca55aad66a044c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gfx/ui/illustrations/turn7.png"
-dest_files=["res://.godot/imported/turn7.png-fc5b314dd6ed78595165cdaa1ece9301.ctex"]
+source_file="res://assets/gfx/cards/turn/turn7.png"
+dest_files=["res://.godot/imported/turn7.png-44f8c0dcc2435ace72ca55aad66a044c.ctex"]
 
 [params]
 

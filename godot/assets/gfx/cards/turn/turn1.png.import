@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://co0uamf0h2ly7"
-path="res://.godot/imported/turn1.png-9db6e3e2251f149708f1dce8c5db131f.ctex"
+path="res://.godot/imported/turn1.png-f95b8c3fc46921e89f77d1e14191f434.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gfx/ui/illustrations/turn1.png"
-dest_files=["res://.godot/imported/turn1.png-9db6e3e2251f149708f1dce8c5db131f.ctex"]
+source_file="res://assets/gfx/cards/turn/turn1.png"
+dest_files=["res://.godot/imported/turn1.png-f95b8c3fc46921e89f77d1e14191f434.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5vtu02u5ag8o"
-path="res://.godot/imported/3-block-v-card.png-9fd9d1181d7c29af3b62443f64742246.ctex"
+uid="uid://cjqxhy0nmhbxg"
+path="res://.godot/imported/show_goal.png-2c3eb703c17c5ae64eff90fafb1f891d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gfx/cards/old/3-block-v-card.png"
-dest_files=["res://.godot/imported/3-block-v-card.png-9fd9d1181d7c29af3b62443f64742246.ctex"]
+source_file="res://assets/gfx/cards/show_goal.png"
+dest_files=["res://.godot/imported/show_goal.png-2c3eb703c17c5ae64eff90fafb1f891d.ctex"]
 
 [params]
 
