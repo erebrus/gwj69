@@ -32,6 +32,9 @@ func open() -> void:
 	for card in Globals.game.card_engine.card_database:
 		%CardSelection.add_item(card.nice_name)
 	
+	%VoidCooldown.text = "%0.4f" % Globals.game.start_void_cooldown
+	%VoidCooldownProgression.text = "%0.4f" % Globals.game.void_cooldown_progression
+	
 	show()
 	
 
@@ -60,6 +63,12 @@ func _on_win_game_pressed():
 	Globals.win_game()
 	
 
+func _on_void_cooldown_text_changed(new_text: String):
+	if not new_text.is_valid_float():
+		return
+	Globals.game.start_void_cooldown = new_text.to_float()
+	Globals.game.reset_void_cooldown()
+	
 
 func _on_tick_on_timer_toggled(toggled_on: bool):
 	Globals.game.void_time_tick = toggled_on
@@ -67,6 +76,12 @@ func _on_tick_on_timer_toggled(toggled_on: bool):
 
 func _on_tick_on_card_drawn_toggled(toggled_on: bool):
 	Globals.game.void_card_tick = toggled_on
+	
+
+func _on_void_cooldown_progression_text_changed(new_text: String):
+	if not new_text.is_valid_float():
+		return
+	Globals.game.void_cooldown_progression = new_text.to_float()
 	
 
 func _on_reset_void_cooldown_pressed():
