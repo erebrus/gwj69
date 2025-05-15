@@ -1,7 +1,7 @@
 [
   {
 	"nice_name": "jump",
-	"display_name": "Space Jump",
+	"display_name": "Boosted",
 	"description": "Give your prophet ability to get over twice as bigger obstacle next time.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_jump.gd",
@@ -12,7 +12,7 @@
   },
   {
 	"nice_name": "speed",
-	"display_name": "Run beyond the Void",
+	"display_name": "Scurry On",
 	"description": "Make your prophet run faster.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_faster.gd",
@@ -23,7 +23,7 @@
   },
 {
 	"nice_name": "turn_around",
-	"display_name": "Don't look back",
+	"display_name": "Reversal",
 	"description": "Turn your prophet around.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_turn_around.gd",
@@ -34,7 +34,7 @@
   },
 {
 	"nice_name": "spawn",
-	"display_name": "The Abyss Look Back",
+	"display_name": "Pawn",
 	"description": "Give your prophet the second chance to fulfil their mission.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_spawn.gd",
@@ -45,7 +45,7 @@
   },
   {
 	"nice_name": "block1",
-	"display_name": "One will stay",
+	"display_name": "Simpleton",
 	"description": "Create one simple block.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
@@ -57,7 +57,7 @@
   },
   {
 	"nice_name": "block2",
-	"display_name": "The power of two",
+	"display_name": "Double-edged",
 	"description": "Create 2 simple blocks in the pictured pattern.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
@@ -69,7 +69,7 @@
   },
   {
 	"nice_name": "block3_step",
-	"display_name": "Three for luck",
+	"display_name": "Triple Threat",
 	"description": "Create 3 simple blocks in a pictured pattern.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
@@ -81,7 +81,7 @@
   },
   {
 	"nice_name": "block3_row",
-	"display_name": "Three for luck",
+	"display_name": "Steady Ground",
 	"description": "Create 3 simple blocks in a pictured pattern.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
@@ -93,7 +93,7 @@
   },
   {
 	"nice_name": "block4",
-	"display_name": "On all four sides",
+	"display_name": "Opportune",
 	"description": "Create 4 simple blocks in the pictured pattern.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
@@ -105,8 +105,8 @@
   },
   {
 	"nice_name": "moving_block",
-	"display_name": "moving block",
-	"description": "Invention of laziness.",
+	"display_name": "Moving Along",
+	"description": "Invention of Laziness.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/cards/moving-block-card.png",
@@ -117,7 +117,7 @@
   },
 {
 	"nice_name": "stairs",
-	"display_name": "Stairway to Heaven",
+	"display_name": "A Way Up",
 	"description": "Is there an elevator?",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
@@ -129,8 +129,8 @@
   },
   {
 	"nice_name": "checkpoint",
-	"display_name": "Save your soul",
-	"description": "Reflect on your surroundings. If your prophet dies, they can start again from here.",
+	"display_name": "Pawn Point",
+	"description": "Reflect on your surroundings. If your Pawn dies, they can start again from here.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_checkpoint.gd",
 	"image_path": "res://assets/gfx/cards/checkpoint-card.png",
@@ -140,7 +140,7 @@
   },
   {
 	"nice_name": "end_level",
-	"display_name": "One step closer",
+	"display_name": "Escape the Void",
 	"description": "Your prophet can feel that they are one step closer to their goal.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_end_level.gd",
@@ -151,7 +151,7 @@
   },
 {
 	"nice_name": "end_game",
-	"display_name": "See your God",
+	"display_name": "Void Annihilation",
 	"description": "Feel the emptiness of completing your mission.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_end_game.gd",
