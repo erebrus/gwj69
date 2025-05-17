@@ -11,7 +11,6 @@ const SIDES: Array[TileSet.CellNeighbor] = [
 
 const VOID_ID:= 1
 const VOID_TERRAIN:=1
-const TTL=3
 const SPAWN_MOD = 2
 
 var current_spawn = 1
@@ -24,15 +23,15 @@ func _ready() -> void:
 	Events.tick.connect(_on_tick)
 	for cell in get_used_cells():
 		Events.new_void_cell.emit(cell)
-		cell_counters[cell]=TTL
+		cell_counters[cell]=VoidData.new(cell)
 		
 	await get_tree().process_frame
 	
-	var area_parent = get_node(void_area_path)
-	for area in area_parent.get_children():
+
+	for area in get_areas():
 		void_areas.append(area)
-		var nw_corner_pos = to_local(area.global_position - area.size/2)
-		var se_corner_pos = to_local(area.global_position + area.size/2)
+		var nw_corner_pos = to_local(area.global_position) - area.size/2
+		var se_corner_pos = to_local(area.global_position) + area.size/2
 		var area_cell_pos = local_to_map(nw_corner_pos)
 		var area_size = Vector2(
 			round(se_corner_pos.x-nw_corner_pos.x)/tile_set.tile_size.x,
@@ -40,18 +39,34 @@ func _ready() -> void:
 			)
 		area.map_rect=Rect2(area_cell_pos,area_size)
 		Logger.info("Added Void Area pos:%s size:%s" % [area.map_rect.position, area.map_rect.size])
-	
 
+	for cell in cell_counters.keys():
+		assign_area_to_void(cell_counters[cell])
+			
+
+func assign_area_to_void(vd: VoidData):
+	if not vd.area:
+		for area in get_areas():
+			Logger.info("Looking for %s in %s-%s" % [vd.cell, area.map_rect.position, area.map_rect.size])
+			if area.map_rect.has_point(vd.cell):
+				vd.area = area
+				break
+		if not vd.area:
+			Logger.warn("No area found for void at %s" % vd.cell)
+
+func get_areas():
+	return get_node(void_area_path).get_children()
+	
 func get_state() -> Dictionary:
 	return {
 		"tilemap": tile_map_data,
-		"cell_counters": cell_counters.duplicate()
+		"cell_counters": cell_counters.duplicate() #TODO check if needs deep
 	}
 	
 
 func set_state(state: Dictionary) -> void:
 	tile_map_data = state.tilemap 
-	cell_counters = state.cell_counters.duplicate()
+	cell_counters = state.cell_counters.duplicate() #TODO check if needs deep
 	
 
 func expand(target: Vector2) -> void:
@@ -63,7 +78,8 @@ func expand(target: Vector2) -> void:
 	])
 	
 	for cell in cell_counters.keys():
-		_grow(cell, target_coord)
+		if cell_counters[cell].is_active():
+			_grow(cell, target_coord)
 	
 
 func _grow(cell: Vector2i, target: Vector2i) -> void:
@@ -88,7 +104,8 @@ func _spawn_void(cell: Vector2i, direction: Vector2i) ->  Array[Vector2i]:
 	if not _should_spawn(cell, direction):
 		return new_border
 	
-	cell_counters[cell]=TTL
+	cell_counters[cell]=VoidData.new(cell)
+	assign_area_to_void(cell_counters[cell])
 	
 	set_cells_terrain_connect([cell], 0, VOID_TERRAIN)
 	Events.new_void_cell.emit(cell)
@@ -133,10 +150,10 @@ func _cell_to_target_sides(cell: Vector2i, target: Vector2i) -> Array[TileSet.Ce
 func fade():
 	var to_remove=[]
 	for cell in cell_counters.keys():
-		if cell_counters[cell]<1:
+		if cell_counters[cell].is_expired():
 			to_remove.append(cell)
 		else:
-			cell_counters[cell] = cell_counters[cell] - 1
+			cell_counters[cell].tick()
 			
 	for cell in to_remove:
 		set_cell(cell,-1)
