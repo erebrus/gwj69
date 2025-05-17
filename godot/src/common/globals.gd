@@ -15,10 +15,10 @@ var levels:Array[PackedScene] =[
 	preload("res://src/world/levels/test_level_tunnel.tscn"),
 	preload("res://src/world/levels/test_level_up.tscn"),
 	preload("res://src/world/levels/test_level_swirl.tscn"),
-	preload("res://src/world/levels/final_levels/level_00_tutorial.tscn"),
-	preload("res://src/world/levels/final_levels/level_01.tscn"),
-	preload("res://src/world/levels/final_levels/level_02.tscn"),
-	preload("res://src/world/levels/final_levels/level_03.tscn"),
+	#preload("res://src/world/levels/final_levels/level_00_tutorial.tscn"),
+	#preload("res://src/world/levels/final_levels/level_01.tscn"),
+	#preload("res://src/world/levels/final_levels/level_02.tscn"),
+	#preload("res://src/world/levels/final_levels/level_03.tscn"),
 	#preload("res://src/world/levels/level_03.tscn"),
 	]
 var current_level_idx=0
@@ -90,6 +90,7 @@ func _init_logger():
 	
 
 func get_current_world_scene()-> PackedScene:
+	
 	if current_level_idx < levels.size():
 		return levels[current_level_idx]
 	else:

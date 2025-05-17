@@ -26,6 +26,7 @@ Events="*res://src/common/events.gd"
 HyperLog="*res://addons/hyperlog/hyperlog.tscn"
 Globals="*res://src/common/globals.tscn"
 Debug="*res://src/common/debug/debug.tscn"
+LayerNames="*res://addons/layerNames/layerNames.gd"
 
 [display]
 
@@ -36,7 +37,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/gs_logger/plugin.cfg", "res://addons/hyperlog/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/simple_card_pile_ui/plugin.cfg", "res://addons/xsm/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/gs_logger/plugin.cfg", "res://addons/hyperlog/plugin.cfg", "res://addons/layerNames/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/simple_card_pile_ui/plugin.cfg", "res://addons/xsm/plugin.cfg")
 
 [input]
 
@@ -104,6 +105,7 @@ toggle_void_progression={
 2d_physics/layer_2="void"
 2d_physics/layer_3="player"
 2d_physics/layer_4="unplaceable"
+2d_physics/layer_5="void_area"
 
 [rendering]
 

@@ -2,7 +2,7 @@ extends Node
 class_name World
 
 @export var can_skip:bool = false
-
+@export var level_name:String = "" 
 @onready var platforms_layer: PlatformsLayer = $PlatformsLayer
 @onready var voids_layer: VoidLayer = $VoidLayer
 
@@ -12,6 +12,7 @@ var checkpoint: CheckPoint
 
 
 func _ready():
+	Logger.info("Loading level %s" % level_name)
 	Globals.tilemap = $PlatformsLayer
 	Globals.void_tilemap = $VoidLayer
 	Events.player_respawned.connect(_on_player_respawned)

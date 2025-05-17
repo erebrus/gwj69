@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://befen03aud3pg"]
+
+[ext_resource type="Script" uid="uid://cqbibawge5t8y" path="res://src/world/void/void_area.gd" id="1_10nxk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_10nxk"]
+size = Vector2(400, 300)
+
+[node name="VoidArea" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_10nxk")
+map_rect = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_10nxk")

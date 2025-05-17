@@ -1,7 +1,7 @@
 class_name VoidLayer extends TileMapLayer
 
 
-
+@export var void_area_path:NodePath
 const SIDES: Array[TileSet.CellNeighbor] = [
 	TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE,
 	TileSet.CellNeighbor.CELL_NEIGHBOR_LEFT_SIDE,
@@ -16,13 +16,30 @@ const SPAWN_MOD = 2
 
 var current_spawn = 1
 var cell_counters = {}
+var void_areas:Array[VoidArea] = []
 
 func _ready() -> void:
+
+		
 	Events.tick.connect(_on_tick)
 	for cell in get_used_cells():
 		Events.new_void_cell.emit(cell)
 		cell_counters[cell]=TTL
 		
+	await get_tree().process_frame
+	
+	var area_parent = get_node(void_area_path)
+	for area in area_parent.get_children():
+		void_areas.append(area)
+		var nw_corner_pos = to_local(area.global_position - area.size/2)
+		var se_corner_pos = to_local(area.global_position + area.size/2)
+		var area_cell_pos = local_to_map(nw_corner_pos)
+		var area_size = Vector2(
+			round(se_corner_pos.x-nw_corner_pos.x)/tile_set.tile_size.x,
+			round(se_corner_pos.y-nw_corner_pos.y)/tile_set.tile_size.y,
+			)
+		area.map_rect=Rect2(area_cell_pos,area_size)
+		Logger.info("Added Void Area pos:%s size:%s" % [area.map_rect.position, area.map_rect.size])
 	
 
 func get_state() -> Dictionary:
