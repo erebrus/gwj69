@@ -160,4 +160,28 @@
 	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
 	"traits":{"ONE_USE":true}
   },
+  {
+	"nice_name": "destroy_block",
+	"display_name": "Make A Window",
+	"description": "???.",
+	"cost": 0,
+	"resource_script_path": "res://src/cards/logic/card_block.gd",
+	"image_path": "res://assets/gfx/cards/blocks11.png",
+	"texture_path": "res://assets/gfx/ui/card-border.png",
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"block_scene_path": "res://src/world/blocks/destroy_block.tscn",
+	"traits":{}
+  },
+  {
+	"nice_name": "destroy_block_4",
+	"display_name": "Make A Door",
+	"description": "???.",
+	"cost": 0,
+	"resource_script_path": "res://src/cards/logic/card_block.gd",
+	"image_path": "res://assets/gfx/cards/blocks10.png",
+	"texture_path": "res://assets/gfx/ui/card-border.png",
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"block_scene_path": "res://src/world/blocks/destroy_block_2x2.tscn",
+	"traits":{}
+  },
 ]

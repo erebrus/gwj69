@@ -1,5 +1,10 @@
 class_name BaseBlock extends Node2D
 
+enum Type {
+	PLACE_BLOCK,
+	DESTROY_BLOCK,
+	DESTROY_VOID
+}
 
 var collision_shape_transform =  Transform2D(0, Vector2(0.9,0.9), 0, Vector2.ZERO)
 var enabled = true
@@ -9,6 +14,7 @@ var enabled = true
 @export var ttl = 3
 @export var valid_placement_color: Color
 @export var invalid_placement_color: Color
+@export var type = Type.PLACE_BLOCK
 
 func _ready() -> void:
 	if timed:
@@ -58,4 +64,3 @@ func _on_tick():
 	if ttl == 0:
 		_destroy_tile()
 	
-

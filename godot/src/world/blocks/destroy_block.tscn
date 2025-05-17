@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dplodxgtbever"]
+[gd_scene load_steps=11 format=3 uid="uid://c5q12b01bdck2"]
 
-[ext_resource type="PackedScene" uid="uid://k1ey4vvnmd50" path="res://src/world/blocks/base_block.tscn" id="1_m6ekt"]
-[ext_resource type="Script" uid="uid://cg7o0t6jokve7" path="res://src/world/blocks/tilemap_block.gd" id="2_mj4o5"]
-[ext_resource type="Shader" uid="uid://dc002tl5nvki8" path="res://src/world/blocks/tile_shader.tres" id="3_neqhh"]
-[ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="3_v2anq"]
+[ext_resource type="PackedScene" uid="uid://k1ey4vvnmd50" path="res://src/world/blocks/base_block.tscn" id="1_argyj"]
+[ext_resource type="Script" uid="uid://c2gsmrp88bt7h" path="res://destroy_block.gd" id="2_rqdm0"]
+[ext_resource type="Shader" uid="uid://dc002tl5nvki8" path="res://src/world/blocks/tile_shader.tres" id="3_g8lwx"]
+[ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="4_0cxx6"]
 
 [sub_resource type="Animation" id="Animation_8h6m0"]
 resource_name = "Create"
@@ -12,58 +12,35 @@ step = 0.1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/disintegration_factor")
+tracks/0/path = NodePath(".:material:shader_parameter/emission_f")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0.2, 0.7)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/emission_f")
+tracks/1/path = NodePath(".:material:shader_parameter/color_factor")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.2, 0.7)
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:material:shader_parameter/color_factor")
+tracks/2/path = NodePath(".:material:shader_parameter/alpha_f")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:material:shader_parameter/alpha_f")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../GPUParticles2D:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_uobuy"]
@@ -113,7 +90,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.75, -0.25, 0, 0.25, 0, 0.75, -0.25, 0, 0.25, 0, 0.75, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
 tracks/3/type = "bezier"
@@ -174,18 +151,6 @@ tracks/3/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../GPUParticles2D:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tgb86"]
 _data = {
@@ -197,39 +162,18 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o011r"]
 resource_local_to_scene = true
-shader = ExtResource("3_neqhh")
+shader = ExtResource("3_g8lwx")
 shader_parameter/ColorParameter = Color(0.735881, 0.108295, 0.299178, 1)
 shader_parameter/color_factor = 0.0
 shader_parameter/emission_f = 1.0
 shader_parameter/disintegration_factor = 1.0
 shader_parameter/alpha_f = 0.0
 
-[sub_resource type="Curve" id="Curve_q6cj6"]
-_data = [Vector2(0.00735294, 0), 0.0, 0.0, 0, 0, Vector2(0.341912, 0.715257), 0.0, 0.0, 0, 0, Vector2(0.665441, 0.705438), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_5hhj0"]
-curve = SubResource("Curve_q6cj6")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_msg48"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(8, 8, 1)
-direction = Vector3(0, 1, 0)
-spread = 25.0
-initial_velocity_min = 20.0
-initial_velocity_max = 40.0
-gravity = Vector3(0, 98, 0)
-scale_max = 2.0
-color = Color(0.552941, 0.4, 0.294118, 1)
-alpha_curve = SubResource("CurveTexture_5hhj0")
-
-[node name="TilemapBlock" instance=ExtResource("1_m6ekt")]
-script = ExtResource("2_mj4o5")
-min_particles_emitted = 10
-max_particles_emitted = 30
+[node name="DestroyBlock" instance=ExtResource("1_argyj")]
+script = ExtResource("2_rqdm0")
 valid_placement_color = Color(0.332737, 0.521018, 0.262603, 1)
 invalid_placement_color = Color(0.749957, 0, 0.12187, 1)
+type = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 root_node = NodePath("../TileMapLayer")
@@ -240,13 +184,4 @@ libraries = {
 [node name="TileMapLayer" type="TileMapLayer" parent="." index="1"]
 material = SubResource("ShaderMaterial_o011r")
 tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 2, 0, 1, 0, 1, 0, 0, 0)
-tile_set = ExtResource("3_v2anq")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="2"]
-position = Vector2(3, 2)
-emitting = false
-amount = 32
-lifetime = 0.75
-one_shot = true
-explosiveness = 0.81
-process_material = SubResource("ParticleProcessMaterial_msg48")
+tile_set = ExtResource("4_0cxx6")
