@@ -1,16 +1,18 @@
-extends PanelContainer
+extends MarginContainer
 
 signal void_toggled
 
 
 @onready var sfx_button: AudioStreamPlayer = $sfx_button
+@onready var help_panel: Panel = $HelpPanel
 
 
 func _process(_delta: float) -> void:
-	if visible and Input.is_action_just_pressed("ui_cancel"):
+	if visible and not help_panel.visible and Input.is_action_just_pressed("ui_cancel"):
 		close()
 		return
-		
+	
+
 func _on_restart_level_button_pressed() -> void:
 	sfx_button.play()
 	await sfx_button.finished 
@@ -21,6 +23,10 @@ func _on_resume_game_button_pressed() -> void:
 	sfx_button.play()
 	await sfx_button.finished 
 	close()
+
+func _on_help_button_pressed():
+	help_panel.show()
+	
 
 func close():
 	Events.close_menu_requested.emit()
