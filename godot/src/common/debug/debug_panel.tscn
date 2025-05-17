@@ -107,6 +107,18 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="VoidVertical" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VoidVertical"]
+layout_mode = 2
+text = "Vertical Speed Factor"
+
+[node name="VoidVerticalSpeedProgression" type="LineEdit" parent="VBoxContainer/VoidVertical"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="ResetVoidCooldown" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
@@ -139,5 +151,6 @@ text = "Add"
 [connection signal="toggled" from="VBoxContainer/TickOnTimer" to="." method="_on_tick_on_timer_toggled"]
 [connection signal="toggled" from="VBoxContainer/TickOnCardDrawn" to="." method="_on_tick_on_card_drawn_toggled"]
 [connection signal="text_changed" from="VBoxContainer/CooldownProgression/VoidCooldownProgression" to="." method="_on_void_cooldown_progression_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/VoidVertical/VoidVerticalSpeedProgression" to="." method="_on_vertical_speed_progression_text_changed"]
 [connection signal="pressed" from="VBoxContainer/ResetVoidCooldown" to="." method="_on_reset_void_cooldown_pressed"]
 [connection signal="pressed" from="VBoxContainer/Cards/AddCard" to="." method="_on_add_card_pressed"]

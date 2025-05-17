@@ -47,7 +47,7 @@ func _ready() -> void:
 func assign_area_to_void(vd: VoidData):
 	if not vd.area:
 		for area in get_areas():
-			Logger.info("Looking for %s in %s-%s" % [vd.cell, area.map_rect.position, area.map_rect.size])
+			Logger.trace("Looking for %s in %s-%s" % [vd.cell, area.map_rect.position, area.map_rect.size])
 			if area.map_rect.has_point(vd.cell):
 				vd.area = area
 				break
@@ -79,14 +79,20 @@ func expand(target: Vector2) -> void:
 	
 	for cell in cell_counters.keys():
 		if cell_counters[cell].is_active():
+			cell_counters[cell].expanded_this_tick=false
 			_grow(cell, target_coord)
 	
 
 func _grow(cell: Vector2i, target: Vector2i) -> void:
 	for side in _cell_to_target_sides(cell, target):
 		var n = get_neighbor_cell(cell, side)
+		var vertical :bool = n.y != cell.y
 		if cell_is_empty(n):
-			_spawn_void(n, n-cell)
+			if vertical and  randf()>Globals.game.vertical_progression_factor:
+				Logger.debug("Skipped vertical progression at %s" % n)
+			else:
+				_spawn_void(n, n-cell)
+				cell_counters[cell].expanded_this_tick=true
 		
 	
 
@@ -153,7 +159,8 @@ func fade():
 		if cell_counters[cell].is_expired():
 			to_remove.append(cell)
 		else:
-			cell_counters[cell].tick()
+			if cell_counters[cell].expanded_this_tick:
+				cell_counters[cell].tick()
 			
 	for cell in to_remove:
 		set_cell(cell,-1)

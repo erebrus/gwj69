@@ -9,6 +9,7 @@ const PLAYER_SCENE = preload("res://src/player/player.tscn")
 @export var start_void_cooldown:float = 15
 @export var void_cooldown_progression=.5
 @export var do_void_progression := true
+@export var vertical_progression_factor := 1.0
 
 @export var void_time_tick:=true
 @export var void_card_tick:=true

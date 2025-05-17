@@ -34,7 +34,7 @@ func open() -> void:
 	
 	%VoidCooldown.text = "%0.4f" % Globals.game.start_void_cooldown
 	%VoidCooldownProgression.text = "%0.4f" % Globals.game.void_cooldown_progression
-	
+	%VoidVerticalSpeedProgression.text = "%0.4f" % Globals.game.vertical_progression_factor
 	show()
 	
 
@@ -92,3 +92,9 @@ func _on_add_card_pressed():
 	var card = %CardSelection.get_item_text(%CardSelection.selected)
 	Globals.game.card_engine.create_card_in_pile(card, CardPileUI.Piles.hand_pile)
 	
+
+
+func _on_vertical_speed_progression_text_changed(new_text: String) -> void:
+	if not new_text.is_valid_float():
+		return
+	Globals.game.vertical_progression_factor = new_text.to_float()
