@@ -32,6 +32,7 @@ var starting_deck: Dictionary = {
 	"block3_step": 2,
 	"block3_row": 1,
 	"block4": 1,
+	#"zblock": 5,
 	#"moving_block": 2,
 	"checkpoint":1,
 	#"stairs": 2,

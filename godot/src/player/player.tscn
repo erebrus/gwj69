@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d0re6w1cetdos" path="res://src/player/player.gd" id="1_x8yfo"]
 [ext_resource type="Texture2D" uid="uid://h086k7te1vmm" path="res://assets/gfx/character/mc-animations.png" id="3_hrerp"]
 [ext_resource type="AudioStream" uid="uid://dmdyoke7mnsvn" path="res://assets/sfx/MC_Footstep_1.wav" id="4_6flkn"]
-[ext_resource type="Texture2D" uid="uid://42wccejd5kvf" path="res://assets/gfx/character/mc-tall2.png" id="4_12tjh"]
+[ext_resource type="Texture2D" uid="uid://42wccejd5kvf" path="res://assets/gfx/character/old/mc-tall2.png" id="4_12tjh"]
 [ext_resource type="Script" uid="uid://b5qstrdmqrh4d" path="res://src/player/run_fast.gd" id="5_43nh5"]
 [ext_resource type="AudioStream" uid="uid://dqv7w77xxcd1r" path="res://assets/sfx/MC_Footstep_2.wav" id="5_hsjxc"]
 [ext_resource type="AudioStream" uid="uid://dd7cyf5x0cgte" path="res://assets/sfx/MC_Footstep_3.wav" id="6_o2d62"]
