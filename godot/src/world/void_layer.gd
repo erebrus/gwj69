@@ -127,6 +127,9 @@ func fade():
 	
 
 func _on_tick() -> void:
+	if not Globals.player_alive:
+		Logger.debug("Player not alive. Void not progressing.")
+		return
 	current_spawn = (current_spawn + 1) % SPAWN_MOD
 	var target: Vector2 = get_parent().get_void_target()
 	expand(target)
