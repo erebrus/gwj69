@@ -22,7 +22,7 @@ var checkpoint: CheckPoint
 @onready var sfx_button: AudioStreamPlayer = $CanvasLayer/sfx_button
 @onready var card_selection: SelectionUI = $"CanvasLayer/Card Selection"
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
-@onready var game_menu: PanelContainer = $CanvasLayer/GameMenu
+@onready var game_menu: Container = %GameMenu
 @onready var void_cooldown = start_void_cooldown
 @onready var sfx_swoosh_to_game: AudioStreamPlayer = $CanvasLayer/sfx_swoosh_to_game
 @onready var sfx_swoosh_to_place: AudioStreamPlayer = $CanvasLayer/sfx_swoosh_to_place
@@ -269,23 +269,19 @@ func _on_card_selection_card_selected(card: CardUI) -> void:
 	Globals.player_alive = false
 	#Events.reshuffled_discard_pile.connect(_on_reshuffled_discard_pile)	
 	anim_player.play("FadeIn")
+	
 
 func toggle_menu():
+	Logger.info("toggle menu: %s" % not game_menu.visible)
 	game_menu.visible = not game_menu.visible
 	await get_tree().process_frame
 	get_tree().paused = game_menu.visible
-
-
+	
 
 func _on_help_button_pressed() -> void:
 	sfx_button.play()
 	$CanvasLayer/MarginContainer2/HelpPanel.show()	
 	get_tree().paused = true
-
-
-func _on_menu_button_pressed() -> void:
-	sfx_button.play()
-	toggle_menu()
 
 
 func _on_void_timer_timeout() -> void:

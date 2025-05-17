@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://duka5rbd4bxdc"]
+[gd_scene load_steps=53 format=3 uid="uid://duka5rbd4bxdc"]
 
 [ext_resource type="Script" uid="uid://08vewb4st243" path="res://src/game.gd" id="1_k8n5x"]
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="2_euer7"]
@@ -14,10 +14,8 @@
 [ext_resource type="AudioStream" uid="uid://bs7q6qor13oun" path="res://assets/sfx/New SFX/Whoosh_fromcardstogameplay_3.wav" id="8_4lake"]
 [ext_resource type="AudioStream" uid="uid://b72gxnfohwqko" path="res://assets/sfx/UI_Button_3.wav" id="8_05dlp"]
 [ext_resource type="FontFile" uid="uid://dq6ireqn37l7t" path="res://assets/fonts/font-Card-title-16px-pixelplay/pixelplay.ttf" id="8_ajtl3"]
-[ext_resource type="Texture2D" uid="uid://cdnhwywjng08n" path="res://assets/gfx/ui/symbol-timer-orange.png" id="8_g2lcw"]
 [ext_resource type="AudioStream" uid="uid://dnpkscn0nhp0u" path="res://assets/sfx/UI_Button_4.wav" id="9_2h868"]
 [ext_resource type="FontFile" uid="uid://bjm5umnjo1est" path="res://assets/fonts/font-menu-UI-20px-portable_tube/PortableTube.ttf" id="9_8kile"]
-[ext_resource type="Texture2D" uid="uid://de1ojyk5cf3be" path="res://assets/gfx/ui/3x-question.png" id="9_htd5q"]
 [ext_resource type="AudioStream" uid="uid://rgotdm8m7qcr" path="res://assets/sfx/New SFX/Whoosh_fromcardstogameplay_4.wav" id="9_noxbr"]
 [ext_resource type="AudioStream" uid="uid://4vf5i82hfko6" path="res://assets/sfx/New SFX/Whoosh_fromgameplaytocards_1.wav" id="10_8q7bk"]
 [ext_resource type="Texture2D" uid="uid://dlur7wfwdlpm3" path="res://assets/gfx/ui/skull.png" id="10_osbeo"]
@@ -30,9 +28,10 @@
 [ext_resource type="AudioStream" uid="uid://dc61ldek8njt6" path="res://assets/sfx/Void_movement_2.wav" id="18_sshy1"]
 [ext_resource type="AudioStream" uid="uid://ydfhklw5pqxa" path="res://assets/sfx/Void_movement_3.wav" id="19_ieyke"]
 [ext_resource type="Shader" uid="uid://d23wog7nipw8b" path="res://src/world/levels/level_screenspace_distortion_shader.tres.gdshader" id="19_m6cv3"]
+[ext_resource type="Texture2D" uid="uid://b21lvkhh0p04" path="res://assets/gfx/ui/symbol-timer.png" id="20_xm868"]
 [ext_resource type="PackedScene" uid="uid://chsanmrigp4n" path="res://src/ui/game_menu.tscn" id="21_qnhfn"]
 [ext_resource type="Script" uid="uid://b4ii0di18r5oe" path="res://src/cards/draw_pile_label.gd" id="21_uneno"]
-[ext_resource type="PackedScene" uid="uid://c8wd3tm3aybu3" path="res://src/ui/help_panel.tscn" id="22_nehuc"]
+[ext_resource type="Texture2D" uid="uid://3hqwypw16ley" path="res://assets/gfx/ui/symbol-pause.png" id="22_xm868"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57o5p"]
 streams_count = 3
@@ -61,19 +60,20 @@ stream_1/stream = ExtResource("7_74je8")
 stream_2/stream = ExtResource("8_05dlp")
 stream_3/stream = ExtResource("9_2h868")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xm868"]
+texture = ExtResource("6_j5rl2")
+
 [sub_resource type="Theme" id="Theme_28032"]
 default_font = ExtResource("8_ajtl3")
 default_font_size = 16
 
-[sub_resource type="LabelSettings" id="LabelSettings_uhyp7"]
-font_color = Color(0.807843, 0.807843, 0.807843, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_ihr14"]
 font = ExtResource("9_8kile")
-font_size = 20
+font_size = 30
 font_color = Color(0.984314, 0.945098, 0.811765, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_at35o"]
+[sub_resource type="LabelSettings" id="LabelSettings_uhyp7"]
+font_color = Color(0.807843, 0.807843, 0.807843, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n4m8t"]
 shader = ExtResource("18_hcjui")
@@ -520,51 +520,62 @@ bus = &"Sfx"
 process_mode = 3
 stream = SubResource("AudioStreamRandomizer_e5lxy")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 12
-anchor_top = 1.0
+[node name="GUI" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 0
-texture = ExtResource("6_j5rl2")
+grow_vertical = 2
 
-[node name="Butttons" type="MarginContainer" parent="CanvasLayer"]
+[node name="TopHalf" type="MarginContainer" parent="CanvasLayer/GUI"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="GameMenu" parent="CanvasLayer/GUI/TopHalf" instance=ExtResource("21_qnhfn")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MainUI" type="PanelContainer" parent="CanvasLayer/GUI"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_xm868")
+
+[node name="Butttons" type="MarginContainer" parent="CanvasLayer/GUI/MainUI"]
 custom_minimum_size = Vector2(0, 288)
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -288.0
-grow_horizontal = 2
-grow_vertical = 0
+layout_mode = 2
+size_flags_vertical = 8
 theme = SubResource("Theme_28032")
 theme_override_constants/margin_left = 215
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 1013
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Butttons"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GUI/MainUI/Butttons"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 9
 
-[node name="Timer" type="MarginContainer" parent="CanvasLayer/Butttons/VBoxContainer"]
-custom_minimum_size = Vector2(0, 88)
+[node name="Timer" type="MarginContainer" parent="CanvasLayer/GUI/MainUI/Butttons/VBoxContainer"]
+custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Butttons/VBoxContainer/Timer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GUI/MainUI/Butttons/VBoxContainer/Timer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 7
 
-[node name="Label" type="Label" parent="CanvasLayer/Butttons/VBoxContainer/Timer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GUI/MainUI/Butttons/VBoxContainer/Timer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "VOID"
-label_settings = SubResource("LabelSettings_uhyp7")
+size_flags_vertical = 4
+texture = ExtResource("20_xm868")
+stretch_mode = 4
 
-[node name="TimeLabel" type="Label" parent="CanvasLayer/Butttons/VBoxContainer/Timer/VBoxContainer"]
+[node name="TimeLabel" type="Label" parent="CanvasLayer/GUI/MainUI/Butttons/VBoxContainer/Timer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -572,50 +583,24 @@ text = "00"
 label_settings = SubResource("LabelSettings_ihr14")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Butttons/VBoxContainer/Timer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/GUI/MainUI/Butttons/VBoxContainer/Timer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("8_g2lcw")
-stretch_mode = 4
+text = "VOID"
+label_settings = SubResource("LabelSettings_uhyp7")
 
-[node name="HelpButton" type="TextureButton" parent="CanvasLayer/Butttons/VBoxContainer"]
+[node name="PauseButton" type="TextureButton" parent="CanvasLayer/GUI/MainUI/Butttons/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_mode = 0
-texture_normal = ExtResource("9_htd5q")
-texture_pressed = ExtResource("9_htd5q")
-texture_hover = ExtResource("9_htd5q")
-texture_disabled = ExtResource("9_htd5q")
-texture_focused = ExtResource("9_htd5q")
+texture_normal = ExtResource("22_xm868")
+texture_pressed = ExtResource("22_xm868")
+texture_hover = ExtResource("22_xm868")
+texture_disabled = ExtResource("22_xm868")
 
-[node name="Menu" type="MarginContainer" parent="CanvasLayer/Butttons/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-
-[node name="MenuButton" type="Button" parent="CanvasLayer/Butttons/VBoxContainer/Menu"]
-layout_mode = 2
-focus_mode = 0
-theme_override_colors/font_hover_pressed_color = Color(0.811765, 0.984314, 0.945098, 1)
-theme_override_colors/font_hover_color = Color(0.811765, 0.984314, 0.945098, 1)
-theme_override_colors/font_color = Color(0.811765, 0.984314, 0.945098, 1)
-theme_override_colors/font_focus_color = Color(0.811765, 0.984314, 0.945098, 1)
-theme_override_colors/font_pressed_color = Color(0.811765, 0.984314, 0.945098, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_at35o")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_at35o")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_at35o")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_at35o")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_at35o")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_at35o")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_at35o")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_at35o")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_at35o")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_at35o")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_at35o")
-text = "MENU"
-
-[node name="DieButton" type="TextureButton" parent="CanvasLayer/Butttons/VBoxContainer"]
+[node name="DieButton" type="TextureButton" parent="CanvasLayer/GUI/MainUI/Butttons/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -667,28 +652,6 @@ text = "+1 Stairway to Heaven"
 horizontal_alignment = 1
 script = ExtResource("21_uneno")
 
-[node name="GameMenu" parent="CanvasLayer" instance=ExtResource("21_qnhfn")]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -132.0
-offset_top = -127.0
-offset_right = 132.0
-offset_bottom = 73.0
-
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
-offset_left = 376.0
-offset_right = 416.0
-offset_bottom = 40.0
-theme_override_constants/margin_top = 30
-
-[node name="HelpPanel" parent="CanvasLayer/MarginContainer2" instance=ExtResource("22_nehuc")]
-visible = false
-layout_mode = 2
-
 [node name="DrawTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -705,8 +668,6 @@ libraries = {
 [node name="VoidTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="pressed" from="CanvasLayer/Butttons/VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Butttons/VBoxContainer/Menu/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="card_selected" from="CanvasLayer/Card Selection" to="." method="_on_card_selection_card_selected"]
 [connection signal="card_selected" from="CanvasLayer/Card Selection" to="CanvasLayer/DrawPileLabel" method="_on_card_selection_card_selected"]
 [connection signal="timeout" from="DrawTimer" to="." method="_on_draw_timer_timeout"]
