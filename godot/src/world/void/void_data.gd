@@ -5,7 +5,7 @@ const TTL=3
 var ttl:int=TTL
 var area:VoidArea
 var cell:Vector2i
-
+var expanded_this_tick := false
 
 func _init(cell:Vector2i) -> void:
 	self.cell = cell
