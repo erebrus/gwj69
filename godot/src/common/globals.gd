@@ -41,6 +41,10 @@ var starting_deck: Dictionary = {
 var current_deck: Dictionary = {}
 
 var player_alive:bool = false
+var player_pause:bool = false:
+	set(_v):
+		player_pause=_v
+		Events.player_pause_state_changed.emit()
 
 var game_mode: Types.GameMode:
 	set(value):

@@ -85,7 +85,7 @@ func remove_log():
 	HyperLog.remove_log(self)
 	
 func _physics_process(delta):
-	if paused or is_spawning:
+	if Globals.player_pause or paused or is_spawning:
 		return
 	boost_duration = clamp(boost_duration-delta, 0, 100) 
 	

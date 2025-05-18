@@ -16,6 +16,8 @@ signal card_played(card:CardUI)
 @warning_ignore("unused_signal")
 signal reshuffled_discard_pile()
 
+@warning_ignore("unused_signal")
+signal player_pause_state_changed()
 
 @warning_ignore("unused_signal")
 signal die_requested()

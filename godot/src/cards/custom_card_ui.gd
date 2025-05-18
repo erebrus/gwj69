@@ -56,6 +56,6 @@ func _on_card_played():
 	#HACK logic shouldn't be here...
 	if custom_data.has_trait(CustomCardUIData.Traits.ONE_USE):
 		Events.card_destroy_requested.emit(self)
-	#Events.card_played.emit(self)
+	Events.card_played.emit(self)
 func _on_card_drawn():
 	pass
