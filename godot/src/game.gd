@@ -47,7 +47,8 @@ func _ready():
 	
 	%DieButton.pressed.connect(_on_die_pressed)
 	game_menu.void_toggled.connect(toggle_void_progression)
-	
+	Events.player_pause_state_changed.connect(func():%PauseButton.button_pressed = Globals.player_pause)
+	Events.player_respawned.connect(_on_player_respawned)
 	Events.card_error.connect(_on_card_error)
 	Events.player_died.connect(_on_player_died)
 	Events.checkpoint_requested.connect(_on_checkpoint_requested)
@@ -68,6 +69,9 @@ func _ready():
 	reset_void_cooldown()
 	Globals.music_manager.fade_in_game_stream(Types.GameMusic.RHYTHM, .15)
 
+func _on_player_respawned(player):
+	Globals.player_pause = false
+	%PauseButton.button_pressed = false
 	
 func _on_game_mode_changed(mode: Types.GameMode):
 	if mode == Types.GameMode.ChoosingCard:
@@ -156,6 +160,7 @@ func _on_card_error():
 	sfx_err.play()
 
 func _process(_delta: float) -> void:
+	void_timer.paused = not Globals.player_alive or Globals.player_pause
 	if void_timer.is_stopped():
 		%TimeLabel.text = "--"
 	else:
@@ -252,6 +257,8 @@ func toggle_camera():
 	Logger.info("Camera mode changed to %s" % Types.CameraMode.keys()[camera_mode])
 
 func _on_card_played(_card:CardUI):
+	Globals.player_pause = false
+#	TODO this was removed before this event was no longer emitted. Check
 	if draw_timer.wait_time>0:
 		if draw_timer.wait_time>1:
 			draw_timer.wait_time -= 1
@@ -316,3 +323,7 @@ func toggle_void_progression():
 	Logger.info("void timer cooldown progression: %s" % do_void_progression)
 	if not do_void_progression:
 		void_cooldown = start_void_cooldown
+
+
+func _on_pause_button_toggled(toggled_on: bool) -> void:
+	Globals.player_pause = toggled_on

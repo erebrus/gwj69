@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://duka5rbd4bxdc"]
+[gd_scene load_steps=54 format=3 uid="uid://duka5rbd4bxdc"]
 
 [ext_resource type="Script" uid="uid://08vewb4st243" path="res://src/game.gd" id="1_k8n5x"]
 [ext_resource type="PackedScene" uid="uid://dpqcxdph2b0v0" path="res://src/world/base_world.tscn" id="2_euer7"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://chsanmrigp4n" path="res://src/ui/game_menu.tscn" id="21_qnhfn"]
 [ext_resource type="Script" uid="uid://b4ii0di18r5oe" path="res://src/cards/draw_pile_label.gd" id="21_uneno"]
 [ext_resource type="Texture2D" uid="uid://3hqwypw16ley" path="res://assets/gfx/ui/symbol-pause.png" id="22_xm868"]
+[ext_resource type="Texture2D" uid="uid://b2x0jibbq8o1" path="res://assets/gfx/ui/symbol-play.png" id="24_3onxw"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57o5p"]
 streams_count = 3
@@ -595,8 +596,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_mode = 0
+toggle_mode = true
 texture_normal = ExtResource("22_xm868")
-texture_pressed = ExtResource("22_xm868")
+texture_pressed = ExtResource("24_3onxw")
 texture_hover = ExtResource("22_xm868")
 texture_disabled = ExtResource("22_xm868")
 
@@ -668,6 +670,7 @@ libraries = {
 [node name="VoidTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="toggled" from="CanvasLayer/GUI/MainUI/Butttons/VBoxContainer/PauseButton" to="." method="_on_pause_button_toggled"]
 [connection signal="card_selected" from="CanvasLayer/Card Selection" to="." method="_on_card_selection_card_selected"]
 [connection signal="card_selected" from="CanvasLayer/Card Selection" to="CanvasLayer/DrawPileLabel" method="_on_card_selection_card_selected"]
 [connection signal="timeout" from="DrawTimer" to="." method="_on_draw_timer_timeout"]
