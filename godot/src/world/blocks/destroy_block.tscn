@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c5q12b01bdck2"]
 
 [ext_resource type="PackedScene" uid="uid://k1ey4vvnmd50" path="res://src/world/blocks/base_block.tscn" id="1_argyj"]
-[ext_resource type="Script" uid="uid://c2gsmrp88bt7h" path="res://destroy_block.gd" id="2_rqdm0"]
+[ext_resource type="Script" uid="uid://c2gsmrp88bt7h" path="res://src/world/blocks/destroy_block.gd" id="2_rqdm0"]
 [ext_resource type="Shader" uid="uid://dc002tl5nvki8" path="res://src/world/blocks/tile_shader.tres" id="3_g8lwx"]
 [ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="4_0cxx6"]
 
