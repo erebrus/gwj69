@@ -196,4 +196,16 @@
 	"block_scene_path": "res://src/world/blocks/destroy_block_2x2.tscn",
 	"traits":{}
   },
+  {
+	"nice_name": "destroy_void",
+	"display_name": "Vanish the void",
+	"description": "???.",
+	"cost": 0,
+	"resource_script_path": "res://src/cards/logic/card_block.gd",
+	"image_path": "res://assets/gfx/cards/blocks12.png",
+	"texture_path": "res://assets/gfx/ui/card-border.png",
+	"backface_texture_path": "res://assets/gfx/ui/card-back.png",
+	"block_scene_path": "res://src/world/blocks/destroy_void.tscn",
+	"traits":{}
+  },
 ]

@@ -54,9 +54,9 @@ func set_state(state: Dictionary) -> void:
 		add_child(block)
 		block.set_state(block_state)
 	
-func clear_blocks_at(coords:Vector2i)->void:
+func clear_blocks_at(coords:Vector2i, clear_void: bool = false)->void:
 	var cell_id = get_cell_source_id(coords)
-	if cell_id != -1 and cell_id != VOID_ID:
+	if cell_id != -1 and (cell_id != VOID_ID or clear_void):
 		set_cell(coords,-1)
 	
 	for child in get_children():
@@ -69,4 +69,3 @@ func clear_blocks_at(coords:Vector2i)->void:
 			if !child.is_cell_empty(child_coords):
 				child.clear_blocks_at(child_coords)
 		
-

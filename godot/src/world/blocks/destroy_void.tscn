@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cupwxgr2k7wov"]
+
+[ext_resource type="PackedScene" uid="uid://c5q12b01bdck2" path="res://src/world/blocks/destroy_block.tscn" id="1_pady4"]
+[ext_resource type="Shader" uid="uid://dc002tl5nvki8" path="res://src/world/blocks/tile_shader.tres" id="2_3bm6b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ekafr"]
+resource_local_to_scene = true
+shader = ExtResource("2_3bm6b")
+shader_parameter/ColorParameter = Color(0.735881, 0.108295, 0.299178, 1)
+shader_parameter/color_factor = 0.0
+shader_parameter/emission_f = 1.0
+shader_parameter/disintegration_factor = 1.0
+shader_parameter/alpha_f = 0.0
+
+[node name="DestroyVoid" instance=ExtResource("1_pady4")]
+type = 2
+
+[node name="TileMapLayer" parent="." index="1"]
+material = SubResource("ShaderMaterial_ekafr")
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)

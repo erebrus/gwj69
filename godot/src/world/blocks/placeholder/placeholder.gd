@@ -99,9 +99,12 @@ func _place() -> void:
 	else:
 		var offset = tilemap.local_to_map(block_position)
 		var tiles = block.tilemap.get_used_cells()
+		
 		for tile in tiles:
-			tilemap.clear_blocks_at(offset + tile)
-			
+			tilemap.clear_blocks_at(offset + tile, true)
+			if (block.type == BaseBlock.Type.DESTROY_VOID):
+				Globals.void_tilemap.clear_blocks_at(offset + tile)
+		
 		block.enable()
 		placed.emit()
 		Events.block_placed.emit(block)

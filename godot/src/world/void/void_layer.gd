@@ -18,8 +18,6 @@ var cell_counters = {}
 var void_areas:Array[VoidArea] = []
 
 func _ready() -> void:
-
-		
 	Events.tick.connect(_on_tick)
 	for cell in get_used_cells():
 		Events.new_void_cell.emit(cell)
@@ -153,6 +151,12 @@ func _cell_to_target_sides(cell: Vector2i, target: Vector2i) -> Array[TileSet.Ce
 	return sides
 	
 
+func clear_blocks_at(coords: Vector2i) -> void:
+	print(get_used_cells())
+	set_cell(coords,-1)
+	cell_counters.erase(coords)
+	
+
 func fade():
 	var to_remove=[]
 	for cell in cell_counters.keys():
@@ -163,8 +167,7 @@ func fade():
 				cell_counters[cell].tick()
 			
 	for cell in to_remove:
-		set_cell(cell,-1)
-		cell_counters.erase(cell)
+		clear_blocks_at(cell)
 	
 
 func _on_tick() -> void:
