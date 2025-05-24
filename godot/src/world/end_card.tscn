@@ -1,9 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://bhlc28vc4kusx"]
+[gd_scene load_steps=53 format=3 uid="uid://bhlc28vc4kusx"]
 
 [ext_resource type="Texture2D" uid="uid://b62ac7gke2nqp" path="res://assets/gfx/world/door/end-card-idle.png" id="1_iiww1"]
 [ext_resource type="Script" uid="uid://6fml4cwvhm1g" path="res://src/world/end_card.gd" id="1_k8bdo"]
 [ext_resource type="Texture2D" uid="uid://ren4glqld0im" path="res://assets/gfx/world/door/end-card-gather.png" id="2_sbq26"]
 [ext_resource type="AudioStream" uid="uid://bfwge3ev8u7fa" path="res://assets/sfx/End_of_Level.wav" id="4_aewdq"]
+[ext_resource type="Texture2D" uid="uid://bdvyepdcj5ilt" path="res://assets/gfx/world/star-vfx-sheet.png" id="5_6uqhf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_whtfm"]
 atlas = ExtResource("1_iiww1")
@@ -231,7 +232,113 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0l33"]
 size = Vector2(2, 4)
 
-[node name="EndCard" type="Area2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xg4q"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqm2n"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iamx"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pljay"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf6gi"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jnyr"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dasyg"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7e7w"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4xsq"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03fns"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iphb"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpdjk"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g61ok"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3trak"]
+atlas = ExtResource("5_6uqhf")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7g78b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xg4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqm2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iamx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pljay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf6gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jnyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dasyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7e7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4xsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03fns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iphb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpdjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g61ok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3trak")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[node name="EndCard" type="Area2D" groups=["end_card"]]
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_k8bdo")
@@ -247,5 +354,11 @@ shape = SubResource("RectangleShape2D_j0l33")
 stream = ExtResource("4_aewdq")
 volume_db = -5.0
 bus = &"Sfx"
+
+[node name="Vfx" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_7g78b")
+frame_progress = 0.926446
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

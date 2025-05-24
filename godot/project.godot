@@ -39,6 +39,10 @@ window/vsync/vsync_mode=0
 
 enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/audio_intro/plugin.cfg", "res://addons/gs_logger/plugin.cfg", "res://addons/hyperlog/plugin.cfg", "res://addons/layerNames/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/simple_card_pile_ui/plugin.cfg", "res://addons/xsm/plugin.cfg")
 
+[global_group]
+
+end_card=""
+
 [input]
 
 left_click={

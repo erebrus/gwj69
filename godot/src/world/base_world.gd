@@ -18,9 +18,17 @@ func _ready():
 	Events.player_respawned.connect(_on_player_respawned)
 	Events.camera_toggled.connect(_on_camera_toggled)
 	Events.new_void_cell.connect(_on_new_void_cell)
+	Events.request_camera.connect(_on_camera_requested)
 	$Camera.position = $StartPosition.position
 	
-	
+
+func _on_camera_requested(target_position:Vector2, duration:float):
+	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($Camera, "global_position",target_position,1)
+	await tween.finished
+	await get_tree().create_timer(duration).timeout
+	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)	
+	tween.tween_property($Camera, "global_position",$StartPosition.global_position,.5)
 
 func get_state() -> Dictionary:
 	return {
