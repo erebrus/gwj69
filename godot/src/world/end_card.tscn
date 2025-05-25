@@ -355,9 +355,15 @@ stream = ExtResource("4_aewdq")
 volume_db = -5.0
 bus = &"Sfx"
 
-[node name="Vfx" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(0, -12)
+[node name="VfxAnchor" type="Node2D" parent="."]
+
+[node name="Vfx" type="AnimatedSprite2D" parent="VfxAnchor"]
+position = Vector2(-7, -12)
+sprite_frames = SubResource("SpriteFrames_7g78b")
+frame_progress = 0.926446
+
+[node name="Vfx2" type="AnimatedSprite2D" parent="VfxAnchor"]
+position = Vector2(6, -12)
 sprite_frames = SubResource("SpriteFrames_7g78b")
 frame_progress = 0.926446
 

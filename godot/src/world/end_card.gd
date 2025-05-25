@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var vfx: AnimatedSprite2D = $Vfx
+@onready var vfx_anchor: Node2D = $VfxAnchor
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,11 +12,13 @@ func _ready() -> void:
 	Events.request_camera.emit(global_position, 2.0)
 	
 func show_vfx(duration:float):
-	vfx.visible=true
-	vfx.play("default")
+	vfx_anchor.visible=true
+	for vfx in vfx_anchor.get_children():
+		vfx.play("default")
 	await get_tree().create_timer(duration).timeout
-	vfx.stop()
-	vfx.visible = false
+	for vfx in vfx_anchor.get_children():
+		vfx.stop()
+	vfx_anchor.visible = false
 	
 func _on_body_entered(_body: Node2D) -> void:
 	Logger.info("End Level Card Collected.")
