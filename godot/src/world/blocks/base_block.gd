@@ -3,7 +3,8 @@ class_name BaseBlock extends Node2D
 enum Type {
 	PLACE_BLOCK,
 	DESTROY_BLOCK,
-	DESTROY_VOID
+	DESTROY_VOID,
+	REPLACE_VOID,
 }
 
 var collision_shape_transform =  Transform2D(0, Vector2(0.9,0.9), 0, Vector2.ZERO)

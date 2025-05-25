@@ -44,7 +44,7 @@ func _ready() -> void:
 			area.collision_mask = WORLD_MASK + VOID_MASK + PLAYER_MASK + UNPLACEABLE_MASK
 		BaseBlock.Type.DESTROY_BLOCK:
 			area.collision_mask = WORLD_MASK
-		BaseBlock.Type.DESTROY_VOID:
+		BaseBlock.Type.DESTROY_VOID or BaseBlock.Type.REPLACE_VOID:
 			area.collision_mask = VOID_MASK
 	
 	Events.card_clicked.connect(_destroy)
@@ -84,7 +84,15 @@ func _place() -> void:
 	Logger.info("block placed")
 	var block_position = tilemap.to_local(block.global_position)
 	
-	if (block.type == BaseBlock.Type.PLACE_BLOCK):
+	if (block.type != BaseBlock.Type.PLACE_BLOCK):
+		var offset = tilemap.local_to_map(block_position)
+		var tiles = block.tilemap.get_used_cells()
+		
+		for tile in tiles:
+			tilemap.clear_blocks_at(offset + tile, true)
+			Globals.void_tilemap.clear_blocks_at(offset + tile)
+	
+	if (block.type == BaseBlock.Type.PLACE_BLOCK or block.type == BaseBlock.Type.REPLACE_VOID):
 		if len(tilemap.get_used_cells()) > 1:
 			build_block_sfx.play()
 		else:
@@ -97,11 +105,6 @@ func _place() -> void:
 		placed.emit()
 		Events.block_placed.emit(block)
 	else:
-		var offset = tilemap.local_to_map(block_position)
-		var tiles = block.tilemap.get_used_cells()
-		for tile in tiles:
-			tilemap.clear_blocks_at(offset + tile)
-			
 		block.enable()
 		placed.emit()
 		Events.block_placed.emit(block)

@@ -31,6 +31,7 @@ script = ExtResource("3_l4642")
 tile_set = ExtResource("1_1oa7u")
 navigation_enabled = false
 script = ExtResource("4_0f46f")
+void_area_path = NodePath("../VoidAreas")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ogdge")

@@ -81,7 +81,7 @@ func place(at: Vector2, angle: float) -> void:
 	player_detector_rotation.rotation = -angle
 	
 
-func clear_blocks_at(coords: Vector2i) -> void:
+func clear_blocks_at(coords: Vector2i, _clear_void: bool = false) -> void:
 	if slider_layer.get_cell_source_id(_get_rotated_coords(coords)) != -1:
 		queue_free()
 	

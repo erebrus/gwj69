@@ -56,7 +56,7 @@ func get_collision_shapes() -> Array[CollisionPolygon2D]:
 	
 	return shapes
 	
-func clear_blocks_at(coords: Vector2i) -> void:
+func clear_blocks_at(coords: Vector2i, clear_void: bool = false) -> void:
 	tilemap.set_cell(_get_rotated_coords(coords), -1)
 	
 func is_cell_empty(coords: Vector2i) -> bool:
