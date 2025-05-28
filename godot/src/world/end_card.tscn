@@ -358,12 +358,22 @@ bus = &"Sfx"
 [node name="VfxAnchor" type="Node2D" parent="."]
 
 [node name="Vfx" type="AnimatedSprite2D" parent="VfxAnchor"]
-position = Vector2(-7, -12)
+position = Vector2(-5, -11)
 sprite_frames = SubResource("SpriteFrames_7g78b")
 frame_progress = 0.926446
 
 [node name="Vfx2" type="AnimatedSprite2D" parent="VfxAnchor"]
 position = Vector2(6, -12)
+sprite_frames = SubResource("SpriteFrames_7g78b")
+frame_progress = 0.926446
+
+[node name="Vfx3" type="AnimatedSprite2D" parent="VfxAnchor"]
+position = Vector2(-7, 0)
+sprite_frames = SubResource("SpriteFrames_7g78b")
+frame_progress = 0.926446
+
+[node name="Vfx4" type="AnimatedSprite2D" parent="VfxAnchor"]
+position = Vector2(7, 2)
 sprite_frames = SubResource("SpriteFrames_7g78b")
 frame_progress = 0.926446
 

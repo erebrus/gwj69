@@ -2,7 +2,7 @@
   {
 	"nice_name": "jump",
 	"display_name": "Boosted",
-	"description": "Give your prophet ability to get over twice as bigger obstacle next time.",
+	"description": "Immediately upon play, gives the Pawn a single boosted jump.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_jump.gd",
 	"image_path": "res://assets/gfx/cards/Utility2.png",
@@ -13,7 +13,7 @@
   {
 	"nice_name": "speed",
 	"display_name": "Scurry On",
-	"description": "Make your prophet run faster.",
+	"description": "Gives the Pawn faster movement speed for a short duration.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_faster.gd",
 	"image_path": "res://assets/gfx/cards/Utility3.png",
@@ -24,7 +24,7 @@
 {
 	"nice_name": "turn_around",
 	"display_name": "Reversal",
-	"description": "Turn your prophet around.",
+	"description": "Immediately upon play, turns the Pawn around.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_turn_around.gd",
 	"image_path": "res://assets/gfx/cards/old/turn-card.png",
@@ -35,7 +35,7 @@
 {
 	"nice_name": "spawn",
 	"display_name": "Pawn",
-	"description": "Give your prophet the second chance to fulfil their mission.",
+	"description": "Spawns a Pawn. They are needed to reach the goal.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_spawn.gd",
 	"image_path": "res://assets/gfx/cards/mc-card.png",
@@ -45,8 +45,8 @@
   },
   {
 	"nice_name": "block1",
-	"display_name": "Simpleton",
-	"description": "Create one simple block.",
+	"display_name": "Singleton",
+	"description": "Creates one simple block.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/cards/block-card.png",
@@ -57,8 +57,8 @@
   },
   {
 	"nice_name": "block2",
-	"display_name": "Double-edged",
-	"description": "Create 2 simple blocks in the pictured pattern.",
+	"display_name": "Doubled",
+	"description": "Creates 2 adjacent blocks.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/cards/2-block-h-card.png",
@@ -70,7 +70,7 @@
   {
 	"nice_name": "block3_step",
 	"display_name": "Triple Threat",
-	"description": "Create 3 simple blocks in a pictured pattern.",
+	"description": "Creates 3 blocks in the pictured pattern.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/cards/3-block-l-card.png",
@@ -82,7 +82,7 @@
   {
 	"nice_name": "block3_row",
 	"display_name": "Steady Ground",
-	"description": "Create 3 simple blocks in a pictured pattern.",
+	"description": "Creates 3 blocks in the pictured pattern.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/cards/3-block-h-card.png",
@@ -94,7 +94,7 @@
   {
 	"nice_name": "block4",
 	"display_name": "Opportune",
-	"description": "Create 4 simple blocks in the pictured pattern.",
+	"description": "Creates 4 blocks in the pictured pattern.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/cards/4-block-t-card.png",
@@ -106,7 +106,7 @@
 {
 	"nice_name": "zblock",
 	"display_name": "ZigZag",
-	"description": "Create 4 simple blocks in the pictured pattern.",
+	"description": "Creates 4 blocks in the pictured pattern.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/cards/4-block-z-card.png",
@@ -117,8 +117,8 @@
   },
   {
 	"nice_name": "moving_block",
-	"display_name": "Moving Along",
-	"description": "Invention of Laziness.",
+	"display_name": "Invention of Laziness",
+	"description": "Creates a single moving block.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/cards/moving-block-card.png",
@@ -130,7 +130,7 @@
 {
 	"nice_name": "stairs",
 	"display_name": "A Way Up",
-	"description": "Is there an elevator?",
+	"description": "Creates 5 blocks in a stair pattern.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/cards/3-block-diag-card.png",
@@ -142,7 +142,7 @@
   {
 	"nice_name": "checkpoint",
 	"display_name": "Pawn Point",
-	"description": "Reflect on your surroundings. If your Pawn dies, they can start again from here.",
+	"description": "If a Pawn dies, just spawn another here.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_checkpoint.gd",
 	"image_path": "res://assets/gfx/cards/checkpoint-card.png",
@@ -152,8 +152,8 @@
   },
   {
 	"nice_name": "end_level",
-	"display_name": "Escape the Void",
-	"description": "Your prophet can feel that they are one step closer to their goal.",
+	"display_name": "Escape",
+	"description": "Summon a portal to another level.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_end_level.gd",
 	"image_path": "res://assets/gfx/cards/old/end-level-card.png",
@@ -163,8 +163,8 @@
   },
 {
 	"nice_name": "end_game",
-	"display_name": "Void Annihilation",
-	"description": "Feel the emptiness of completing your mission.",
+	"display_name": "Vanquish",
+	"description": "Vanquish the Void",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_end_game.gd",
 	"image_path": "res://assets/gfx/cards/old/end-game-card.png",
@@ -174,8 +174,8 @@
   },
   {
 	"nice_name": "destroy_block",
-	"display_name": "Make A Window",
-	"description": "???.",
+	"display_name": "A Way Through",
+	"description": "Destoy a single block.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/cards/blocks11.png",
@@ -186,8 +186,8 @@
   },
   {
 	"nice_name": "destroy_block_4",
-	"display_name": "Make A Door",
-	"description": "???.",
+	"display_name": "Demolition",
+	"description": "Destroy a group of blocks.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/cards/blocks10.png",
@@ -198,8 +198,8 @@
   },
   {
 	"nice_name": "destroy_void",
-	"display_name": "Vanish the void",
-	"description": "???.",
+	"display_name": "Vanish",
+	"description": "Destroys a single void block.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/cards/blocks12.png",
