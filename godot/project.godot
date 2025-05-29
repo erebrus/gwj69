@@ -17,6 +17,10 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://cwxp4ielpu0a8"
+
 [autoload]
 
 Logger="*res://addons/gs_logger/logger.gd"
@@ -115,4 +119,4 @@ toggle_void_progression={
 
 textures/canvas_textures/default_texture_filter=0
 viewport/hdr_2d=true
-environment/defaults/default_clear_color=Color(0.227451, 0.223529, 0.286275, 1)
+environment/defaults/default_clear_color=Color(0.25098, 0.223529, 0.286275, 1)
