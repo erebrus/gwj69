@@ -35,7 +35,7 @@
 {
 	"nice_name": "spawn",
 	"display_name": "Pawn",
-	"description": "Spawns a Pawn. They are needed to reach the goal.",
+	"description": "Spawns a Pawn. They are able to affect the world.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_spawn.gd",
 	"image_path": "res://assets/gfx/cards/mc-card.png",
