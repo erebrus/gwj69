@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dh7lq"]
 resource_local_to_scene = true
 shader = ExtResource("3_rh4w1")
-shader_parameter/glow_color = Color(0.339379, 0.729487, 0.814181, 1)
+shader_parameter/glow_color = Color(0.984314, 0.945098, 0.811765, 1)
 shader_parameter/emission_f = 20.0
 shader_parameter/position_delta = Vector2(0, 0)
 shader_parameter/alpha_f = 0.0

@@ -78,7 +78,7 @@ render_mode blend_mix;
 uniform sampler2D tex_frg_6;
 uniform sampler2D tex_frg_7;
 uniform vec4 ColorParameter : source_color = vec4(0.811765, 0.984314, 0.945098, 1.000000);
-uniform float emission_f = 40;
+uniform float emission_f = 40.0;
 
 
 
