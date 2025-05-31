@@ -14,6 +14,7 @@ var levels:Array[PackedScene] =[
 	#preload("res://src/world/levels/level_tutorial.tscn"),
 	#preload("res://src/world/levels/test_level_tunnel.tscn"),
 	#preload("res://src/world/levels/test_level_up.tscn"),
+	preload("res://src/world/levels/test_level_tutorial.tscn"),
 	preload("res://src/world/levels/level_loop.tscn"),
 	preload("res://src/world/levels/test_level_swirl.tscn"),
 	#preload("res://src/world/levels/final_levels/level_00_tutorial.tscn"),
