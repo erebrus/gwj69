@@ -347,7 +347,7 @@ point_count = 3
 curve = SubResource("Curve_64uc3")
 
 [sub_resource type="Gradient" id="Gradient_b4wq3"]
-colors = PackedColorArray(0.886275, 0.643137, 0.901961, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.968627, 0.596078, 0.47451, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_p6jgw"]
 gradient = SubResource("Gradient_b4wq3")
@@ -359,7 +359,7 @@ angle_max = 1.07288e-05
 gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 2.0
-color = Color(0.885434, 0.643129, 0.90336, 1)
+color = Color(0.807843, 0.807843, 0.807843, 1)
 color_ramp = SubResource("GradientTexture1D_p6jgw")
 alpha_curve = SubResource("CurveTexture_xn06s")
 

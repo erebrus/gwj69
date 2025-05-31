@@ -228,8 +228,8 @@ alpha_curve = SubResource("CurveTexture_5hhj0")
 script = ExtResource("2_mj4o5")
 min_particles_emitted = 10
 max_particles_emitted = 30
-valid_placement_color = Color(0.332737, 0.521018, 0.262603, 1)
-invalid_placement_color = Color(0.749957, 0, 0.12187, 1)
+valid_placement_color = Color(0.25098, 0.223529, 0.286275, 1)
+invalid_placement_color = Color(0.4, 0.145098, 0.0509804, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 root_node = NodePath("../TileMapLayer")

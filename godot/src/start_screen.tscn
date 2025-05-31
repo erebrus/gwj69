@@ -91,14 +91,14 @@ content_margin_left = 0.0
 content_margin_top = 1.0
 content_margin_right = 0.0
 content_margin_bottom = 1.0
-bg_color = Color(0.988235, 0.466667, 0.333333, 1)
+bg_color = Color(0.807843, 0.807843, 0.807843, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k715e"]
 content_margin_left = 0.0
 content_margin_top = 1.0
 content_margin_right = 0.0
 content_margin_bottom = 1.0
-bg_color = Color(0.87451, 0.87451, 0.87451, 1)
+bg_color = Color(0.313726, 0.32549, 0.435294, 1)
 
 [sub_resource type="Theme" id="Theme_je0ac"]
 default_font = ExtResource("23_leh6x")
@@ -112,10 +112,10 @@ HSlider/styles/slider = SubResource("StyleBoxFlat_k715e")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8sq5c"]
 texture = ExtResource("22_ud1aq")
-texture_margin_left = 40.0
-texture_margin_top = 40.0
+texture_margin_left = 70.0
+texture_margin_top = 65.0
 texture_margin_right = 40.0
-texture_margin_bottom = 40.0
+texture_margin_bottom = 65.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yye0d"]
 
@@ -177,6 +177,7 @@ columns = 2
 
 [node name="Label" type="Label" parent="Volume"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.807843, 0.807843, 0.807843, 1)
 text = "MUSIC"
 
 [node name="VolumeSlider" parent="Volume" instance=ExtResource("24_7gifx")]
@@ -186,6 +187,7 @@ bus_name = "Music"
 
 [node name="Label2" type="Label" parent="Volume"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.807843, 0.807843, 0.807843, 1)
 text = "SFX"
 
 [node name="VolumeSlider2" parent="Volume" instance=ExtResource("24_7gifx")]
@@ -201,19 +203,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -420.0
-offset_top = -26.0
-offset_right = -156.0
-offset_bottom = 110.0
+offset_left = -415.0
+offset_top = -70.0
+offset_right = -151.0
+offset_bottom = 158.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_8sq5c")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_top = 0.065
+anchor_right = 0.976
+anchor_bottom = 0.856
+offset_left = 24.0
+offset_top = 9.18
+offset_right = -12.384
+offset_bottom = 8.17999
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 40
@@ -226,10 +233,10 @@ layout_mode = 2
 
 [node name="StartButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_pressed_color = Color(0.988235, 0.466667, 0.333333, 1)
-theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.984314, 0.945098, 0.811765, 1)
+theme_override_colors/font_hover_color = Color(0.984314, 0.945098, 0.811765, 1)
 theme_override_fonts/font = ExtResource("23_leh6x")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yye0d")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_tpi4i")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_kkn46")
@@ -242,13 +249,14 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_wu8nb")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ahmqk")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gkv2k")
 text = "START"
+alignment = 0
 
 [node name="QuitButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_pressed_color = Color(0.988235, 0.466667, 0.333333, 1)
-theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.984314, 0.945098, 0.811765, 1)
+theme_override_colors/font_hover_color = Color(0.984314, 0.945098, 0.811765, 1)
 theme_override_fonts/font = ExtResource("23_leh6x")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yye0d")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_tpi4i")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_kkn46")
@@ -260,7 +268,8 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_gxvjy")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_wu8nb")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ahmqk")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gkv2k")
-text = "QUIT"
+text = "EXIT"
+alignment = 0
 
 [node name="sfx_button" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_5d2yg")
