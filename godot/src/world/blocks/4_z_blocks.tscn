@@ -16,4 +16,4 @@ shader_parameter/alpha_f = 0.0
 
 [node name="TileMapLayer" parent="." index="1"]
 material = SubResource("ShaderMaterial_8fpy8")
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 255, 255, 2, 0, 4, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2, 0, 7, 0, 0, 0, 0, 0, 255, 255, 0, 0, 2, 0, 5, 0, 0, 0, 0, 0)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 2, 0, 3, 0, 1, 0, 0, 0, 0, 0, 255, 255, 2, 0, 4, 0, 0, 0, 0, 0, 255, 255, 0, 0, 2, 0, 3, 0, 1, 0, 0, 0, 1, 0, 255, 255, 2, 0, 3, 0, 1, 0, 0, 0)
