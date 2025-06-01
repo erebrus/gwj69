@@ -14,7 +14,7 @@ func _ready() -> void:
 func show_vfx(duration:float):
 	vfx_anchor.visible=true
 	for vfx in vfx_anchor.get_children():
-		vfx.play("default")
+		vfx.play("star 1")
 	await get_tree().create_timer(duration).timeout
 	for vfx in vfx_anchor.get_children():
 		vfx.stop()

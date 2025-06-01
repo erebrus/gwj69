@@ -665,7 +665,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"star 2",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -747,7 +747,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"star 4",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -788,7 +788,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"star 5",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -855,7 +855,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"star 7",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [node name="EndCard" type="Area2D" groups=["end_card"]]
@@ -865,6 +865,8 @@ script = ExtResource("1_k8bdo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kbac7")
+frame = 13
+frame_progress = 0.846459
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_j0l33")
@@ -877,23 +879,29 @@ bus = &"Sfx"
 [node name="VfxAnchor" type="Node2D" parent="."]
 
 [node name="Vfx" type="AnimatedSprite2D" parent="VfxAnchor"]
-position = Vector2(-5, -11)
+position = Vector2(-6, 0)
 sprite_frames = SubResource("SpriteFrames_7g78b")
 animation = &"star 7"
+frame = 4
+frame_progress = 0.377066
 
 [node name="Vfx2" type="AnimatedSprite2D" parent="VfxAnchor"]
-position = Vector2(6, -12)
+position = Vector2(4, -11)
 sprite_frames = SubResource("SpriteFrames_7g78b")
 animation = &"star 1"
 
 [node name="Vfx3" type="AnimatedSprite2D" parent="VfxAnchor"]
-position = Vector2(-7, 0)
+position = Vector2(-5, -9)
 sprite_frames = SubResource("SpriteFrames_7g78b")
 animation = &"star 1"
+frame = 12
+frame_progress = 0.470381
 
 [node name="Vfx4" type="AnimatedSprite2D" parent="VfxAnchor"]
-position = Vector2(7, 2)
+position = Vector2(6, -4)
 sprite_frames = SubResource("SpriteFrames_7g78b")
-animation = &"star 1"
+animation = &"star 4"
+frame = 6
+frame_progress = 0.583578
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
