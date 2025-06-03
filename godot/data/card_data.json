@@ -2,7 +2,7 @@
   {
 	"nice_name": "jump",
 	"display_name": "Boosted",
-	"description": "Immediately upon play, gives the Pawn a single boosted jump.",
+	"description": "Upon the next jump, the Pawn gains a boost.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_jump.gd",
 	"image_path": "res://assets/gfx/cards/Utility2.png",
@@ -163,8 +163,8 @@
   },
 {
 	"nice_name": "end_game",
-	"display_name": "Vanquish",
-	"description": "Vanquish the Void",
+	"display_name": "Vanquish Origin",
+	"description": "Vanquish the Void and its Origin",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_end_game.gd",
 	"image_path": "res://assets/gfx/cards/old/end-game-card.png",
@@ -211,7 +211,7 @@
   {
 	"nice_name": "replace_void",
 	"display_name": "One From Nothing",
-	"description": "Create a block from the void.",
+	"description": "Creates one block from one void.",
 	"cost": 0,
 	"resource_script_path": "res://src/cards/logic/card_block.gd",
 	"image_path": "res://assets/gfx/cards/blocks13.png",

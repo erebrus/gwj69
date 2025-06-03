@@ -500,6 +500,7 @@ _data = {
 script = ExtResource("1_k8n5x")
 draw_cooldown = 0.0
 start_void_cooldown = 10.0
+void_cooldown_progression = 0.75
 
 [node name="BaseWorld" parent="." instance=ExtResource("2_euer7")]
 
