@@ -12,10 +12,13 @@ func _ready() -> void:
 	Events.request_camera.emit(global_position, 2.0)
 	
 func show_vfx(duration:float):
+	if vfx_anchor.get_child_count() == 0:
+		return
 	vfx_anchor.visible=true
 	for vfx in vfx_anchor.get_children():
 		vfx.play("default")
 	await get_tree().create_timer(duration).timeout
+	await (vfx_anchor.get_child(0) as AnimatedSprite2D).animation_finished
 	for vfx in vfx_anchor.get_children():
 		vfx.stop()
 	vfx_anchor.visible = false
