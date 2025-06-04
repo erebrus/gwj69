@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=4 uid="uid://dls5c3igs44b3"]
+[gd_scene load_steps=27 format=4 uid="uid://dls5c3igs44b3"]
 
 [ext_resource type="Script" uid="uid://c06h3j3ivdfxq" path="res://src/win_screen.gd" id="1_1prml"]
 [ext_resource type="TileSet" uid="uid://djuv4ds6emddb" path="res://src/world/world_tileset.tres" id="1_eccrg"]
 [ext_resource type="Theme" uid="uid://b7jm7ogqwlkvk" path="res://src/cards/card_theme.tres" id="2_ubsdm"]
 [ext_resource type="FontFile" uid="uid://bjm5umnjo1est" path="res://assets/fonts/font-menu-UI-20px-portable_tube/PortableTube.ttf" id="4_m1rrc"]
 [ext_resource type="Texture2D" uid="uid://lwykjg4se6m0" path="res://assets/gfx/title/win-Sheet.png" id="4_w7a12"]
+[ext_resource type="Texture2D" uid="uid://bejvsvtq04bpx" path="res://assets/gfx/title/end-screen.png" id="6_rh7tw"]
 [ext_resource type="AudioStream" uid="uid://11677xre8rtj" path="res://assets/sfx/UI_Button_1.wav" id="6_wkrdg"]
 [ext_resource type="AudioStream" uid="uid://lbuwv71j81k" path="res://assets/sfx/UI_Button_2.wav" id="7_6segk"]
 [ext_resource type="AudioStream" uid="uid://b72gxnfohwqko" path="res://assets/sfx/UI_Button_3.wav" id="8_uphsn"]
@@ -13,7 +14,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uuntd"]
 atlas = ExtResource("4_w7a12")
-region = Rect2(4268, 0, 388, 100)
+region = Rect2(0, 0, 388, 100)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yuxf7"]
 
@@ -93,6 +94,7 @@ _data = {
 script = ExtResource("1_1prml")
 
 [node name="Background" type="TileMapLayer" parent="."]
+visible = false
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAAXABEAAQAAAAAAAAAGAAQAAQAAAAAAAAAeAAMAAQAAAAAAAAANAAsAAQAAAAAAAAAMAAwAAQAAAAAAAAAiAA4AAQAAAAAAAAAhABAAAQAAAAAAAAAiAA8AAQAAAAAAAAAEABMAAQAAAAAAAAAJABcAAQAAAAAAAAAeABUAAQAAAAAAAAAmAAQAAQAAAAAAAAA=")
 tile_set = ExtResource("1_eccrg")
@@ -103,6 +105,8 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -389.0
+offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -115,20 +119,41 @@ size_flags_vertical = 4
 theme_override_constants/separation = 50
 
 [node name="Sprite2D" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 texture = SubResource("AtlasTexture_uuntd")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-text = "erebrus - Lead Programmer
-angelalb - Programmer
-Skwid - Lead Artist
-Thom13made - Music/SFX
-Rita.PressAnyKey - Designer
-Forager - Juicer"
-horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.807843, 0.807843, 0.807843, 1)
+text = "Thanks for playing!"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Lead Programmer 
+erebrus
+
+Programmer
+angelalb 
+
+Artist 
+skwid
+
+ Music/SFX
+Thom13made
+
+Designer
+Rita.PressAnyKey
+
+Level Designer
+skwid
+
+Juicer
+Forager"
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
@@ -138,8 +163,8 @@ layout_mode = 2
 
 [node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
 theme_override_fonts/font = ExtResource("4_m1rrc")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yuxf7")
@@ -157,8 +182,8 @@ text = "Start Game"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.988235, 0.466667, 0.333333, 1)
+theme_override_colors/font_hover_color = Color(0.988235, 0.466667, 0.333333, 1)
 theme_override_fonts/font = ExtResource("4_m1rrc")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yuxf7")
@@ -183,9 +208,14 @@ autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_k75vw")
+&"": SubResource("AnimationLibrary_k75vw")
 }
 autoplay = "default"
+
+[node name="End-screen" type="Sprite2D" parent="."]
+position = Vector2(503, 359)
+texture = ExtResource("6_rh7tw")
+flip_h = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
