@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cvlps0q7qnfou"]
+[gd_scene load_steps=65 format=3 uid="uid://cvlps0q7qnfou"]
 
 [ext_resource type="Script" uid="uid://ob5jukhgu1t4" path="res://src/start_screen.gd" id="1_eftrj"]
 [ext_resource type="Texture2D" uid="uid://bmiekdb8xu253" path="res://assets/gfx/title/title/title1.png" id="1_ex27u"]
@@ -21,70 +21,33 @@
 [ext_resource type="Texture2D" uid="uid://bl1qqxcaifyya" path="res://assets/gfx/title/title/title18.png" id="18_p5q7p"]
 [ext_resource type="Texture2D" uid="uid://b10hrhr1wc7n4" path="res://assets/gfx/title/title/title19.png" id="19_kfmhj"]
 [ext_resource type="Texture2D" uid="uid://gss2kv5n2ar3" path="res://assets/gfx/title/title/title20.png" id="20_oj31q"]
+[ext_resource type="Texture2D" uid="uid://cjhfij1iwf74b" path="res://assets/gfx/title/title/title21.png" id="22_e4ar7"]
 [ext_resource type="Texture2D" uid="uid://dvcyb584hqot6" path="res://assets/gfx/ui/slider_grabber.png" id="22_l5lr2"]
 [ext_resource type="Texture2D" uid="uid://c52sllhu5qjb6" path="res://assets/gfx/title/UI-title.png" id="22_ud1aq"]
+[ext_resource type="Texture2D" uid="uid://dajfmry85558m" path="res://assets/gfx/title/title/title22.png" id="23_escde"]
 [ext_resource type="FontFile" uid="uid://bjm5umnjo1est" path="res://assets/fonts/font-menu-UI-20px-portable_tube/PortableTube.ttf" id="23_leh6x"]
 [ext_resource type="PackedScene" uid="uid://to3p8qv7p8yo" path="res://addons/sj/components/ui/settings/volume_slider.tscn" id="24_7gifx"]
 [ext_resource type="AudioStream" uid="uid://11677xre8rtj" path="res://assets/sfx/UI_Button_1.wav" id="24_fmnmr"]
+[ext_resource type="Texture2D" uid="uid://ce78hl3506jgl" path="res://assets/gfx/title/title/title23.png" id="24_m7ugp"]
+[ext_resource type="Texture2D" uid="uid://b21j5lky8mu6o" path="res://assets/gfx/title/title/title24.png" id="25_bxwna"]
 [ext_resource type="AudioStream" uid="uid://lbuwv71j81k" path="res://assets/sfx/UI_Button_2.wav" id="25_l2ewj"]
 [ext_resource type="AudioStream" uid="uid://b72gxnfohwqko" path="res://assets/sfx/UI_Button_3.wav" id="26_4t44w"]
+[ext_resource type="Texture2D" uid="uid://brmol2scg8nwb" path="res://assets/gfx/title/title/title25.png" id="26_yuvyo"]
 [ext_resource type="AudioStream" uid="uid://dnpkscn0nhp0u" path="res://assets/sfx/UI_Button_4.wav" id="27_8sg8g"]
-
-[sub_resource type="Animation" id="Animation_ojilk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BG:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_ex27u")]
-}
-
-[sub_resource type="Animation" id="Animation_tg1kf"]
-resource_name = "loop"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BG:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("16_alte8"), ExtResource("17_173g2"), ExtResource("18_p5q7p"), ExtResource("19_kfmhj"), ExtResource("20_oj31q")]
-}
-
-[sub_resource type="Animation" id="Animation_522l4"]
-resource_name = "start"
-length = 1.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BG:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("1_ex27u"), ExtResource("2_vmynn"), ExtResource("3_edyp1"), ExtResource("4_h1k4c"), ExtResource("5_vf0nx"), ExtResource("6_rk0lv"), ExtResource("7_bhn2e"), ExtResource("8_8y2w8"), ExtResource("9_q1635"), ExtResource("10_2omyj"), ExtResource("11_57ewf"), ExtResource("12_virjh"), ExtResource("13_7e1k7"), ExtResource("14_2ha8f"), ExtResource("15_xro4g")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kmxbk"]
-_data = {
-&"RESET": SubResource("Animation_ojilk"),
-&"loop": SubResource("Animation_tg1kf"),
-&"start": SubResource("Animation_522l4")
-}
+[ext_resource type="Texture2D" uid="uid://dy4xamcsuh0vr" path="res://assets/gfx/title/title/title26.png" id="27_d8frf"]
+[ext_resource type="Texture2D" uid="uid://b66g8om5itkqe" path="res://assets/gfx/title/title/title27.png" id="28_5vp6r"]
+[ext_resource type="Texture2D" uid="uid://dbxckd15l5g23" path="res://assets/gfx/title/title/title28.png" id="29_r3lx2"]
+[ext_resource type="Texture2D" uid="uid://dd5ujs7xcg2uo" path="res://assets/gfx/title/title/title29.png" id="30_ymeal"]
+[ext_resource type="Texture2D" uid="uid://rwgms0fnkfgc" path="res://assets/gfx/title/title/title30.png" id="31_rstbj"]
+[ext_resource type="Texture2D" uid="uid://qtxhftcermia" path="res://assets/gfx/title/title/title31.png" id="32_lwnfi"]
+[ext_resource type="Texture2D" uid="uid://1ifiq5xqkocv" path="res://assets/gfx/title/title/title32.png" id="33_03sp6"]
+[ext_resource type="Texture2D" uid="uid://c5acrnaodq388" path="res://assets/gfx/title/title/title33.png" id="34_jm0r8"]
+[ext_resource type="Texture2D" uid="uid://bfree27hallwt" path="res://assets/gfx/title/title/title34.png" id="35_rlfpb"]
+[ext_resource type="Texture2D" uid="uid://c0f23fl6wfolp" path="res://assets/gfx/title/title/title35.png" id="36_4cprp"]
+[ext_resource type="Texture2D" uid="uid://cpuarkgtksmsm" path="res://assets/gfx/title/title/title36.png" id="37_3jgvg"]
+[ext_resource type="Texture2D" uid="uid://b1iuwruu1v5m7" path="res://assets/gfx/title/title/title37.png" id="38_k7vjp"]
+[ext_resource type="Texture2D" uid="uid://buw8kn3f1q8hp" path="res://assets/gfx/title/title/title38.png" id="39_f32he"]
+[ext_resource type="Texture2D" uid="uid://dlqpvvomw8wn7" path="res://assets/gfx/title/title/title39.png" id="40_2w8vv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58p3f"]
 content_margin_left = 0.0
@@ -154,17 +117,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eftrj")
+bg_textures = Array[Texture]([ExtResource("1_ex27u"), ExtResource("2_vmynn"), ExtResource("3_edyp1"), ExtResource("4_h1k4c"), ExtResource("5_vf0nx"), ExtResource("6_rk0lv"), ExtResource("7_bhn2e"), ExtResource("8_8y2w8"), ExtResource("9_q1635"), ExtResource("10_2omyj"), ExtResource("11_57ewf"), ExtResource("12_virjh"), ExtResource("13_7e1k7"), ExtResource("14_2ha8f"), ExtResource("15_xro4g"), ExtResource("16_alte8"), ExtResource("17_173g2"), ExtResource("18_p5q7p"), ExtResource("19_kfmhj"), ExtResource("20_oj31q"), ExtResource("22_e4ar7"), ExtResource("23_escde"), ExtResource("24_m7ugp"), ExtResource("25_bxwna"), ExtResource("26_yuvyo"), ExtResource("27_d8frf"), ExtResource("28_5vp6r"), ExtResource("29_r3lx2"), ExtResource("30_ymeal"), ExtResource("31_rstbj"), ExtResource("32_lwnfi"), ExtResource("33_03sp6"), ExtResource("34_jm0r8"), ExtResource("35_rlfpb"), ExtResource("36_4cprp"), ExtResource("37_3jgvg"), ExtResource("38_k7vjp"), ExtResource("39_f32he"), ExtResource("40_2w8vv")])
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("1_ex27u")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_kmxbk")
-}
 
 [node name="Volume" type="GridContainer" parent="."]
 layout_mode = 2
@@ -274,5 +233,10 @@ alignment = 0
 [node name="sfx_button" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_5d2yg")
 
+[node name="AnimationTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="timeout" from="AnimationTimer" to="." method="_on_animation_timer_timeout"]
