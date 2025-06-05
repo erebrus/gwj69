@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cvlps0q7qnfou"]
+[gd_scene load_steps=66 format=3 uid="uid://cvlps0q7qnfou"]
 
 [ext_resource type="Script" uid="uid://ob5jukhgu1t4" path="res://src/start_screen.gd" id="1_eftrj"]
 [ext_resource type="Texture2D" uid="uid://bmiekdb8xu253" path="res://assets/gfx/title/title/title1.png" id="1_ex27u"]
@@ -48,6 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://b1iuwruu1v5m7" path="res://assets/gfx/title/title/title37.png" id="38_k7vjp"]
 [ext_resource type="Texture2D" uid="uid://buw8kn3f1q8hp" path="res://assets/gfx/title/title/title38.png" id="39_f32he"]
 [ext_resource type="Texture2D" uid="uid://dlqpvvomw8wn7" path="res://assets/gfx/title/title/title39.png" id="40_2w8vv"]
+[ext_resource type="Texture2D" uid="uid://b7rll2yvugkul" path="res://assets/gfx/title/title-border.png" id="49_escde"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58p3f"]
 content_margin_left = 0.0
@@ -121,8 +122,9 @@ bg_textures = Array[Texture]([ExtResource("1_ex27u"), ExtResource("2_vmynn"), Ex
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 0
+offset_top = 19.0
 offset_right = 1280.0
-offset_bottom = 720.0
+offset_bottom = 739.0
 texture = ExtResource("1_ex27u")
 
 [node name="Volume" type="GridContainer" parent="."]
@@ -162,10 +164,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -415.0
-offset_top = -70.0
-offset_right = -151.0
-offset_bottom = 158.0
+offset_left = -479.0
+offset_top = -17.0
+offset_right = -215.0
+offset_bottom = 137.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_8sq5c")
@@ -176,10 +178,10 @@ anchors_preset = -1
 anchor_top = 0.065
 anchor_right = 0.976
 anchor_bottom = 0.856
-offset_left = 24.0
-offset_top = 9.18
-offset_right = -12.384
-offset_bottom = 8.17999
+offset_left = 23.0
+offset_top = -21.075
+offset_right = -13.384
+offset_bottom = 24.32
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 40
@@ -236,6 +238,10 @@ stream = SubResource("AudioStreamRandomizer_5d2yg")
 [node name="AnimationTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="Title-border" type="Sprite2D" parent="."]
+position = Vector2(640, 380)
+texture = ExtResource("49_escde")
 
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
