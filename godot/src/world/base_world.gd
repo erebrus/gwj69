@@ -23,10 +23,12 @@ func _ready():
 	
 
 func _on_camera_requested(target_position:Vector2, duration:float):
-	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
+	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property($Camera, "global_position",target_position,2.0)
 	tween.tween_interval(duration)
-	tween.tween_property($Camera, "global_position",$StartPosition.global_position,2.0)
+	tween.tween_property($Camera, "global_position",checkpoint.global_position if checkpoint else $StartPosition.global_position,2.0)
+	
+		
 
 func get_state() -> Dictionary:
 	return {
