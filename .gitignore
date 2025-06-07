@@ -15,3 +15,4 @@ mono_crash.*.json
 .DS_Store
 *.log
 godot/build/
+tools/godot_helper/venv
